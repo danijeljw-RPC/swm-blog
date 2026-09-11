@@ -1,0 +1,67 @@
+---
+import { podcast } from "../../config/podcast";
+import type { EpisodeData } from "../../types/episode";
+import { getEpisodeMedia } from "../../utils/episode-media";
+import EpisodeAudioPlayer from "./EpisodeAudioPlayer.astro";
+import MediaPlatformIcon from "./MediaPlatformIcon.astro";
+
+interface Props { episode: EpisodeData; }
+const { episode } = Astro.props;
+const media = getEpisodeMedia(episode, podcast.platforms);
+const primaryLinks = media.links.filter((link) => link.id !== "downloadAudio" && link.id !== "downloadVideo");
+const downloadLinks = media.links.filter((link) => link.id === "downloadAudio" || link.id === "downloadVideo");
+---
+
+{media.hasMedia && (
+  <aside class="episode-media" aria-labelledby="episode-media-heading">
+    <h2 id="episode-media-heading">Watch or listen</h2>
+    <nav aria-label="Episode media">
+      <div class="platform-links">
+        {primaryLinks.map((link) => (
+          link.id === "hostedVideo" || link.id === "audio" ? (
+            <a href={link.url} aria-label={link.label} title={link.label}>
+              <MediaPlatformIcon platform={link.id} />
+              <span>{link.label.replace("Watch on ", "").replace("Listen on ", "")}</span>
+            </a>
+          ) : (
+            <a href={link.url} target="_blank" rel="noopener noreferrer" aria-label={link.label} title={link.label}>
+              <MediaPlatformIcon platform={link.id} />
+              <span>{link.label.replace("Watch on ", "").replace("Listen on ", "")}</span>
+            </a>
+          )
+        ))}
+      </div>
+      {downloadLinks.length > 0 && <div class="download-links">{downloadLinks.map((link) => <a href={link.url} aria-label={link.label} title={link.label}><MediaPlatformIcon platform={link.id} /><span>{link.label}</span></a>)}</div>}
+    </nav>
+    <EpisodeAudioPlayer episode={episode} />
+  </aside>
+)}
+
+<style>
+  .episode-media {
+    width: min(calc(100% - 2rem), 64rem);
+    margin: var(--space-6) auto 0;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--swm-border);
+  }
+  h2 { margin-bottom: var(--space-4); font-size: clamp(1.9rem, 5vw, 2.7rem); }
+  .platform-links { display: flex; gap: var(--space-3); overflow-x: auto; padding-bottom: var(--space-1); }
+  .download-links { display: flex; gap: var(--space-3); margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px solid var(--swm-border-soft); }
+  a {
+    display: inline-flex;
+    min-width: 4.75rem;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--swm-gold);
+    font-size: 0.72rem;
+    text-align: center;
+    text-decoration: none;
+  }
+  a:hover { color: var(--swm-gold-light); }
+  a :global(svg) { width: 2rem; height: 2rem; fill: currentColor; }
+  @media (min-width: 48rem) {
+    .episode-media { width: min(calc(100% - 4rem), 64rem); }
+  }
+</style>

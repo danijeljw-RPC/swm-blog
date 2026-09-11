@@ -42,9 +42,12 @@ test("renderEpisodeMarkdown quotes YAML and leaves optional links null", () => {
 
   assert.match(markdown, /title: 'A Mirror: "Reflected"'/);
   assert.match(markdown, /youtube: null/);
+  assert.match(markdown, /hosted: null/);
+  assert.doesNotMatch(markdown, /vimeo:/);
   assert.match(markdown, /audio: null/);
   assert.match(markdown, /## In this episode/);
-  assert.match(markdown, /Platform links are rendered automatically/);
+  assert.doesNotMatch(markdown, /## Listen or watch/);
+  assert.doesNotMatch(markdown, /Platform links are rendered automatically/);
 });
 
 test("renderEpisodeMarkdown requires alt text when artwork is supplied", () => {

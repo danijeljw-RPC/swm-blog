@@ -58,7 +58,7 @@ Episodes live under `src/content/episodes/` as Markdown. The Content Collection 
 - optional local artwork and required alt text when artwork is present
 - optional duration
 - optional audio URL, MIME type, and positive byte count
-- optional YouTube, Spotify, and Vimeo episode links
+- optional self-hosted, YouTube, and Spotify episode links
 - optional podcast-directory episode links
 - optional transcript
 - known host identifiers

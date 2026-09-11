@@ -24,6 +24,11 @@ interface RssChannel {
   selfUrl: string;
   description: string;
   language: string;
+  author?: string;
+  artwork?: string;
+  ownerName?: string;
+  ownerEmail?: string;
+  explicit?: boolean | null;
 }
 
 interface RssEpisode {
@@ -34,6 +39,12 @@ interface RssEpisode {
     description: string;
     publishedAt: Date;
     duration?: string | null;
+    podcast?: {
+      guid?: string | null;
+      season?: number;
+      episodeType?: "full" | "trailer" | "bonus";
+      explicit?: boolean | null;
+    };
   };
 }
 
@@ -56,17 +67,33 @@ export function serializePodcastRss(
     const duration = data.duration
       ? `\n      <itunes:duration>${escapeXml(data.duration)}</itunes:duration>`
       : "";
+    const guid = data.podcast?.guid ?? episodeUrl;
+    const guidIsPermalink = data.podcast?.guid ? "false" : "true";
+    const episodeType = data.podcast?.episodeType
+      ? `\n      <itunes:episodeType>${data.podcast.episodeType}</itunes:episodeType>`
+      : "";
+    const explicit = typeof data.podcast?.explicit === "boolean"
+      ? `\n      <itunes:explicit>${data.podcast.explicit ? "true" : "false"}</itunes:explicit>`
+      : "";
     return [`
     <item>
       <title>${escapeXml(data.title)}</title>
       <link>${escapeXml(episodeUrl)}</link>
-      <guid isPermaLink="true">${escapeXml(episodeUrl)}</guid>
+      <guid isPermaLink="${guidIsPermalink}">${escapeXml(guid)}</guid>
       <description>${escapeXml(data.description)}</description>
       <pubDate>${data.publishedAt.toUTCString()}</pubDate>
       <enclosure url="${escapeXml(data.audio.url)}" length="${data.audio.bytes}" type="${escapeXml(data.audio.mimeType)}" />
-      <itunes:episode>${data.episode}</itunes:episode>${duration}
+      <itunes:episode>${data.episode}</itunes:episode>${duration}${episodeType}${explicit}
     </item>`];
   });
+
+  const artwork = channel.artwork ? `\n    <itunes:image href="${escapeXml(channel.artwork)}" />` : "";
+  const owner = channel.ownerName && channel.ownerEmail
+    ? `\n    <itunes:owner>\n      <itunes:name>${escapeXml(channel.ownerName)}</itunes:name>\n      <itunes:email>${escapeXml(channel.ownerEmail)}</itunes:email>\n    </itunes:owner>`
+    : "";
+  const explicit = typeof channel.explicit === "boolean"
+    ? `\n    <itunes:explicit>${channel.explicit ? "true" : "false"}</itunes:explicit>`
+    : "";
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"
@@ -79,8 +106,8 @@ export function serializePodcastRss(
     <description>${escapeXml(channel.description)}</description>
     <language>${escapeXml(channel.language)}</language>
     <atom:link href="${escapeXml(channel.selfUrl)}" rel="self" type="application/rss+xml" />
-    <itunes:author>${escapeXml(channel.title)}</itunes:author>
-    <itunes:type>episodic</itunes:type>${items.join("")}
+    <itunes:author>${escapeXml(channel.author ?? channel.title)}</itunes:author>
+    <itunes:type>episodic</itunes:type>${artwork}${owner}${explicit}${items.join("")}
   </channel>
 </rss>
 `;

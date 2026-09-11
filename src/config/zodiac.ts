@@ -18,3 +18,20 @@ export type ZodiacSlug = (typeof ZODIAC_SIGNS)[number]["slug"];
 export function getZodiacSign(slug: string | undefined) {
   return ZODIAC_SIGNS.find((sign) => sign.slug === slug);
 }
+
+export function getCurrentZodiacSign(date: string) {
+  const monthAndDay = date.slice(5);
+  if (monthAndDay >= "12-22" || monthAndDay <= "01-19") return getZodiacSign("capricorn");
+  if (monthAndDay <= "02-18") return getZodiacSign("aquarius");
+  if (monthAndDay <= "03-20") return getZodiacSign("pisces");
+  if (monthAndDay >= "03-21" && monthAndDay <= "04-19") return getZodiacSign("aries");
+  if (monthAndDay <= "05-20") return getZodiacSign("taurus");
+  if (monthAndDay <= "06-20") return getZodiacSign("gemini");
+  if (monthAndDay <= "07-21") return getZodiacSign("cancer");
+  if (monthAndDay <= "08-22") return getZodiacSign("leo");
+  if (monthAndDay <= "09-22") return getZodiacSign("virgo");
+  if (monthAndDay <= "10-22") return getZodiacSign("libra");
+  if (monthAndDay <= "11-22") return getZodiacSign("scorpio");
+  if (monthAndDay <= "12-21") return getZodiacSign("sagittarius");
+  return getZodiacSign("sagittarius");
+}

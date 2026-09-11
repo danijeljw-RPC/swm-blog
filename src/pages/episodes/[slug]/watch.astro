@@ -1,0 +1,46 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getPublishedEpisodes } from "../../../utils/episodes";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const episodes = getPublishedEpisodes(await getCollection("episodes"));
+  return episodes
+    .filter((entry) => Boolean(entry.data.video.hosted))
+    .map((entry) => ({ params: { slug: entry.data.slug }, props: { entry } }));
+}
+
+interface Props { entry: CollectionEntry<"episodes">; }
+const { entry } = Astro.props;
+const { data } = entry;
+const videoUrl = data.video.hosted;
+if (!videoUrl) throw new Error(`Watch route requires video.hosted for ${data.slug}`);
+---
+<BaseLayout title={`Watch ${data.title}`} description={data.description} image={data.heroImage} noindex={data.seo.noindex}>
+  <article class="watch-page site-container">
+    <header>
+      <p>Season {data.podcast.season}, episode {data.episode}</p>
+      <h1>{data.title}</h1>
+    </header>
+    <section class="video-frame framed-panel" aria-label={`Video player: ${data.title}`}>
+      <video controls preload="metadata" playsinline poster={data.heroImage ?? undefined}>
+        <source src={videoUrl} type="video/mp4" />
+        Your browser does not support HTML video. <a href={videoUrl}>Open the video file</a>.
+      </video>
+    </section>
+    <p class="back-link"><a href={`/episodes/${data.slug}/`}>Back to episode article</a></p>
+  </article>
+</BaseLayout>
+
+<style>
+  .watch-page { width: min(calc(100% - 2rem), 72rem); padding-block: var(--space-3) var(--space-6); }
+  header { margin-bottom: var(--space-2); }
+  header > p:first-child { color: var(--swm-gold-light); font-size: .78rem; }
+  h1 { max-width: 24ch; margin-bottom: 0; font-size: clamp(1.7rem, 4vw, 2.75rem); }
+  .video-frame { overflow: hidden; padding: .5rem; }
+  video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; }
+  .back-link { margin-top: var(--space-4); }
+  @media (min-width: 48rem) { .watch-page { width: min(calc(100% - 4rem), 72rem); } .video-frame { padding: .8rem; } }
+</style>

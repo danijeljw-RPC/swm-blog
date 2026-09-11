@@ -21,7 +21,7 @@ heroImage: null
 heroImageAlt: ""
 duration: null
 audio: null
-video: { youtube: null, spotify: null, vimeo: null }
+video: { hosted: null, youtube: null, spotify: null }
 podcast: { spotify: null, apple: null, amazon: null, iheart: null }
 transcript: null
 hosts: [dj, warren]

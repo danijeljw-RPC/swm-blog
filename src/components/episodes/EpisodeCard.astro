@@ -14,6 +14,7 @@ const { data } = entry;
     {data.fixture && <p class="fixture-notice">Fixture episode — demonstration content only.</p>}
     <p>{data.excerpt}</p>
     <div class="categories">{data.categories.map((category) => <CategoryBadge category={category as CategoryKey} />)}</div>
+    {data.video.hosted && <div class="button-row"><a class="button button--quiet" href={`/episodes/${data.slug}/watch/`}>Watch video</a></div>}
   </div>
 </article>
 <style>
@@ -23,4 +24,5 @@ const { data } = entry;
   .episode-meta { color: var(--swm-gold-light); font-size: 0.73rem; }
   h3 a { text-decoration: none; }
   .categories { display: flex; flex-wrap: wrap; gap: var(--space-1); margin-top: var(--space-3); }
+  .button-row { margin-top: var(--space-3); }
 </style>

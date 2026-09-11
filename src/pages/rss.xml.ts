@@ -1,6 +1,7 @@
 import { getCollection } from "astro:content";
 
 import { site } from "../config/site";
+import { podcast } from "../config/podcast";
 import { getPublishedEpisodes } from "../utils/episodes";
 import { serializePodcastRss } from "../utils/rss";
 
@@ -8,11 +9,16 @@ export async function GET() {
   const episodes = getPublishedEpisodes(await getCollection("episodes"));
   const xml = serializePodcastRss(
     {
-      title: site.name,
+      title: podcast.name,
       link: site.url,
       selfUrl: new URL(site.rssPath, site.url).toString(),
-      description: site.description,
-      language: site.language,
+      description: podcast.description,
+      language: podcast.language,
+      author: podcast.author,
+      artwork: podcast.artwork,
+      ownerName: podcast.ownerName,
+      ownerEmail: podcast.ownerEmail,
+      explicit: podcast.explicit,
     },
     episodes,
   );

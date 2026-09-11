@@ -16,14 +16,14 @@ Use this as the source material for your short and long website bio.
 
 ## The Basics
 
-**Name / what you want to be called:**  
-**Role on Sisters with Mirrors:**  
+**Name / what you want to be called:**  DJ
+**Role on Sisters with Mirrors:**  Host
 **One-line description of yourself:**  
-**Star sign:**  
-**Element:**  
+**Star sign:**  Aries
+**Element:**  Fire
 **Planet:**  
-**Favourite colour:**  
-**Current location / home base, if you want it public:**  
+**Favourite colour:**  Royal Purple
+**Current location / home base, if you want it public:**  Adelaide, SA
 
 ## Your Spiritual / Personal Path
 
@@ -69,32 +69,35 @@ _Podcast, artist, album, audiobook, meditation track, weird YouTube rabbit hole 
 **Favourite comfort food:**  
 **Favourite drink:**  
 **Favourite place to think:**  
-**Morning person or night owl:**  
-**Coffee, tea, both, or neither:**  
-**Dogs, cats, both, neither, or something stranger:**  
+**Morning person or night owl:**  Definately a night owl, I hate getting up out of bed, because it's so warm and I feel like there is never enough hours in a day to get everything done. If I were to be anything, I would be a vampire that never sleeps so I can take care of all my night work and during the day get to work and look after my husband and hte house.
+**Coffee, tea, both, or neither:**  Coffee. At least 5-8 times a day. Even 20 mins before bed. I have coffee in my veins.
+**Dogs, cats, both, neither, or something stranger:**  Cats. They're mysterious and bitchy. Just like me.
 
 **What is something completely ordinary you love?**
 
 **What is something people would not expect about you?**
 
 **What always makes you laugh?**
+Anything I do that is dumb. I have always found the joy in laughter, especially at one's own misfortune. I am the schadenfreude `/ˈʃɑːd(ə)nˌfrɔɪdə/` of the century. Especially when it comes to my own misfortune from simple thing like lifting your head into an open cupboard door (that I opened) or sticking my tongue on a battery and zapping myself and then doing it again just to be sure it wasn't my imagination!
 
 **What is your most irrational pet hate?**
+People that walk slow. I have things to do and places to be! Let's get a move on people. I'm an eternal being, but the timespan in this existence is very limited until I get to come back and continue the great architectural work of positivity to uplift.
 
 **If you had to spend one week investigating any mystery in the world, what would you choose?**
+100% I would spend one week, with my time machine, going back to see how the pyramids were made. I want to be there inspecting not only the pyramids, but all the great architectural work of the ancient egyptians.
 
 ## Quick-Fire
 
-**Tarot or astrology:**  
-**Ghosts or aliens:**  
-**Past lives or parallel lives:**  
-**Mountains or ocean:**  
-**Sunrise or midnight:**  
-**Logic or intuition:**  
-**Plan everything or wing it:**  
-**Ancient ruins or deep space:**  
-**Physical book or audiobook:**  
-**Ask one more question or leave it alone:**  
+**Tarot or astrology:**  Tarot
+**Ghosts or aliens:**  Aliens
+**Past lives or parallel lives:**  Parallel lives
+**Mountains or ocean:**  Mountains
+**Sunrise or midnight:**  Midnight
+**Logic or intuition:**  Intuition
+**Plan everything or wing it:**  Wing it
+**Ancient ruins or deep space:**  Ancient ruins
+**Physical book or audiobook:**  Audiobook
+**Ask one more question or leave it alone:**  Leave it alone, I have a good intuition to finish the masterwork myself
 
 ## Your Voice on the Show
 
@@ -114,7 +117,7 @@ Complete these in your own words:
 
 **I am:**  
 **I am fascinated by:**  
-**I tend to question:**  
+**I tend to question:**  Why Father Christmas didn't bring me a UFO for my christmas present when I was 8 years old?
 **On Sisters with Mirrors, I bring:**  
 **Outside the podcast, I am usually:**  
 

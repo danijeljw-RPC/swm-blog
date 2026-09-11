@@ -6,13 +6,24 @@ import EpisodeCard from "../components/episodes/EpisodeCard.astro";
 import EpisodeHero from "../components/episodes/EpisodeHero.astro";
 import HostCard from "../components/hosts/HostCard.astro";
 import { site } from "../config/site";
+import { getCurrentZodiacSign } from "../config/zodiac";
 import hosts from "../data/hosts.json";
+import cards from "../data/tarot/cards.json";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getColourOfTheDay, getDateInTimeZone, getNumberOfTheDay } from "../utils/daily-reflections";
 import { getPublishedEpisodes } from "../utils/episodes";
 
 const episodes = getPublishedEpisodes(await getCollection("episodes"));
 const latestEpisode = episodes[0];
 const recentEpisodes = episodes.slice(1, 4);
+const date = getDateInTimeZone(new Date(), site.timezone);
+const hashDay = (value: string) => [...value].reduce((total, character) => ((total * 31) + character.charCodeAt(0)) >>> 0, 7);
+const tarotCard = cards[hashDay(date) % cards.length];
+const zodiacSign = getCurrentZodiacSign(date)!;
+const [colourOfTheDay, numberOfTheDay] = await Promise.all([
+  getColourOfTheDay(new Date(), site.timezone),
+  getNumberOfTheDay(new Date(), site.timezone),
+]);
 ---
 
 <BaseLayout>
@@ -50,12 +61,12 @@ const recentEpisodes = episodes.slice(1, 4);
 
   <section class="mirror-preview page-section">
     <div class="site-container">
-      <SectionHeading title="Explore the mirror" introduction="Daily Mirror and Daily Astrology experiences will arrive in later phases after the source datasets are supplied." align="center" />
+      <SectionHeading title="Explore the mirror" introduction="Small daily reflections, refreshed for the Sisters with Mirrors calendar day." align="center" />
       <div class="mirror-grid">
-        <a href="/daily-mirror/"><span>Tarot</span><small>Awaiting source data</small></a>
-        <a href="/daily-mirror/"><span>Colour</span><small>Awaiting source data</small></a>
-        <a href="/daily-mirror/"><span>Number</span><small>Awaiting source data</small></a>
-        <a href="/astrology/"><span>Cosmic</span><small>Horoscopes &amp; cosmic atlas</small></a>
+        <a class="mirror-tile mirror-tile--tarot" href="/daily-mirror/"><span>Tarot</span><span class="mirror-tile__value"><strong>{tarotCard.name}</strong></span><small class="mirror-tile__detail" aria-hidden="true"></small></a>
+        <a class="mirror-tile mirror-tile--colour" href="/daily-mirror/"><span>Colour</span><span class="mirror-tile__value"><i class="colour-swatch" style={`--daily-colour: ${colourOfTheDay.hex}`} aria-label={`${colourOfTheDay.name}, ${colourOfTheDay.hex}`} role="img"></i><strong>{colourOfTheDay.name}</strong></span><small class="mirror-tile__detail">{colourOfTheDay.hex}</small></a>
+        <a class="mirror-tile mirror-tile--number" href="/daily-mirror/"><span>Number</span><span class="mirror-tile__value"><strong>{numberOfTheDay}</strong></span><small class="mirror-tile__detail" aria-hidden="true"></small></a>
+        <a class="mirror-tile mirror-tile--cosmic" href={`/astrology/${zodiacSign.slug}/`}><span>Cosmic</span><span class="mirror-tile__value"><img src={`/images/zodiac/${zodiacSign.slug}.png`} alt="" width="96" height="96" /><strong>{zodiacSign.name}</strong></span><small class="mirror-tile__detail" aria-hidden="true"></small></a>
       </div>
     </div>
   </section>
@@ -80,10 +91,16 @@ const recentEpisodes = episodes.slice(1, 4);
   .episode-grid, .host-grid { display: grid; gap: var(--space-4); }
   .mirror-preview { border-block: 1px solid var(--swm-border-soft); background: rgb(19 10 22 / 62%); }
   .mirror-grid { display: grid; border: 1px solid var(--swm-border); }
-  .mirror-grid a { display: grid; min-height: 9rem; place-content: center; padding: var(--space-3); border-bottom: 1px solid var(--swm-border-soft); text-align: center; text-decoration: none; }
+  .mirror-grid a { display: grid; min-height: 13rem; grid-template-rows: 2.4rem 1fr 1rem; place-items: center; padding: var(--space-3); border-bottom: 1px solid var(--swm-border-soft); text-align: center; text-decoration: none; }
   .mirror-grid a:last-child { border-bottom: 0; }
   .mirror-grid span { font-family: var(--font-display); font-size: 1.9rem; }
-  .mirror-grid small { color: var(--swm-text-muted); font-size: 0.68rem; }
+  .mirror-grid .mirror-tile__value { display: grid; place-items: center; align-content: center; gap: .25rem; min-height: 0; }
+  .mirror-grid strong { color: var(--swm-gold-light); font-family: var(--font-display); font-size: clamp(1.35rem, 2.5vw, 2rem); font-weight: 600; line-height: 1; }
+  .mirror-grid .mirror-tile__detail { min-height: 1rem; color: var(--swm-gold); font-size: .72rem; }
+  .mirror-tile--tarot strong { color: var(--swm-gold); }
+  .mirror-tile--number strong { color: var(--swm-gold); font-size: clamp(3.75rem, 7vw, 5.5rem); line-height: .82; }
+  .colour-swatch { display: block; width: 3.8rem; height: 3.8rem; border: 1px solid var(--swm-gold-light); box-shadow: 0 0 0 .28rem rgb(169 136 83 / 14%); background: var(--daily-colour); }
+  .mirror-tile--cosmic img { width: 3.9rem; height: 3.9rem; object-fit: contain; }
   @media (min-width: 42rem) { .episode-grid { grid-template-columns: repeat(2, 1fr); } .host-grid { grid-template-columns: repeat(2, 1fr); } .mirror-grid { grid-template-columns: repeat(4, 1fr); } .mirror-grid a { border-right: 1px solid var(--swm-border-soft); border-bottom: 0; } .mirror-grid a:last-child { border-right: 0; } }
   @media (min-width: 64rem) { .hero { grid-template-columns: minmax(0, 1.25fr) 8rem minmax(17rem, 0.75fr); } .celestial-axis { display: flex; } .episode-grid { grid-template-columns: repeat(3, 1fr); } }
 </style>

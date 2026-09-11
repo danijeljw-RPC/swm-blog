@@ -1,8 +1,7 @@
 ---
 import type { EpisodeEntry } from "../types/episode";
 import BaseLayout from "./BaseLayout.astro";
-import EpisodeAudioPlayer from "../components/episodes/EpisodeAudioPlayer.astro";
-import EpisodePlatformLinks from "../components/episodes/EpisodePlatformLinks.astro";
+import EpisodeMediaPanel from "../components/episodes/EpisodeMediaPanel.astro";
 import CategoryBadge from "../components/episodes/CategoryBadge.astro";
 import type { CategoryKey } from "../config/categories";
 interface Props { entry: EpisodeEntry; }
@@ -11,30 +10,36 @@ const { data } = entry;
 ---
 <BaseLayout title={data.title} description={data.description} image={data.heroImage} canonical={data.seo.canonical} noindex={data.seo.noindex}>
   <article class="episode-page">
-    <header class="site-container episode-header">
-      <p>Episode {data.episode}</p>
-      <h1>{data.title}</h1>
-      <time datetime={data.publishedAt.toISOString()}>{data.publishedAt.toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" })}</time>
-      {data.fixture && <p class="fixture-notice">Fixture episode — this is demonstration content, not a released episode.</p>}
-      <div class="categories">{data.categories.map((category) => <CategoryBadge category={category as CategoryKey} />)}</div>
-      <EpisodePlatformLinks episode={data} />
+    <header class:list={["site-container", "episode-header", data.heroImage && "episode-header--with-image"]}>
+      <div class="episode-header__copy">
+        <p>Episode {data.episode}</p>
+        <h1>{data.title}</h1>
+        <time datetime={data.publishedAt.toISOString()}>{data.publishedAt.toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" })}</time>
+        {data.fixture && <p class="fixture-notice">Fixture episode — this is demonstration content, not a released episode.</p>}
+        <div class="categories">{data.categories.map((category) => <CategoryBadge category={category as CategoryKey} />)}</div>
+      </div>
+      {data.heroImage && <img src={data.heroImage} alt={data.heroImageAlt} />}
     </header>
-    {data.heroImage && <div class="site-container hero-image"><img src={data.heroImage} alt={data.heroImageAlt} /></div>}
-    <div class="reading-column article-body"><slot /></div>
-    <div class="reading-column"><EpisodeAudioPlayer episode={data} /></div>
+    <div class="article-body"><slot /></div>
+    <EpisodeMediaPanel episode={data} />
   </article>
 </BaseLayout>
 <style>
-  .episode-page { padding-block: var(--space-6); }
-  .episode-header { max-width: 62rem; text-align: center; }
-  .episode-header > p:first-child, time { color: var(--swm-gold-light); font-size: 0.78rem; }
-  .episode-header h1 { font-size: clamp(3rem, 8vw, 6.5rem); }
-  .fixture-notice { max-width: 38rem; margin: var(--space-3) auto; }
-  .categories, .episode-header :global(.button-row) { justify-content: center; }
+  .episode-page { padding-block: var(--space-5) var(--space-6); }
+  .episode-header { max-width: 64rem; }
+  .episode-header--with-image { display: grid; gap: var(--space-4); }
+  .episode-header__copy { align-self: center; }
+  .episode-header__copy > p:first-child, time { color: var(--swm-gold-light); font-size: 0.78rem; }
+  .episode-header h1 { max-width: 18ch; font-size: clamp(2.5rem, 7vw, 4.5rem); }
+  .fixture-notice { max-width: 38rem; margin-top: var(--space-3); }
   .categories { display: flex; flex-wrap: wrap; gap: var(--space-1); margin-top: var(--space-3); }
-  .hero-image { margin-block: var(--space-5); }
-  .hero-image img { width: 100%; border: 1px solid var(--swm-border); }
-  .article-body { padding-inline: 1rem; font-size: 1.05rem; }
+  .episode-header img { width: 100%; max-height: 22rem; border: 1px solid var(--swm-border); object-fit: cover; }
+  .article-body { width: min(calc(100% - 2rem), 64rem); margin: var(--space-5) auto 0; padding-inline: 1rem; font-size: 1.05rem; }
   .article-body :global(h2) { margin-top: 2em; font-size: 2.2rem; }
   .article-body :global(blockquote) { margin: var(--space-4) 0; padding: var(--space-3); border-left: 2px solid var(--swm-gold); color: var(--swm-ivory); background: rgb(169 136 83 / 8%); }
+  @media (min-width: 48rem) {
+    .episode-header--with-image { grid-template-columns: minmax(0, 1.15fr) minmax(18rem, .85fr); align-items: center; }
+    .episode-header img { aspect-ratio: 16 / 10; }
+    .article-body { width: min(calc(100% - 4rem), 64rem); }
+  }
 </style>

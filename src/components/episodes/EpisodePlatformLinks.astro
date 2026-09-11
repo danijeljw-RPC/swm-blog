@@ -1,15 +1,16 @@
 ---
 import type { EpisodeData } from "../../types/episode";
+import { podcast } from "../../config/podcast";
 interface Props { episode: EpisodeData; }
 const { episode } = Astro.props;
 const candidates = [
   ["Watch on YouTube", episode.video.youtube],
   ["Watch on Spotify", episode.video.spotify],
   ["Watch on Vimeo", episode.video.vimeo],
-  ["Listen on Spotify", episode.podcast.spotify],
-  ["Listen on Apple Podcasts", episode.podcast.apple],
-  ["Listen on Amazon Music", episode.podcast.amazon],
-  ["Listen on iHeartRadio", episode.podcast.iheart],
+  ["Listen on Spotify", podcast.platforms.spotify],
+  ["Listen on Apple Podcasts", podcast.platforms.applePodcasts],
+  ["Listen on Amazon Music", podcast.platforms.amazonMusic],
+  ["Listen on iHeartRadio", podcast.platforms.iheart],
   ["Open audio", episode.audio?.url],
 ] as const;
 const seen = new Set<string>();

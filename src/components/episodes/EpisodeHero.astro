@@ -1,6 +1,5 @@
 ---
 import type { EpisodeEntry } from "../../types/episode";
-import EpisodePlatformLinks from "./EpisodePlatformLinks.astro";
 interface Props { entry: EpisodeEntry; compact?: boolean; }
 const { entry, compact = false } = Astro.props;
 const { data } = entry;
@@ -14,8 +13,8 @@ const { data } = entry;
     <p>{data.description}</p>
     <div class="button-row">
       <a class="button" href={`/episodes/${data.slug}/`}>Read episode</a>
+      {data.video.hosted && <a class="button button--quiet" href={`/episodes/${data.slug}/watch/`}>Watch video</a>}
     </div>
-    <EpisodePlatformLinks episode={data} />
   </div>
 </article>
 <style>

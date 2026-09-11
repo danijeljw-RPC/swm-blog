@@ -28,6 +28,10 @@ try {
   if (!Number.isInteger(episode) || episode < 1) {
     throw new Error("Episode number must be a positive integer.");
   }
+  const season = Number.parseInt((await prompt.question("Season number (default 1): ")).trim() || "1", 10);
+  if (!Number.isInteger(season) || season < 1) {
+    throw new Error("Season number must be a positive integer.");
+  }
   const title = await askRequired("Title");
   const publishedAt = await askRequired("Publication date (YYYY-MM-DD)");
   if (!/^\d{4}-\d{2}-\d{2}$/.test(publishedAt)) {
@@ -44,6 +48,7 @@ try {
   }
   const youtubeUrl = (await prompt.question("YouTube URL (optional): ")).trim();
   const spotifyUrl = (await prompt.question("Spotify URL (optional): ")).trim();
+  const hostedVideoUrl = (await prompt.question("R2 video URL (optional): ")).trim();
   const heroImage = (await prompt.question("Hero image path (optional): ")).trim();
   const heroImageAlt = heroImage ? await askRequired("Hero image alt text") : "";
 
@@ -70,6 +75,7 @@ try {
     destination,
     renderEpisodeMarkdown({
       episode,
+      season,
       title,
       publishedAt,
       description,
@@ -78,6 +84,7 @@ try {
       audioBytes,
       youtubeUrl,
       spotifyUrl,
+      hostedVideoUrl,
       heroImage,
       heroImageAlt,
     }),

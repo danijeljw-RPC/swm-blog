@@ -35,19 +35,19 @@ const episodes = defineCollection({
         .optional(),
       video: z
         .object({
+          hosted: optionalUrl,
           youtube: optionalUrl,
           spotify: optionalUrl,
-          vimeo: optionalUrl,
         })
         .default({}),
       podcast: z
         .object({
-          spotify: optionalUrl,
-          apple: optionalUrl,
-          amazon: optionalUrl,
-          iheart: optionalUrl,
+          guid: z.string().min(1).nullable().optional(),
+          season: z.number().int().positive().default(1),
+          episodeType: z.enum(["full", "trailer", "bonus"]).default("full"),
+          explicit: z.boolean().nullable().optional(),
         })
-        .default({}),
+        .default({ season: 1, episodeType: "full" }),
       transcript: optionalUrl,
       hosts: z.array(z.enum(["dj", "warren"])).min(1),
       seo: z

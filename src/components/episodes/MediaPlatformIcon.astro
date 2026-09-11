@@ -1,0 +1,55 @@
+---
+import {
+  faAmazon,
+  faApple,
+  faSpotify,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
+import { faCircleDown, faCirclePlay } from "@fortawesome/free-regular-svg-icons";
+import { siIheartradio, siPocketcasts } from "simple-icons";
+
+import type { MediaPlatformId } from "../../utils/episode-media";
+
+interface Props { platform: MediaPlatformId; }
+const { platform } = Astro.props;
+
+const fontAwesomeIcons = {
+  hostedVideo: faCirclePlay,
+  downloadAudio: faCircleDown,
+  downloadVideo: faCircleDown,
+  youtube: faYoutube,
+  spotify: faSpotify,
+  applePodcasts: faApple,
+  amazonMusic: faAmazon,
+} as const;
+
+const simpleIcons = {
+  iheart: siIheartradio,
+  pocketCasts: siPocketcasts,
+} as const;
+
+const fontAwesomeIcon = platform in fontAwesomeIcons
+  ? fontAwesomeIcons[platform as keyof typeof fontAwesomeIcons]
+  : undefined;
+const simpleIcon = platform in simpleIcons
+  ? simpleIcons[platform as keyof typeof simpleIcons]
+  : undefined;
+const paths = fontAwesomeIcon
+  ? [fontAwesomeIcon.icon[4]].flat()
+  : simpleIcon
+    ? [simpleIcon.path]
+    : [];
+const viewBox = fontAwesomeIcon
+  ? `0 0 ${fontAwesomeIcon.icon[0]} ${fontAwesomeIcon.icon[1]}`
+  : "0 0 24 24";
+---
+
+{platform === "audio" ? (
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M4 13a8 8 0 0 1 16 0v5a2 2 0 0 1-2 2h-3v-7h3a6 6 0 0 0-12 0h3v7H6a2 2 0 0 1-2-2z" />
+  </svg>
+) : (
+  <svg viewBox={viewBox} aria-hidden="true" focusable="false">
+    {paths.map((path) => <path d={path} />)}
+  </svg>
+)}

@@ -68,14 +68,14 @@ heroImageAlt: ${heroImageAlt ? yamlQuote(heroImageAlt) : "''"}
 duration: null
 audio: ${audio}
 video:
+  hosted: ${nullableUrl(input.hostedVideoUrl)}
   youtube: ${nullableUrl(input.youtubeUrl)}
   spotify: ${nullableUrl(input.spotifyUrl)}
-  vimeo: null
 podcast:
-  spotify: ${nullableUrl(input.spotifyUrl)}
-  apple: null
-  amazon: null
-  iheart: null
+  guid: null
+  season: ${input.season ?? 1}
+  episodeType: full
+  explicit: null
 transcript: null
 hosts:
   - dj
@@ -96,9 +96,5 @@ Add the main discussion notes here.
 ## Questions from the mirror
 
 Add reflective questions here.
-
-## Listen or watch
-
-Platform links are rendered automatically from the episode frontmatter.
 `;
 }
