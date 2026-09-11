@@ -2,6 +2,7 @@ node_modules/
 dist/
 .astro/
 coverage/
+.wranger/
 .env
 .env.*
 !.env.example
