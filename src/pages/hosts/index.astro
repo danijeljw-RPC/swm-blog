@@ -1,0 +1,13 @@
+---
+import SectionHeading from "../../components/common/SectionHeading.astro";
+import HostCard from "../../components/hosts/HostCard.astro";
+import hosts from "../../data/hosts.json";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+<BaseLayout title="Hosts" description="Meet the hosts of Sisters with Mirrors.">
+  <section class="page-section site-container">
+    <SectionHeading title="The hosts" introduction="DJ and Warren host Sisters with Mirrors. Their supplied biographies and portraits will be added in a later content phase." />
+    <div class="grid">{hosts.map((host) => <HostCard host={host} />)}</div>
+  </section>
+</BaseLayout>
+<style>.grid { display: grid; gap: var(--space-4); } @media (min-width: 48rem) { .grid { grid-template-columns: repeat(2, 1fr); } }</style>

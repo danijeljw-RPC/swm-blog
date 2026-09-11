@@ -1,0 +1,29 @@
+:root {
+  --swm-bg: #07070b;
+  --swm-bg-soft: #0d0b11;
+  --swm-panel: #111017;
+  --swm-panel-raised: #17131c;
+  --swm-gold: #a98853;
+  --swm-gold-light: #c7aa78;
+  --swm-ivory: #d7ccb8;
+  --swm-text: #eee9df;
+  --swm-text-muted: #aaa0a8;
+  --swm-border: rgb(169 136 83 / 45%);
+  --swm-border-soft: rgb(215 204 184 / 14%);
+  --swm-purple: #28142b;
+  --swm-purple-soft: #170d1a;
+  --swm-danger: #d6a7a7;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --space-1: 0.375rem;
+  --space-2: 0.75rem;
+  --space-3: 1.125rem;
+  --space-4: 1.75rem;
+  --space-5: 2.5rem;
+  --space-6: 4rem;
+  --space-7: 6.5rem;
+  --reading-width: 47rem;
+  --swm-max-width: 77.5rem;
+  --border-thin: 1px;
+  --radius-small: 0.25rem;
+}

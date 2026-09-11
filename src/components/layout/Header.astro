@@ -1,0 +1,59 @@
+---
+import CelestialMark from "../common/CelestialMark.astro";
+import { site } from "../../config/site";
+
+const currentPath = Astro.url.pathname;
+const links = [
+  ["Episodes", "/episodes/"],
+  ["Daily Mirror", "/daily-mirror/"],
+  ["Astrology", "/astrology/"],
+  ["Chakras", "/chakras/"],
+  ["About", "/about/"],
+  ["Listen", "/listen/"],
+] as const;
+---
+
+<header class="site-header">
+  <div class="site-container header-inner">
+    <a class="brand" href="/" aria-label={`${site.name} home`}>
+      <CelestialMark variant="moon" />
+      <span>{site.name}</span>
+    </a>
+    <details class="nav-disclosure" open>
+      <summary>Menu</summary>
+      <nav aria-label="Primary navigation">
+        <ul>
+          {links.map(([label, href]) => (
+            <li><a href={href} aria-current={currentPath.startsWith(href) ? "page" : undefined}>{label}</a></li>
+          ))}
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<script>
+  const disclosure = document.querySelector<HTMLDetailsElement>(".nav-disclosure");
+  if (disclosure && window.matchMedia("(max-width: 63.99rem)").matches) {
+    disclosure.open = false;
+  }
+</script>
+
+<style>
+  .site-header { position: relative; z-index: 20; border-bottom: 1px solid var(--swm-border-soft); background: rgb(7 7 11 / 86%); backdrop-filter: blur(12px); }
+  .header-inner { display: flex; min-height: 5rem; align-items: center; justify-content: space-between; gap: var(--space-3); }
+  .brand { display: inline-flex; align-items: center; gap: 0.65rem; font-family: var(--font-display); font-size: clamp(1.15rem, 3vw, 1.65rem); letter-spacing: 0.06em; text-decoration: none; }
+  .brand :global(svg) { width: 1.8rem; }
+  summary { padding: 0.45rem 0; color: var(--swm-ivory); cursor: pointer; font-size: 0.85rem; }
+  nav { position: absolute; top: 100%; right: 1rem; left: 1rem; border: 1px solid var(--swm-border); background: var(--swm-bg-soft); }
+  ul { display: grid; margin: 0; padding: 0.75rem; list-style: none; }
+  nav a { display: block; padding: 0.7rem; font-size: 0.85rem; text-decoration: none; }
+  nav a[aria-current="page"] { color: var(--swm-gold-light); }
+  @media (min-width: 64rem) {
+    summary { display: none; }
+    .nav-disclosure nav { position: static; border: 0; background: transparent; }
+    .nav-disclosure:not([open]) nav { display: block; }
+    ul { display: flex; gap: 0.35rem; padding: 0; }
+    nav a { padding: 0.6rem 0.7rem; }
+  }
+</style>

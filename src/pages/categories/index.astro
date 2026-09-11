@@ -1,0 +1,18 @@
+---
+import { getCollection } from "astro:content";
+import SectionHeading from "../../components/common/SectionHeading.astro";
+import { CATEGORY_KEYS, getCategoryLabel } from "../../config/categories";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getPublishedEpisodes } from "../../utils/episodes";
+const episodes = getPublishedEpisodes(await getCollection("episodes"));
+---
+<BaseLayout title="Categories" description="Browse Sisters with Mirrors episodes by category.">
+  <section class="page-section site-container">
+    <SectionHeading title="Categories" introduction="A controlled index keeps weekly episode themes consistent and easy to browse." />
+    <div class="category-list">{CATEGORY_KEYS.map((category) => {
+      const count = episodes.filter((entry) => entry.data.categories.includes(category)).length;
+      return <a class="framed-panel" href={`/categories/${category}/`}><span>{getCategoryLabel(category)}</span><small>{count} {count === 1 ? "episode" : "episodes"}</small></a>;
+    })}</div>
+  </section>
+</BaseLayout>
+<style>.category-list { display: grid; gap: var(--space-2); } .category-list a { display: flex; min-height: 5.5rem; align-items: center; justify-content: space-between; gap: 1rem; padding: var(--space-3) var(--space-4); text-decoration: none; } .category-list a > * { position: relative; z-index: 1; } span { font-family: var(--font-display); font-size: 1.45rem; } small { color: var(--swm-text-muted); } @media (min-width: 48rem) { .category-list { grid-template-columns: repeat(2, 1fr); } }</style>

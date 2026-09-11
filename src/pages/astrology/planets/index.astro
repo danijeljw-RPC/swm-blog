@@ -1,0 +1,13 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ReferenceCard from "../../../components/astrology/ReferenceCard.astro";
+import { PLANETS, formatReferenceLabel, referenceImagePath } from "../../../utils/astrology-reference";
+---
+<BaseLayout title="Planets in astrology" description="Explore the planets, luminaries and Chiron as symbolic influences in astrology.">
+  <section class="collection-intro site-container"><p><a href="/astrology/">Astrology</a> / Planets</p><h1>The voices<br />in the chart.</h1><p>From the Sun’s sense of self to Pluto’s call to transform, each celestial influence names a different part of inner and outer life.</p></section>
+  <section class="reference-grid site-container" aria-label="Astrological planets and points">{PLANETS.map(({ slug, data }) => <ReferenceCard href={`/astrology/planets/${slug}/`} image={referenceImagePath("planets", slug)} symbol={data.symbol} title={data.name} description={data.astrological_role} meta={`${formatReferenceLabel(data.type)} · ${data.archetype}`} />)}</section>
+</BaseLayout>
+<style>
+  .collection-intro { display: grid; gap: var(--space-3); padding-block: var(--space-6); } .collection-intro > p:first-child { color: var(--swm-gold); font-size: .75rem; } h1 { max-width: 10ch; } .collection-intro > p:last-child { max-width: 42rem; color: var(--swm-text-muted); } .reference-grid { display: grid; gap: var(--space-3); padding-bottom: var(--space-7); }
+  @media (min-width: 42rem) { .collection-intro { grid-template-columns: 1.2fr .8fr; align-items: end; } .collection-intro > p:first-child { grid-column: 1 / -1; } .reference-grid { grid-template-columns: repeat(2, 1fr); } } @media (min-width: 64rem) { .reference-grid { grid-template-columns: repeat(3, 1fr); } }
+</style>

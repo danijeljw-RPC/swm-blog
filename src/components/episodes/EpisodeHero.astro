@@ -1,0 +1,29 @@
+---
+import type { EpisodeEntry } from "../../types/episode";
+import EpisodePlatformLinks from "./EpisodePlatformLinks.astro";
+interface Props { entry: EpisodeEntry; compact?: boolean; }
+const { entry, compact = false } = Astro.props;
+const { data } = entry;
+---
+<article class:list={["episode-hero", "framed-panel", compact && "episode-hero--compact"]}>
+  {data.heroImage && <img src={data.heroImage} alt={data.heroImageAlt} />}
+  <div class="episode-hero__body">
+    <p class="episode-meta">Episode {data.episode} · <time datetime={data.publishedAt.toISOString()}>{data.publishedAt.toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" })}</time></p>
+    <h2>{data.title}</h2>
+    {data.fixture && <p class="fixture-notice">Fixture episode — demonstration content only.</p>}
+    <p>{data.description}</p>
+    <div class="button-row">
+      <a class="button" href={`/episodes/${data.slug}/`}>Read episode</a>
+    </div>
+    <EpisodePlatformLinks episode={data} />
+  </div>
+</article>
+<style>
+  .episode-hero { display: grid; overflow: hidden; }
+  img { width: 100%; height: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-bottom: 1px solid var(--swm-border); }
+  .episode-hero__body { position: relative; z-index: 1; align-self: center; padding: clamp(1.5rem, 5vw, 4rem); }
+  .episode-meta { color: var(--swm-gold-light); font-size: 0.78rem; }
+  h2 { max-width: 13ch; }
+  .episode-hero__body > p:not(.episode-meta, .fixture-notice) { max-width: 58ch; color: var(--swm-text-muted); }
+  @media (min-width: 56rem) { .episode-hero { grid-template-columns: 1.1fr 1fr; } img { border-right: 1px solid var(--swm-border); border-bottom: 0; } }
+</style>

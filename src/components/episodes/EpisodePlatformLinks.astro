@@ -1,0 +1,25 @@
+---
+import type { EpisodeData } from "../../types/episode";
+interface Props { episode: EpisodeData; }
+const { episode } = Astro.props;
+const candidates = [
+  ["Watch on YouTube", episode.video.youtube],
+  ["Watch on Spotify", episode.video.spotify],
+  ["Watch on Vimeo", episode.video.vimeo],
+  ["Listen on Spotify", episode.podcast.spotify],
+  ["Listen on Apple Podcasts", episode.podcast.apple],
+  ["Listen on Amazon Music", episode.podcast.amazon],
+  ["Listen on iHeartRadio", episode.podcast.iheart],
+  ["Open audio", episode.audio?.url],
+] as const;
+const seen = new Set<string>();
+const links = candidates.filter(([, url]) => url && !seen.has(url) && seen.add(url));
+---
+{links.length > 0 && (
+  <div class="button-row episode-links" aria-label="Episode listening and viewing links">
+    {links.map(([label, url], index) => (
+      <a class:list={["button", index > 0 && "button--quiet"]} href={url} target="_blank" rel="noopener noreferrer">{label}</a>
+    ))}
+  </div>
+)}
+<style>.episode-links { margin-top: var(--space-4); }</style>

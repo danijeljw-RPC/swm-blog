@@ -1,0 +1,1365 @@
+{
+  "metadata": {
+    "title": "Chakra Astrological & Metaphysical Reference Data",
+    "version": "1.0.0",
+    "language": "en",
+    "intended_use": "Community blog, educational reference, spiritual reflection, content generation and metaphysical exploration",
+    "system": "Eight-chakra model including the Etheric Heart / Thymus Chakra",
+    "notes": [
+      "The seven-chakra model is the most widely recognised modern chakra framework.",
+      "The Thymus / Etheric Heart Chakra is not part of all traditional chakra systems and is included here intentionally as an additional chakra between the Heart and Throat chakras.",
+      "Sanskrit spellings vary by transliteration system. This file uses common modern spellings: Muladhara, Svadhisthana, Manipura, Anahata, Vishuddha, Ajna and Sahasrara.",
+      "Chakra correspondences are symbolic, spiritual and traditional rather than scientific or medical claims.",
+      "Physical-body associations are metaphysical correspondences and are not medical diagnosis or treatment guidance."
+    ]
+  },
+  "chakras": {
+    "01": {
+      "id": "01",
+      "number": 1,
+      "image_file_number": "01",
+      "image_file_example": "01.png",
+      "slug": "muladhara",
+      "name": "Muladhara",
+      "common_name": "Root Chakra",
+      "display_name": "Muladhara – The Root Chakra",
+      "sanskrit": "Mūlādhāra",
+      "pronunciation": "moo-lah-DHAH-rah",
+      "name_meaning": "Root support; root foundation",
+      "traditional_status": "Classical major chakra",
+      "location": "Base of the spine, pelvic floor and perineal region",
+      "body_region": [
+        "pelvic floor",
+        "legs",
+        "feet",
+        "lower spine"
+      ],
+      "element": "Earth",
+      "element_key": "earth",
+      "color": "Red",
+      "secondary_colors": [
+        "deep red",
+        "crimson",
+        "earth brown"
+      ],
+      "petals": 4,
+      "bija_mantra": "LAM",
+      "sense": "Smell",
+      "associated_faculty": "Survival and embodiment",
+      "core_theme": "Safety, grounding, survival, belonging and physical existence",
+      "core_question": "Am I safe enough to inhabit my life fully?",
+      "affirmation": "I am grounded, supported and present in my life.",
+      "keywords": [
+        "grounding",
+        "survival",
+        "security",
+        "stability",
+        "home",
+        "belonging",
+        "body",
+        "physical reality",
+        "ancestry",
+        "trust",
+        "resources",
+        "safety"
+      ],
+      "description": "Muladhara is associated with the foundations of embodied life: survival, security, physical presence, home, resources and the sense that one has a legitimate place in the world.",
+      "metaphysical_interpretation": "Metaphysically, the Root Chakra represents incarnation and the agreement to participate in physical reality. It anchors consciousness into the body and provides the energetic foundation from which higher emotional, mental and spiritual exploration can develop.",
+      "balanced_expression": [
+        "feeling grounded",
+        "healthy awareness of practical needs",
+        "stable sense of belonging",
+        "capacity to rest",
+        "trust in one’s ability to meet basic needs",
+        "healthy relationship with the body and physical world"
+      ],
+      "underactive_expression": [
+        "feeling ungrounded",
+        "chronic insecurity",
+        "difficulty establishing routines",
+        "disconnection from the body",
+        "fearfulness",
+        "difficulty feeling at home anywhere"
+      ],
+      "overactive_expression": [
+        "excessive attachment to possessions",
+        "rigidity",
+        "fear-driven control",
+        "resistance to change",
+        "preoccupation with material security",
+        "territorial behaviour"
+      ],
+      "shadow_themes": [
+        "scarcity",
+        "fear",
+        "instability",
+        "abandonment",
+        "displacement",
+        "material fixation",
+        "survival consciousness"
+      ],
+      "growth_path": "Develop security without becoming imprisoned by fear, possession or resistance to change.",
+      "spiritual_lesson": "Embodiment is not separate from spirituality; the body, the Earth and ordinary life can themselves be sacred.",
+      "associated_life_areas": [
+        "home",
+        "money for basic needs",
+        "food",
+        "shelter",
+        "family roots",
+        "physical safety",
+        "routine",
+        "connection to land"
+      ],
+      "associated_archetypes": [
+        "The Survivor",
+        "The Ancestor",
+        "The Guardian",
+        "The Earth Keeper"
+      ],
+      "associated_planets": [
+        "Saturn",
+        "Earth symbolism"
+      ],
+      "associated_zodiac_signs": [
+        "Taurus",
+        "Capricorn",
+        "Virgo"
+      ],
+      "associated_crystals": [
+        "red jasper",
+        "hematite",
+        "smoky quartz",
+        "black tourmaline",
+        "garnet",
+        "obsidian"
+      ],
+      "associated_plants_and_scents": [
+        "cedar",
+        "vetiver",
+        "patchouli",
+        "clove",
+        "myrrh"
+      ],
+      "associated_symbols": [
+        "roots",
+        "mountains",
+        "stones",
+        "trees",
+        "soil",
+        "caves",
+        "red square"
+      ],
+      "practices": [
+        "walking barefoot on safe natural ground",
+        "slow breathing with attention on the lower body",
+        "strength and stability exercises",
+        "decluttering and organising practical life",
+        "establishing regular sleep and meal routines",
+        "spending intentional time in nature"
+      ],
+      "meditation_focus": "Visualise a deep red light at the base of the spine extending downward like roots into the Earth.",
+      "journal_prompts": [
+        "What helps me feel genuinely safe?",
+        "Where does fear influence my decisions?",
+        "What practical part of my life needs stronger foundations?",
+        "What does belonging mean to me?",
+        "How connected do I feel to my body and physical environment?"
+      ]
+    },
+    "02": {
+      "id": "02",
+      "number": 2,
+      "image_file_number": "02",
+      "image_file_example": "02.png",
+      "slug": "svadhisthana",
+      "name": "Svadhisthana",
+      "common_name": "Sacral Chakra",
+      "display_name": "Svadhisthana – The Sacral Chakra",
+      "sanskrit": "Svādhiṣṭhāna",
+      "pronunciation": "svah-dhish-THAH-nah",
+      "name_meaning": "One’s own dwelling place; seat of the self",
+      "traditional_status": "Classical major chakra",
+      "location": "Lower abdomen and pelvic region, commonly described as below the navel",
+      "body_region": [
+        "lower abdomen",
+        "pelvis",
+        "hips",
+        "reproductive region"
+      ],
+      "element": "Water",
+      "element_key": "water",
+      "color": "Orange",
+      "secondary_colors": [
+        "amber",
+        "coral",
+        "warm orange"
+      ],
+      "petals": 6,
+      "bija_mantra": "VAM",
+      "sense": "Taste",
+      "associated_faculty": "Emotion, pleasure and creative flow",
+      "core_theme": "Emotion, pleasure, desire, creativity, intimacy and fluidity",
+      "core_question": "Can I feel, desire and create without losing myself?",
+      "affirmation": "I allow feeling, creativity and pleasure to move through me with awareness.",
+      "keywords": [
+        "emotion",
+        "pleasure",
+        "creativity",
+        "sexuality",
+        "desire",
+        "intimacy",
+        "sensuality",
+        "flow",
+        "receptivity",
+        "change",
+        "connection",
+        "joy"
+      ],
+      "description": "Svadhisthana is associated with emotional movement, sensuality, creativity, pleasure, relationship and the ability to adapt to life’s changing currents.",
+      "metaphysical_interpretation": "Metaphysically, the Sacral Chakra represents the movement of life-force through feeling, desire and creative expression. Its water symbolism emphasises flexibility, receptivity and the capacity to experience without rigidly controlling every outcome.",
+      "balanced_expression": [
+        "emotional fluidity",
+        "creative expression",
+        "healthy pleasure",
+        "respectful intimacy",
+        "ability to adapt",
+        "comfort with desire without being ruled by it"
+      ],
+      "underactive_expression": [
+        "emotional numbness",
+        "creative blockage",
+        "difficulty experiencing pleasure",
+        "rigidity",
+        "fear of intimacy",
+        "disconnection from desire"
+      ],
+      "overactive_expression": [
+        "emotional volatility",
+        "compulsive pleasure-seeking",
+        "dependency",
+        "poor boundaries",
+        "obsessive attachment",
+        "difficulty tolerating stillness"
+      ],
+      "shadow_themes": [
+        "shame",
+        "guilt",
+        "dependency",
+        "emotional suppression",
+        "compulsion",
+        "jealousy",
+        "fear of intimacy"
+      ],
+      "growth_path": "Allow feeling and pleasure while cultivating boundaries, self-awareness and emotional responsibility.",
+      "spiritual_lesson": "Flow does not require passivity; one can remain open to experience while still choosing consciously.",
+      "associated_life_areas": [
+        "romance",
+        "sexuality",
+        "creativity",
+        "friendship",
+        "pleasure",
+        "emotional expression",
+        "art",
+        "play"
+      ],
+      "associated_archetypes": [
+        "The Lover",
+        "The Artist",
+        "The Dancer",
+        "The Creative"
+      ],
+      "associated_planets": [
+        "Moon",
+        "Venus"
+      ],
+      "associated_zodiac_signs": [
+        "Cancer",
+        "Scorpio",
+        "Pisces"
+      ],
+      "associated_crystals": [
+        "carnelian",
+        "orange calcite",
+        "moonstone",
+        "sunstone",
+        "amber"
+      ],
+      "associated_plants_and_scents": [
+        "orange blossom",
+        "jasmine",
+        "ylang-ylang",
+        "sandalwood",
+        "vanilla"
+      ],
+      "associated_symbols": [
+        "water",
+        "moon",
+        "waves",
+        "vessels",
+        "orange lotus",
+        "crescent"
+      ],
+      "practices": [
+        "creative writing or painting",
+        "free-form movement or dance",
+        "mindful enjoyment of food",
+        "emotional journalling",
+        "time near water",
+        "practising healthy relational boundaries"
+      ],
+      "meditation_focus": "Visualise a warm orange light in the lower abdomen moving like calm water.",
+      "journal_prompts": [
+        "What brings me healthy pleasure?",
+        "Where do I suppress emotion?",
+        "What wants to be created through me?",
+        "Where do I need stronger boundaries?",
+        "What would emotional flexibility look like in my current situation?"
+      ]
+    },
+    "03": {
+      "id": "03",
+      "number": 3,
+      "image_file_number": "03",
+      "image_file_example": "03.png",
+      "slug": "manipura",
+      "name": "Manipura",
+      "common_name": "Solar Plexus Chakra",
+      "display_name": "Manipura – The Solar Plexus Chakra",
+      "sanskrit": "Maṇipūra",
+      "pronunciation": "mah-nee-POO-rah",
+      "name_meaning": "City of jewels; lustrous gem",
+      "traditional_status": "Classical major chakra",
+      "location": "Upper abdomen, around the navel and solar plexus region",
+      "body_region": [
+        "upper abdomen",
+        "solar plexus",
+        "mid-torso"
+      ],
+      "element": "Fire",
+      "element_key": "fire",
+      "color": "Yellow",
+      "secondary_colors": [
+        "gold",
+        "sun yellow",
+        "amber-yellow"
+      ],
+      "petals": 10,
+      "bija_mantra": "RAM",
+      "sense": "Sight",
+      "associated_faculty": "Will and personal power",
+      "core_theme": "Will, confidence, personal power, boundaries and purposeful action",
+      "core_question": "Can I act from inner authority rather than fear, domination or approval-seeking?",
+      "affirmation": "I act with confidence, discernment and responsibility.",
+      "keywords": [
+        "will",
+        "confidence",
+        "power",
+        "identity",
+        "action",
+        "discipline",
+        "boundaries",
+        "self-esteem",
+        "purpose",
+        "courage",
+        "agency",
+        "transformation"
+      ],
+      "description": "Manipura is associated with personal will, agency, confidence, self-definition and the ability to transform intention into action.",
+      "metaphysical_interpretation": "Metaphysically, the Solar Plexus Chakra is the inner fire through which experience is processed into intention, choice and directed power. It is often linked with self-mastery and the development of a healthy ego capable of acting without dominating.",
+      "balanced_expression": [
+        "healthy confidence",
+        "decisiveness",
+        "self-discipline",
+        "clear boundaries",
+        "personal responsibility",
+        "ability to act without excessive approval-seeking"
+      ],
+      "underactive_expression": [
+        "low confidence",
+        "passivity",
+        "indecision",
+        "fear of confrontation",
+        "lack of direction",
+        "giving personal authority away"
+      ],
+      "overactive_expression": [
+        "domination",
+        "anger",
+        "control",
+        "perfectionism",
+        "workaholism",
+        "need to win"
+      ],
+      "shadow_themes": [
+        "shame",
+        "control",
+        "power struggles",
+        "humiliation",
+        "anger",
+        "insecurity",
+        "fear of failure"
+      ],
+      "growth_path": "Develop power as self-mastery rather than control over others.",
+      "spiritual_lesson": "True power includes restraint, accountability and the freedom to choose rather than react.",
+      "associated_life_areas": [
+        "career action",
+        "decision-making",
+        "leadership",
+        "confidence",
+        "boundaries",
+        "discipline",
+        "goal pursuit"
+      ],
+      "associated_archetypes": [
+        "The Warrior",
+        "The Leader",
+        "The Alchemist",
+        "The Sovereign"
+      ],
+      "associated_planets": [
+        "Sun",
+        "Mars"
+      ],
+      "associated_zodiac_signs": [
+        "Aries",
+        "Leo",
+        "Sagittarius"
+      ],
+      "associated_crystals": [
+        "citrine",
+        "tiger’s eye",
+        "yellow calcite",
+        "pyrite",
+        "amber"
+      ],
+      "associated_plants_and_scents": [
+        "ginger",
+        "cinnamon",
+        "lemon",
+        "rosemary",
+        "black pepper"
+      ],
+      "associated_symbols": [
+        "sun",
+        "flame",
+        "golden triangle",
+        "lion",
+        "torch",
+        "yellow lotus"
+      ],
+      "practices": [
+        "strength training",
+        "setting one clear daily priority",
+        "practising assertive communication",
+        "sunlight meditation",
+        "breathwork focused on the diaphragm",
+        "following through on small commitments"
+      ],
+      "meditation_focus": "Visualise a bright yellow or golden sun in the upper abdomen radiating steady warmth.",
+      "journal_prompts": [
+        "Where am I giving away my authority?",
+        "What decision am I avoiding?",
+        "What does healthy power mean to me?",
+        "Where am I trying to control what cannot be controlled?",
+        "What promise to myself needs follow-through?"
+      ]
+    },
+    "04": {
+      "id": "04",
+      "number": 4,
+      "image_file_number": "04",
+      "image_file_example": "04.png",
+      "slug": "anahata",
+      "name": "Anahata",
+      "common_name": "Heart Chakra",
+      "display_name": "Anahata – The Heart Chakra",
+      "sanskrit": "Anāhata",
+      "pronunciation": "ah-NAH-hah-tah",
+      "name_meaning": "Unstruck; unhurt; the unstruck sound",
+      "traditional_status": "Classical major chakra",
+      "location": "Centre of the chest",
+      "body_region": [
+        "chest",
+        "heart area",
+        "upper back",
+        "arms and hands symbolically"
+      ],
+      "element": "Air",
+      "element_key": "air",
+      "color": "Green",
+      "secondary_colors": [
+        "emerald green",
+        "rose pink",
+        "soft green"
+      ],
+      "petals": 12,
+      "bija_mantra": "YAM",
+      "sense": "Touch",
+      "associated_faculty": "Love and relational integration",
+      "core_theme": "Love, compassion, grief, forgiveness, connection and integration",
+      "core_question": "Can I remain open-hearted without abandoning discernment or boundaries?",
+      "affirmation": "I give and receive love with openness, wisdom and healthy boundaries.",
+      "keywords": [
+        "love",
+        "compassion",
+        "forgiveness",
+        "grief",
+        "connection",
+        "empathy",
+        "acceptance",
+        "kindness",
+        "integration",
+        "relationship",
+        "healing",
+        "devotion"
+      ],
+      "description": "Anahata is associated with love, compassion, grief, forgiveness and the integration of instinct, emotion, intellect and spirit.",
+      "metaphysical_interpretation": "Metaphysically, the Heart Chakra is often seen as the bridge between personal and transpersonal consciousness. It represents love not merely as emotion, but as a capacity to recognise connection while preserving truth and individuality.",
+      "balanced_expression": [
+        "compassion",
+        "healthy empathy",
+        "capacity to receive love",
+        "forgiveness without denial",
+        "relational openness",
+        "strong but flexible boundaries"
+      ],
+      "underactive_expression": [
+        "emotional withdrawal",
+        "difficulty receiving affection",
+        "cynicism",
+        "unprocessed grief",
+        "fear of vulnerability",
+        "isolation"
+      ],
+      "overactive_expression": [
+        "self-sacrifice",
+        "codependency",
+        "poor boundaries",
+        "rescuer behaviour",
+        "over-identification with others’ pain",
+        "giving in order to be needed"
+      ],
+      "shadow_themes": [
+        "grief",
+        "rejection",
+        "betrayal",
+        "resentment",
+        "self-abandonment",
+        "emotional dependency",
+        "unworthiness"
+      ],
+      "growth_path": "Love deeply while preserving self-respect, discernment and the autonomy of others.",
+      "spiritual_lesson": "Compassion does not require agreement, self-erasure or tolerating harm.",
+      "associated_life_areas": [
+        "love",
+        "friendship",
+        "compassion",
+        "forgiveness",
+        "grief",
+        "community",
+        "caregiving",
+        "self-love"
+      ],
+      "associated_archetypes": [
+        "The Healer",
+        "The Beloved",
+        "The Compassionate One",
+        "The Bridge"
+      ],
+      "associated_planets": [
+        "Venus",
+        "Moon"
+      ],
+      "associated_zodiac_signs": [
+        "Libra",
+        "Taurus",
+        "Cancer"
+      ],
+      "associated_crystals": [
+        "rose quartz",
+        "green aventurine",
+        "malachite",
+        "rhodochrosite",
+        "emerald"
+      ],
+      "associated_plants_and_scents": [
+        "rose",
+        "hawthorn",
+        "lavender",
+        "geranium",
+        "jasmine"
+      ],
+      "associated_symbols": [
+        "rose",
+        "green lotus",
+        "wings",
+        "interlocking triangles",
+        "hands",
+        "bridge"
+      ],
+      "practices": [
+        "loving-kindness meditation",
+        "gratitude journalling",
+        "grief rituals",
+        "acts of service with boundaries",
+        "breathing into the chest",
+        "practising receiving rather than only giving"
+      ],
+      "meditation_focus": "Visualise a green or rose-gold light expanding gently through the centre of the chest.",
+      "journal_prompts": [
+        "Where do I confuse love with self-sacrifice?",
+        "What grief still needs acknowledgement?",
+        "Can I receive as easily as I give?",
+        "What would forgiveness mean without excusing harm?",
+        "Which relationships allow me to remain fully myself?"
+      ]
+    },
+    "05": {
+      "id": "05",
+      "number": 5,
+      "image_file_number": "05",
+      "image_file_example": "05.png",
+      "slug": "thymus-etheric-heart",
+      "name": "Thymus",
+      "common_name": "Etheric Heart Chakra",
+      "display_name": "Thymus – The Etheric Heart Chakra",
+      "sanskrit": null,
+      "pronunciation": "THY-mus",
+      "name_meaning": "Named in modern metaphysical systems for its symbolic placement near the thymus region",
+      "traditional_status": "Non-classical / modern metaphysical chakra",
+      "location": "Upper chest between the Heart and Throat chakras, often associated symbolically with the thymus area",
+      "body_region": [
+        "upper chest",
+        "sternum",
+        "thymus region symbolically"
+      ],
+      "element": "Ether / subtle air",
+      "element_key": "ether",
+      "color": "Turquoise",
+      "secondary_colors": [
+        "aqua",
+        "teal",
+        "rose-gold",
+        "pale green",
+        "soft blue"
+      ],
+      "petals": null,
+      "bija_mantra": null,
+      "sense": "Subtle relational perception",
+      "associated_faculty": "Compassionate truth, soul-level connection and higher emotional integration",
+      "core_theme": "Higher compassion, forgiveness, soul connection, empathy with boundaries and the union of heart and voice",
+      "core_question": "Can love become wisdom, and can compassion remain truthful?",
+      "affirmation": "My compassion is clear, discerning and connected to truth.",
+      "keywords": [
+        "higher heart",
+        "compassion",
+        "soul connection",
+        "forgiveness",
+        "empathy",
+        "unity",
+        "service",
+        "truth",
+        "heart intelligence",
+        "energetic sensitivity",
+        "bridge",
+        "transpersonal love"
+      ],
+      "description": "The Etheric Heart Chakra is a modern metaphysical addition to the chakra system. It is commonly placed between the Heart and Throat chakras and described as a bridge between personal love and transpersonal compassion.",
+      "metaphysical_interpretation": "In systems that use it, the Etheric Heart is associated with compassion refined by discernment, the transformation of personal love into broader service, and the integration of heart-centred awareness with truthful expression. It is sometimes described as a gateway from emotional love toward soul-level or collective love.",
+      "balanced_expression": [
+        "compassion without self-erasure",
+        "forgiveness with discernment",
+        "ability to speak from the heart",
+        "sensitivity without overwhelm",
+        "service without saviour behaviour",
+        "sense of connection that respects individuality"
+      ],
+      "underactive_expression": [
+        "difficulty translating feeling into compassionate action",
+        "emotional guardedness after heartbreak",
+        "fear of spiritual intimacy",
+        "disconnection between heart and voice",
+        "cynicism about collective connection"
+      ],
+      "overactive_expression": [
+        "spiritualised people-pleasing",
+        "over-identification with others’ suffering",
+        "saviour complex",
+        "absorbing others’ emotions",
+        "mistaking lack of boundaries for unity",
+        "compulsive need to heal others"
+      ],
+      "shadow_themes": [
+        "martyrdom",
+        "saviour identity",
+        "energetic overwhelm",
+        "spiritual bypassing",
+        "unrealistic universalism",
+        "confusion between empathy and responsibility"
+      ],
+      "growth_path": "Move from emotional compassion to wise compassion: caring deeply while maintaining truth, boundaries and personal sovereignty.",
+      "spiritual_lesson": "Unity does not erase individuality. Compassion becomes more sustainable when it includes discernment.",
+      "associated_life_areas": [
+        "spiritual service",
+        "healing relationships",
+        "forgiveness",
+        "soul connection",
+        "community care",
+        "truthful compassion",
+        "higher empathy"
+      ],
+      "associated_archetypes": [
+        "The Compassionate Teacher",
+        "The Soul Healer",
+        "The Bridge of the Heart",
+        "The Sacred Witness"
+      ],
+      "associated_planets": [
+        "Venus",
+        "Neptune",
+        "Uranus in some modern systems"
+      ],
+      "associated_zodiac_signs": [
+        "Aquarius",
+        "Pisces",
+        "Libra"
+      ],
+      "associated_crystals": [
+        "aquamarine",
+        "amazonite",
+        "chrysoprase",
+        "turquoise",
+        "larimar",
+        "green fluorite"
+      ],
+      "associated_plants_and_scents": [
+        "rose",
+        "eucalyptus",
+        "neroli",
+        "melissa",
+        "frankincense"
+      ],
+      "associated_symbols": [
+        "turquoise flame",
+        "radiant heart",
+        "bridge",
+        "eight-pointed star",
+        "rose-gold light",
+        "wings"
+      ],
+      "practices": [
+        "heart-to-voice meditation",
+        "compassion meditation with explicit boundaries",
+        "reflecting on service without self-sacrifice",
+        "placing attention on the upper sternum during slow breathing",
+        "writing what the heart knows and what truth requires",
+        "visualising a bridge between the Heart and Throat chakras"
+      ],
+      "meditation_focus": "Visualise a turquoise or rose-gold light in the upper chest, forming a bridge between the green Heart Chakra and blue Throat Chakra.",
+      "journal_prompts": [
+        "Where does compassion need stronger boundaries?",
+        "What truth is my heart asking me to speak?",
+        "Do I help because I am called to, or because I need to be needed?",
+        "What does soul-level connection mean to me?",
+        "How can I care deeply without carrying what belongs to someone else?"
+      ],
+      "alternate_names": [
+        "Higher Heart Chakra",
+        "Thymus Chakra",
+        "Etheric Heart",
+        "High Heart Chakra"
+      ],
+      "historical_note": "This chakra is not universally recognised in classical Indian chakra traditions. Its use is primarily found in modern esoteric, New Age, energy-healing and metaphysical frameworks."
+    },
+    "06": {
+      "id": "06",
+      "number": 6,
+      "image_file_number": "06",
+      "image_file_example": "06.png",
+      "slug": "vishuddha",
+      "name": "Vishuddha",
+      "common_name": "Throat Chakra",
+      "display_name": "Vishuddha – The Throat Chakra",
+      "sanskrit": "Viśuddha",
+      "pronunciation": "vee-SHOOD-dhah",
+      "name_meaning": "Purification; especially pure",
+      "traditional_status": "Classical major chakra",
+      "location": "Throat and neck region",
+      "body_region": [
+        "throat",
+        "neck",
+        "jaw",
+        "mouth",
+        "shoulders symbolically"
+      ],
+      "element": "Ether / Space",
+      "element_key": "ether",
+      "color": "Blue",
+      "secondary_colors": [
+        "sky blue",
+        "azure",
+        "turquoise-blue"
+      ],
+      "petals": 16,
+      "bija_mantra": "HAM",
+      "sense": "Hearing",
+      "associated_faculty": "Expression and truthful communication",
+      "core_theme": "Truth, communication, listening, expression and integrity",
+      "core_question": "Can I express what is true while remaining willing to listen?",
+      "affirmation": "I communicate clearly, honestly and with discernment.",
+      "keywords": [
+        "truth",
+        "communication",
+        "voice",
+        "expression",
+        "listening",
+        "integrity",
+        "authenticity",
+        "language",
+        "creativity",
+        "resonance",
+        "silence",
+        "discernment"
+      ],
+      "description": "Vishuddha is associated with communication, truthful self-expression, deep listening and the alignment of inner experience with spoken or creative expression.",
+      "metaphysical_interpretation": "Metaphysically, the Throat Chakra represents vibration, resonance and the power of language to shape meaning. Its association with ether or space suggests the field in which communication becomes possible.",
+      "balanced_expression": [
+        "clear communication",
+        "active listening",
+        "authentic self-expression",
+        "ability to say no",
+        "creative voice",
+        "comfort with silence"
+      ],
+      "underactive_expression": [
+        "fear of speaking",
+        "self-censorship",
+        "difficulty naming needs",
+        "chronic avoidance of conflict",
+        "feeling unheard",
+        "withholding creative expression"
+      ],
+      "overactive_expression": [
+        "talking without listening",
+        "dogmatism",
+        "gossip",
+        "verbal domination",
+        "compulsive explaining",
+        "using words to avoid feeling"
+      ],
+      "shadow_themes": [
+        "silencing",
+        "dishonesty",
+        "miscommunication",
+        "fear of judgment",
+        "gossip",
+        "verbal aggression",
+        "self-censorship"
+      ],
+      "growth_path": "Speak clearly without weaponising truth, and listen without abandoning your own voice.",
+      "spiritual_lesson": "Truthful expression requires both courage and responsibility.",
+      "associated_life_areas": [
+        "speech",
+        "writing",
+        "teaching",
+        "music",
+        "boundaries",
+        "self-expression",
+        "listening",
+        "creative communication"
+      ],
+      "associated_archetypes": [
+        "The Messenger",
+        "The Poet",
+        "The Singer",
+        "The Truth Teller"
+      ],
+      "associated_planets": [
+        "Mercury"
+      ],
+      "associated_zodiac_signs": [
+        "Gemini",
+        "Virgo"
+      ],
+      "associated_crystals": [
+        "blue lace agate",
+        "sodalite",
+        "aquamarine",
+        "lapis lazuli",
+        "turquoise"
+      ],
+      "associated_plants_and_scents": [
+        "peppermint",
+        "sage",
+        "eucalyptus",
+        "chamomile",
+        "frankincense"
+      ],
+      "associated_symbols": [
+        "sky",
+        "bell",
+        "sound wave",
+        "blue lotus",
+        "open mouth",
+        "ether"
+      ],
+      "practices": [
+        "humming or chanting",
+        "singing",
+        "journalling uncensored thoughts",
+        "practising direct but kind communication",
+        "intentional silence",
+        "active listening exercises"
+      ],
+      "meditation_focus": "Visualise clear blue light filling the throat and creating spaciousness for both speaking and listening.",
+      "journal_prompts": [
+        "What truth am I avoiding?",
+        "Where do I speak to be accepted rather than understood?",
+        "Do I listen in order to understand or merely to reply?",
+        "What boundary needs to be spoken clearly?",
+        "What creative expression have I been withholding?"
+      ]
+    },
+    "07": {
+      "id": "07",
+      "number": 7,
+      "image_file_number": "07",
+      "image_file_example": "07.png",
+      "slug": "ajna",
+      "name": "Ajna",
+      "common_name": "Third Eye Chakra",
+      "display_name": "Ajna – The Third Eye Chakra",
+      "sanskrit": "Ājñā",
+      "pronunciation": "AHJ-nyah",
+      "name_meaning": "Command; perception; authority",
+      "traditional_status": "Classical major chakra",
+      "location": "Between the eyebrows or centre of the forehead in modern representations",
+      "body_region": [
+        "forehead",
+        "brow",
+        "head symbolically"
+      ],
+      "element": "Mind / Light",
+      "element_key": "mind",
+      "color": "Indigo",
+      "secondary_colors": [
+        "deep blue",
+        "violet-indigo",
+        "midnight blue"
+      ],
+      "petals": 2,
+      "bija_mantra": "OM / AUM",
+      "sense": "Inner perception",
+      "associated_faculty": "Insight, imagination and discernment",
+      "core_theme": "Perception, intuition, imagination, insight and mental clarity",
+      "core_question": "Can I see clearly without confusing intuition, fear, desire and assumption?",
+      "affirmation": "I seek insight with curiosity, discernment and humility.",
+      "keywords": [
+        "intuition",
+        "insight",
+        "perception",
+        "imagination",
+        "discernment",
+        "vision",
+        "symbolism",
+        "dreams",
+        "awareness",
+        "pattern recognition",
+        "wisdom",
+        "clarity"
+      ],
+      "description": "Ajna is associated with perception, intuition, imagination, symbolic understanding and the capacity to recognise patterns beyond immediate surface appearances.",
+      "metaphysical_interpretation": "Metaphysically, the Third Eye Chakra is often understood as the seat of inner vision and intuitive perception. Its deeper lesson is discernment: learning to distinguish insight from projection, fear, fantasy and wishful thinking.",
+      "balanced_expression": [
+        "clear intuition",
+        "imagination",
+        "discernment",
+        "ability to recognise patterns",
+        "mental flexibility",
+        "comfort with ambiguity"
+      ],
+      "underactive_expression": [
+        "lack of imagination",
+        "difficulty trusting one’s perception",
+        "rigid literalism",
+        "poor self-reflection",
+        "difficulty seeing patterns",
+        "dependence on external authority"
+      ],
+      "overactive_expression": [
+        "overinterpretation",
+        "obsession with signs",
+        "fantasy replacing action",
+        "paranoia",
+        "intellectual detachment",
+        "treating intuition as unquestionable certainty"
+      ],
+      "shadow_themes": [
+        "illusion",
+        "projection",
+        "confirmation bias",
+        "confusion",
+        "spiritual grandiosity",
+        "fear-based interpretation"
+      ],
+      "growth_path": "Develop intuition alongside critical thinking, humility and willingness to revise interpretations.",
+      "spiritual_lesson": "Inner knowing becomes more useful when paired with discernment rather than certainty.",
+      "associated_life_areas": [
+        "intuition",
+        "dreams",
+        "visualisation",
+        "symbolism",
+        "study",
+        "meditation",
+        "pattern recognition",
+        "self-reflection"
+      ],
+      "associated_archetypes": [
+        "The Seer",
+        "The Sage",
+        "The Visionary",
+        "The Witness"
+      ],
+      "associated_planets": [
+        "Moon",
+        "Neptune",
+        "Uranus"
+      ],
+      "associated_zodiac_signs": [
+        "Pisces",
+        "Aquarius",
+        "Sagittarius"
+      ],
+      "associated_crystals": [
+        "amethyst",
+        "lapis lazuli",
+        "sodalite",
+        "labradorite",
+        "azurite"
+      ],
+      "associated_plants_and_scents": [
+        "mugwort",
+        "lavender",
+        "frankincense",
+        "juniper",
+        "sandalwood"
+      ],
+      "associated_symbols": [
+        "eye",
+        "indigo lotus",
+        "owl",
+        "moon",
+        "star field",
+        "mirror"
+      ],
+      "practices": [
+        "meditation",
+        "dream journalling",
+        "visualisation",
+        "symbolic reflection",
+        "studying assumptions and cognitive bias",
+        "quiet observation before interpretation"
+      ],
+      "meditation_focus": "Visualise indigo light at the brow while observing thoughts and images without immediately treating them as facts.",
+      "journal_prompts": [
+        "What do I know, and what am I assuming?",
+        "Which recurring symbols or patterns feel meaningful to me?",
+        "Where might desire be shaping my interpretation?",
+        "How do I distinguish intuition from anxiety?",
+        "What belief am I willing to reconsider?"
+      ]
+    },
+    "08": {
+      "id": "08",
+      "number": 8,
+      "image_file_number": "08",
+      "image_file_example": "08.png",
+      "slug": "sahasrara",
+      "name": "Sahasrara",
+      "common_name": "Crown Chakra",
+      "display_name": "Sahasrara – The Crown Chakra",
+      "sanskrit": "Sahasrāra",
+      "pronunciation": "sah-hahs-RAH-rah",
+      "name_meaning": "Thousand-petalled",
+      "traditional_status": "Classical crown centre; sometimes treated as beyond the primary chakra sequence",
+      "location": "Crown or just above the top of the head",
+      "body_region": [
+        "crown of the head",
+        "space above the head symbolically"
+      ],
+      "element": "Consciousness / Spirit",
+      "element_key": "spirit",
+      "color": "Violet or White",
+      "secondary_colors": [
+        "white",
+        "violet",
+        "gold",
+        "iridescent"
+      ],
+      "petals": 1000,
+      "bija_mantra": "Silence / OM in some modern systems",
+      "sense": "Pure awareness",
+      "associated_faculty": "Transcendence, unity and spiritual awareness",
+      "core_theme": "Consciousness, unity, transcendence, meaning and connection with the sacred",
+      "core_question": "What remains when I loosen my attachment to a fixed identity?",
+      "affirmation": "I remain open to mystery while grounded in lived reality.",
+      "keywords": [
+        "consciousness",
+        "unity",
+        "spirit",
+        "transcendence",
+        "awakening",
+        "meaning",
+        "presence",
+        "source",
+        "sacred",
+        "oneness",
+        "wisdom",
+        "surrender"
+      ],
+      "description": "Sahasrara represents spiritual consciousness, transcendence and the symbolic opening beyond purely personal identity. It is commonly associated with unity, meaning and connection with the sacred or ultimate reality.",
+      "metaphysical_interpretation": "Metaphysically, the Crown Chakra symbolises the possibility that individual consciousness participates in something larger than itself. Different traditions describe this as Source, universal consciousness, divine awareness, emptiness, pure being or the sacred.",
+      "balanced_expression": [
+        "sense of meaning",
+        "spiritual humility",
+        "capacity for awe",
+        "openness to mystery",
+        "inner stillness",
+        "ability to hold personal identity lightly"
+      ],
+      "underactive_expression": [
+        "spiritual disconnection",
+        "nihilism",
+        "loss of meaning",
+        "rigid materialism",
+        "difficulty experiencing awe",
+        "feeling isolated from the larger whole"
+      ],
+      "overactive_expression": [
+        "spiritual bypassing",
+        "dissociation from ordinary life",
+        "grandiosity",
+        "obsession with transcendence",
+        "neglect of practical responsibilities",
+        "claiming absolute spiritual certainty"
+      ],
+      "shadow_themes": [
+        "spiritual superiority",
+        "escapism",
+        "dissociation",
+        "dogma",
+        "loss of grounding",
+        "certainty about unknowable matters"
+      ],
+      "growth_path": "Explore transcendence without abandoning embodiment, relationships, responsibility or critical thought.",
+      "spiritual_lesson": "A genuine sense of connection to the whole need not diminish the value of ordinary human life.",
+      "associated_life_areas": [
+        "meditation",
+        "spiritual practice",
+        "meaning",
+        "philosophy",
+        "contemplation",
+        "mysticism",
+        "service",
+        "transpersonal awareness"
+      ],
+      "associated_archetypes": [
+        "The Mystic",
+        "The Sage",
+        "The Divine Child",
+        "The Witness",
+        "The One"
+      ],
+      "associated_planets": [
+        "Neptune",
+        "Jupiter",
+        "Uranus"
+      ],
+      "associated_zodiac_signs": [
+        "Pisces",
+        "Sagittarius",
+        "Aquarius"
+      ],
+      "associated_crystals": [
+        "clear quartz",
+        "amethyst",
+        "selenite",
+        "diamond",
+        "howlite"
+      ],
+      "associated_plants_and_scents": [
+        "frankincense",
+        "lotus",
+        "sandalwood",
+        "myrrh",
+        "lavender"
+      ],
+      "associated_symbols": [
+        "thousand-petalled lotus",
+        "halo",
+        "white light",
+        "violet flame",
+        "cosmos",
+        "infinite sky",
+        "circle"
+      ],
+      "practices": [
+        "silent meditation",
+        "contemplative prayer",
+        "awe practices",
+        "philosophical reflection",
+        "time in nature",
+        "service performed without expectation of recognition"
+      ],
+      "meditation_focus": "Visualise violet or white light above the crown opening into spacious awareness while maintaining attention on the body and breath.",
+      "journal_prompts": [
+        "What gives my life meaning?",
+        "What does the sacred mean to me?",
+        "Where am I seeking certainty because mystery feels uncomfortable?",
+        "How can spiritual practice make me more present in ordinary life?",
+        "What does connection to something larger mean without losing individuality?"
+      ]
+    }
+  },
+  "indexes": {
+    "ordered_ids": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08"
+    ],
+    "by_slug": {
+      "muladhara": "01",
+      "svadhisthana": "02",
+      "manipura": "03",
+      "anahata": "04",
+      "thymus-etheric-heart": "05",
+      "vishuddha": "06",
+      "ajna": "07",
+      "sahasrara": "08"
+    },
+    "by_common_name": {
+      "Root Chakra": "01",
+      "Sacral Chakra": "02",
+      "Solar Plexus Chakra": "03",
+      "Heart Chakra": "04",
+      "Etheric Heart Chakra": "05",
+      "Throat Chakra": "06",
+      "Third Eye Chakra": "07",
+      "Crown Chakra": "08"
+    },
+    "by_color": {
+      "red": [
+        "01"
+      ],
+      "orange": [
+        "02"
+      ],
+      "yellow": [
+        "03"
+      ],
+      "green": [
+        "04"
+      ],
+      "turquoise": [
+        "05"
+      ],
+      "blue": [
+        "06"
+      ],
+      "indigo": [
+        "07"
+      ],
+      "violet_or_white": [
+        "08"
+      ]
+    },
+    "by_element": {
+      "earth": [
+        "01"
+      ],
+      "water": [
+        "02"
+      ],
+      "fire": [
+        "03"
+      ],
+      "air": [
+        "04"
+      ],
+      "ether": [
+        "05",
+        "06"
+      ],
+      "mind": [
+        "07"
+      ],
+      "spirit": [
+        "08"
+      ]
+    },
+    "traditional_seven_chakra_mapping": {
+      "muladhara": "01",
+      "svadhisthana": "02",
+      "manipura": "03",
+      "anahata": "04",
+      "vishuddha": "06",
+      "ajna": "07",
+      "sahasrara": "08"
+    },
+    "extended_eight_chakra_mapping": {
+      "muladhara": "01",
+      "svadhisthana": "02",
+      "manipura": "03",
+      "anahata": "04",
+      "thymus-etheric-heart": "05",
+      "vishuddha": "06",
+      "ajna": "07",
+      "sahasrara": "08"
+    },
+    "image_file_reference_examples": {
+      "01": "01.png",
+      "02": "02.png",
+      "03": "03.png",
+      "04": "04.png",
+      "05": "05.png",
+      "06": "06.png",
+      "07": "07.png",
+      "08": "08.png"
+    }
+  },
+  "glossary": {
+    "chakra": "A Sanskrit term commonly translated as “wheel”; in yogic and tantric traditions it refers to subtle centres used in spiritual and contemplative systems.",
+    "bija_mantra": "A seed syllable used in some mantra and chakra traditions.",
+    "nadis": "Subtle channels described in yogic traditions through which prana is said to move.",
+    "prana": "A traditional Sanskrit concept referring to vital energy, breath or life-force.",
+    "ether": "A metaphysical concept of subtle space or medium; often associated with the Throat Chakra in modern systems.",
+    "kundalini": "A yogic concept describing latent spiritual energy, traditionally symbolised as coiled at the base of the spine.",
+    "grounding": "Practices intended to stabilise attention in the body, physical environment and present moment.",
+    "shadow": "Psychological or symbolic material that is avoided, rejected, unconscious or difficult to integrate.",
+    "transpersonal": "Experiences or themes interpreted as extending beyond ordinary personal identity.",
+    "higher_heart": "A modern metaphysical term often used for the Thymus or Etheric Heart Chakra, positioned between the traditional Heart and Throat chakras."
+  },
+  "content_guidance": {
+    "blog_usage": [
+      "Use the two-character id or image_file_number field as the stable image/file reference key.",
+      "Use slug for URLs, CSS classes, API keys and content routing.",
+      "Use common_name or display_name for reader-facing headings.",
+      "Use keywords for search, tagging and related-content generation.",
+      "Use balanced_expression, underactive_expression and overactive_expression together rather than presenting a chakra as simply open or blocked.",
+      "Use journal_prompts for community discussion prompts or article callouts.",
+      "Use associated_crystals, associated_plants_and_scents, associated_planets and associated_zodiac_signs as symbolic correspondence sections."
+    ],
+    "editorial_principles": [
+      "Present chakra material as spiritual, traditional, symbolic or metaphysical interpretation rather than established medical science.",
+      "Do not diagnose illness by describing a chakra as blocked, damaged, overactive or underactive.",
+      "Do not claim that crystals, sounds, colours, oils or chakra practices cure disease.",
+      "Different traditions organise chakras and correspondences differently; variation should be acknowledged where relevant.",
+      "The Etheric Heart / Thymus Chakra should be clearly identified as a modern or non-classical addition."
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+---
+import type { EpisodeEntry } from "../../types/episode";
+import type { CategoryKey } from "../../config/categories";
+import CategoryBadge from "./CategoryBadge.astro";
+interface Props { entry: EpisodeEntry; }
+const { entry } = Astro.props;
+const { data } = entry;
+---
+<article class="episode-card framed-panel">
+  {data.heroImage && <img src={data.heroImage} alt={data.heroImageAlt} loading="lazy" />}
+  <div class="episode-card__content">
+    <p class="episode-meta">Episode {data.episode} · <time datetime={data.publishedAt.toISOString()}>{data.publishedAt.toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" })}</time></p>
+    <h3><a href={`/episodes/${data.slug}/`}>{data.title}</a></h3>
+    {data.fixture && <p class="fixture-notice">Fixture episode — demonstration content only.</p>}
+    <p>{data.excerpt}</p>
+    <div class="categories">{data.categories.map((category) => <CategoryBadge category={category as CategoryKey} />)}</div>
+  </div>
+</article>
+<style>
+  .episode-card { display: flex; min-height: 100%; flex-direction: column; }
+  img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-bottom: 1px solid var(--swm-border); }
+  .episode-card__content { position: relative; z-index: 1; padding: var(--space-4); }
+  .episode-meta { color: var(--swm-gold-light); font-size: 0.73rem; }
+  h3 a { text-decoration: none; }
+  .categories { display: flex; flex-wrap: wrap; gap: var(--space-1); margin-top: var(--space-3); }
+</style>

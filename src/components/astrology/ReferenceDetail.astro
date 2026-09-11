@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  symbol: string;
+  kind: string;
+  collectionHref: string;
+  collectionLabel: string;
+  meta: string[];
+}
+
+const { title, description, image, imageAlt, symbol, kind, collectionHref, collectionLabel, meta } = Astro.props;
+const displaySymbol = `${symbol}\uFE0E`;
+---
+
+<BaseLayout title={`${title} ${kind}`} description={description} image={image}>
+  <article class="reference-detail site-container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/astrology/">Astrology</a><span aria-hidden="true">/</span><a href={collectionHref}>{collectionLabel}</a></nav>
+    <header class="detail-hero">
+      <div class="hero-art"><span aria-hidden="true">{displaySymbol}</span><img src={image} alt={imageAlt} /></div>
+      <div class="hero-copy"><p>{kind}</p><h1>{title}</h1><p class="description">{description}</p><ul>{meta.map((item) => <li>{item}</li>)}</ul></div>
+    </header>
+    <div class="detail-body"><slot /></div>
+  </article>
+</BaseLayout>
+
+<style>
+  .reference-detail { padding-block: var(--space-3) var(--space-7); }
+  .breadcrumbs { display: flex; gap: .55rem; padding-block: var(--space-2) var(--space-4); color: var(--swm-text-muted); font-size: .75rem; }
+  .breadcrumbs a { color: inherit; }
+  .detail-hero { display: grid; align-items: center; gap: clamp(2rem, 7vw, 6rem); min-height: 33rem; padding: clamp(1.5rem, 5vw, 4.5rem); border-block: 1px solid var(--swm-border); background: radial-gradient(circle at 20% 50%, rgb(169 136 83 / 10%), transparent 25rem); }
+  .hero-art { position: relative; display: grid; min-height: 18rem; place-items: center; }
+  .hero-art::before, .hero-art::after { position: absolute; width: min(72vw, 20rem); aspect-ratio: 1; border: 1px solid rgb(169 136 83 / 24%); border-radius: 50%; content: ""; }
+  .hero-art::after { width: min(58vw, 16rem); border-style: dotted; transform: rotate(17deg); }
+  .hero-art span { position: absolute; top: 0; left: 0; color: var(--swm-gold); font-family: var(--font-display); font-size: 3rem; }
+  .hero-art img { position: relative; z-index: 1; width: min(72%, 17rem); max-height: 20rem; object-fit: contain; filter: drop-shadow(0 1.2rem 2rem rgb(0 0 0 / 45%)); }
+  .hero-copy > p:first-child { margin: 0 0 var(--space-2); color: var(--swm-gold); font-size: .73rem; letter-spacing: .13em; text-transform: uppercase; }
+  h1 { margin-bottom: var(--space-3); font-size: clamp(4rem, 10vw, 8rem); }
+  .description { max-width: 38rem; color: var(--swm-ivory); font-family: var(--font-display); font-size: clamp(1.3rem, 2.4vw, 1.75rem); line-height: 1.45; }
+  ul { display: flex; flex-wrap: wrap; gap: .45rem; padding: 0; margin: var(--space-3) 0 0; list-style: none; }
+  li { padding: .32rem .7rem; border: 1px solid var(--swm-border-soft); color: var(--swm-text-muted); font-size: .7rem; }
+  .detail-body { width: min(100%, 66rem); margin: var(--space-6) auto 0; }
+  :global(.reference-section) { padding-block: var(--space-4); border-bottom: 1px solid var(--swm-border-soft); }
+  :global(.reference-section:last-child) { border-bottom: 0; }
+  :global(.reference-section h2) { font-size: clamp(2.2rem, 5vw, 3.7rem); }
+  :global(.reference-section > p) { max-width: 48rem; color: var(--swm-text-muted); }
+  :global(.trait-grid) { display: grid; gap: var(--space-3); }
+  :global(.trait-panel) { padding: var(--space-4); border-left: 1px solid var(--swm-gold); background: rgb(169 136 83 / 5%); }
+  :global(.trait-panel h3) { font-size: 1.55rem; }
+  :global(.tag-list) { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; }
+  :global(.tag-list li) { padding: .35rem .7rem; border: 1px solid var(--swm-border-soft); color: var(--swm-text-muted); font-size: .75rem; }
+  :global(.relation-grid) { display: grid; gap: var(--space-2); }
+  :global(.relation-card) { display: grid; min-height: 8rem; align-content: end; padding: var(--space-3); border: 1px solid var(--swm-border-soft); text-decoration: none; background: rgb(13 11 17 / 60%); }
+  :global(.relation-card strong) { font-family: var(--font-display); font-size: 1.7rem; font-weight: 500; }
+  :global(.relation-card small) { color: var(--swm-gold); }
+  :global(.prompt) { max-width: 43rem; margin: 0 0 var(--space-3); color: var(--swm-ivory); font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.15rem); line-height: 1.35; }
+  @media (min-width: 48rem) { .detail-hero { grid-template-columns: minmax(17rem, .8fr) 1.2fr; } :global(.trait-grid) { grid-template-columns: repeat(2, 1fr); } :global(.relation-grid) { grid-template-columns: repeat(3, 1fr); } }
+</style>

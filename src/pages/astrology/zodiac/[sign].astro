@@ -1,0 +1,23 @@
+---
+import ReferenceDetail from "../../../components/astrology/ReferenceDetail.astro";
+import { ZODIAC_REFERENCES, getElement, getPlanet, referenceImagePath } from "../../../utils/astrology-reference";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return ZODIAC_REFERENCES.map(({ slug, data }) => ({ params: { sign: slug }, props: { slug, sign: data } }));
+}
+
+const { slug, sign } = Astro.props;
+const element = getElement(sign.element)!;
+const ruler = getPlanet(sign.ruling_planet)!;
+const traditionalRuler = sign.traditional_ruler ? getPlanet(sign.traditional_ruler) : undefined;
+---
+<ReferenceDetail title={sign.name} kind="Zodiac sign" description={sign.metaphysical_interpretation} image={referenceImagePath("zodiac", slug)} imageAlt={`${sign.name}, ${sign.archetype}`} symbol={sign.symbol} collectionHref="/astrology/zodiac/" collectionLabel="Zodiac" meta={[sign.approximate_tropical_dates, `${sign.modality} · ${sign.polarity}`, `${sign.natural_house_association} house`]}>
+  <section class="reference-section"><h2>At a glance</h2><ul class="tag-list">{sign.core_themes.map((theme: string) => <li>{theme}</li>)}</ul></section>
+  <section class="reference-section trait-grid"><div class="trait-panel"><h3>When it flows</h3><ul>{sign.strengths.map((trait: string) => <li>{trait}</li>)}</ul></div><div class="trait-panel"><h3>When it catches</h3><ul>{sign.shadow_traits.map((trait: string) => <li>{trait}</li>)}</ul></div></section>
+  <section class="reference-section"><h2>The path of {sign.name}</h2><p><strong>{sign.spiritual_lesson}</strong></p><p>In relationships, {sign.name} is often described as {sign.relationship_style.default_tendency}. Its invitation is to {sign.relationship_style.lesson.charAt(0).toLowerCase() + sign.relationship_style.lesson.slice(1)}</p></section>
+  <section class="reference-section"><h2>Its place in the system</h2><div class="relation-grid"><a class="relation-card" href={`/astrology/elements/${sign.element}/`}><span>{element.symbol} Element</span><strong>{element.name}</strong></a><a class="relation-card" href={`/astrology/planets/${sign.ruling_planet}/`}><span>{ruler.symbol} Ruling planet</span><strong>{ruler.name}</strong></a>{traditionalRuler && <a class="relation-card" href={`/astrology/planets/${sign.traditional_ruler}/`}><span>{traditionalRuler.symbol} Traditional ruler</span><strong>{traditionalRuler.name}</strong></a>}<a class="relation-card" href={`/astrology/${slug}/`}><span>Live reading</span><strong>{sign.name} horoscope</strong></a></div></section>
+  <section class="reference-section"><h2>A reflection</h2><p class="question">“{sign.motto}”</p><p>{sign.growth_path}</p></section>
+</ReferenceDetail>
+<style>.question { color: var(--swm-ivory) !important; font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.3rem); }</style>

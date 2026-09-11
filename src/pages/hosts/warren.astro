@@ -1,0 +1,12 @@
+---
+import hosts from "../../data/hosts.json";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const host = hosts.find(({ id }) => id === "warren")!;
+---
+<BaseLayout title={host.name} description={`${host.name}, ${host.role} of Sisters with Mirrors.`}>
+  <section class="page-section site-container profile">
+    <div class="monogram" aria-hidden="true">W</div>
+    <div><p class="role">{host.role}</p><h1>{host.name}</h1><p class="fixture-notice">Profile placeholder</p><p>Biography, portrait and profile links have not yet been supplied. This page is ready for those materials without substituting invented details.</p><a href="/hosts/">View both hosts</a></div>
+  </section>
+</BaseLayout>
+<style>.profile { display: grid; gap: var(--space-5); max-width: 65rem; } .monogram { display: grid; min-height: 22rem; place-items: center; border: 1px solid var(--swm-border); color: var(--swm-gold); font-family: var(--font-display); font-size: 10rem; background: radial-gradient(circle, var(--swm-purple), var(--swm-bg)); } .role { color: var(--swm-gold-light); } @media (min-width: 52rem) { .profile { grid-template-columns: minmax(18rem, .8fr) 1fr; align-items: center; } }</style>

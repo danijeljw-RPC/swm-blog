@@ -1,0 +1,26 @@
+---
+import { getCollection } from "astro:content";
+import EpisodeCard from "../../components/episodes/EpisodeCard.astro";
+import SectionHeading from "../../components/common/SectionHeading.astro";
+import { CATEGORY_KEYS, getCategoryLabel, type CategoryKey } from "../../config/categories";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getEpisodesByCategory } from "../../utils/episodes";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const allEpisodes = await getCollection("episodes");
+  return CATEGORY_KEYS.map((category) => ({ params: { category }, props: { category, episodes: getEpisodesByCategory(allEpisodes, category) } }));
+}
+interface Props { category: CategoryKey; episodes: Awaited<ReturnType<typeof getCollection<"episodes">>>; }
+const { category, episodes } = Astro.props;
+const label = getCategoryLabel(category);
+---
+<BaseLayout title={label} description={`Sisters with Mirrors episodes in ${label}.`}>
+  <section class="page-section site-container">
+    <SectionHeading title={label} introduction="Episodes filed under this theme." />
+    {episodes.length ? <div class="grid">{episodes.map((entry) => <EpisodeCard entry={entry} />)}</div> : <p>No published episodes use this category yet.</p>}
+    <p class="back"><a href="/categories/">Browse all categories</a></p>
+  </section>
+</BaseLayout>
+<style>.grid { display: grid; gap: var(--space-4); } .back { margin-top: var(--space-5); } @media (min-width: 42rem) { .grid { grid-template-columns: repeat(2, 1fr); } } @media (min-width: 68rem) { .grid { grid-template-columns: repeat(3, 1fr); } }</style>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Mind and light symbol">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9e8cff"/><stop offset=".55" stop-color="#4e51d6"/><stop offset="1" stop-color="#9ee7ff"/></linearGradient></defs>
+  <path d="M52 256c58-94 127-141 204-141s146 47 204 141c-58 94-127 141-204 141S110 350 52 256Z" fill="none" stroke="url(#g)" stroke-width="24"/>
+  <circle cx="256" cy="256" r="70" fill="url(#g)"/><path d="m256 213 13 30 31 13-31 13-13 30-13-30-31-13 31-13z" fill="#f4f0ff"/><path d="M256 62v38M256 412v38M62 256h38M412 256h38" stroke="#a9e7ff" stroke-width="12" stroke-linecap="round"/>
+</svg>

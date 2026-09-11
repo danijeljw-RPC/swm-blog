@@ -1,0 +1,19 @@
+---
+import CelestialMark from "./CelestialMark.astro";
+interface Props { title: string; introduction?: string; align?: "left" | "center"; }
+const { title, introduction, align = "left" } = Astro.props;
+---
+
+<header class:list={["section-heading", `section-heading--${align}`]}>
+  <CelestialMark variant="star" />
+  <h2>{title}</h2>
+  {introduction && <p>{introduction}</p>}
+</header>
+
+<style>
+  .section-heading { max-width: 44rem; margin-bottom: var(--space-5); }
+  .section-heading--center { margin-inline: auto; text-align: center; }
+  .section-heading--center :global(svg) { margin-inline: auto; }
+  .section-heading :global(svg) { width: 1.65rem; margin-bottom: var(--space-3); }
+  .section-heading p { color: var(--swm-text-muted); }
+</style>

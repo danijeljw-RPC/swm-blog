@@ -1,0 +1,26 @@
+---
+import ReferenceDetail from "../../components/astrology/ReferenceDetail.astro";
+import { CHAKRAS, getElement, getChakraPlanetLinks, getChakraZodiacLinks, referenceImagePath } from "../../utils/astrology-reference";
+
+export const prerender = true;
+export function getStaticPaths() { return CHAKRAS.map(({ data }) => ({ params: { chakra: data.slug }, props: { slug: data.slug, chakra: data } })); }
+const { slug, chakra } = Astro.props;
+const element = getElement(chakra.element_key);
+const planets = getChakraPlanetLinks(slug);
+const signs = getChakraZodiacLinks(slug);
+---
+<ReferenceDetail title={chakra.name} kind={chakra.common_name} description={chakra.metaphysical_interpretation} image={`/images/chakras/${chakra.image_file_number}.png`} imageAlt={`${chakra.display_name} illustration`} symbol={String(chakra.number).padStart(2, "0")} collectionHref="/chakras/" collectionLabel="Chakras" meta={[chakra.sanskrit ?? chakra.name, chakra.location, `${chakra.color} · ${chakra.element}`]}>
+  <section class="reference-section"><h2>{chakra.core_theme}</h2><p>{chakra.description}</p><ul class="tag-list">{chakra.keywords.map((keyword: string) => <li>{keyword}</li>)}</ul></section>
+  <section class="reference-section trait-grid"><div class="trait-panel"><h3>When it is supported</h3><ul>{chakra.balanced_expression.map((trait: string) => <li>{trait}</li>)}</ul></div><div class="trait-panel"><h3>When it needs care</h3><ul>{[...chakra.underactive_expression.slice(0, 4), ...chakra.overactive_expression.slice(0, 2)].map((trait: string) => <li>{trait}</li>)}</ul></div></section>
+  <section class="reference-section"><h2>The invitation</h2><p class="question">“{chakra.core_question}”</p><p>{chakra.spiritual_lesson}</p><p><strong>Growth path:</strong> {chakra.growth_path}</p></section>
+  <section class="reference-section"><h2>Its correspondences</h2><div class="relation-grid">
+    {element && <a class="relation-card relation-card--image" href={`/astrology/elements/${chakra.element_key}/`}><img src={referenceImagePath("elements", chakra.element_key)} alt="" width="64" height="64" /><span>Element</span><strong>{element.name}</strong></a>}
+    {signs.map(({ slug: signSlug, name }) => <a class="relation-card relation-card--image" href={`/astrology/zodiac/${signSlug}/`}><img src={referenceImagePath("zodiac", signSlug)} alt="" width="64" height="64" /><span>Zodiac</span><strong>{name}</strong></a>)}
+    {planets.map(({ slug: planetSlug, name }) => <a class="relation-card relation-card--image" href={`/astrology/planets/${planetSlug}/`}><img src={referenceImagePath("planets", planetSlug)} alt="" width="64" height="64" /><span>Planet</span><strong>{name}</strong></a>)}
+  </div></section>
+  <section class="reference-section"><h2>A practice</h2><p>{chakra.meditation_focus}</p><ul class="tag-list">{chakra.practices.slice(0, 5).map((practice: string) => <li>{practice}</li>)}</ul></section>
+  <section class="reference-section"><h2>Journal prompts</h2><div class="prompts">{chakra.journal_prompts.slice(0, 4).map((prompt: string) => <p>“{prompt}”</p>)}</div></section>
+</ReferenceDetail>
+<style>
+  .question { color: var(--swm-ivory) !important; font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.3rem); } .prompts { display: grid; gap: var(--space-2); } .prompts p { padding: var(--space-3); margin: 0; border-left: 1px solid var(--swm-gold); color: var(--swm-ivory); font-family: var(--font-display); font-size: 1.45rem; } .relation-card--image { align-content: start; gap: .2rem; } .relation-card--image img { width: 4rem; height: 4rem; object-fit: contain; margin-bottom: .35rem; } .relation-card--image span { color: var(--swm-gold); font-size: .7rem; }
+</style>

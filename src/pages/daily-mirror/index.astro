@@ -1,0 +1,84 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import cards from "../../data/tarot/cards.json";
+import { astrologyReferenceHref } from "../../utils/astrology-links";
+import { chakraReferenceHref } from "../../utils/astrology-reference";
+
+const day = new Date().toISOString().slice(0, 10);
+const hashDay = (value: string) => [...value].reduce((total, character) => ((total * 31) + character.charCodeAt(0)) >>> 0, 7);
+const card = cards[hashDay(day) % cards.length];
+const isReversed = hashDay(`${day}:orientation`) % 2 === 1;
+const orientation = isReversed ? "Reversed" : "Upright";
+const meaning = isReversed ? card.meaning_reversed : card.meaning_upright;
+const timing = [card.timing.season, card.timing.zodiac_association].filter(Boolean).join(" · ");
+const planets = card.planet ?? [];
+const zodiacSigns = card.zodiac_sign ?? [];
+const zodiacElements = card.zodiac_elements ?? [];
+---
+<BaseLayout title="Daily Mirror" description="A daily tarot reflection from Sisters with Mirrors.">
+  <section class="daily-mirror site-container" data-daily-mirror>
+    <header class="mirror-header"><div><p class="eyebrow">Daily Mirror · <span data-date>{day}</span></p><h1>Daily Mirror</h1></div><p>One card. One clear reflection for the day ahead.</p></header>
+    <article class="mirror-card framed-panel">
+      <figure class:list={["tarot-art", { "tarot-art--reversed": isReversed }]} data-card-art><img data-card-image src={`/images/tarot/${card.image}`} alt={`${card.name} tarot card, ${orientation.toLowerCase()}`} width="500" height="850" /></figure>
+      <div class="mirror-reading">
+        <p class="card-kicker" data-kicker>Today’s card · {orientation}</p><h2 data-name>{card.name}</h2>
+        <p class="card-meta" data-meta>{card.arcana} arcana · {card.element}</p>
+        <p class="message" data-meaning>{meaning}</p>
+        <dl class="insights">
+          <div class="insight insight--chakra"><dt>Chakra</dt><dd><a data-chakra-link href={chakraReferenceHref(card.chakra)} aria-label={`Learn about ${card.chakra}`}><img data-chakra-image src={`/images/chakras/${card.chakra_image}`} alt="" width="64" height="64" /><span><span data-chakra>{card.chakra}</span><small data-chakra-place>{card.chakra_place}</small></span></a></dd></div>
+          <div class="insight"><dt>Timing</dt><dd data-timing>{timing || "Beyond season"}</dd></div>
+          <div class="insight"><dt>Question outcome</dt><dd class="answer" data-answer>{card.question_answer}</dd></div>
+        </dl>
+        {(planets.length > 0 || zodiacSigns.length > 0 || zodiacElements.length > 0) && <section class="celestial" data-celestial aria-label="Celestial correspondences"><div class="celestial-groups">
+          {planets.length > 0 && <div class="celestial-group"><span>Planet{planets.length > 1 ? "s" : ""}</span><div>{planets.map((planet) => <a class="celestial-item" href={astrologyReferenceHref("planet", planet)} aria-label={`Learn about ${planet}`}><img src={`/images/planets/${planet.toLowerCase()}.png`} alt="" width="40" height="40" /><small>{planet}</small></a>)}</div></div>}
+          {zodiacSigns.length > 0 && <div class="celestial-group"><span>Zodiac{zodiacSigns.length > 1 ? "s" : ""}</span><div>{zodiacSigns.map((sign) => <a class="celestial-item" href={astrologyReferenceHref("zodiac", sign)} aria-label={`Learn about ${sign}`}><img src={`/images/zodiac/${sign.toLowerCase()}.png`} alt="" width="40" height="40" /><small>{sign}</small></a>)}</div></div>}
+          {zodiacElements.length > 0 && <div class="celestial-group celestial-group--elements"><span>Element{zodiacElements.length > 1 ? "s" : ""}</span><div>{zodiacElements.map((element) => <a class="celestial-item" href={astrologyReferenceHref("element", element)} aria-label={`Learn about ${element}`}><img src={`/images/elements/${element === "Air" ? "wind" : element.toLowerCase()}.png`} alt="" width="40" height="40" /><small>{element}</small></a>)}</div></div>}
+        </div></section>}
+        <blockquote data-affirmation>“{card.affirmation}”</blockquote>
+      </div>
+    </article>
+    <p class="daily-note">A reflective tool, not a prediction. Keep what resonates; leave what does not.</p>
+  </section>
+</BaseLayout>
+<script>
+  import { astrologyReferenceHref } from "../../utils/astrology-links";
+  import { chakraReferenceHref } from "../../utils/astrology-reference";
+  type DailyCard = { name: string; arcana: string; element: string; image: string; meaning_upright: string; meaning_reversed: string; chakra: string; chakra_place: string; chakra_image: string; question_answer: string; timing: { season: string | null; zodiac_association: string | null }; planet: string[] | null; zodiac_sign: string[] | null; zodiac_elements: string[] | null; affirmation: string };
+  const root = document.querySelector<HTMLElement>("[data-daily-mirror]");
+  const setText = (selector: string, value: string) => { const element = root?.querySelector(selector); if (element) element.textContent = value; };
+  const hashDay = (value: string) => [...value].reduce((total, character) => ((total * 31) + character.charCodeAt(0)) >>> 0, 7);
+  const localDay = () => { const date = new Date(); return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`; };
+  const celestialGroup = (label: string, values: string[], folder: "planets" | "zodiac") => `<div class="celestial-group"><span>${label}</span><div>${values.map((value) => `<a class="celestial-item" href="${astrologyReferenceHref(folder === "planets" ? "planet" : "zodiac", value)}" aria-label="Learn about ${value}"><img src="/images/${folder}/${value.toLowerCase()}.png" alt="" width="40" height="40"><small>${value}</small></a>`).join("")}</div></div>`;
+  const elementGroup = (values: string[]) => `<div class="celestial-group celestial-group--elements"><span>Element${values.length > 1 ? "s" : ""}</span><div>${values.map((value) => `<a class="celestial-item" href="${astrologyReferenceHref("element", value)}" aria-label="Learn about ${value}"><img src="/images/elements/${value === "Air" ? "wind" : value.toLowerCase()}.png" alt="" width="40" height="40"><small>${value}</small></a>`).join("")}</div></div>`;
+
+  if (root) {
+    fetch("/api/daily-mirror-cards.json").then((response) => response.ok ? response.json() : Promise.reject()).then((cards: DailyCard[]) => {
+      const day = localDay(); const card = cards[hashDay(day) % cards.length]; const reversed = hashDay(`${day}:orientation`) % 2 === 1; const orientation = reversed ? "Reversed" : "Upright";
+      setText("[data-date]", day); setText("[data-kicker]", `Today’s card · ${orientation}`); setText("[data-name]", card.name); setText("[data-meta]", `${card.arcana} arcana · ${card.element}`); setText("[data-meaning]", reversed ? card.meaning_reversed : card.meaning_upright); setText("[data-chakra]", card.chakra); setText("[data-chakra-place]", card.chakra_place); setText("[data-timing]", [card.timing.season, card.timing.zodiac_association].filter(Boolean).join(" · ") || "Beyond season"); setText("[data-answer]", card.question_answer); setText("[data-affirmation]", `“${card.affirmation}”`);
+      const image = root.querySelector<HTMLImageElement>("[data-card-image]"); if (image) { image.src = `/images/tarot/${card.image}`; image.alt = `${card.name} tarot card, ${orientation.toLowerCase()}`; }
+      const chakraImage = root.querySelector<HTMLImageElement>("[data-chakra-image]"); if (chakraImage) chakraImage.src = `/images/chakras/${card.chakra_image}`;
+      const chakraLink = root.querySelector<HTMLAnchorElement>("[data-chakra-link]"); if (chakraLink) { chakraLink.href = chakraReferenceHref(card.chakra); chakraLink.setAttribute("aria-label", `Learn about ${card.chakra}`); }
+      root.querySelector("[data-card-art]")?.classList.toggle("tarot-art--reversed", reversed);
+      const celestial = root.querySelector<HTMLElement>("[data-celestial]"); if (celestial) { const planets = card.planet ?? []; const signs = card.zodiac_sign ?? []; const elements = card.zodiac_elements ?? []; celestial.innerHTML = `<div class="celestial-groups">${planets.length ? celestialGroup(planets.length > 1 ? "Planets" : "Planet", planets, "planets") : ""}${signs.length ? celestialGroup(signs.length > 1 ? "Zodiacs" : "Zodiac", signs, "zodiac") : ""}${elements.length ? elementGroup(elements) : ""}</div>`; }
+    }).catch(() => undefined);
+  }
+</script>
+<style>
+  .daily-mirror { padding-block: clamp(1.5rem, 4vw, var(--space-5)) var(--space-6); }
+  .mirror-header { display: flex; max-width: 65rem; align-items: end; justify-content: space-between; gap: var(--space-3); margin: 0 auto var(--space-3); }
+  .eyebrow, .card-kicker { margin: 0; color: var(--swm-gold); font-size: .72rem; letter-spacing: .17em; text-transform: uppercase; }
+  .mirror-header h1 { margin: .15rem 0 0; font-size: clamp(2.5rem, 5vw, 4.5rem); }
+  .mirror-header > p { max-width: 21rem; margin: 0; color: var(--swm-text-muted); font-size: .9rem; text-align: right; }
+  .mirror-card { display: grid; max-width: 65rem; margin-inline: auto; padding: clamp(1rem, 3vw, 2rem); gap: clamp(1.25rem, 4vw, 3.5rem); grid-template-columns: minmax(13rem, 23rem) 1fr; align-items: center; }
+  .tarot-art { display: flex; position: relative; z-index: 1; height: min(62vh, 42rem); align-items: center; justify-content: center; padding: .45rem; margin: 0; border: 1px solid var(--swm-border); background: var(--swm-bg); }
+  .tarot-art img { width: auto; height: 100%; max-width: 100%; object-fit: contain; }
+  .tarot-art--reversed img { transform: rotate(180deg); }
+  .mirror-reading { position: relative; z-index: 1; } .mirror-reading h2 { margin: .15rem 0; font-size: clamp(2.5rem, 5vw, 4.25rem); }
+  .card-meta { margin: 0; color: var(--swm-gold-light); font-size: .85rem; } .message { margin-block: var(--space-3); font-size: 1rem; }
+  .insights { display: grid; gap: .9rem; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; padding-block: var(--space-3); border-block: 1px solid var(--swm-border-soft); }
+  .insight { min-width: 0; } dt { color: var(--swm-gold); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; } dd { margin: .2rem 0 0; color: var(--swm-ivory); font-size: .88rem; } .insight--chakra a { display: flex; align-items: center; gap: .5rem; color: inherit; text-decoration: none; } .insight--chakra img { width: 2.5rem; height: 2.5rem; object-fit: contain; } dd small { display: block; color: var(--swm-text-muted); font-size: .72rem; } .answer { color: var(--swm-gold-light); text-transform: capitalize; }
+  .celestial { padding-top: var(--space-3); margin-top: var(--space-3); border-top: 1px solid var(--swm-border-soft); } :global(.celestial-groups) { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-3); } :global(.celestial-group > span) { display: block; margin-bottom: .5rem; color: var(--swm-gold); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; } :global(.celestial-group > div) { display: grid; gap: .65rem; } :global(.celestial-item) { display: grid; justify-items: start; gap: .2rem; width: fit-content; color: var(--swm-ivory); text-decoration: none; } :global(.celestial-item:hover) { color: var(--swm-gold-light); } :global(.celestial-item img) { width: 2.25rem; height: 2.25rem; object-fit: contain; } :global(.celestial-item small) { color: inherit; font-size: .82rem; }
+  blockquote { margin: var(--space-3) 0 0; color: var(--swm-ivory); font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.65rem); font-style: italic; line-height: 1.25; }
+  .daily-note { margin: var(--space-3) auto 0; color: var(--swm-text-muted); font-size: .75rem; text-align: center; }
+  @media (max-width: 42rem) { .mirror-header { align-items: start; flex-direction: column; gap: .35rem; } .mirror-header > p { text-align: left; } .mirror-card { grid-template-columns: minmax(0, 8.5rem) 1fr; gap: 1rem; padding: 1rem; } .tarot-art { height: min(39vh, 21rem); padding: .25rem; } .mirror-reading h2 { font-size: clamp(2.05rem, 9vw, 3rem); } .message { margin-block: .65rem; font-size: .87rem; line-height: 1.45; } .insights { gap: .55rem; padding-block: .65rem; } dd { font-size: .75rem; line-height: 1.25; } .insight--chakra img { width: 1.9rem; height: 1.9rem; } dd small { font-size: .66rem; } blockquote { margin-top: .75rem; font-size: 1.15rem; } :global(.celestial-groups) { gap: .65rem; } :global(.celestial-group > span) { font-size: .59rem; } :global(.celestial-item img) { width: 1.8rem; height: 1.8rem; } :global(.celestial-item small) { font-size: .72rem; } }
+</style>

@@ -1,0 +1,89 @@
+---
+import { getCollection } from "astro:content";
+import CelestialMark from "../components/common/CelestialMark.astro";
+import SectionHeading from "../components/common/SectionHeading.astro";
+import EpisodeCard from "../components/episodes/EpisodeCard.astro";
+import EpisodeHero from "../components/episodes/EpisodeHero.astro";
+import HostCard from "../components/hosts/HostCard.astro";
+import { site } from "../config/site";
+import hosts from "../data/hosts.json";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getPublishedEpisodes } from "../utils/episodes";
+
+const episodes = getPublishedEpisodes(await getCollection("episodes"));
+const latestEpisode = episodes[0];
+const recentEpisodes = episodes.slice(1, 4);
+---
+
+<BaseLayout>
+  <section class="hero site-container">
+    <div class="hero-copy">
+      <p class="tagline">{site.tagline}</p>
+      <h1>{site.name}</h1>
+      <p class="introduction">Weekly podcast and videocast articles, gathered in one quiet place to read, listen and watch.</p>
+      <div class="button-row">
+        <a class="button" href="/episodes/">Explore episodes</a>
+        <a class="button button--quiet" href="/listen/">Listen</a>
+      </div>
+    </div>
+    <div class="celestial-axis"><CelestialMark variant="axis" /></div>
+    <div class="hero-note framed-panel">
+      <p>Weekly reflections</p>
+      <p class="hero-note__large">Two voices.<br />One mirror.</p>
+      <p>Articles · audio · video</p>
+    </div>
+  </section>
+
+  {latestEpisode && (
+    <section class="page-section site-container">
+      <SectionHeading title="Latest from the mirror" introduction="The newest episode article, with listening and viewing links supplied directly by its metadata." />
+      <EpisodeHero entry={latestEpisode} />
+    </section>
+  )}
+
+  {recentEpisodes.length > 0 && (
+    <section class="page-section site-container">
+      <SectionHeading title="Recent episodes" />
+      <div class="episode-grid">{recentEpisodes.map((entry) => <EpisodeCard entry={entry} />)}</div>
+    </section>
+  )}
+
+  <section class="mirror-preview page-section">
+    <div class="site-container">
+      <SectionHeading title="Explore the mirror" introduction="Daily Mirror and Daily Astrology experiences will arrive in later phases after the source datasets are supplied." align="center" />
+      <div class="mirror-grid">
+        <a href="/daily-mirror/"><span>Tarot</span><small>Awaiting source data</small></a>
+        <a href="/daily-mirror/"><span>Colour</span><small>Awaiting source data</small></a>
+        <a href="/daily-mirror/"><span>Number</span><small>Awaiting source data</small></a>
+        <a href="/astrology/"><span>Cosmic</span><small>Horoscopes &amp; cosmic atlas</small></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section site-container">
+    <SectionHeading title="Meet the hosts" introduction="Host profiles are prepared for the biographies and portraits supplied by the Sisters with Mirrors team." />
+    <div class="host-grid">{hosts.map((host) => <HostCard host={host} />)}</div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero { display: grid; min-height: min(49rem, calc(100vh - 5rem)); align-items: center; gap: var(--space-4); padding-block: var(--space-6); }
+  .tagline { color: var(--swm-gold-light); font-family: var(--font-display); font-size: 1.35rem; letter-spacing: 0.14em; }
+  h1 { max-width: 9ch; }
+  .introduction { max-width: 40rem; color: var(--swm-text-muted); font-size: 1.05rem; }
+  .celestial-axis { display: none; justify-content: center; }
+  .celestial-axis :global(svg) { width: 7rem; height: 24rem; }
+  .hero-note { padding: var(--space-5); text-align: center; }
+  .hero-note > * { position: relative; z-index: 1; }
+  .hero-note p { color: var(--swm-gold-light); font-size: 0.72rem; letter-spacing: 0.08em; }
+  .hero-note__large { color: var(--swm-ivory) !important; font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem) !important; line-height: 1.1; letter-spacing: 0 !important; }
+  .episode-grid, .host-grid { display: grid; gap: var(--space-4); }
+  .mirror-preview { border-block: 1px solid var(--swm-border-soft); background: rgb(19 10 22 / 62%); }
+  .mirror-grid { display: grid; border: 1px solid var(--swm-border); }
+  .mirror-grid a { display: grid; min-height: 9rem; place-content: center; padding: var(--space-3); border-bottom: 1px solid var(--swm-border-soft); text-align: center; text-decoration: none; }
+  .mirror-grid a:last-child { border-bottom: 0; }
+  .mirror-grid span { font-family: var(--font-display); font-size: 1.9rem; }
+  .mirror-grid small { color: var(--swm-text-muted); font-size: 0.68rem; }
+  @media (min-width: 42rem) { .episode-grid { grid-template-columns: repeat(2, 1fr); } .host-grid { grid-template-columns: repeat(2, 1fr); } .mirror-grid { grid-template-columns: repeat(4, 1fr); } .mirror-grid a { border-right: 1px solid var(--swm-border-soft); border-bottom: 0; } .mirror-grid a:last-child { border-right: 0; } }
+  @media (min-width: 64rem) { .hero { grid-template-columns: minmax(0, 1.25fr) 8rem minmax(17rem, 0.75fr); } .celestial-axis { display: flex; } .episode-grid { grid-template-columns: repeat(3, 1fr); } }
+</style>

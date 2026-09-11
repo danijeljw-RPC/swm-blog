@@ -1,0 +1,9 @@
+---
+import { getCategoryLabel, type CategoryKey } from "../../config/categories";
+interface Props { category: CategoryKey; }
+const { category } = Astro.props;
+---
+<a class="category-badge" href={`/categories/${category}/`}>{getCategoryLabel(category)}</a>
+<style>
+  .category-badge { display: inline-flex; padding: 0.28rem 0.55rem; border: 1px solid var(--swm-border); color: var(--swm-gold-light); font-size: 0.7rem; letter-spacing: 0.04em; text-decoration: none; }
+</style>

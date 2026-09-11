@@ -1,0 +1,20 @@
+---
+import ReferenceDetail from "../../../components/astrology/ReferenceDetail.astro";
+import { PLANETS, formatReferenceLabel, getPlanetarySignLinks, getZodiacReference, referenceImagePath } from "../../../utils/astrology-reference";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return PLANETS.map(({ slug, data }) => ({ params: { planet: slug }, props: { slug, planet: data } }));
+}
+const { slug, planet } = Astro.props;
+const signLinks = getPlanetarySignLinks(slug);
+---
+<ReferenceDetail title={planet.name} kind={formatReferenceLabel(planet.type)} description={planet.astrological_role} image={referenceImagePath("planets", slug)} imageAlt={`${planet.name} celestial illustration`} symbol={planet.symbol} collectionHref="/astrology/planets/" collectionLabel="Planets" meta={[planet.orbital_role, `${planet.natural_house_association} house`, planet.retrograde ? "retrograde possible" : "does not retrograde"]}>
+  <section class="reference-section"><h2>{planet.archetype}</h2><p>{planet.metaphysical_interpretation}</p><ul class="tag-list">{planet.keywords.map((keyword: string) => <li>{keyword}</li>)}</ul></section>
+  <section class="reference-section trait-grid"><div class="trait-panel"><h3>Balanced expression</h3><ul>{planet.balanced_expression.map((trait: string) => <li>{trait}</li>)}</ul></div><div class="trait-panel"><h3>Shadow expression</h3><ul>{planet.shadow_expression.map((trait: string) => <li>{trait}</li>)}</ul></div></section>
+  <section class="reference-section"><h2>In a birth chart</h2><p>{planet.name} brings attention to:</p><ul class="tag-list">{planet.themes_in_chart.map((theme: string) => <li>{theme}</li>)}</ul></section>
+  {signLinks.length > 0 && <section class="reference-section"><h2>Signs connected to {planet.name}</h2><div class="relation-grid">{signLinks.map(({ slug: signSlug, relationship }) => { const sign = getZodiacReference(signSlug)!; return <a class="relation-card" href={`/astrology/zodiac/${signSlug}/`}><span>{sign.symbol} {relationship}</span><strong>{sign.name}</strong></a>; })}</div></section>}
+  <section class="reference-section"><h2>A question to carry</h2><p class="question">“{planet.core_question}”</p></section>
+</ReferenceDetail>
+<style>.question { color: var(--swm-ivory) !important; font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.3rem); }</style>

@@ -1,0 +1,40 @@
+---
+interface Props {
+  href: string;
+  image: string;
+  imageAlt?: string;
+  symbol: string;
+  title: string;
+  description: string;
+  meta: string;
+  featured?: boolean;
+}
+
+const { href, image, imageAlt = "", symbol, title, description, meta, featured = false } = Astro.props;
+const displaySymbol = `${symbol}\uFE0E`;
+---
+
+<a class:list={["reference-card", { featured }]} href={href}>
+  <div class="card-art"><img src={image} alt={imageAlt} loading="lazy" /></div>
+  <div class="card-copy">
+    <p class="card-symbol" aria-hidden="true">{displaySymbol}</p>
+    <h2>{title}</h2>
+    <p>{description}</p>
+    <small>{meta}</small>
+  </div>
+</a>
+
+<style>
+  .reference-card { display: grid; min-height: 21rem; overflow: hidden; border: 1px solid var(--swm-border-soft); color: var(--swm-text); text-decoration: none; background: rgb(13 11 17 / 72%); grid-template-rows: 11rem 1fr; }
+  .card-art { position: relative; display: grid; overflow: hidden; place-items: center; border-bottom: 1px solid var(--swm-border-soft); background: radial-gradient(circle, rgb(169 136 83 / 15%), transparent 64%); }
+  .card-art::after { position: absolute; width: 8rem; height: 8rem; border: 1px solid rgb(169 136 83 / 22%); border-radius: 50%; content: ""; }
+  img { position: relative; z-index: 1; width: 8.5rem; height: 8.5rem; object-fit: contain; transition: transform 320ms ease; }
+  .card-copy { display: grid; align-content: start; padding: var(--space-3); }
+  .card-symbol { margin: 0 0 .2rem; color: var(--swm-gold); font-size: 1.15rem; }
+  h2 { margin: 0 0 .55rem; font-size: 2rem; }
+  .card-copy > p:not(.card-symbol) { margin: 0 0 var(--space-2); color: var(--swm-text-muted); font-size: .86rem; line-height: 1.55; }
+  small { align-self: end; color: var(--swm-gold-light); font-size: .68rem; }
+  .reference-card:hover img { transform: scale(1.045); }
+  .reference-card:hover { border-color: var(--swm-border); background: rgb(23 19 28 / 78%); }
+  @media (prefers-reduced-motion: reduce) { img { transition: none; } }
+</style>

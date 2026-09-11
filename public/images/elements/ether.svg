@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Ether symbol">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b9a0ff"/><stop offset=".5" stop-color="#6e4cdb"/><stop offset="1" stop-color="#78d9ff"/></linearGradient></defs>
+  <g fill="none" stroke="url(#g)" stroke-linecap="round"><circle cx="256" cy="256" r="150" stroke-width="24" opacity=".75"/><circle cx="256" cy="256" r="190" stroke-width="10" stroke-dasharray="18 26" opacity=".8"/><path d="m256 48 47 161 161 47-161 47-47 161-47-161-161-47 161-47z" fill="url(#g)" stroke="#d9d0ff" stroke-width="8"/></g>
+</svg>

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title description" data-variant="34" data-seed="133">
+  <title id="title">The Fear of Letting Go &amp; Consciousness Beyond</title>
+  <desc id="description">Metaphysical episode artwork for The Fear of Letting Go &amp; Consciousness Beyond.</desc>
+  <defs>
+    <radialGradient id="plum" cx="50%" cy="38%" r="74%"><stop offset="0" stop-color="#2b142d"/><stop offset="0.55" stop-color="#100b15"/><stop offset="1" stop-color="#07070b"/></radialGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="28"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#plum)"/>
+  <g fill="#593057" opacity=".2" filter="url(#soft)"><ellipse cx="160" cy="480" rx="230" ry="410"/><ellipse cx="1440" cy="450" rx="220" ry="390"/></g>
+  <g fill="none" stroke="#A98853"><rect x="48" y="48" width="1504" height="804" stroke-width="2" opacity=".7"/><rect x="66" y="66" width="1468" height="768" stroke-width="1" opacity=".35"/></g>
+  <g fill="#D7CCB8" aria-hidden="true">
+    <circle cx="756" cy="379" r="2" opacity=".63"/>
+    <circle cx="561" cy="574" r="2" opacity=".80"/>
+    <circle cx="1388" cy="131" r="3" opacity=".55"/>
+    <circle cx="1193" cy="326" r="3" opacity=".72"/>
+    <circle cx="630" cy="393" r="1" opacity=".89"/>
+    <circle cx="435" cy="588" r="1" opacity=".64"/>
+    <circle cx="1262" cy="145" r="2" opacity=".81"/>
+    <circle cx="1067" cy="340" r="2" opacity=".56"/>
+    <circle cx="504" cy="407" r="3" opacity=".73"/>
+    <circle cx="1331" cy="602" r="3" opacity=".48"/>
+    <circle cx="1136" cy="159" r="1" opacity=".65"/>
+    <circle cx="573" cy="354" r="1" opacity=".40"/>
+    <circle cx="378" cy="421" r="2" opacity=".57"/>
+    <circle cx="1205" cy="106" r="2" opacity=".87"/>
+    <circle cx="1010" cy="173" r="3" opacity=".49"/>
+    <circle cx="447" cy="368" r="3" opacity=".79"/>
+    <circle cx="252" cy="435" r="1" opacity=".41"/>
+    <circle cx="1079" cy="120" r="1" opacity=".71"/>
+    <circle cx="884" cy="187" r="2" opacity=".88"/>
+    <circle cx="321" cy="254" r="2" opacity=".63"/>
+    <circle cx="126" cy="449" r="3" opacity=".80"/>
+    <circle cx="953" cy="516" r="3" opacity=".55"/>
+    <circle cx="758" cy="201" r="1" opacity=".72"/>
+    <circle cx="195" cy="268" r="1" opacity=".47"/>
+    <circle cx="1390" cy="463" r="2" opacity=".64"/>
+    <circle cx="827" cy="530" r="2" opacity=".39"/>
+    <circle cx="632" cy="215" r="3" opacity=".56"/>
+    <circle cx="1459" cy="282" r="3" opacity=".86"/>
+  </g>
+  <g data-ornament="3" fill="none" stroke="#A98853" aria-hidden="true">
+    <path d="M800 86v70M686 100l34 66M914 100l-34 66M580 142l68 54M1020 142l-68 54M800 584v70M686 640l34-66M914 640l-34-66M580 598l68-54M1020 598l-68-54" opacity=".65"/><path d="m800 74 6 14 14 6-14 6-6 14-6-14-14-6 14-6Z" fill="#A98853"/>
+  </g>
+  <g data-motif="6" fill="none" stroke="#A98853" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <ellipse cx="800" cy="370" rx="258" ry="104" transform="rotate(-18 800 370)" stroke-width="2" opacity=".5"/><ellipse cx="800" cy="370" rx="210" ry="75" transform="rotate(20 800 370)" opacity=".45"/><path d="M800 370c20-58 112-48 118 25 8 99-139 164-252 89-136-91-70-303 97-340 197-43 344 154 255 326" stroke-width="5"/><circle cx="800" cy="370" r="22" fill="#A98853" fill-opacity=".3"/>
+  </g>
+  <text data-role="heading" x="800" y="744" fill="#D7CCB8" font-family="Georgia,serif" font-size="42" letter-spacing="6" text-anchor="middle">The Fear of Letting Go &amp; Consciousness Beyond</text>
+  <text data-role="subheading" x="800" y="800" fill="#A98853" font-family="Arial,sans-serif" font-size="24" letter-spacing="8" text-anchor="middle">Letting Go, Higher Consciousness &amp; Alien Life</text>
+</svg>

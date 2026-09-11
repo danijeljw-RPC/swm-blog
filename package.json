@@ -1,0 +1,46 @@
+{
+  "name": "sisters-with-mirrors",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "build:dev": "CLOUDFLARE_ENV=development astro build",
+    "build:prod": "CLOUDFLARE_ENV=production astro build",
+    "deploy:dev": "npm run build:dev && wrangler deploy",
+    "deploy:prod": "npm run build:prod && wrangler deploy",
+    "check": "astro check",
+    "test": "node --import tsx --test \"tests/**/*.test.{mjs,ts}\"",
+    "new:episode": "node scripts/new-episode.mjs",
+    "validate:content": "node scripts/validate-content.mjs"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^14.3.1",
+    "@fontsource/cormorant-garamond": "^5.2.10",
+    "@fontsource/inter": "^5.2.8",
+    "astro": "7.3.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "@types/node": "22.20.2",
+    "sharp": "0.35.4",
+    "tsx": "4.23.13",
+    "typescript": "6.0.3",
+    "wrangler": "4.130.0",
+    "yaml": "2.9.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "esbuild@0.28.1": true,
+    "workerd@1.20260908.1": true,
+    "fsevents@2.3.3": true
+  },
+  "overrides": {
+    "sharp": "0.35.4"
+  }
+}

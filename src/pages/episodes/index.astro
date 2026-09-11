@@ -1,0 +1,15 @@
+---
+import { getCollection } from "astro:content";
+import EpisodeCard from "../../components/episodes/EpisodeCard.astro";
+import SectionHeading from "../../components/common/SectionHeading.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getPublishedEpisodes } from "../../utils/episodes";
+const episodes = getPublishedEpisodes(await getCollection("episodes"));
+---
+<BaseLayout title="Episodes" description="Read Sisters with Mirrors podcast and videocast episode articles.">
+  <section class="page-section site-container">
+    <SectionHeading title="Episodes" introduction="Weekly articles with listening and viewing destinations supplied automatically by each episode's metadata." />
+    {episodes.length ? <div class="grid">{episodes.map((entry) => <EpisodeCard entry={entry} />)}</div> : <p>No episodes have been published yet.</p>}
+  </section>
+</BaseLayout>
+<style>.grid { display: grid; gap: var(--space-4); } @media (min-width: 42rem) { .grid { grid-template-columns: repeat(2, 1fr); } } @media (min-width: 68rem) { .grid { grid-template-columns: repeat(3, 1fr); } }</style>

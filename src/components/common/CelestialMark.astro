@@ -1,0 +1,26 @@
+---
+interface Props { variant?: "axis" | "star" | "moon"; }
+const { variant = "star" } = Astro.props;
+---
+
+<svg class:list={["celestial-mark", `celestial-mark--${variant}`]} viewBox="0 0 120 120" aria-hidden="true">
+  {variant === "axis" ? (
+    <>
+      <circle cx="60" cy="34" r="25" />
+      <path d="M66 10a25 25 0 1 0 0 48a20 20 0 1 1 0-48Z" class="fill" />
+      <path d="M60 0v120M51 75h18M54 92h12" />
+      <circle cx="60" cy="75" r="3" class="fill" />
+      <path d="m60 99 4 8 8 4-8 4-4 8-4-8-8-4 8-4Z" class="fill" />
+    </>
+  ) : variant === "moon" ? (
+    <path d="M71 17a43 43 0 1 0 0 86a34 34 0 1 1 0-86Z" class="fill" />
+  ) : (
+    <path d="m60 8 8 38 38 14-38 14-8 38-8-38L14 60l38-14Z" class="fill" />
+  )}
+</svg>
+
+<style>
+  .celestial-mark { width: 4rem; color: var(--swm-gold); fill: none; stroke: currentColor; stroke-width: 1; }
+  .celestial-mark--axis { width: 5rem; }
+  .fill { fill: currentColor; stroke: none; }
+</style>

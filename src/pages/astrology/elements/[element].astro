@@ -1,0 +1,19 @@
+---
+import ReferenceDetail from "../../../components/astrology/ReferenceDetail.astro";
+import { ELEMENTS, getZodiacReference, referenceImagePath } from "../../../utils/astrology-reference";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return ELEMENTS.map(({ slug, data }) => ({ params: { element: slug }, props: { slug, element: data } }));
+}
+const { slug, element } = Astro.props;
+---
+<ReferenceDetail title={element.name} kind="Classical element" description={element.description} image={referenceImagePath("elements", slug)} imageAlt={`${element.name} element illustration`} symbol={element.symbol} collectionHref="/astrology/elements/" collectionLabel="Elements" meta={[element.polarity, element.associated_direction, element.associated_season, element.associated_time_of_day]}>
+  <section class="reference-section"><h2>The inner current</h2><p>{element.metaphysical_meaning}</p><ul class="tag-list">{element.keywords.map((keyword: string) => <li>{keyword}</li>)}</ul></section>
+  <section class="reference-section trait-grid"><div class="trait-panel"><h3>In balance</h3><ul>{element.balanced_expression.map((trait: string) => <li>{trait}</li>)}</ul></div><div class="trait-panel"><h3>Out of balance</h3><ul>{element.shadow_expression.map((trait: string) => <li>{trait}</li>)}</ul></div></section>
+  <section class="reference-section"><h2>Restoring balance</h2><p>{element.name} may find steadiness through {element.needs_for_balance.join(", ")}.</p><p>Its traditional correspondences include the {element.associated_direction}, {element.associated_season}, {element.associated_time_of_day}, and the {element.associated_tarot_suit} suit in tarot.</p></section>
+  <section class="reference-section"><h2>{element.name} signs</h2><div class="relation-grid">{element.zodiac_signs.map((signSlug: string) => { const sign = getZodiacReference(signSlug)!; return <a class="relation-card" href={`/astrology/zodiac/${signSlug}/`}><span>{sign.symbol} {sign.modality}</span><strong>{sign.name}</strong></a>; })}</div></section>
+  <section class="reference-section"><h2>Pause and reflect</h2><div class="prompts">{element.journal_prompts.map((prompt: string) => <p>“{prompt}”</p>)}</div></section>
+</ReferenceDetail>
+<style>.prompts { display: grid; gap: var(--space-2); } .prompts p { padding: var(--space-3); margin: 0; border-left: 1px solid var(--swm-gold); color: var(--swm-ivory); font-family: var(--font-display); font-size: 1.55rem; }</style>

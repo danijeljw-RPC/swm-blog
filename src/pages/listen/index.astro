@@ -1,0 +1,34 @@
+---
+import SectionHeading from "../../components/common/SectionHeading.astro";
+import { platforms } from "../../config/platforms";
+import { site } from "../../config/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getConfiguredPlatforms, isExternalUrl } from "../../utils/links";
+const configured = getConfiguredPlatforms(platforms);
+const rssUrl = new URL(site.rssPath, site.url).toString();
+---
+<BaseLayout title="Listen" description="Listen to Sisters with Mirrors and copy the first-party podcast RSS feed.">
+  <section class="page-section site-container listen-page">
+    <SectionHeading title="Listen to Sisters with Mirrors" introduction="Podcast directory links will appear here as soon as their exact show URLs are supplied." />
+    <div class="platforms">
+      {configured.map((platform) => <a class="framed-panel" href={platform.url} target={isExternalUrl(platform.url) ? "_blank" : undefined} rel={isExternalUrl(platform.url) ? "noopener noreferrer" : undefined}><span>{platform.label}</span><small>{platform.id === "rss" ? "First-party feed" : "Open platform"}</small></a>)}
+    </div>
+    <section class="rss-panel framed-panel" aria-labelledby="rss-heading">
+      <div><p>Permanent feed</p><h2 id="rss-heading">Podcast RSS</h2><a href={site.rssPath}>{rssUrl}</a></div>
+      <button class="button button--quiet" type="button" data-copy-rss={rssUrl} hidden>Copy RSS feed</button>
+      <p class="copy-status" aria-live="polite"></p>
+    </section>
+  </section>
+  <script>
+    const button = document.querySelector<HTMLButtonElement>("[data-copy-rss]");
+    const status = document.querySelector<HTMLElement>(".copy-status");
+    if (button && navigator.clipboard) {
+      button.hidden = false;
+      button.addEventListener("click", async () => {
+        await navigator.clipboard.writeText(button.dataset.copyRss ?? "");
+        if (status) status.textContent = "RSS feed copied.";
+      });
+    }
+  </script>
+</BaseLayout>
+<style>.listen-page { max-width: 58rem; } .platforms { display: grid; gap: var(--space-2); } .platforms a { display: flex; min-height: 5rem; align-items: center; justify-content: space-between; padding: var(--space-3); text-decoration: none; } .platforms a > * { position: relative; z-index: 1; } .platforms small { color: var(--swm-text-muted); } .rss-panel { margin-top: var(--space-5); padding: var(--space-4); } .rss-panel > * { position: relative; z-index: 1; } .rss-panel h2 { font-size: 2.2rem; } .copy-status { min-height: 1.7em; color: var(--swm-gold-light); font-size: .8rem; } @media (min-width: 40rem) { .platforms { grid-template-columns: repeat(2, 1fr); } .rss-panel { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: var(--space-3); } .copy-status { grid-column: 1 / -1; } }</style>

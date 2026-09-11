@@ -1,0 +1,4 @@
+# Local-only Worker variables. Do not put secrets in this file.
+PUBLIC_SITE_URL=http://localhost:4321
+PUBLIC_MEDIA_URL=https://media.sisterswithmirrors.com
+R2_BUCKET_NAME=sisters-with-mirrors

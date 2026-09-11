@@ -1,0 +1,13 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ReferenceCard from "../../../components/astrology/ReferenceCard.astro";
+import { ELEMENTS, referenceImagePath } from "../../../utils/astrology-reference";
+---
+<BaseLayout title="The four elements" description="Explore Fire, Earth, Air and Water in astrological and metaphysical traditions.">
+  <section class="collection-intro site-container"><p><a href="/astrology/">Astrology</a> / Elements</p><h1>The four<br />temperaments.</h1><p>Fire initiates. Earth builds. Air connects. Water feels. The elements describe four symbolic ways energy can move, respond and find balance.</p></section>
+  <section class="reference-grid site-container" aria-label="Classical elements">{ELEMENTS.map(({ slug, data }) => <ReferenceCard href={`/astrology/elements/${slug}/`} image={referenceImagePath("elements", slug)} symbol={data.symbol} title={data.name} description={data.description} meta={`${data.associated_direction} · ${data.associated_season} · ${data.associated_tarot_suit}`} />)}</section>
+</BaseLayout>
+<style>
+  .collection-intro { display: grid; gap: var(--space-3); padding-block: var(--space-6); } .collection-intro > p:first-child { color: var(--swm-gold); font-size: .75rem; } h1 { max-width: 10ch; } .collection-intro > p:last-child { max-width: 42rem; color: var(--swm-text-muted); } .reference-grid { display: grid; gap: var(--space-3); padding-bottom: var(--space-7); }
+  @media (min-width: 42rem) { .collection-intro { grid-template-columns: 1.2fr .8fr; align-items: end; } .collection-intro > p:first-child { grid-column: 1 / -1; } .reference-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>

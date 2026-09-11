@@ -1,0 +1,20 @@
+[
+  {
+    "id": "dj",
+    "name": "DJ",
+    "role": "Host",
+    "shortBio": "DJ is a curious question-puller with a knack for connecting patterns, following intuition, and turning one strange idea into ten bigger questions about consciousness, spirituality, reality, and the universe.",
+    "bio": "",
+    "image": null,
+    "links": {}
+  },
+  {
+    "id": "warren",
+    "name": "Warren",
+    "role": "Co-host",
+    "shortBio": "Warren brings a developing psychic and mediumistic perspective to Sisters with Mirrors, exploring intuition, spirit communication, consciousness, the afterlife, and the stranger edges of human experience with curiosity and humour.",
+    "bio": "",
+    "image": null,
+    "links": {}
+  }
+]

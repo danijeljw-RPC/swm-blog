@@ -1,0 +1,37 @@
+---
+import { platforms } from "../../config/platforms";
+import { site } from "../../config/site";
+import { getConfiguredPlatforms, isExternalUrl } from "../../utils/links";
+const configured = getConfiguredPlatforms(platforms);
+---
+
+<footer class="site-footer">
+  <div class="site-container footer-grid">
+    <div>
+      <p class="footer-title">{site.name}</p>
+      <p class="tagline">{site.tagline}</p>
+    </div>
+    <nav aria-label="Footer navigation">
+      <a href="/episodes/">Episodes</a>
+      <a href="/hosts/">Hosts</a>
+      <a href="/listen/">Listen</a>
+    </nav>
+    <nav aria-label="Podcast links">
+      {configured.map((platform) => (
+        <a href={platform.url} target={isExternalUrl(platform.url) ? "_blank" : undefined} rel={isExternalUrl(platform.url) ? "noopener noreferrer" : undefined}>{platform.label}</a>
+      ))}
+    </nav>
+  </div>
+  <p class="copyright">© {new Date().getFullYear()} {site.name}</p>
+</footer>
+
+<style>
+  .site-footer { padding-block: var(--space-6) var(--space-3); border-top: 1px solid var(--swm-border); background: rgb(7 7 11 / 78%); }
+  .footer-grid { display: grid; gap: var(--space-4); }
+  .footer-title { margin: 0; color: var(--swm-ivory); font-family: var(--font-display); font-size: 1.8rem; }
+  .tagline, .copyright { color: var(--swm-text-muted); font-size: 0.78rem; }
+  nav { display: flex; flex-direction: column; align-items: flex-start; gap: 0.45rem; }
+  nav a { font-size: 0.85rem; text-decoration: none; }
+  .copyright { width: min(calc(100% - 2rem), var(--swm-max-width)); margin: var(--space-5) auto 0; padding-top: var(--space-3); border-top: 1px solid var(--swm-border-soft); }
+  @media (min-width: 48rem) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+</style>

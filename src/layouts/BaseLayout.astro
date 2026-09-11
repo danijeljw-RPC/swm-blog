@@ -1,0 +1,49 @@
+---
+import "@fontsource/cormorant-garamond/500.css";
+import "@fontsource/cormorant-garamond/600.css";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/600.css";
+import "../styles/global.css";
+import Footer from "../components/layout/Footer.astro";
+import Header from "../components/layout/Header.astro";
+import { site } from "../config/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string | null;
+  canonical?: string | null;
+  noindex?: boolean;
+}
+
+const { title, description = site.description, image, canonical, noindex = false } = Astro.props;
+const pageTitle = title ? `${title} | ${site.name}` : site.name;
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, site.url).toString();
+const imageUrl = image ? new URL(image, site.url).toString() : undefined;
+---
+
+<!doctype html>
+<html lang={site.language}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" type="application/rss+xml" title={`${site.name} RSS`} href={site.rssPath} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    {imageUrl && <meta property="og:image" content={imageUrl} />}
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <Header />
+    <main id="main-content"><slot /></main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,1731 @@
+{
+  "metadata": {
+    "title": "Astrological & Metaphysical Reference Data",
+    "version": "1.0.0",
+    "language": "en",
+    "intended_use": "Community blog, educational reference, content generation and metaphysical exploration",
+    "scope": [
+      "Four classical elements",
+      "Twelve tropical zodiac signs",
+      "Eleven commonly referenced astrological bodies and points"
+    ],
+    "notes": [
+      "Astrological and metaphysical interpretations are symbolic traditions rather than scientific claims.",
+      "Rulerships include common modern Western astrology conventions, with traditional rulerships noted where relevant.",
+      "Chiron is an asteroid/centaur body used symbolically in modern astrology rather than a classical planet.",
+      "The Sun and Moon are luminaries in astrology, though grouped with planets in everyday astrological usage."
+    ]
+  },
+  "elements": {
+    "air": {
+      "name": "Air",
+      "symbol": "🜁",
+      "polarity": "yang",
+      "qualities": [
+        "active",
+        "expressive",
+        "social",
+        "mental"
+      ],
+      "core_domain": "Mind, communication, ideas, connection and perspective",
+      "keywords": [
+        "thought",
+        "communication",
+        "intellect",
+        "ideas",
+        "curiosity",
+        "social connection",
+        "objectivity",
+        "movement"
+      ],
+      "description": "Air represents the realm of thought, language, concepts and interpersonal exchange. It is associated with the ability to observe, compare, communicate and connect seemingly separate ideas.",
+      "metaphysical_meaning": "In metaphysical systems, Air is often associated with consciousness, breath, inspiration, subtle movement, mental clarity and the invisible currents through which ideas travel.",
+      "balanced_expression": [
+        "clear thinking",
+        "curiosity",
+        "fair-mindedness",
+        "communication",
+        "adaptability",
+        "social intelligence"
+      ],
+      "shadow_expression": [
+        "overthinking",
+        "detachment",
+        "indecision",
+        "intellectualisation",
+        "gossip",
+        "restlessness"
+      ],
+      "needs_for_balance": [
+        "grounding",
+        "embodiment",
+        "emotional presence",
+        "follow-through",
+        "silence"
+      ],
+      "associated_faculty": "intellect",
+      "associated_direction": "east",
+      "associated_season": "spring",
+      "associated_time_of_day": "dawn",
+      "associated_colors": [
+        "pale yellow",
+        "sky blue",
+        "white",
+        "silver"
+      ],
+      "associated_symbols": [
+        "wind",
+        "breath",
+        "birds",
+        "clouds",
+        "feathers",
+        "incense smoke"
+      ],
+      "associated_tarot_suit": "Swords",
+      "zodiac_signs": [
+        "gemini",
+        "libra",
+        "aquarius"
+      ],
+      "journal_prompts": [
+        "What idea needs more room to breathe?",
+        "Where am I overthinking instead of acting?",
+        "What conversation would create greater clarity?"
+      ]
+    },
+    "fire": {
+      "name": "Fire",
+      "symbol": "🜂",
+      "polarity": "yang",
+      "qualities": [
+        "active",
+        "radiant",
+        "initiating",
+        "transformative"
+      ],
+      "core_domain": "Will, passion, identity, courage and inspiration",
+      "keywords": [
+        "passion",
+        "action",
+        "courage",
+        "creativity",
+        "desire",
+        "confidence",
+        "spirit",
+        "transformation"
+      ],
+      "description": "Fire represents vitality, enthusiasm, instinct and the force that moves life into action. It is associated with inspiration, courage, ambition and visible self-expression.",
+      "metaphysical_meaning": "Metaphysically, Fire is often treated as the spark of spirit: illumination, purification, transformation and the creative force that turns potential into action.",
+      "balanced_expression": [
+        "confidence",
+        "enthusiasm",
+        "leadership",
+        "creative drive",
+        "courage",
+        "warmth"
+      ],
+      "shadow_expression": [
+        "impulsiveness",
+        "anger",
+        "burnout",
+        "domination",
+        "recklessness",
+        "ego inflation"
+      ],
+      "needs_for_balance": [
+        "patience",
+        "rest",
+        "empathy",
+        "reflection",
+        "grounding"
+      ],
+      "associated_faculty": "will",
+      "associated_direction": "south",
+      "associated_season": "summer",
+      "associated_time_of_day": "midday",
+      "associated_colors": [
+        "red",
+        "orange",
+        "gold",
+        "scarlet"
+      ],
+      "associated_symbols": [
+        "flame",
+        "sunlight",
+        "volcanoes",
+        "candles",
+        "sparks",
+        "phoenix"
+      ],
+      "associated_tarot_suit": "Wands",
+      "zodiac_signs": [
+        "aries",
+        "leo",
+        "sagittarius"
+      ],
+      "journal_prompts": [
+        "What gives me energy rather than merely consuming it?",
+        "Where do I need courage?",
+        "What desire is asking to become action?"
+      ]
+    },
+    "water": {
+      "name": "Water",
+      "symbol": "🜄",
+      "polarity": "yin",
+      "qualities": [
+        "receptive",
+        "emotional",
+        "intuitive",
+        "fluid"
+      ],
+      "core_domain": "Emotion, intuition, memory, sensitivity and connection",
+      "keywords": [
+        "emotion",
+        "intuition",
+        "empathy",
+        "dreams",
+        "healing",
+        "memory",
+        "receptivity",
+        "depth"
+      ],
+      "description": "Water represents emotional life, intuition, imagination, memory and the capacity to merge, bond and empathise. It responds rather than pushes.",
+      "metaphysical_meaning": "Metaphysically, Water is associated with psychic receptivity, dreams, the subconscious, cleansing, emotional healing and the deep currents beneath ordinary awareness.",
+      "balanced_expression": [
+        "empathy",
+        "intuition",
+        "compassion",
+        "imagination",
+        "emotional intelligence",
+        "healing"
+      ],
+      "shadow_expression": [
+        "overwhelm",
+        "escapism",
+        "moodiness",
+        "poor boundaries",
+        "fear",
+        "emotional manipulation"
+      ],
+      "needs_for_balance": [
+        "boundaries",
+        "clarity",
+        "structure",
+        "grounding",
+        "direct communication"
+      ],
+      "associated_faculty": "emotion",
+      "associated_direction": "west",
+      "associated_season": "autumn",
+      "associated_time_of_day": "dusk",
+      "associated_colors": [
+        "blue",
+        "teal",
+        "indigo",
+        "sea green"
+      ],
+      "associated_symbols": [
+        "ocean",
+        "rain",
+        "rivers",
+        "cups",
+        "shells",
+        "mist"
+      ],
+      "associated_tarot_suit": "Cups",
+      "zodiac_signs": [
+        "cancer",
+        "scorpio",
+        "pisces"
+      ],
+      "journal_prompts": [
+        "What am I feeling beneath the surface?",
+        "Where do I need stronger emotional boundaries?",
+        "What is my intuition repeatedly drawing my attention to?"
+      ]
+    },
+    "earth": {
+      "name": "Earth",
+      "symbol": "🜃",
+      "polarity": "yin",
+      "qualities": [
+        "receptive",
+        "stable",
+        "practical",
+        "material"
+      ],
+      "core_domain": "Body, material reality, stability, work and manifestation",
+      "keywords": [
+        "grounding",
+        "stability",
+        "practicality",
+        "resources",
+        "body",
+        "nature",
+        "security",
+        "manifestation"
+      ],
+      "description": "Earth represents physical reality, embodiment, structure, resources, patience and the practical processes through which ideas become tangible.",
+      "metaphysical_meaning": "Metaphysically, Earth symbolises manifestation, grounding, fertility, the physical body and the sacredness of ordinary material existence.",
+      "balanced_expression": [
+        "reliability",
+        "patience",
+        "resourcefulness",
+        "discipline",
+        "stability",
+        "practical wisdom"
+      ],
+      "shadow_expression": [
+        "stubbornness",
+        "materialism",
+        "fear of change",
+        "rigidity",
+        "overwork",
+        "possessiveness"
+      ],
+      "needs_for_balance": [
+        "flexibility",
+        "imagination",
+        "emotional openness",
+        "play",
+        "trust"
+      ],
+      "associated_faculty": "sensation",
+      "associated_direction": "north",
+      "associated_season": "winter",
+      "associated_time_of_day": "midnight",
+      "associated_colors": [
+        "green",
+        "brown",
+        "ochre",
+        "forest green"
+      ],
+      "associated_symbols": [
+        "mountains",
+        "stones",
+        "trees",
+        "soil",
+        "roots",
+        "crystals"
+      ],
+      "associated_tarot_suit": "Pentacles",
+      "zodiac_signs": [
+        "taurus",
+        "virgo",
+        "capricorn"
+      ],
+      "journal_prompts": [
+        "What needs to become more tangible?",
+        "Where can I simplify and stabilise?",
+        "What daily action would create lasting results?"
+      ]
+    }
+  },
+  "zodiac_signs": {
+    "aries": {
+      "name": "Aries",
+      "symbol": "♈",
+      "element": "fire",
+      "modality": "cardinal",
+      "polarity": "yang",
+      "ruling_planet": "mars",
+      "traditional_ruler": null,
+      "natural_house_association": "1st",
+      "archetype": "The Ram",
+      "motto": "I am",
+      "approximate_tropical_dates": "March 21 – April 19",
+      "core_themes": [
+        "initiative",
+        "courage",
+        "independence",
+        "identity",
+        "competition",
+        "directness"
+      ],
+      "strengths": [
+        "bold",
+        "decisive",
+        "energetic",
+        "pioneering",
+        "honest"
+      ],
+      "shadow_traits": [
+        "impatient",
+        "combative",
+        "impulsive",
+        "self-focused",
+        "easily frustrated"
+      ],
+      "metaphysical_interpretation": "Aries symbolises emergence, individuation and the first spark of selfhood. It asks what happens when raw life-force chooses a direction.",
+      "keywords": [
+        "beginning",
+        "assertion",
+        "courage",
+        "self-definition",
+        "action"
+      ],
+      "growth_path": "Integrate the gifts of Aries without becoming trapped in its shadow expression.",
+      "relationship_style": {
+        "default_tendency": "direct, passionate and expressive",
+        "lesson": "Balance authentic self-expression with awareness of the needs and autonomy of others."
+      },
+      "spiritual_lesson": "Act with courage without confusing force with strength.",
+      "associated_body_region": "head and face",
+      "compatible_elemental_dynamics": {
+        "harmonious": [
+          "fire",
+          "air"
+        ],
+        "challenging_but_growth_oriented": [
+          "water",
+          "earth"
+        ]
+      }
+    },
+    "taurus": {
+      "name": "Taurus",
+      "symbol": "♉",
+      "element": "earth",
+      "modality": "fixed",
+      "polarity": "yin",
+      "ruling_planet": "venus",
+      "traditional_ruler": null,
+      "natural_house_association": "2nd",
+      "archetype": "The Bull",
+      "motto": "I have",
+      "approximate_tropical_dates": "April 20 – May 20",
+      "core_themes": [
+        "stability",
+        "values",
+        "sensuality",
+        "resources",
+        "patience",
+        "embodiment"
+      ],
+      "strengths": [
+        "loyal",
+        "grounded",
+        "patient",
+        "sensual",
+        "reliable"
+      ],
+      "shadow_traits": [
+        "stubborn",
+        "possessive",
+        "resistant to change",
+        "indulgent",
+        "inert"
+      ],
+      "metaphysical_interpretation": "Taurus represents embodiment, value and the cultivation of what sustains life. It asks what is worth preserving, enjoying and building.",
+      "keywords": [
+        "stability",
+        "self-worth",
+        "pleasure",
+        "resources",
+        "manifestation"
+      ],
+      "growth_path": "Integrate the gifts of Taurus without becoming trapped in its shadow expression.",
+      "relationship_style": {
+        "default_tendency": "steady, practical and security-oriented",
+        "lesson": "Balance authentic self-expression with awareness of the needs and autonomy of others."
+      },
+      "spiritual_lesson": "Recognise that true security comes from inner value as well as outer stability.",
+      "associated_body_region": "throat and neck",
+      "compatible_elemental_dynamics": {
+        "harmonious": [
+          "earth",
+          "water"
+        ],
+        "challenging_but_growth_oriented": [
+          "fire",
+          "air"
+        ]
+      }
+    },
+    "gemini": {
+      "name": "Gemini",
+      "symbol": "♊",
+      "element": "air",
+      "modality": "mutable",
+      "polarity": "yang",
+      "ruling_planet": "mercury",
+      "traditional_ruler": null,
+      "natural_house_association": "3rd",
+      "archetype": "The Twins",
+      "motto": "I think",
+      "approximate_tropical_dates": "May 21 – June 20",
+      "core_themes": [
+        "communication",
+        "curiosity",
+        "learning",
+        "duality",
+        "language",
+        "mobility"
+      ],
+      "strengths": [
+        "witty",
+        "adaptable",
+        "curious",
+        "versatile",
+        "communicative"
+      ],
+      "shadow_traits": [
+        "scattered",
+        "inconsistent",
+        "nervous",
+        "superficial",
+        "overly cerebral"
+      ],
+      "metaphysical_interpretation": "Gemini represents exchange, perception and the many ways consciousness gathers and transmits information.",
+      "keywords": [
+        "communication",
+        "learning",
+        "questions",
+        "perspective",
+        "connection"
+      ],
+      "growth_path": "Integrate the gifts of Gemini without becoming trapped in its shadow expression.",
+      "relationship_style": {
+        "default_tendency": "communicative, social and mentally engaged",
+        "lesson": "Balance authentic self-expression with awareness of the needs and autonomy of others."
+      },
+      "spiritual_lesson": "Learn that information becomes wisdom through discernment and integration.",
+      "associated_body_region": "arms, hands and lungs",
+      "compatible_elemental_dynamics": {
+        "harmonious": [
+          "air",
+          "fire"
+        ],
+        "challenging_but_growth_oriented": [
+          "earth",
+          "water"
+        ]
+      }
+    },
+    "cancer": {
+      "name": "Cancer",
+      "symbol": "♋",
+      "element": "water",
+      "modality": "cardinal",
+      "polarity": "yin",
+      "ruling_planet": "moon",
+      "traditional_ruler": null,
+      "natural_house_association": "4th",
+      "archetype": "The Crab",
+      "motto": "I feel",
+      "approximate_tropical_dates": "June 21 – July 22",
+      "core_themes": [
+        "home",
+        "emotion",
+        "family",
+        "memory",
+        "protection",
+        "belonging"
+      ],
+      "strengths": [
+        "nurturing",
+        "intuitive",
+        "protective",
+        "loyal",
+        "emotionally perceptive"
+      ],
+      "shadow_traits": [
+        "defensive",
+        "moody",
+        "clingy",
+        "indirect",
+        "overprotective"
+      ],
+      "metaphysical_interpretation": "Cancer represents emotional belonging, memory and the instinct to create a safe inner and outer home.",
+      "keywords": [
+        "home",
+        "ancestry",
+        "care",
+        "intuition",
+        "emotional security"
+      ],
+      "growth_path": "Integrate the gifts of Cancer without becoming trapped in its shadow expression.",
+      "relationship_style": {
+        "default_tendency": "emotional, intuitive and bonding-oriented",
+        "lesson": "Balance authentic self-expression with awareness of the needs and autonomy of others."
+      },
+      "spiritual_lesson": "Care deeply without losing emotional boundaries or selfhood.",
+      "associated_body_region": "chest and stomach",
+      "compatible_elemental_dynamics": {
+        "harmonious": [
+          "water",
+          "earth"
+        ],
+        "challenging_but_growth_oriented": [
+          "air",
+          "fire"
+        ]
+      }
+    },
+    "leo": {
+      "name": "Leo",
+      "symbol": "♌",
+      "element": "fire",
+      "modality": "fixed",
+      "polarity": "yang",
+      "ruling_planet": "sun",
+      "traditional_ruler": null,
+      "natural_house_association": "5th",
+      "archetype": "The Lion",
+      "motto": "I will",
+      "approximate_tropical_dates": "July 23 – August 22",
+      "core_themes": [
+        "creativity",
+        "self-expression",
+        "leadership",
+        "joy",
+        "romance",
+        "visibility"
+      ],
+      "strengths": [
+        "generous",
+        "warm",
+        "creative",
+        "loyal",
+        "charismatic"
+      ],
+      "shadow_traits": [
+        "proud",
+        "dramatic",
+        "attention-seeking",
+        "domineering",
+        "inflexible"
+      ],
+      "metaphysical_interpretation": "Leo represents creative radiance and the courage to become visible. It asks how the individual can express the heart without losing humility.",
+      "keywords": [
+        "creativity",
+        "heart",
+        "identity",
+        "joy",
+        "recognition"
+      ],
+      "growth_path": "Integrate the gifts of Leo without becoming trapped in its shadow expression.",
+      "relationship_style": {
+        "default_tendency": "direct, passionate and expressive",
+        "lesson": "Balance authentic self-expression with awareness of the needs and autonomy of others."
+      },
+      "spiritual_lesson": "Shine from authentic creativity rather than dependence on applause.",
+      "associated_body_region": "heart and upper back",
+      "compatible_elemental_dynamics": {
+        "harmonious": [
+          "fire",
+          "air"
+        ],
+        "challenging_but_growth_oriented": [
+          "water",
+          "earth"
+        ]
+      }
+    },
+    "virgo": {
+      "name": "Virgo",
+      "symbol": "♍",
+      "element": "earth",
+      "modality": "mutable",
+      "polarity": "yin",
+      "ruling_planet": "mercury",
+      "traditional_ruler": null,
+      "natural_house_association": "6th",
+      "archetype": "The Maiden",
+      "motto": "I analyse",
+      "approximate_tropical_dates": "August 23 – September 22",
+      "core_themes": [
+        "discernment",
+        "service",
+        "health",
+        "craft",
+        "systems",
+        "improvement"
+      ],
+      "strengths": [
+        "precise",
+        "helpful",
+        "analytical",
+        "practical",
+        "conscientious"
+      ],
+      "shadow_traits": [
+        "critical",
+        "perfectionistic",
+        "anxious",
+        "over-controlled",
+        "self-doubting"
+      ],
+      "metaphysical_interpretation": "Virgo represents refinement, discernment and sacred attention to detail. It asks how skill and service can transform disorder into coherence.",
+      "keywords": [
+        "discernment",
+        "service",
+        "craft",
+        "healing",
+        "routine"
+      ],
+      "growth_path": "Integrate the gifts of Virgo without becoming trapped in its shadow expression.",
+      "relationship_style": {
+        "default_tendency": "steady, practical and security-oriented",
+        "lesson": "Balance authentic self-expression with awareness of the needs and autonomy of others."
+      },
+      "spiritual_lesson": "Serve and refine without turning discernment into perfectionism.",
+      "associated_body_region": "digestive system",
+      "compatible_elemental_dynamics": {
+        "harmonious": [
+          "earth",
+          "water"
+        ],
+        "challenging_but_growth_oriented": [
+          "fire",
+          "air"
+        ]
+      }
+    },
+    "libra": {
+      "name": "Libra",
+      "symbol": "♎",
+      "element": "air",
+      "modality": "cardinal",
+      "polarity": "yang",
+      "ruling_planet": "venus",
+      "traditional_ruler": null,
+      "natural_house_association": "7th",
+      "archetype": "The Scales",
+      "motto": "I balance",
+      "approximate_tropical_dates": "September 23 – October 22",
+      "core_themes": [
+        "relationship",
+        "balance",
+        "beauty",
+        "justice",
+        "diplomacy",
+        "reciprocity"
+      ],
+      "strengths": [
+        "diplomatic",
+        "gracious",
+        "fair-minded",
+        "social",
+        "aesthetic"
+      ],
+      "shadow_traits": [
+        "indecisive",
+        "people-pleasing",
+        "avoidant",
+        "dependent",
+        "image-conscious"
+      ],
+      "metaphysical_interpretation": "Libra represents relationship as a mirror. It explores harmony, fairness, attraction and the art of meeting another without abandoning the self.",
+      "keywords": [
+        "partnership",
+        "balance",
+        "justice",
+        "beauty",
+        "reciprocity"
+      ],
+      "growth_path": "Integrate the gifts of Libra without becoming trapped in its shadow expression.",
+      "relationship_style": {
+        "default_tendency": "communicative, social and mentally engaged",
+        "lesson": "Balance authentic self-expression with awareness of the needs and autonomy of others."
+      },
+      "spiritual_lesson": "Create harmony without abandoning truth or personal boundaries.",
+      "associated_body_region": "kidneys and lower back",
+      "compatible_elemental_dynamics": {
+        "harmonious": [
+          "air",
+          "fire"
+        ],
+        "challenging_but_growth_oriented": [
+          "earth",
+          "water"
+        ]
+      }
+    },
+    "scorpio": {
+      "name": "Scorpio",
+      "symbol": "♏",
+      "element": "water",
+      "modality": "fixed",
+      "polarity": "yin",
+      "ruling_planet": "pluto",
+      "traditional_ruler": "mars",
+      "natural_house_association": "8th",
+      "archetype": "The Scorpion",
+      "motto": "I transform",
+      "approximate_tropical_dates": "October 23 – November 21",
+      "core_themes": [
+        "transformation",
+        "intimacy",
+        "power",
+        "death-rebirth",
+        "secrets",
+        "depth"
+      ],
+      "strengths": [
+        "intense",
+        "loyal",
+        "perceptive",
+        "resilient",
+        "magnetic"
+      ],
+      "shadow_traits": [
+        "controlling",
+        "suspicious",
+        "obsessive",
+        "vengeful",
+        "secretive"
+      ],
+      "metaphysical_interpretation": "Scorpio represents descent, transformation and regeneration. It confronts what is hidden so that deeper truth and renewed power can emerge.",
+      "keywords": [
+        "transformation",
+        "shadow",
+        "intimacy",
+        "power",
+        "rebirth"
+      ],
+      "growth_path": "Integrate the gifts of Scorpio without becoming trapped in its shadow expression.",
+      "relationship_style": {
+        "default_tendency": "emotional, intuitive and bonding-oriented",
+        "lesson": "Balance authentic self-expression with awareness of the needs and autonomy of others."
+      },
+      "spiritual_lesson": "Transform pain and power struggles into emotional honesty and regeneration.",
+      "associated_body_region": "reproductive and eliminative systems",
+      "compatible_elemental_dynamics": {
+        "harmonious": [
+          "water",
+          "earth"
+        ],
+        "challenging_but_growth_oriented": [
+          "air",
+          "fire"
+        ]
+      }
+    },
+    "sagittarius": {
+      "name": "Sagittarius",
+      "symbol": "♐",
+      "element": "fire",
+      "modality": "mutable",
+      "polarity": "yang",
+      "ruling_planet": "jupiter",
+      "traditional_ruler": null,
+      "natural_house_association": "9th",
+      "archetype": "The Archer",
+      "motto": "I seek",
+      "approximate_tropical_dates": "November 22 – December 21",
+      "core_themes": [
+        "meaning",
+        "travel",
+        "philosophy",
+        "truth",
+        "faith",
+        "expansion"
+      ],
+      "strengths": [
+        "optimistic",
+        "adventurous",
+        "open-minded",
+        "visionary",
+        "enthusiastic"
+      ],
+      "shadow_traits": [
+        "restless",
+        "dogmatic",
+        "blunt",
+        "excessive",
+        "overconfident"
+      ],
+      "metaphysical_interpretation": "Sagittarius represents the search for meaning and the impulse to move beyond known boundaries in pursuit of truth, experience and wisdom.",
+      "keywords": [
+        "meaning",
+        "expansion",
+        "journey",
+        "belief",
+        "wisdom"
+      ],
+      "growth_path": "Integrate the gifts of Sagittarius without becoming trapped in its shadow expression.",
+      "relationship_style": {
+        "default_tendency": "direct, passionate and expressive",
+        "lesson": "Balance authentic self-expression with awareness of the needs and autonomy of others."
+      },
+      "spiritual_lesson": "Seek truth while allowing other people to hold different truths.",
+      "associated_body_region": "hips and thighs",
+      "compatible_elemental_dynamics": {
+        "harmonious": [
+          "fire",
+          "air"
+        ],
+        "challenging_but_growth_oriented": [
+          "water",
+          "earth"
+        ]
+      }
+    },
+    "capricorn": {
+      "name": "Capricorn",
+      "symbol": "♑",
+      "element": "earth",
+      "modality": "cardinal",
+      "polarity": "yin",
+      "ruling_planet": "saturn",
+      "traditional_ruler": null,
+      "natural_house_association": "10th",
+      "archetype": "The Sea-Goat",
+      "motto": "I achieve",
+      "approximate_tropical_dates": "December 22 – January 19",
+      "core_themes": [
+        "structure",
+        "ambition",
+        "responsibility",
+        "authority",
+        "time",
+        "legacy"
+      ],
+      "strengths": [
+        "disciplined",
+        "strategic",
+        "reliable",
+        "patient",
+        "responsible"
+      ],
+      "shadow_traits": [
+        "rigid",
+        "pessimistic",
+        "work-obsessed",
+        "status-conscious",
+        "controlling"
+      ],
+      "metaphysical_interpretation": "Capricorn represents mastery through time, discipline and responsibility. It asks what can be built that will endure beyond immediate gratification.",
+      "keywords": [
+        "discipline",
+        "legacy",
+        "responsibility",
+        "mastery",
+        "structure"
+      ],
+      "growth_path": "Integrate the gifts of Capricorn without becoming trapped in its shadow expression.",
+      "relationship_style": {
+        "default_tendency": "steady, practical and security-oriented",
+        "lesson": "Balance authentic self-expression with awareness of the needs and autonomy of others."
+      },
+      "spiritual_lesson": "Build enduring structures without measuring worth only through achievement.",
+      "associated_body_region": "bones, knees and joints",
+      "compatible_elemental_dynamics": {
+        "harmonious": [
+          "earth",
+          "water"
+        ],
+        "challenging_but_growth_oriented": [
+          "fire",
+          "air"
+        ]
+      }
+    },
+    "aquarius": {
+      "name": "Aquarius",
+      "symbol": "♒",
+      "element": "air",
+      "modality": "fixed",
+      "polarity": "yang",
+      "ruling_planet": "uranus",
+      "traditional_ruler": "saturn",
+      "natural_house_association": "11th",
+      "archetype": "The Water Bearer",
+      "motto": "I know",
+      "approximate_tropical_dates": "January 20 – February 18",
+      "core_themes": [
+        "innovation",
+        "community",
+        "future",
+        "freedom",
+        "networks",
+        "humanity"
+      ],
+      "strengths": [
+        "inventive",
+        "independent",
+        "visionary",
+        "original",
+        "humanitarian"
+      ],
+      "shadow_traits": [
+        "detached",
+        "rebellious",
+        "unpredictable",
+        "aloof",
+        "contrarian"
+      ],
+      "metaphysical_interpretation": "Aquarius represents the future-facing mind, collective networks and the tension between individuality and participation in humanity.",
+      "keywords": [
+        "innovation",
+        "freedom",
+        "community",
+        "future",
+        "awakening"
+      ],
+      "growth_path": "Integrate the gifts of Aquarius without becoming trapped in its shadow expression.",
+      "relationship_style": {
+        "default_tendency": "communicative, social and mentally engaged",
+        "lesson": "Balance authentic self-expression with awareness of the needs and autonomy of others."
+      },
+      "spiritual_lesson": "Serve collective progress without becoming detached from individual human feeling.",
+      "associated_body_region": "calves, ankles and circulation",
+      "compatible_elemental_dynamics": {
+        "harmonious": [
+          "air",
+          "fire"
+        ],
+        "challenging_but_growth_oriented": [
+          "earth",
+          "water"
+        ]
+      }
+    },
+    "pisces": {
+      "name": "Pisces",
+      "symbol": "♓",
+      "element": "water",
+      "modality": "mutable",
+      "polarity": "yin",
+      "ruling_planet": "neptune",
+      "traditional_ruler": "jupiter",
+      "natural_house_association": "12th",
+      "archetype": "The Fishes",
+      "motto": "I believe",
+      "approximate_tropical_dates": "February 19 – March 20",
+      "core_themes": [
+        "mysticism",
+        "compassion",
+        "dreams",
+        "surrender",
+        "imagination",
+        "unity"
+      ],
+      "strengths": [
+        "compassionate",
+        "imaginative",
+        "intuitive",
+        "gentle",
+        "spiritual"
+      ],
+      "shadow_traits": [
+        "escapist",
+        "idealistic",
+        "confused",
+        "boundaryless",
+        "self-sacrificing"
+      ],
+      "metaphysical_interpretation": "Pisces represents dissolution of boundaries and return to the larger whole. It explores compassion, imagination, transcendence and surrender.",
+      "keywords": [
+        "mysticism",
+        "unity",
+        "dreams",
+        "compassion",
+        "surrender"
+      ],
+      "growth_path": "Integrate the gifts of Pisces without becoming trapped in its shadow expression.",
+      "relationship_style": {
+        "default_tendency": "emotional, intuitive and bonding-oriented",
+        "lesson": "Balance authentic self-expression with awareness of the needs and autonomy of others."
+      },
+      "spiritual_lesson": "Remain open to mystery and compassion while maintaining clear boundaries.",
+      "associated_body_region": "feet and lymphatic system",
+      "compatible_elemental_dynamics": {
+        "harmonious": [
+          "water",
+          "earth"
+        ],
+        "challenging_but_growth_oriented": [
+          "air",
+          "fire"
+        ]
+      }
+    }
+  },
+  "planets": {
+    "sun": {
+      "name": "Sun",
+      "symbol": "☉",
+      "type": "luminary",
+      "astrological_role": "Core identity, vitality, purpose and conscious self-expression",
+      "keywords": [
+        "identity",
+        "purpose",
+        "vitality",
+        "ego",
+        "creative will",
+        "visibility",
+        "life-force"
+      ],
+      "rules": [
+        "leo"
+      ],
+      "exaltation": "aries",
+      "detriment": "aquarius",
+      "fall": "libra",
+      "natural_house_association": "5th",
+      "orbital_role": "Star at the centre of the Solar System",
+      "archetype": "The Sovereign / The Self",
+      "core_question": "Who am I becoming when I live from my centre?",
+      "metaphysical_interpretation": "The Sun symbolises the organising centre of conscious identity: the inner light that seeks to radiate, create, choose and become.",
+      "balanced_expression": [
+        "confidence",
+        "clarity of purpose",
+        "creative self-expression",
+        "generosity",
+        "healthy selfhood"
+      ],
+      "shadow_expression": [
+        "ego inflation",
+        "narcissism",
+        "rigidity of identity",
+        "need for validation",
+        "domination"
+      ],
+      "themes_in_chart": [
+        "identity",
+        "father or authority symbolism",
+        "life direction",
+        "creative vitality",
+        "recognition"
+      ],
+      "retrograde": false
+    },
+    "moon": {
+      "name": "Moon",
+      "symbol": "☽",
+      "type": "luminary",
+      "astrological_role": "Emotion, instinct, memory, security and the inner world",
+      "keywords": [
+        "emotion",
+        "instinct",
+        "memory",
+        "mothering",
+        "home",
+        "needs",
+        "cycles",
+        "subconscious"
+      ],
+      "rules": [
+        "cancer"
+      ],
+      "exaltation": "taurus",
+      "detriment": "capricorn",
+      "fall": "scorpio",
+      "natural_house_association": "4th",
+      "orbital_role": "Earth's natural satellite",
+      "archetype": "The Inner Child / The Mother",
+      "core_question": "What do I need in order to feel safe enough to be fully present?",
+      "metaphysical_interpretation": "The Moon represents cyclical consciousness, emotional memory, receptive awareness and the shifting inner tides through which experience is felt.",
+      "balanced_expression": [
+        "emotional awareness",
+        "nurturing",
+        "intuition",
+        "adaptability",
+        "healthy attachment"
+      ],
+      "shadow_expression": [
+        "reactivity",
+        "dependency",
+        "moodiness",
+        "emotional regression",
+        "fear-based habits"
+      ],
+      "themes_in_chart": [
+        "emotional needs",
+        "habit patterns",
+        "home",
+        "family",
+        "caregiving",
+        "unconscious responses"
+      ],
+      "retrograde": false
+    },
+    "mercury": {
+      "name": "Mercury",
+      "symbol": "☿",
+      "type": "planet",
+      "astrological_role": "Communication, thought, perception, learning and exchange",
+      "keywords": [
+        "communication",
+        "intellect",
+        "language",
+        "reasoning",
+        "trade",
+        "learning",
+        "messages"
+      ],
+      "rules": [
+        "gemini",
+        "virgo"
+      ],
+      "exaltation": "virgo",
+      "detriment": "sagittarius/pisces",
+      "fall": "pisces",
+      "natural_house_association": "3rd and 6th",
+      "orbital_role": "Innermost planet of the Solar System",
+      "archetype": "The Messenger / The Trickster",
+      "core_question": "How do I perceive, interpret and communicate reality?",
+      "metaphysical_interpretation": "Mercury symbolises the bridge between perception and expression: the movement of information through mind, speech, symbols and systems.",
+      "balanced_expression": [
+        "clear communication",
+        "curiosity",
+        "mental agility",
+        "discernment",
+        "adaptability"
+      ],
+      "shadow_expression": [
+        "overthinking",
+        "miscommunication",
+        "deception",
+        "nervousness",
+        "mental fragmentation"
+      ],
+      "themes_in_chart": [
+        "speech",
+        "learning style",
+        "writing",
+        "technology",
+        "transport",
+        "commerce"
+      ],
+      "retrograde": true
+    },
+    "venus": {
+      "name": "Venus",
+      "symbol": "♀",
+      "type": "planet",
+      "astrological_role": "Love, attraction, values, pleasure, aesthetics and relating",
+      "keywords": [
+        "love",
+        "beauty",
+        "values",
+        "pleasure",
+        "art",
+        "relationships",
+        "harmony",
+        "magnetism"
+      ],
+      "rules": [
+        "taurus",
+        "libra"
+      ],
+      "exaltation": "pisces",
+      "detriment": "aries/scorpio",
+      "fall": "virgo",
+      "natural_house_association": "2nd and 7th",
+      "orbital_role": "Second planet from the Sun",
+      "archetype": "The Lover / The Artist",
+      "core_question": "What do I value, attract and choose to cherish?",
+      "metaphysical_interpretation": "Venus symbolises the principle of attraction: what draws beings together through beauty, resonance, affection, pleasure and shared value.",
+      "balanced_expression": [
+        "affection",
+        "grace",
+        "healthy pleasure",
+        "reciprocity",
+        "aesthetic sensitivity"
+      ],
+      "shadow_expression": [
+        "vanity",
+        "people-pleasing",
+        "possessiveness",
+        "indulgence",
+        "avoidance of conflict"
+      ],
+      "themes_in_chart": [
+        "romance",
+        "money values",
+        "beauty",
+        "art",
+        "self-worth",
+        "partnership"
+      ],
+      "retrograde": true
+    },
+    "mars": {
+      "name": "Mars",
+      "symbol": "♂",
+      "type": "planet",
+      "astrological_role": "Drive, assertion, desire, conflict, sexuality and action",
+      "keywords": [
+        "action",
+        "drive",
+        "assertion",
+        "courage",
+        "anger",
+        "desire",
+        "competition",
+        "instinct"
+      ],
+      "rules": [
+        "aries"
+      ],
+      "traditional_rules": [
+        "scorpio"
+      ],
+      "exaltation": "capricorn",
+      "detriment": "libra/taurus",
+      "fall": "cancer",
+      "natural_house_association": "1st",
+      "orbital_role": "Fourth planet from the Sun",
+      "archetype": "The Warrior",
+      "core_question": "What am I willing to act for, protect or pursue?",
+      "metaphysical_interpretation": "Mars represents directed force: the capacity to separate, initiate, defend, pursue desire and convert intention into movement.",
+      "balanced_expression": [
+        "courage",
+        "decisiveness",
+        "healthy anger",
+        "assertiveness",
+        "motivation"
+      ],
+      "shadow_expression": [
+        "aggression",
+        "impulsiveness",
+        "violence",
+        "domination",
+        "recklessness"
+      ],
+      "themes_in_chart": [
+        "motivation",
+        "sexual drive",
+        "conflict style",
+        "competition",
+        "physical energy"
+      ],
+      "retrograde": true
+    },
+    "jupiter": {
+      "name": "Jupiter",
+      "symbol": "♃",
+      "type": "planet",
+      "astrological_role": "Expansion, meaning, faith, wisdom, abundance and opportunity",
+      "keywords": [
+        "growth",
+        "wisdom",
+        "belief",
+        "luck",
+        "abundance",
+        "travel",
+        "teaching",
+        "philosophy"
+      ],
+      "rules": [
+        "sagittarius"
+      ],
+      "traditional_rules": [
+        "pisces"
+      ],
+      "exaltation": "cancer",
+      "detriment": "gemini/virgo",
+      "fall": "capricorn",
+      "natural_house_association": "9th",
+      "orbital_role": "Largest planet in the Solar System",
+      "archetype": "The Teacher / The Explorer",
+      "core_question": "Where does life invite me to grow beyond my current limits?",
+      "metaphysical_interpretation": "Jupiter symbolises expansion of awareness, meaning-making and the human impulse toward faith, wisdom, opportunity and a larger horizon.",
+      "balanced_expression": [
+        "optimism",
+        "generosity",
+        "wisdom",
+        "faith",
+        "vision"
+      ],
+      "shadow_expression": [
+        "excess",
+        "dogmatism",
+        "overconfidence",
+        "waste",
+        "grandiosity"
+      ],
+      "themes_in_chart": [
+        "higher education",
+        "travel",
+        "belief systems",
+        "growth",
+        "teachers",
+        "opportunity"
+      ],
+      "retrograde": true
+    },
+    "saturn": {
+      "name": "Saturn",
+      "symbol": "♄",
+      "type": "planet",
+      "astrological_role": "Structure, limits, responsibility, time, mastery and consequence",
+      "keywords": [
+        "discipline",
+        "boundaries",
+        "time",
+        "karma",
+        "responsibility",
+        "maturity",
+        "structure",
+        "authority"
+      ],
+      "rules": [
+        "capricorn"
+      ],
+      "traditional_rules": [
+        "aquarius"
+      ],
+      "exaltation": "libra",
+      "detriment": "cancer/leo",
+      "fall": "aries",
+      "natural_house_association": "10th",
+      "orbital_role": "Sixth planet from the Sun",
+      "archetype": "The Elder / The Gatekeeper",
+      "core_question": "What must I learn through patience, discipline and responsibility?",
+      "metaphysical_interpretation": "Saturn symbolises form, limitation and maturation. It is often interpreted as the teacher that turns repetition, accountability and time into mastery.",
+      "balanced_expression": [
+        "discipline",
+        "integrity",
+        "patience",
+        "endurance",
+        "healthy boundaries"
+      ],
+      "shadow_expression": [
+        "fear",
+        "rigidity",
+        "harsh self-judgment",
+        "control",
+        "pessimism"
+      ],
+      "themes_in_chart": [
+        "career",
+        "authority",
+        "limits",
+        "responsibility",
+        "long-term achievement",
+        "maturation"
+      ],
+      "retrograde": true
+    },
+    "uranus": {
+      "name": "Uranus",
+      "symbol": "♅",
+      "type": "planet",
+      "astrological_role": "Awakening, disruption, innovation, liberation and sudden change",
+      "keywords": [
+        "freedom",
+        "innovation",
+        "rebellion",
+        "awakening",
+        "shock",
+        "technology",
+        "individuality",
+        "future"
+      ],
+      "rules": [
+        "aquarius"
+      ],
+      "traditional_ruler_of_aquarius": "saturn",
+      "exaltation": "disputed",
+      "detriment": "leo",
+      "fall": "disputed",
+      "natural_house_association": "11th",
+      "orbital_role": "Seventh planet from the Sun",
+      "archetype": "The Revolutionary / The Awakener",
+      "core_question": "What must change so that greater freedom and truth can emerge?",
+      "metaphysical_interpretation": "Uranus symbolises sudden awakening and the breaking of obsolete patterns. Its symbolism is associated with flashes of insight, liberation and discontinuous change.",
+      "balanced_expression": [
+        "originality",
+        "independence",
+        "innovation",
+        "authenticity",
+        "progressive thinking"
+      ],
+      "shadow_expression": [
+        "chaos",
+        "rebellion for its own sake",
+        "instability",
+        "detachment",
+        "disruption"
+      ],
+      "themes_in_chart": [
+        "radical change",
+        "technology",
+        "freedom",
+        "groups",
+        "revolution",
+        "unexpected events"
+      ],
+      "retrograde": true
+    },
+    "neptune": {
+      "name": "Neptune",
+      "symbol": "♆",
+      "type": "planet",
+      "astrological_role": "Mysticism, imagination, transcendence, illusion and compassion",
+      "keywords": [
+        "dreams",
+        "spirituality",
+        "imagination",
+        "illusion",
+        "compassion",
+        "mysticism",
+        "surrender",
+        "art"
+      ],
+      "rules": [
+        "pisces"
+      ],
+      "traditional_ruler_of_pisces": "jupiter",
+      "exaltation": "disputed",
+      "detriment": "virgo",
+      "fall": "disputed",
+      "natural_house_association": "12th",
+      "orbital_role": "Eighth major planet from the Sun",
+      "archetype": "The Mystic / The Dreamer",
+      "core_question": "Where do I dissolve boundaries, dream, idealise or seek union with something larger?",
+      "metaphysical_interpretation": "Neptune symbolises porous boundaries between imagination, spirituality, dreams and ordinary perception. It is linked to transcendence as well as projection and illusion.",
+      "balanced_expression": [
+        "compassion",
+        "imagination",
+        "spiritual sensitivity",
+        "artistic inspiration",
+        "surrender"
+      ],
+      "shadow_expression": [
+        "confusion",
+        "deception",
+        "escapism",
+        "idealisation",
+        "lack of boundaries"
+      ],
+      "themes_in_chart": [
+        "dreams",
+        "spirituality",
+        "film/music",
+        "illusion",
+        "sacrifice",
+        "collective sensitivity"
+      ],
+      "retrograde": true
+    },
+    "pluto": {
+      "name": "Pluto",
+      "symbol": "♇",
+      "type": "dwarf_planet",
+      "astrological_role": "Transformation, power, death-rebirth, compulsion and deep psychological change",
+      "keywords": [
+        "transformation",
+        "power",
+        "shadow",
+        "rebirth",
+        "intensity",
+        "secrets",
+        "purging",
+        "regeneration"
+      ],
+      "rules": [
+        "scorpio"
+      ],
+      "traditional_ruler_of_scorpio": "mars",
+      "exaltation": "disputed",
+      "detriment": "taurus",
+      "fall": "disputed",
+      "natural_house_association": "8th",
+      "orbital_role": "Dwarf planet beyond Neptune",
+      "archetype": "The Transformer / The Underworld Guide",
+      "core_question": "What must die symbolically so that something more authentic can be reborn?",
+      "metaphysical_interpretation": "Pluto symbolises deep transformation, confrontation with shadow material, hidden power and cycles of destruction and regeneration.",
+      "balanced_expression": [
+        "psychological depth",
+        "resilience",
+        "transformative strength",
+        "truth-seeking",
+        "regeneration"
+      ],
+      "shadow_expression": [
+        "obsession",
+        "control",
+        "manipulation",
+        "extremism",
+        "power struggles"
+      ],
+      "themes_in_chart": [
+        "trauma and healing symbolism",
+        "power",
+        "shared resources",
+        "taboo",
+        "psychological transformation"
+      ],
+      "retrograde": true
+    },
+    "chiron": {
+      "name": "Chiron",
+      "symbol": "⚷",
+      "type": "centaur_minor_body",
+      "astrological_role": "Wounding, healing, integration, mentorship and the wisdom developed through vulnerability",
+      "keywords": [
+        "wound",
+        "healing",
+        "integration",
+        "wisdom",
+        "mentorship",
+        "vulnerability",
+        "compassion",
+        "initiation"
+      ],
+      "rules": [],
+      "modern_association": "Often discussed in relation to Virgo or Sagittarius themes, but no universally accepted rulership exists.",
+      "natural_house_association": null,
+      "orbital_role": "Centaur minor body orbiting primarily between Saturn and Uranus",
+      "archetype": "The Wounded Healer / The Mentor",
+      "core_question": "How can a place of pain become a source of wisdom without romanticising suffering?",
+      "metaphysical_interpretation": "Chiron represents the paradox that some wounds may not disappear completely yet can become pathways to compassion, skill, teaching and conscious integration.",
+      "balanced_expression": [
+        "self-acceptance",
+        "healing wisdom",
+        "mentorship",
+        "compassion",
+        "integration"
+      ],
+      "shadow_expression": [
+        "identification with woundedness",
+        "saviour complex",
+        "reopening old pain",
+        "shame",
+        "avoidance"
+      ],
+      "themes_in_chart": [
+        "core vulnerability",
+        "healing journey",
+        "teaching",
+        "mentorship",
+        "integration of pain"
+      ],
+      "retrograde": true
+    }
+  },
+  "indexes": {
+    "signs_by_element": {
+      "air": [
+        "gemini",
+        "libra",
+        "aquarius"
+      ],
+      "fire": [
+        "aries",
+        "leo",
+        "sagittarius"
+      ],
+      "water": [
+        "cancer",
+        "scorpio",
+        "pisces"
+      ],
+      "earth": [
+        "taurus",
+        "virgo",
+        "capricorn"
+      ]
+    },
+    "signs_by_modality": {
+      "cardinal": [
+        "aries",
+        "cancer",
+        "libra",
+        "capricorn"
+      ],
+      "fixed": [
+        "taurus",
+        "leo",
+        "scorpio",
+        "aquarius"
+      ],
+      "mutable": [
+        "gemini",
+        "virgo",
+        "sagittarius",
+        "pisces"
+      ]
+    },
+    "signs_by_polarity": {
+      "yang": [
+        "aries",
+        "gemini",
+        "leo",
+        "libra",
+        "sagittarius",
+        "aquarius"
+      ],
+      "yin": [
+        "taurus",
+        "cancer",
+        "virgo",
+        "scorpio",
+        "capricorn",
+        "pisces"
+      ]
+    },
+    "planetary_rulerships": {
+      "sun": [
+        "leo"
+      ],
+      "moon": [
+        "cancer"
+      ],
+      "mercury": [
+        "gemini",
+        "virgo"
+      ],
+      "venus": [
+        "taurus",
+        "libra"
+      ],
+      "mars": [
+        "aries",
+        "scorpio (traditional)"
+      ],
+      "jupiter": [
+        "sagittarius",
+        "pisces (traditional)"
+      ],
+      "saturn": [
+        "capricorn",
+        "aquarius (traditional)"
+      ],
+      "uranus": [
+        "aquarius (modern)"
+      ],
+      "neptune": [
+        "pisces (modern)"
+      ],
+      "pluto": [
+        "scorpio (modern)"
+      ],
+      "chiron": []
+    }
+  },
+  "glossary": {
+    "element": "One of the four classical temperament groups: Fire, Earth, Air or Water.",
+    "modality": "The sign's mode of operation: cardinal initiates, fixed sustains, mutable adapts.",
+    "polarity": "A traditional division into yang/active and yin/receptive signs.",
+    "rulership": "A symbolic association between a planet and one or more zodiac signs.",
+    "exaltation": "A traditional dignity in which a planet is considered especially capable of expressing its qualities.",
+    "detriment": "A traditional dignity describing a sign opposite one of a planet's rulership signs.",
+    "fall": "A traditional dignity opposite a planet's exaltation.",
+    "retrograde": "Apparent backward motion of a celestial body from Earth's perspective; interpreted symbolically in astrology.",
+    "house": "One of twelve sectors of an astrological chart associated with life topics.",
+    "luminary": "Astrological term for the Sun and Moon.",
+    "metaphysical": "Here used for symbolic, spiritual and philosophical interpretations rather than empirically established scientific claims."
+  },
+  "content_guidance": {
+    "blog_usage": [
+      "Use keywords for category pages and automated tagging.",
+      "Use balanced_expression and shadow_expression together to avoid one-sided descriptions.",
+      "Use metaphysical_interpretation for spiritual or reflective articles.",
+      "Use core_question and journal_prompts for engagement widgets or community discussion prompts.",
+      "Use indexes for filtering signs by element, modality or polarity."
+    ],
+    "editorial_principles": [
+      "Present astrology as a symbolic or interpretive system rather than scientific fact.",
+      "Avoid claiming that a zodiac sign determines behaviour, health, morality or destiny.",
+      "Use language such as 'associated with', 'traditionally interpreted as', or 'symbolises' for metaphysical content.",
+      "Avoid fatalistic predictions where possible; favour reflective and choice-oriented language."
+    ]
+  }
+}

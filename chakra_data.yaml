@@ -1,0 +1,32 @@
+Muladhara:
+  - name: Muladhara
+    place: Root
+    image: "01.png"
+Svadhisthana:
+  - name: Svadhisthana
+    place: Sacral
+    image: "02.png"
+Manipura:
+  - name: Manipura
+    place: Solar Plexus
+    image: "03.png"
+Anahata:
+  - name: Anahata
+    place: Heart
+    image: "04.png"
+Thymus:
+  - name: Thymus
+    place: Etheric Heart
+    image: "05.png"
+Vishuddha:
+  - name: Vishuddha
+    place: Throat
+    image: "06.png"
+Ajna:
+  - name: Ajna
+    place: Third Eye
+    image: "07.png"
+Sahasrara:
+  - name: Sahasrara
+    place: Crown
+    image: "08.png"

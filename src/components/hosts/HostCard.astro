@@ -1,0 +1,22 @@
+---
+interface Props { host: { id: string; name: string; role: string; shortBio: string; image: string | null; }; }
+const { host } = Astro.props;
+---
+<article class="host-card framed-panel">
+  <div class="portrait-placeholder" aria-hidden="true"><span>{host.name.slice(0, 1)}</span></div>
+  <div class="host-card__body">
+    <p class="role">{host.role}</p>
+    <h3>{host.name}</h3>
+    {host.shortBio ? <p>{host.shortBio}</p> : <p class="placeholder">Biography and portrait awaiting supplied host materials.</p>}
+    <a href={`/hosts/${host.id}/`}>View host page</a>
+  </div>
+</article>
+<style>
+  .host-card { display: grid; grid-template-columns: minmax(6rem, 9rem) 1fr; align-items: stretch; }
+  .portrait-placeholder { position: relative; z-index: 1; display: grid; min-height: 12rem; place-items: center; border-right: 1px solid var(--swm-border); background: radial-gradient(circle, var(--swm-purple), var(--swm-bg-soft)); }
+  .portrait-placeholder span { color: var(--swm-gold); font-family: var(--font-display); font-size: 4rem; }
+  .host-card__body { position: relative; z-index: 1; padding: var(--space-4); }
+  .role { color: var(--swm-gold-light); font-size: 0.72rem; }
+  .placeholder { color: var(--swm-text-muted); font-size: 0.86rem; }
+  @media (max-width: 27rem) { .host-card { grid-template-columns: 1fr; } .portrait-placeholder { min-height: 8rem; border-right: 0; border-bottom: 1px solid var(--swm-border); } }
+</style>

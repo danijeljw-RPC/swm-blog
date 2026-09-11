@@ -1,0 +1,17 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import EpisodeLayout from "../../layouts/EpisodeLayout.astro";
+import { getPublishedEpisodes } from "../../utils/episodes";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const episodes = getPublishedEpisodes(await getCollection("episodes"));
+  return episodes.map((entry) => ({ params: { slug: entry.data.slug }, props: { entry } }));
+}
+
+interface Props { entry: CollectionEntry<"episodes">; }
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+<EpisodeLayout entry={entry}><Content /></EpisodeLayout>

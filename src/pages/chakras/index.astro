@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReferenceCard from "../../components/astrology/ReferenceCard.astro";
+import { CHAKRAS } from "../../utils/astrology-reference";
+---
+<BaseLayout title="Chakra reference" description="An eight-chakra metaphysical reference for grounding, feeling, expression and consciousness.">
+  <section class="chakra-intro site-container">
+    <p><a href="/astrology/">Astrology</a> / Chakras</p>
+    <div><h1>Eight centres<br />of attention.</h1><p>Move from root to crown through a symbolic map of embodiment, emotion, will, connection, voice, insight and spirit.</p></div>
+  </section>
+  <section class="chakra-path site-container" aria-label="Chakra path"><div class="path-line" aria-hidden="true"></div>{CHAKRAS.map(({ data }) => <a class="path-node" href={`/chakras/${data.slug}/`}><img src={`/images/chakras/${data.image_file_number}.png`} alt="" width="72" height="72" /><span>{String(data.number).padStart(2, "0")}</span><strong>{data.common_name.replace(" Chakra", "")}</strong></a>)}</section>
+  <section class="reference-grid site-container" aria-label="Chakra reference cards">{CHAKRAS.map(({ data }) => <ReferenceCard href={`/chakras/${data.slug}/`} image={`/images/chakras/${data.image_file_number}.png`} imageAlt={`${data.display_name} illustration`} symbol={String(data.number).padStart(2, "0")} title={data.common_name} description={data.core_theme} meta={`${data.color} · ${data.element}`} />)}</section>
+  <p class="disclaimer site-container">This page presents symbolic, spiritual and traditional correspondences. Physical-body associations are not medical diagnosis or treatment guidance.</p>
+</BaseLayout>
+<style>
+  .chakra-intro { display: grid; gap: var(--space-4); padding-block: var(--space-6) var(--space-5); } .chakra-intro > p:first-child { margin: 0; color: var(--swm-gold); font-size: .75rem; } .chakra-intro h1 { margin: 0; max-width: 10ch; } .chakra-intro div { display: grid; gap: var(--space-3); } .chakra-intro div p { max-width: 34rem; margin: 0; color: var(--swm-text-muted); font-family: var(--font-display); font-size: 1.35rem; }
+  .chakra-path { display: grid; position: relative; gap: .5rem; grid-template-columns: repeat(2, 1fr); padding-block: var(--space-3) var(--space-6); } .path-line { display: none; } .path-node { display: grid; position: relative; z-index: 1; justify-items: center; gap: .15rem; padding: .75rem .4rem; border: 1px solid var(--swm-border-soft); text-align: center; text-decoration: none; background: rgb(13 11 17 / 72%); } .path-node img { width: 4.5rem; height: 4.5rem; object-fit: contain; } .path-node span { color: var(--swm-gold); font-size: .68rem; } .path-node strong { color: var(--swm-ivory); font-family: var(--font-display); font-size: 1.15rem; font-weight: 500; }
+  .reference-grid { display: grid; gap: var(--space-3); padding-bottom: var(--space-5); } .disclaimer { padding-block: 0 var(--space-7); color: var(--swm-text-muted); font-size: .75rem; }
+  @media (min-width: 42rem) { .chakra-intro { grid-template-columns: 1fr 1fr; align-items: end; } .chakra-intro > p:first-child { grid-column: 1 / -1; } .chakra-path { grid-template-columns: repeat(4, 1fr); } .reference-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 64rem) { .chakra-path { grid-template-columns: repeat(8, 1fr); } .chakra-path::before { position: absolute; top: 6.5rem; right: 3rem; left: 3rem; height: 1px; background: var(--swm-border); content: ""; } .reference-grid { grid-template-columns: repeat(4, 1fr); } }
+</style>

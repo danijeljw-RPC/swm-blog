@@ -1,0 +1,310 @@
+5 pentacles:
+- mercury
+- taurus
+
+hanged man:
+- neptune
+
+king of wands:
+- sun
+- aries
+
+the hermit:
+- chiron
+- virgo
+
+5 cups:
+- mars
+- scorpio
+
+4 cups:
+- moon
+- cancer
+
+9 wands:
+- moon
+- Sagittarius
+
+9 swords:
+- mars
+- gemini
+
+ace of cups:
+- cancer
+- scorpio
+- gemini
+
+page of cups:
+- moon
+- gemini
+
+3 of cups:
+- mercury
+- cancer
+
+queen of pentacles
+- uranus
+- virgo
+
+queen of wands
+- moon
+- leo
+
+justice:
+- venus
+- libra
+
+9 pentacles:
+- venus
+- virgo
+
+3 pentacles:
+- mars
+- capricorn
+
+3 swords:
+- jupiter
+- libra
+
+4 of pentacles:
+- sun
+- capricorn
+
+the tower:
+- mars
+
+strength:
+- sun
+- leo
+
+2 cups:
+- venus
+- cancer
+
+10 cups:
+- mars
+- gemini
+
+7 of pentacles:
+- saturn
+- taurus
+
+ace of swords:
+- libra
+- Aquarius
+- gemini
+
+the empress:
+- venus
+- taurus
+
+7 of wands:
+- mars
+- leo
+
+7 cups:
+- venus
+- scorpio
+
+knight of cups:
+- moon
+- scorpio
+
+6 of swords:
+- mercury
+- Aquarius
+
+8 pentacles:
+- sun
+- virgo
+
+queen of cups:
+- neptune
+- cancer
+
+8 swords:
+- jupiter
+- gemini
+
+knight of pentacles:
+- saturn
+- capricorn
+
+the high priestess:
+- moon
+
+2 of wands:
+- mars
+- aries
+
+2 of pentacles:
+- jupiter
+- capricorn
+
+4 wands:
+- venus
+- aries
+
+5 wands:
+- saturn
+- leo
+
+3 wands:
+- sun
+- aries
+
+the moon:
+- neptune
+- gemini
+
+9 cups:
+- jupiter
+- gemini
+
+king of swords:
+- uranus
+- libra
+
+king of cups:
+- neptune
+- gemini
+
+the magician:
+- mercury
+
+the star:
+- neptune
+- Aquarius
+
+judgement:
+- pluto
+
+6 pentacles:
+- moon
+- taurus
+
+6 wands:
+- jupiter
+- leo
+
+the lovers:
+- mercury
+- gemini
+
+knight of wands:
+- mars
+- Sagittarius
+
+page of wands:
+- Sagittarius
+- saturn
+
+the emperor:
+- mars
+- aries
+
+king of pentacles:
+- jupiter
+- taurus
+
+6 of cups
+- sun
+- scorpio
+
+the hierophant:
+- taurus
+- venus
+
+7 of swords:
+- Aquarius
+- moon
+
+8 cups:
+- jupiter
+- gemini
+
+the devil:
+- jupiter
+- capricorn
+
+the world:
+- saturn
+
+5 swords:
+- venus
+- Aquarius
+
+page of pentacles:
+- mercury
+- virgo
+
+2 swords:
+- moon
+- libra
+
+----
+
+The Fool:
+- uranus
+
+The Chariot:
+- moon
+- cancer
+
+Wheel of Fortune:
+- jupiter
+
+Death:
+- pluto
+
+Temperance:
+- jupiter
+- Sagittarius
+
+The Sun:
+- sun
+
+Ace of Wands:
+- Sagittarius
+- leo
+- aries
+
+Eight of Wands:
+- mercury
+- Sagittarius
+
+Ten of Wands:
+- saturn
+- Sagittarius
+
+Four of Swords:
+- jupiter
+- libra
+
+Ten of Swords:
+- sun
+- gemini
+
+Page of Swords:
+- sun
+- gemini
+
+Knight of Swords:
+- mars
+- Aquarius
+
+Queen of Swords:
+- uranus
+- Aquarius
+
+Ace of Pentacles
+- capricorn
+- taurus
+- virgo
+
+Ten of Pentacles:
+- mercury
+- virgo
+
+
+

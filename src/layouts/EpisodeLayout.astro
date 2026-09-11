@@ -1,0 +1,40 @@
+---
+import type { EpisodeEntry } from "../types/episode";
+import BaseLayout from "./BaseLayout.astro";
+import EpisodeAudioPlayer from "../components/episodes/EpisodeAudioPlayer.astro";
+import EpisodePlatformLinks from "../components/episodes/EpisodePlatformLinks.astro";
+import CategoryBadge from "../components/episodes/CategoryBadge.astro";
+import type { CategoryKey } from "../config/categories";
+interface Props { entry: EpisodeEntry; }
+const { entry } = Astro.props;
+const { data } = entry;
+---
+<BaseLayout title={data.title} description={data.description} image={data.heroImage} canonical={data.seo.canonical} noindex={data.seo.noindex}>
+  <article class="episode-page">
+    <header class="site-container episode-header">
+      <p>Episode {data.episode}</p>
+      <h1>{data.title}</h1>
+      <time datetime={data.publishedAt.toISOString()}>{data.publishedAt.toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" })}</time>
+      {data.fixture && <p class="fixture-notice">Fixture episode — this is demonstration content, not a released episode.</p>}
+      <div class="categories">{data.categories.map((category) => <CategoryBadge category={category as CategoryKey} />)}</div>
+      <EpisodePlatformLinks episode={data} />
+    </header>
+    {data.heroImage && <div class="site-container hero-image"><img src={data.heroImage} alt={data.heroImageAlt} /></div>}
+    <div class="reading-column article-body"><slot /></div>
+    <div class="reading-column"><EpisodeAudioPlayer episode={data} /></div>
+  </article>
+</BaseLayout>
+<style>
+  .episode-page { padding-block: var(--space-6); }
+  .episode-header { max-width: 62rem; text-align: center; }
+  .episode-header > p:first-child, time { color: var(--swm-gold-light); font-size: 0.78rem; }
+  .episode-header h1 { font-size: clamp(3rem, 8vw, 6.5rem); }
+  .fixture-notice { max-width: 38rem; margin: var(--space-3) auto; }
+  .categories, .episode-header :global(.button-row) { justify-content: center; }
+  .categories { display: flex; flex-wrap: wrap; gap: var(--space-1); margin-top: var(--space-3); }
+  .hero-image { margin-block: var(--space-5); }
+  .hero-image img { width: 100%; border: 1px solid var(--swm-border); }
+  .article-body { padding-inline: 1rem; font-size: 1.05rem; }
+  .article-body :global(h2) { margin-top: 2em; font-size: 2.2rem; }
+  .article-body :global(blockquote) { margin: var(--space-4) 0; padding: var(--space-3); border-left: 2px solid var(--swm-gold); color: var(--swm-ivory); background: rgb(169 136 83 / 8%); }
+</style>
