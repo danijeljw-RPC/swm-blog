@@ -112,7 +112,7 @@ export function renderBirthChartSvg(
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 ${size} ${size}"
             role="img"
-            aria-label="Natal chart"
+            aria-label="Natal chart wheel. The adjacent chart legend and written interpretation describe its symbols, houses, and aspect lines."
         >
             <circle
                 cx="${center}"

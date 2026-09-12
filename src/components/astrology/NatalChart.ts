@@ -1,7 +1,9 @@
 import { calculateBirthChart } from "../../lib/astrology/chart/calculate-birth-chart";
 import { renderBirthChartSvg } from "../../lib/astrology/chart/render/render-svg";
+import { buildBirthChartReading } from "../../lib/astrology/chart/interpretation";
 import type { BirthChart } from "../../lib/astrology/chart/types";
 import type { PlaceSearchResult } from "../../lib/astrology/location/types";
+import { renderChartReading } from "./render-chart-reading";
 
 export interface BirthChartFormPlace {
     id: number;
@@ -12,14 +14,6 @@ export interface BirthChartFormPlace {
     longitude: number;
     timezone: string;
 }
-
-const aspectSymbols: Record<string, string> = {
-    Conjunction: "☌",
-    Sextile: "⚹",
-    Square: "□",
-    Trine: "△",
-    Opposition: "☍"
-};
 
 function placeFromResult(place: PlaceSearchResult): BirthChartFormPlace {
     return {
@@ -33,58 +27,6 @@ function placeFromResult(place: PlaceSearchResult): BirthChartFormPlace {
     };
 }
 
-function formatPoint(point: {
-    sign: string;
-    degree: number;
-    minute: number;
-}): string {
-    return `${point.degree}°${point.minute
-        .toString()
-        .padStart(2, "0")}' ${point.sign}`;
-}
-
-function renderSummary(chart: BirthChart): string {
-    const planetRows = chart.planets
-        .map(planet => `
-            <tr>
-                <td>${planet.name}</td>
-                <td>${formatPoint(planet)}</td>
-                <td>House ${planet.house ?? "—"}</td>
-            </tr>
-        `)
-        .join("");
-
-    const aspectRows = chart.aspects
-        .map(aspect => `
-            <li>
-                <span class="aspect-symbol">${aspectSymbols[aspect.type] ?? ""}</span>
-                ${aspect.from} ${aspect.type.toLowerCase()} ${aspect.to}
-                <small>orb ${aspect.orb.toFixed(1)}°</small>
-            </li>
-        `)
-        .join("");
-
-    return `
-        <div class="chart-headline">
-            <div>
-                <span>Ascendant</span>
-                <strong>${formatPoint(chart.ascendant)}</strong>
-            </div>
-            <div>
-                <span>Midheaven</span>
-                <strong>${formatPoint(chart.midheaven)}</strong>
-            </div>
-        </div>
-        <table class="planet-table">
-            <thead>
-                <tr><th>Body</th><th>Position</th><th>House</th></tr>
-            </thead>
-            <tbody>${planetRows}</tbody>
-        </table>
-        <ul class="aspect-list">${aspectRows}</ul>
-    `;
-}
-
 export interface BirthChartFormElements {
     form: HTMLFormElement;
     placeInput: HTMLInputElement;
@@ -95,6 +37,7 @@ export interface BirthChartFormElements {
     statusEl: HTMLElement;
     chartArt: HTMLElement;
     chartSummary: HTMLElement;
+    downloadButton: HTMLButtonElement;
 }
 
 export function initBirthChartForm({
@@ -105,13 +48,15 @@ export function initBirthChartForm({
     submitButton,
     statusEl,
     chartArt,
-    chartSummary
+    chartSummary,
+    downloadButton
 }: BirthChartFormElements): void {
     form.addEventListener("submit", async event => {
         event.preventDefault();
 
         statusEl.textContent = "";
         statusEl.hidden = true;
+        downloadButton.hidden = true;
 
         if (!placeField.value) {
             statusEl.textContent = "Choose a place from the suggestions list.";
@@ -144,11 +89,16 @@ export function initBirthChartForm({
                 time: timeField.value,
                 place
             });
+            const reading = buildBirthChartReading(chart);
 
             chartArt.innerHTML = renderBirthChartSvg(chart);
-            chartSummary.innerHTML = renderSummary(chart);
+            chartSummary.innerHTML = renderChartReading(reading, chart, {
+                localDate: dateField.value,
+                localTime: timeField.value
+            });
             chartArt.hidden = false;
             chartSummary.hidden = false;
+            downloadButton.hidden = false;
         } catch (error) {
             statusEl.textContent =
                 error instanceof Error
