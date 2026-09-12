@@ -1,6 +1,6 @@
 # Birth Chart Reading and PDF Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Make generated birth charts understandable to non-specialists and downloadable as a private, browser-generated PDF guide.
 
@@ -31,7 +31,7 @@
 - Consumes: `BirthChart`, `PlanetPosition`, and `Aspect`; existing planet and zodiac reference JSON.
 - Produces: `BirthChartReading`, `PlacementReading`, `AspectReading`, and `buildBirthChartReading(chart: BirthChart): BirthChartReading`.
 
-- [ ] **Step 1: Write the failing model tests**
+- [x] **Step 1: Write the failing model tests**
 
 Use a representative `BirthChart` fixture and assert headline order, exact degree formatting, planet/sign/house composition, ascending aspect-orb order, reflective disclaimer, and fact-only fallback for an unknown runtime reference key:
 
@@ -45,13 +45,13 @@ assert.deepEqual(reading.aspects.map(({ orb }) => orb), [0.4, 2.1]);
 assert.match(reading.disclaimer, /symbolic and reflective tradition/i);
 ```
 
-- [ ] **Step 2: Verify the test fails**
+- [x] **Step 2: Verify the test fails**
 
 Run: `node --import tsx --test tests/birth-chart-interpretation.test.ts`
 
 Expected: FAIL because `interpretation.ts` does not exist.
 
-- [ ] **Step 3: Implement the pure model**
+- [x] **Step 3: Implement the pure model**
 
 Define:
 
@@ -81,13 +81,13 @@ export interface BirthChartReading {
 
 Add explicit descriptions for all twelve houses and five supported aspect types. Build placement language from planet `astrological_role`, zodiac `metaphysical_interpretation`, and the house life area using possibility language. Sort aspects by ascending orb. Use exact formatted facts only when lookup content is unavailable.
 
-- [ ] **Step 4: Verify the model test passes**
+- [x] **Step 4: Verify the model test passes**
 
 Run: `node --import tsx --test tests/birth-chart-interpretation.test.ts`
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/lib/astrology/chart/interpretation.ts tests/birth-chart-interpretation.test.ts
@@ -109,7 +109,7 @@ git commit -m "feat: add readable birth chart interpretations"
 - Consumes: `buildBirthChartReading(chart)` and `renderBirthChartSvg(chart)`.
 - Produces: `renderChartReading(reading: BirthChartReading, chart: BirthChart, metadata: ChartReadingMetadata): string`.
 
-- [ ] **Step 1: Write failing renderer and page-contract tests**
+- [x] **Step 1: Write failing renderer and page-contract tests**
 
 Assert the HTML contains `Your chart at a glance`, `Planet placements`, `Major aspects`, a chart legend, a technical `<details>` disclosure, escaped dynamic content, `id="chart-download"`, and the label `Download your chart guide`.
 
@@ -120,25 +120,25 @@ assert.match(html, /<details class="technical-details">/);
 assert.doesNotMatch(html, /<script>/);
 ```
 
-- [ ] **Step 2: Verify the tests fail**
+- [x] **Step 2: Verify the tests fail**
 
 Run: `node --import tsx --test tests/birth-chart-rendering.test.ts`
 
 Expected: FAIL because the renderer and download control are absent.
 
-- [ ] **Step 3: Implement safe semantic HTML rendering**
+- [x] **Step 3: Implement safe semantic HTML rendering**
 
 Create `escapeHtml(value: string): string` and apply it to every dynamic value. Render semantic overview, legend, placement, aspect, and technical sections. Preserve the exact placement table inside the disclosure. Include selected birthplace, entered local date/time, UTC instant, and `Placidus houses`. Render a clear empty state if no major aspect is present.
 
-- [ ] **Step 4: Connect the model after successful calculation**
+- [x] **Step 4: Connect the model after successful calculation**
 
 Build the reading once in `NatalChart.ts`, render the SVG and reading, retain `{ chart, reading, date, time }` for downloading, and reveal the result/download controls. Reset previous download state when a new submission starts. Update the SVG accessible name to point readers to the adjacent legend and written result.
 
-- [ ] **Step 5: Add the page hierarchy and responsive styles**
+- [x] **Step 5: Add the page hierarchy and responsive styles**
 
 Add a labelled generated-result region, download button, headline cards, readable placement cards, aspect list, line-style legend keys, styled technical disclosure, and mobile-safe table overflow. Use two placement columns only at wide breakpoints.
 
-- [ ] **Step 6: Verify focused and full tests**
+- [x] **Step 6: Verify focused and full tests**
 
 ```bash
 node --import tsx --test tests/birth-chart-interpretation.test.ts tests/birth-chart-rendering.test.ts
@@ -147,7 +147,7 @@ npm test
 
 Expected: PASS.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add src/components/astrology/render-chart-reading.ts src/components/astrology/NatalChart.ts src/lib/astrology/chart/render/render-svg.ts src/pages/astrology/birth-chart/index.astro tests/birth-chart-rendering.test.ts
@@ -169,13 +169,13 @@ git commit -m "feat: make birth chart results readable"
 - Consumes: `BirthChart`, `BirthChartReading`, local date/time strings.
 - Produces: `birthChartPdfFilename(placeName: string, date: string): string`, `createBirthChartPdf(input: BirthChartPdfInput): Uint8Array`, and `downloadBirthChartPdf(input: BirthChartPdfInput): void`.
 
-- [ ] **Step 1: Install the runtime dependency**
+- [x] **Step 1: Install the runtime dependency**
 
 Run: `npm install jspdf`
 
 Expected: `jspdf` is added to runtime dependencies and its resolved tree to the lockfile.
 
-- [ ] **Step 2: Write failing filename and PDF tests**
+- [x] **Step 2: Write failing filename and PDF tests**
 
 ```ts
 assert.equal(birthChartPdfFilename("São Paulo / Central", "1990-01-01"), "birth-chart-sao-paulo-central-1990-01-01.pdf");
@@ -187,21 +187,21 @@ assert.ok(countPdfPages(bytes) > 1);
 
 Use a full eleven-planet fixture so the guide naturally paginates.
 
-- [ ] **Step 3: Verify the PDF test fails**
+- [x] **Step 3: Verify the PDF test fails**
 
 Run: `node --import tsx --test tests/birth-chart-pdf.test.ts`
 
 Expected: FAIL because `pdf.ts` does not exist.
 
-- [ ] **Step 4: Implement PDF creation**
+- [x] **Step 4: Implement PDF creation**
 
 Use jsPDF primitives to draw the chart wheel from house cusps, planet longitudes, and aspects without canvas or server dependencies. Use planet names in the PDF rather than unsupported Unicode glyphs. Add helpers for wrapped paragraphs, page breaks, headings, rules, and `Page N` footers. Include cover details, chart wheel, legend, overview, every placement, aspects, glossary, technical notes, disclaimer, and the Birth Chart page link. Exclude coordinates and internal place ID. Return `new Uint8Array(doc.output("arraybuffer"))`.
 
-- [ ] **Step 5: Implement private browser download**
+- [x] **Step 5: Implement private browser download**
 
 Wrap PDF bytes in a Blob, click a temporary download anchor, revoke its object URL, and use the safe filename helper. Bind one download click listener in `NatalChart.ts`; show `Preparing guide…` and `aria-busy="true"`, then restore the control. On failure, preserve the chart and show an actionable message in the existing alert region.
 
-- [ ] **Step 6: Verify PDF, full tests, and types**
+- [x] **Step 6: Verify PDF, full tests, and types**
 
 ```bash
 node --import tsx --test tests/birth-chart-pdf.test.ts
@@ -211,7 +211,7 @@ npm run check
 
 Expected: new and existing tests PASS. If the known unrelated `src/pages/daily-mirror/index.astro:58` error remains, confirm there are no diagnostics in files changed by this plan.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add package.json package-lock.json src/lib/astrology/chart/pdf.ts src/components/astrology/NatalChart.ts tests/birth-chart-pdf.test.ts
@@ -230,7 +230,7 @@ git commit -m "feat: add downloadable birth chart guide"
 - Consumes: completed web reading and PDF flow.
 - Produces: desktop, mobile, PDF, privacy, and regression evidence.
 
-- [ ] **Step 1: Run repository checks**
+- [x] **Step 1: Run repository checks**
 
 ```bash
 npm test
@@ -240,19 +240,19 @@ git diff --check
 
 Expected: tests PASS and no whitespace errors; report any pre-existing diagnostic separately from changed-file diagnostics.
 
-- [ ] **Step 2: Verify the result in a browser**
+- [x] **Step 2: Verify the result in a browser**
 
 Run the local Astro site and generate a representative chart at desktop and mobile widths. Confirm result order, readable chart/legend, keyboard-reachable controls, horizontally safe tables, and absence of console errors.
 
-- [ ] **Step 3: Verify the PDF visually**
+- [x] **Step 3: Verify the PDF visually**
 
 Download the guide, confirm the `%PDF-` signature, render every page with the bundled PDF workflow, and inspect for clipping, overlap, broken pagination, missing chart labels, and unreadable contrast.
 
-- [ ] **Step 4: Confirm privacy behaviour**
+- [x] **Step 4: Confirm privacy behaviour**
 
 Inspect browser network activity during calculation and download. Confirm birthplace autocomplete is the only request containing entered location text and that PDF generation sends no birth details or chart data.
 
-- [ ] **Step 5: Complete and commit the plan record**
+- [x] **Step 5: Complete and commit the plan record**
 
 Mark completed checkboxes, then:
 
