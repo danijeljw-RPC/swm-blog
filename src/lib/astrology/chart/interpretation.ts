@@ -22,7 +22,6 @@ export interface BirthChartReading {
     placements: PlacementReading[];
     aspects: AspectReading[];
     legend: Array<{ term: string; meaning: string }>;
-    disclaimer: string;
 }
 
 const houseMeanings = [
@@ -122,10 +121,11 @@ export function buildBirthChartReading(chart: BirthChart): BirthChartReading {
             { term: "Planet", meaning: "The part of life or inner function being described." },
             { term: "Sign", meaning: "The style and qualities through which it may be expressed." },
             { term: "House", meaning: "The area of life where the placement tends to show up." },
-            { term: "Gold line", meaning: "A flowing trine or sextile aspect." },
-            { term: "Rose line", meaning: "A dynamic square or opposition aspect." },
-            { term: "Ivory line", meaning: "A conjunction joining two planetary themes." }
-        ],
-        disclaimer: "This guide presents astrology as a symbolic and reflective tradition, not a scientific claim or fixed account of personality."
+            { term: "Orange line", meaning: "A conjunction joining two planetary themes." },
+            { term: "Blue line", meaning: "A sextile connecting compatible opportunities." },
+            { term: "Red line", meaning: "A square creating dynamic friction." },
+            { term: "Green line", meaning: "A trine showing natural cooperation." },
+            { term: "Purple line", meaning: "An opposition inviting balance across a polarity." }
+        ]
     };
 }

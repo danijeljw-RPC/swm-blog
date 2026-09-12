@@ -68,10 +68,7 @@ export function initBirthChartForm({
         downloadButton.textContent = "Preparing guide…";
         await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
         try {
-            downloadBirthChartPdf({
-                ...downloadable,
-                pageUrl: new URL("/astrology/birth-chart/", window.location.origin).href
-            });
+            downloadBirthChartPdf(downloadable);
         } catch {
             statusEl.textContent = "Your chart is still available, but the PDF could not be created. Please try again.";
             statusEl.hidden = false;

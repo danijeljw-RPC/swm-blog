@@ -35,7 +35,7 @@ test("builds an approachable overview and placement reading", () => {
   assert.match(reading.placements[0].interpretation, /identity/i);
   assert.match(reading.placements[0].interpretation, /Aries/i);
   assert.match(reading.placements[0].interpretation, /House 1/i);
-  assert.match(reading.disclaimer, /symbolic and reflective tradition/i);
+  assert.equal("disclaimer" in reading, false);
 });
 
 test("orders major aspects from tightest to widest orb", () => {

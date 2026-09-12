@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { buildBirthChartReading } from "../src/lib/astrology/chart/interpretation.ts";
-import { birthChartPdfFilename, createBirthChartPdf } from "../src/lib/astrology/chart/pdf.ts";
+import { birthChartPdfFilename, createBirthChartPdf, pdfAspectStyle } from "../src/lib/astrology/chart/pdf.ts";
 import type { BirthChart, PlanetName } from "../src/lib/astrology/chart/types.ts";
 
 const names: PlanetName[] = ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto", "Chiron"];
@@ -21,10 +21,19 @@ test("creates a safe descriptive PDF filename", () => {
   assert.equal(birthChartPdfFilename("São Paulo / Central", "1990-01-01"), "birth-chart-sao-paulo-central-1990-01-01.pdf");
 });
 
-test("creates a valid multi-page birth chart guide", () => {
-  const bytes = createBirthChartPdf({ chart, reading: buildBirthChartReading(chart), localDate: "1990-01-01", localTime: "00:30", pageUrl: "https://sisterswithmirrors.com/astrology/birth-chart/" });
+test("creates a valid multi-page birth chart guide without unwanted framing or return link", () => {
+  const bytes = createBirthChartPdf({ chart, reading: buildBirthChartReading(chart), localDate: "1990-01-01", localTime: "00:30" });
   const text = new TextDecoder("latin1").decode(bytes);
   assert.equal(text.slice(0, 5), "%PDF-");
   assert.ok(bytes.byteLength > 10_000);
   assert.ok((text.match(/\/Type \/Page\b/g) ?? []).length > 1);
+  assert.doesNotMatch(text, /symbolic and reflective tradition/i);
+  assert.doesNotMatch(text, /Return to the Birth Chart/i);
+});
+
+test("uses a thick, distinct colour for every supported aspect", () => {
+  const types = ["Conjunction", "Sextile", "Square", "Trine", "Opposition"] as const;
+  const styles = types.map(pdfAspectStyle);
+  assert.equal(new Set(styles.map(style => style.color.join(","))).size, types.length);
+  assert.ok(styles.every(style => style.lineWidth >= 0.8));
 });

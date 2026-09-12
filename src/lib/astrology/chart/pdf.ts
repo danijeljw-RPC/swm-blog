@@ -1,13 +1,12 @@
 import { jsPDF } from "jspdf";
 import type { BirthChartReading } from "./interpretation";
-import type { BirthChart } from "./types";
+import type { AspectName, BirthChart } from "./types";
 
 export interface BirthChartPdfInput {
     chart: BirthChart;
     reading: BirthChartReading;
     localDate: string;
     localTime: string;
-    pageUrl: string;
 }
 
 const palette = {
@@ -18,6 +17,18 @@ const palette = {
     ivory: [248, 244, 235] as const,
     line: [216, 204, 184] as const
 };
+
+const aspectStyles: Record<AspectName, { color: readonly [number, number, number]; lineWidth: number }> = {
+    Conjunction: { color: [234, 126, 36], lineWidth: 0.9 },
+    Sextile: { color: [37, 126, 224], lineWidth: 0.9 },
+    Square: { color: [220, 48, 62], lineWidth: 0.9 },
+    Trine: { color: [39, 166, 105], lineWidth: 0.9 },
+    Opposition: { color: [135, 70, 210], lineWidth: 0.9 }
+};
+
+export function pdfAspectStyle(type: AspectName) {
+    return aspectStyles[type];
+}
 
 export function birthChartPdfFilename(placeName: string, date: string): string {
     const place = placeName
@@ -55,11 +66,9 @@ function drawChart(doc: jsPDF, chart: BirthChart, cx: number, cy: number, radius
         if (!from || !to) continue;
         const a = polar(from.longitude, radius * 0.52, cx, cy);
         const b = polar(to.longitude, radius * 0.52, cx, cy);
-        const flowing = aspect.type === "Trine" || aspect.type === "Sextile";
-        const joining = aspect.type === "Conjunction";
-        const aspectColor = flowing ? palette.gold : joining ? palette.muted : palette.rose;
-        doc.setDrawColor(aspectColor[0], aspectColor[1], aspectColor[2]);
-        doc.setLineWidth(0.3);
+        const style = pdfAspectStyle(aspect.type);
+        doc.setDrawColor(...style.color);
+        doc.setLineWidth(style.lineWidth);
         doc.line(a.x, a.y, b.x, b.y);
     }
 
@@ -133,7 +142,6 @@ export function createBirthChartPdf(input: BirthChartPdfInput): Uint8Array {
     y = 210;
     paragraph("How to read this guide", { bold: true });
     paragraph("A planet describes what part of life is speaking, its sign describes how that theme may be expressed, and its house describes where it may be encountered. Aspect lines show relationships between those themes.", { muted: true });
-    paragraph(reading.disclaimer, { muted: true });
 
     addPage();
     heading("Your chart at a glance", 1);
@@ -176,9 +184,6 @@ export function createBirthChartPdf(input: BirthChartPdfInput): Uint8Array {
     paragraph(`UTC instant: ${chart.birthTimeUtc}`);
     paragraph("House system: Placidus houses");
     paragraph("The chart includes the Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, and Chiron. Supported major aspects are conjunction, sextile, square, trine, and opposition.", { muted: true });
-    paragraph(reading.disclaimer, { muted: true });
-    doc.setTextColor(...palette.gold);
-    doc.textWithLink("Return to the Birth Chart", margin, y + 3, { url: input.pageUrl });
 
     const pages = doc.getNumberOfPages();
     for (let page = 1; page <= pages; page += 1) {

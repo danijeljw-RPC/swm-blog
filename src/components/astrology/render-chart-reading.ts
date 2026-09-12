@@ -65,6 +65,5 @@ export function renderChartReading(
             <summary>Technical details</summary>
             <div class="technical-meta"><p><strong>Birthplace</strong><span>${escapeHtml(place)}</span></p><p><strong>Local birth time</strong><span>${escapeHtml(metadata.localDate)} at ${escapeHtml(metadata.localTime)}</span></p><p><strong>UTC instant</strong><span>${escapeHtml(chart.birthTimeUtc)}</span></p><p><strong>House system</strong><span>Placidus houses</span></p></div>
             <div class="table-scroll"><table class="planet-table"><thead><tr><th scope="col">Body</th><th scope="col">Position</th><th scope="col">House</th></tr></thead><tbody>${planetRows}</tbody></table></div>
-        </details>
-        <p class="chart-disclaimer">${escapeHtml(reading.disclaimer)}</p>`;
+        </details>`;
 }

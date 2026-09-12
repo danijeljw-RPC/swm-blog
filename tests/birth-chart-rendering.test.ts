@@ -20,8 +20,7 @@ const reading: BirthChartReading = {
   headlines: [{ label: "Sun", position: "10°05' Aries", meaning: "Core identity." }],
   placements: [{ name: "Sun", symbol: "☉", position: "10°05' Aries", houseLabel: "House 1", role: "Identity", interpretation: "A reflective reading." }],
   aspects: [],
-  legend: [{ term: "Planet", meaning: "What is expressed." }],
-  disclaimer: "This is a symbolic and reflective tradition."
+  legend: [{ term: "Planet", meaning: "What is expressed." }]
 };
 
 test("chart wheel includes visible structure and labelled house markers", () => {
@@ -43,6 +42,7 @@ test("renders an approachable, semantic, escaped chart reading", () => {
   assert.match(html, /Placidus houses/);
   assert.match(html, /&lt;script&gt;alert\(1\)&lt;\/script&gt;/);
   assert.doesNotMatch(html, /<script>alert/);
+  assert.doesNotMatch(html, /symbolic and reflective/i);
 });
 
 test("birth chart page exposes the result region and PDF control", async () => {
@@ -50,7 +50,8 @@ test("birth chart page exposes the result region and PDF control", async () => {
   assert.match(page, /id="chart-result"/);
   assert.match(page, /id="chart-download"/);
   assert.match(page, /Download your chart guide/);
-  assert.match(page, /symbolic and reflective tradition/);
+  assert.doesNotMatch(page, /symbolic and reflective tradition/);
+  assert.match(page, /\.chart-download\[hidden\]\s*\{\s*display:\s*none\s*!important/);
 });
 
 test("birth chart controller prepares and reports PDF downloads", async () => {

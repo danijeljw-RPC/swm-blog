@@ -53,7 +53,6 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
       <button type="button" id="chart-download" class="button chart-download" hidden>Download your chart guide</button>
     </div>
   </section>
-  <p class="chart-tradition site-container">This birth chart is offered as part of a symbolic and reflective tradition, not as a scientific claim or fixed account of personality.</p>
 </BaseLayout>
 
 <script>
@@ -158,12 +157,12 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
   .chart-art :global(.aspect-inner) { fill: rgb(7 7 11 / 34%); stroke: var(--swm-border); stroke-width: 1.5; }
   .chart-art :global(.house-line) { stroke: rgb(215 204 184 / 42%); stroke-width: 1.2; }
   .chart-art :global(.house-number) { fill: var(--swm-gold-light); font-family: var(--font-sans); font-size: 1.15rem; }
-  .chart-art :global(.aspect) { stroke-width: 1.8; opacity: .78; }
-  .chart-art :global(.aspect-trine),
-  .chart-art :global(.aspect-sextile) { stroke: var(--swm-gold-light); }
-  .chart-art :global(.aspect-square),
-  .chart-art :global(.aspect-opposition) { stroke: var(--swm-danger); }
-  .chart-art :global(.aspect-conjunction) { stroke: var(--swm-ivory); }
+  .chart-art :global(.aspect) { stroke-width: 2.8; opacity: .95; }
+  .chart-art :global(.aspect-conjunction) { stroke: #ea7e24; }
+  .chart-art :global(.aspect-sextile) { stroke: #257ee0; }
+  .chart-art :global(.aspect-square) { stroke: #dc303e; }
+  .chart-art :global(.aspect-trine) { stroke: #27a669; }
+  .chart-art :global(.aspect-opposition) { stroke: #8746d2; }
   .chart-art :global(.planet-guide) { stroke: var(--swm-gold); stroke-width: 1; opacity: .7; }
   .chart-art :global(.planet-marker) { fill: var(--swm-panel-raised); stroke: var(--swm-gold); stroke-width: 1.5; }
   .chart-art :global(.planet) { fill: var(--swm-ivory); font-size: 1.65rem; }
@@ -186,8 +185,11 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
   .chart-summary :global(.legend-key--planet) { width: .7rem; height: .7rem; margin-left: .4rem; border-radius: 50%; background: var(--swm-ivory); }
   .chart-summary :global(.legend-key--sign) { height: .7rem; border: 1px solid var(--swm-gold); background: transparent; }
   .chart-summary :global(.legend-key--house) { background: rgb(215 204 184 / 45%); }
-  .chart-summary :global(.legend-key--gold) { background: var(--swm-gold-light); }
-  .chart-summary :global(.legend-key--rose) { background: var(--swm-danger); }
+  .chart-summary :global(.legend-key--orange) { background: #ea7e24; }
+  .chart-summary :global(.legend-key--blue) { background: #257ee0; }
+  .chart-summary :global(.legend-key--red) { background: #dc303e; }
+  .chart-summary :global(.legend-key--green) { background: #27a669; }
+  .chart-summary :global(.legend-key--purple) { background: #8746d2; }
   .chart-summary :global(.placement-card header) { display: flex; align-items: center; gap: .8rem; margin-bottom: var(--space-2); }
   .chart-summary :global(.placement-symbol) { display: grid; width: 2.6rem; height: 2.6rem; place-items: center; flex: 0 0 auto; border: 1px solid var(--swm-border); border-radius: 50%; color: var(--swm-gold-light); font-size: 1.35rem; }
   .chart-summary :global(.placement-card h3) { margin: 0; font-size: 1.45rem; }
@@ -198,7 +200,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
   .chart-summary :global(.aspect-symbol) { color: var(--swm-gold); font-size: 1.5rem; text-align: center; }
   .chart-summary :global(.aspect-list strong), .chart-summary :global(.aspect-list small) { display: block; }
   .chart-summary :global(.aspect-list small) { margin: .1rem 0 .4rem; color: var(--swm-gold); font-size: .7rem; }
-  .chart-summary :global(.empty-aspects), .chart-summary :global(.chart-disclaimer) { color: var(--swm-text-muted); font-size: .78rem; }
+  .chart-summary :global(.empty-aspects) { color: var(--swm-text-muted); font-size: .78rem; }
   .chart-summary :global(.technical-details) { padding: var(--space-3); border: 1px solid var(--swm-border-soft); background: rgb(13 11 17 / 72%); }
   .chart-summary :global(.technical-details summary) { color: var(--swm-ivory); font-family: var(--font-display); font-size: 1.35rem; cursor: pointer; }
   .chart-summary :global(.technical-meta) { display: grid; gap: .4rem; margin-block: var(--space-3); }
@@ -209,7 +211,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
   .chart-summary :global(.planet-table th), .chart-summary :global(.planet-table td) { padding: .45rem .3rem; color: var(--swm-text); text-align: left; border-bottom: 1px solid var(--swm-border-soft); }
   .chart-summary :global(.planet-table thead th) { color: var(--swm-gold-light); font-size: .68rem; text-transform: uppercase; }
   .chart-download { justify-self: start; }
-  .chart-tradition { margin-top: calc(var(--space-7) * -1); padding-bottom: var(--space-7); color: var(--swm-text-muted); font-size: .72rem; }
+  .chart-download[hidden] { display: none !important; }
 
   @media (min-width: 48rem) { .chart-summary :global(.headline-grid) { grid-template-columns: repeat(2, 1fr); } .chart-summary :global(.placement-grid) { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 64rem) { .chart-workspace { grid-template-columns: minmax(0, 22rem) minmax(0, 1fr); align-items: start; } }
