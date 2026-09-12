@@ -34,7 +34,7 @@
 - Produces: `MOON_PHASES`, `MoonPhase`, `MOON_PHASE_LABELS`, `MOON_PHASE_IMAGES`, `getMoonPhase(date: Date): MoonPhase`.
 - Produces: `DEFAULT_MOON_TIME_ZONE`, `getRequestTimeZone(request: Request): string`, `getVisitorLocalDate(date: Date, timeZone: string): string`, and `localDateToCalculationDate(localDate: string): Date`.
 
-- [ ] **Step 1: Write failing date tests**
+- [x] **Step 1: Write failing date tests**
 
 Create requests with a test-only `cf` property and assert independently derived literals:
 
@@ -48,13 +48,13 @@ assert.equal(getRequestTimeZone(requestWithCf("Not/A_Timezone")), "UTC");
 assert.equal(localDateToCalculationDate("2026-09-14").toISOString(), "2026-09-14T12:00:00.000Z");
 ```
 
-- [ ] **Step 2: Run the date tests and verify RED**
+- [x] **Step 2: Run the date tests and verify RED**
 
 Run: `node --import tsx --test tests/moon-phase.test.ts`
 
 Expected: FAIL because the Moon modules do not exist.
 
-- [ ] **Step 3: Implement safe timezone and date helpers**
+- [x] **Step 3: Implement safe timezone and date helpers**
 
 Use one narrow request boundary and validate timezones before formatting:
 
@@ -79,7 +79,7 @@ export function getRequestTimeZone(request: Request): string {
 
 Use `Intl.DateTimeFormat(...).formatToParts()` for stable numeric year/month/day extraction. Validate `YYYY-MM-DD` in `localDateToCalculationDate` and throw a descriptive error for malformed internal input.
 
-- [ ] **Step 4: Write failing phase-sector tests**
+- [x] **Step 4: Write failing phase-sector tests**
 
 Add literal instants representing the reference and the centre of every sector:
 
@@ -109,23 +109,23 @@ const boundaries = [
 ] as const;
 ```
 
-- [ ] **Step 5: Run the phase tests and verify RED**
+- [x] **Step 5: Run the phase tests and verify RED**
 
 Run: `node --import tsx --test tests/moon-phase.test.ts`
 
 Expected: FAIL because phase exports are absent.
 
-- [ ] **Step 6: Implement the canonical phase model and calculation**
+- [x] **Step 6: Implement the canonical phase model and calculation**
 
 Define the canonical tuple, derived union, exhaustive label/image records, constants from the brief, positive modulo, and ordered thresholds. Keep all phase slugs and mappings in this module so consumers cannot invent alternate identifiers.
 
-- [ ] **Step 7: Run the focused tests and verify GREEN**
+- [x] **Step 7: Run the focused tests and verify GREEN**
 
 Run: `node --import tsx --test tests/moon-phase.test.ts`
 
 Expected: all Moon date and phase tests PASS.
 
-- [ ] **Step 8: Commit the domain slice**
+- [x] **Step 8: Commit the domain slice**
 
 ```bash
 git add src/lib/moon/moon-date.ts src/lib/moon/moon-phase.ts tests/moon-phase.test.ts
@@ -153,17 +153,17 @@ git commit -m "feat: calculate visitor-local moon phases"
 - Consumes: `MoonPhase`, `MOON_PHASES`, `MOON_PHASE_LABELS`, and `MOON_PHASE_IMAGES` from Task 1.
 - Produces: `MoonPhaseContent`, `MoonPhaseViewModel`, `getMoonPhaseContent(phase: MoonPhase): MoonPhaseContent`, and `getMoonPhaseViewModel(request: Request, now?: Date): MoonPhaseViewModel`.
 
-- [ ] **Step 1: Write failing exhaustive mapping tests**
+- [x] **Step 1: Write failing exhaustive mapping tests**
 
 For every literal slug in `MOON_PHASES`, assert that the label is non-empty, JSON has exactly the required fields and matching name, the image path is `/images/moon/<slug>.svg`, and `access(new URL("../public" + imagePath, import.meta.url))` succeeds. Assert the JSON key set exactly equals the canonical slug set.
 
-- [ ] **Step 2: Run mapping tests and verify RED**
+- [x] **Step 2: Run mapping tests and verify RED**
 
 Run: `node --import tsx --test tests/moon-phase-content.test.ts`
 
 Expected: FAIL because JSON, content helpers, and SVG files do not exist.
 
-- [ ] **Step 3: Add static JSON and the typed content adapter**
+- [x] **Step 3: Add static JSON and the typed content adapter**
 
 Give every phase a matching `name`, one-sentence `summary`, short `meaning` and `energy`, and non-empty `focus`, `reflection`, and `practices` arrays. Export this contract:
 
@@ -187,17 +187,17 @@ export interface MoonPhaseViewModel extends MoonPhaseContent {
 
 Validate all eight entries at module initialisation and throw a descriptive development/build error for malformed repository content. `getMoonPhaseViewModel` uses `getRequestTimeZone`, `getVisitorLocalDate`, `localDateToCalculationDate`, `getMoonPhase`, and the exhaustive mappings.
 
-- [ ] **Step 4: Add the eight temporary SVG files**
+- [x] **Step 4: Add the eight temporary SVG files**
 
 Create a consistent `viewBox="0 0 240 240"` set using a dark circular Moon base, ivory/gold illuminated shapes, subtle crater circles, and masks for crescent/gibbous silhouettes. Waxing illumination appears on the right and waning illumination on the left. Each file remains standalone and uses no external resources.
 
-- [ ] **Step 5: Run mapping tests and verify GREEN**
+- [x] **Step 5: Run mapping tests and verify GREEN**
 
 Run: `node --import tsx --test tests/moon-phase-content.test.ts`
 
 Expected: all content and asset mapping tests PASS.
 
-- [ ] **Step 6: Commit the content and artwork slice**
+- [x] **Step 6: Commit the content and artwork slice**
 
 ```bash
 git add src/data/moon-phases.json src/lib/moon/moon-phase-content.ts public/images/moon tests/moon-phase-content.test.ts
@@ -218,31 +218,31 @@ git commit -m "feat: add moon phase content and artwork"
 - Produces: `MoonPhaseVisual` props `{ phase: MoonPhase; label: string; decorative?: boolean; size?: "compact" | "large" }`.
 - Produces: `MoonPhaseCard` props `{ moon: MoonPhaseViewModel; variant?: "home" | "daily" }`.
 
-- [ ] **Step 1: Write failing component contract tests**
+- [x] **Step 1: Write failing component contract tests**
 
 Follow the repository’s existing Astro source-contract test convention: read both component files and assert the card renders “Today’s Moon,” `moon.name`, `moon.summary`, `href="/moon/"`, and `<MoonPhaseVisual phase={moon.phase} label={moon.name} />`. Assert the visual renders `MOON_PHASE_IMAGES[phase]` and `alt={decorative ? "" : `${label} Moon phase`}`. The production build in Task 6 validates Astro compilation and rendering integration.
 
-- [ ] **Step 2: Run component tests and verify RED**
+- [x] **Step 2: Run component tests and verify RED**
 
 Run: `node --import tsx --test tests/moon-phase-components.test.ts`
 
 Expected: FAIL because both Astro components do not exist.
 
-- [ ] **Step 3: Implement `MoonPhaseVisual.astro`**
+- [x] **Step 3: Implement `MoonPhaseVisual.astro`**
 
 Render a responsive `<img>` using the exhaustive mapping, explicit dimensions, `loading="lazy"`, and `alt={decorative ? "" : `${label} Moon phase`}`. Use scoped styles for compact and large sizing with the existing gold, ivory, panel, and border tokens.
 
-- [ ] **Step 4: Implement `MoonPhaseCard.astro`**
+- [x] **Step 4: Implement `MoonPhaseCard.astro`**
 
 Render one keyboard-accessible `/moon/` anchor containing the visual, eyebrow, `h2` phase name, summary, and “Explore the Moon phase →” CTA. Use a celestial two-column compact layout that collapses cleanly on narrow screens and reuses `framed-panel` plus site tokens.
 
-- [ ] **Step 5: Run component tests and verify GREEN**
+- [x] **Step 5: Run component tests and verify GREEN**
 
 Run: `node --import tsx --test tests/moon-phase-components.test.ts`
 
 Expected: component contract tests PASS.
 
-- [ ] **Step 6: Commit reusable components**
+- [x] **Step 6: Commit reusable components**
 
 ```bash
 git add src/components/moon tests/moon-phase-components.test.ts
@@ -262,31 +262,31 @@ git commit -m "feat: add reusable moon phase components"
 - Consumes: `getMoonPhaseViewModel(Astro.request)` and `MoonPhaseCard`.
 - Produces: visitor-local Moon cards on `/` and `/daily-mirror/`, plus explicit private no-store response headers.
 
-- [ ] **Step 1: Write failing page integration tests**
+- [x] **Step 1: Write failing page integration tests**
 
 Assert both pages import and render `MoonPhaseCard`, derive one Moon view model from `Astro.request`, link through the reusable component, and set `Cache-Control` to the exact value `private, no-store`. Assert the homepage Moon integration remains inside the existing `mirror-preview` section and the Daily Mirror integration follows the tarot article rather than altering it.
 
-- [ ] **Step 2: Run page tests and verify RED**
+- [x] **Step 2: Run page tests and verify RED**
 
 Run: `node --import tsx --test tests/moon-phase-pages.test.ts`
 
 Expected: FAIL because neither page integrates the Moon feature.
 
-- [ ] **Step 3: Integrate the homepage card**
+- [x] **Step 3: Integrate the homepage card**
 
 In frontmatter, create `const moon = getMoonPhaseViewModel(Astro.request)` and set the response header. Add `<MoonPhaseCard moon={moon} variant="home" />` inside “Explore the mirror.” Retain the existing four-column tile row at 42rem and place the richer Moon card in a full-width grid row beneath it so its summary stays readable at desktop and tablet sizes.
 
-- [ ] **Step 4: Integrate the Daily Mirror card**
+- [x] **Step 4: Integrate the Daily Mirror card**
 
 Create the same request-derived view model and header in frontmatter. Add `<MoonPhaseCard moon={moon} variant="daily" />` between the tarot article and reflective disclaimer. Do not duplicate calculation code or modify the existing client tarot refresh behavior.
 
-- [ ] **Step 5: Run page and existing homepage tests**
+- [x] **Step 5: Run page and existing homepage tests**
 
 Run: `node --import tsx --test tests/moon-phase-pages.test.ts tests/homepage-tarot-preview.test.ts`
 
 Expected: all selected tests PASS.
 
-- [ ] **Step 6: Commit route integration**
+- [x] **Step 6: Commit route integration**
 
 ```bash
 git add src/pages/index.astro src/pages/daily-mirror/index.astro tests/moon-phase-pages.test.ts
@@ -305,27 +305,27 @@ git commit -m "feat: show moon phase in daily experiences"
 - Consumes: `BaseLayout`, `MoonPhaseVisual`, and `getMoonPhaseViewModel(Astro.request)`.
 - Produces: server-rendered `/moon/` with current phase content and `Cache-Control: private, no-store`.
 
-- [ ] **Step 1: Add failing dedicated-page tests**
+- [x] **Step 1: Add failing dedicated-page tests**
 
 Assert `/moon/` uses `BaseLayout` with title `Today’s Moon Phase`, the specified evergreen description, the request-derived Moon view model, large mapped artwork, visible local date and phase name, and semantic sections for Meaning, Energy, What to focus on, Reflection, and Practices. Assert it sets the exact private no-store header.
 
-- [ ] **Step 2: Run the page tests and verify RED**
+- [x] **Step 2: Run the page tests and verify RED**
 
 Run: `node --import tsx --test tests/moon-phase-pages.test.ts`
 
 Expected: FAIL because `src/pages/moon/index.astro` does not exist.
 
-- [ ] **Step 3: Implement `/moon/`**
+- [x] **Step 3: Implement `/moon/`**
 
 Use `BaseLayout`, a site-container hero with `MoonPhaseVisual size="large"`, an eyebrow showing `Today’s Moon · <date>`, prominent phase name and summary, then a reading-column content grid sourced exclusively from JSON. Render array fields as semantic lists and apply only scoped responsive styles using existing tokens.
 
-- [ ] **Step 4: Run all Moon tests and verify GREEN**
+- [x] **Step 4: Run all Moon tests and verify GREEN**
 
 Run: `node --import tsx --test tests/moon-phase.test.ts tests/moon-phase-content.test.ts tests/moon-phase-components.test.ts tests/moon-phase-pages.test.ts`
 
 Expected: all Moon tests PASS.
 
-- [ ] **Step 5: Commit the Moon page**
+- [x] **Step 5: Commit the Moon page**
 
 ```bash
 git add src/pages/moon/index.astro tests/moon-phase-pages.test.ts
@@ -343,44 +343,44 @@ git commit -m "feat: add visitor-local moon phase page"
 - Consumes: all completed feature slices.
 - Produces: evidence that the implementation meets the brief without regressing the site.
 
-- [ ] **Step 1: Run focused Moon tests**
+- [x] **Step 1: Run focused Moon tests**
 
 Run: `node --import tsx --test tests/moon-phase.test.ts tests/moon-phase-content.test.ts tests/moon-phase-components.test.ts tests/moon-phase-pages.test.ts`
 
 Expected: PASS with zero failures.
 
-- [ ] **Step 2: Run the complete repository test suite**
+- [x] **Step 2: Run the complete repository test suite**
 
 Run: `npm test`
 
 Expected: PASS with zero failures.
 
-- [ ] **Step 3: Validate content**
+- [x] **Step 3: Validate content**
 
 Run: `npm run validate:content`
 
 Expected: `Content validation passed.`
 
-- [ ] **Step 4: Run Astro type checking**
+- [x] **Step 4: Run Astro type checking**
 
 Run: `npm run check`
 
 Expected: PASS, or report any independently confirmed pre-existing baseline failure separately with its exact file and diagnostic.
 
-- [ ] **Step 5: Build the Cloudflare production output**
+- [x] **Step 5: Build the Cloudflare production output**
 
 Run: `npm run build:prod`
 
 Expected: Astro build exits 0 and emits the Cloudflare server output with `/`, `/daily-mirror/`, and `/moon/` as runtime routes.
 
-- [ ] **Step 6: Inspect generated route and asset output**
+- [x] **Step 6: Inspect generated route and asset output**
 
 Confirm the route manifest keeps all three Moon-bearing pages server-rendered, every mapped SVG exists in the built assets, and no `/api/moon` endpoint or client hydration bundle was added.
 
-- [ ] **Step 7: Audit requirements and working tree**
+- [x] **Step 7: Audit requirements and working tree**
 
 Re-read the acceptance criteria in `swm-moon-phase-feature.md`, inspect `git diff --check`, `git status --short`, and the feature commits, and confirm unrelated pre-existing files were neither staged nor committed. Do not revert user-owned Wrangler or location-manifest changes.
 
-- [ ] **Step 8: Report the completed deliverable**
+- [x] **Step 8: Report the completed deliverable**
 
 List files created and modified, architecture, visitor timezone/date flow, calculation, replacement locations, cache/rendering choices, tests, commands, and exact results.
