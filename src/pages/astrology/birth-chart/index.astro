@@ -154,15 +154,19 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
   .chart-output { display: grid; gap: var(--space-3); }
   .chart-art { display: grid; place-items: center; padding: var(--space-3); border: 1px solid var(--swm-border-soft); background: radial-gradient(circle, rgb(169 136 83 / 10%), transparent 68%); }
   .chart-art :global(svg) { width: 100%; max-width: 32rem; height: auto; }
-  .chart-art :global(.zodiac-outer) { fill: none; stroke: var(--swm-border); stroke-width: 1; }
-  .chart-art :global(.house-line) { stroke: rgb(215 204 184 / 22%); stroke-width: 1; }
-  .chart-art :global(.aspect) { stroke-width: 1; opacity: .55; }
+  .chart-art :global(.zodiac-outer) { fill: none; stroke: var(--swm-gold); stroke-width: 2; }
+  .chart-art :global(.aspect-inner) { fill: rgb(7 7 11 / 34%); stroke: var(--swm-border); stroke-width: 1.5; }
+  .chart-art :global(.house-line) { stroke: rgb(215 204 184 / 42%); stroke-width: 1.2; }
+  .chart-art :global(.house-number) { fill: var(--swm-gold-light); font-family: var(--font-sans); font-size: 1.15rem; }
+  .chart-art :global(.aspect) { stroke-width: 1.8; opacity: .78; }
   .chart-art :global(.aspect-trine),
   .chart-art :global(.aspect-sextile) { stroke: var(--swm-gold-light); }
   .chart-art :global(.aspect-square),
   .chart-art :global(.aspect-opposition) { stroke: var(--swm-danger); }
   .chart-art :global(.aspect-conjunction) { stroke: var(--swm-ivory); }
-  .chart-art :global(.planet) { fill: var(--swm-ivory); font-size: 1.6rem; }
+  .chart-art :global(.planet-guide) { stroke: var(--swm-gold); stroke-width: 1; opacity: .7; }
+  .chart-art :global(.planet-marker) { fill: var(--swm-panel-raised); stroke: var(--swm-gold); stroke-width: 1.5; }
+  .chart-art :global(.planet) { fill: var(--swm-ivory); font-size: 1.65rem; }
 
   .chart-summary { display: grid; gap: var(--space-5); }
   .chart-summary :global(.section-heading) { max-width: 48rem; }

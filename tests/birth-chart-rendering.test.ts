@@ -3,10 +3,14 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { renderChartReading } from "../src/components/astrology/render-chart-reading.ts";
 import type { BirthChartReading } from "../src/lib/astrology/chart/interpretation.ts";
+import { renderBirthChartSvg } from "../src/lib/astrology/chart/render/render-svg.ts";
 import type { BirthChart } from "../src/lib/astrology/chart/types.ts";
 
 const chart = {
-  planets: [{ name: "Sun", sign: "Aries", degree: 10, minute: 5, house: 1 }],
+  planets: [{ name: "Sun", sign: "Aries", degree: 10, minute: 5, second: 0, longitude: 10, latitude: 0, distance: 1, house: 1 }],
+  houses: Array.from({ length: 12 }, (_, index) => ({ house: index + 1, longitude: index * 30, sign: "Aries", degree: 0, minute: 0, second: 0 })),
+  ascendant: { longitude: 4, sign: "Aries", degree: 4, minute: 0, second: 0 },
+  midheaven: { longitude: 274, sign: "Capricorn", degree: 4, minute: 0, second: 0 },
   aspects: [],
   birthplace: { name: "<script>alert(1)</script>", region: null, country: "Australia" },
   birthTimeUtc: "1990-01-01T01:00:00.000Z"
@@ -19,6 +23,14 @@ const reading: BirthChartReading = {
   legend: [{ term: "Planet", meaning: "What is expressed." }],
   disclaimer: "This is a symbolic and reflective tradition."
 };
+
+test("chart wheel includes visible structure and labelled house markers", () => {
+  const svg = renderBirthChartSvg(chart);
+  assert.match(svg, /class="aspect-inner"/);
+  assert.match(svg, /class="planet-marker"/);
+  assert.match(svg, /class="house-number"/);
+  assert.match(svg, />1<\/text>/);
+});
 
 test("renders an approachable, semantic, escaped chart reading", () => {
   const html = renderChartReading(reading, chart, { localDate: "1990-01-01", localTime: "11:30" });

@@ -152,12 +152,13 @@ export function createBirthChartPdf(input: BirthChartPdfInput): Uint8Array {
     heading("Planet placements", 1);
     paragraph("Read each placement as what, how, and where - an invitation to reflection rather than a fixed verdict.", { muted: true, gap: 7 });
     for (const item of reading.placements) {
-        ensure(34);
+        ensure(48);
         paragraph(`${item.name} · ${item.position} · ${item.houseLabel}`, { bold: true, gap: 2 });
         paragraph(item.role, { muted: true, gap: 2 });
         paragraph(item.interpretation, { gap: 7 });
     }
 
+    ensure(reading.aspects.length ? 38 : 24);
     heading("Major aspects", 1);
     if (!reading.aspects.length) {
         paragraph("No major aspects were found within the supported orbs for this chart.", { muted: true });

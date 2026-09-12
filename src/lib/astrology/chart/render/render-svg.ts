@@ -24,6 +24,7 @@ export function renderBirthChartSvg(
     const zodiacRadius = 450;
     const planetRadius = 340;
     const aspectRadius = 250;
+    const placedLongitudes: number[] = [];
 
     const houses = chart.houses
         .map(house => {
@@ -46,23 +47,38 @@ export function renderBirthChartSvg(
         })
         .join("");
 
+    const houseNumbers = chart.houses
+        .map((house, index) => {
+            const next = chart.houses[(index + 1) % chart.houses.length];
+            const span = ((next.longitude - house.longitude + 360) % 360) / 2;
+            const p = polarToCartesian(house.longitude + span, 415, center, center);
+            return `<text x="${p.x}" y="${p.y}" text-anchor="middle" dominant-baseline="middle" class="house-number">${house.house}</text>`;
+        })
+        .join("");
+
     const planets = chart.planets
         .map(planet => {
+            const nearby = placedLongitudes.filter(longitude => {
+                const difference = Math.abs(longitude - planet.longitude) % 360;
+                return Math.min(difference, 360 - difference) < 9;
+            }).length;
+            placedLongitudes.push(planet.longitude);
+            const displayRadii = [planetRadius, 385, 295];
+            const displayRadius = displayRadii[nearby % displayRadii.length];
             const p = polarToCartesian(
                 planet.longitude,
-                planetRadius,
+                displayRadius,
                 center,
                 center
             );
+            const anchor = polarToCartesian(planet.longitude, planetRadius, center, center);
 
             return `
-                <text
-                    x="${p.x}"
-                    y="${p.y}"
-                    text-anchor="middle"
-                    dominant-baseline="middle"
-                    class="planet"
-                >${glyphs[planet.name]}</text>
+                <g class="planet-position">
+                    ${displayRadius === planetRadius ? "" : `<line x1="${anchor.x}" y1="${anchor.y}" x2="${p.x}" y2="${p.y}" class="planet-guide" />`}
+                    <circle cx="${p.x}" cy="${p.y}" r="24" class="planet-marker" />
+                    <text x="${p.x}" y="${p.y}" text-anchor="middle" dominant-baseline="middle" class="planet">${glyphs[planet.name]}</text>
+                </g>
             `;
         })
         .join("");
@@ -121,7 +137,10 @@ export function renderBirthChartSvg(
                 class="zodiac-outer"
             />
 
+            <circle cx="${center}" cy="${center}" r="${aspectRadius}" class="aspect-inner" />
+
             ${houses}
+            ${houseNumbers}
             ${aspects}
             ${planets}
         </svg>
