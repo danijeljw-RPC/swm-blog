@@ -22,14 +22,6 @@
 	"env": {
 		"development": {
 			"name": "sisters-with-mirrors-dev-tba",
-			"d1_databases": [
-				{
-					"binding": "swm_places",
-					"database_name": "swm-places",
-					"database_id": "6febf594-c805-4099-8a42-529eac23e571",
-					"remote": true
-				}
-			],
 			"vars": {
 				"PUBLIC_SITE_URL": "https://dev.sisterswithmirrors.com",
 				"PUBLIC_MEDIA_URL": "https://media.sisterswithmirrors.com",
@@ -38,27 +30,11 @@
 		},
 		"production": {
 			"name": "sisters-with-mirrors-prod-tba",
-			"d1_databases": [
-				{
-					"binding": "swm_places",
-					"database_name": "swm-places",
-					"database_id": "6febf594-c805-4099-8a42-529eac23e571",
-					"remote": true
-				}
-			],
 			"vars": {
 				"PUBLIC_SITE_URL": "https://sisterswithmirrors.com",
 				"PUBLIC_MEDIA_URL": "https://media.sisterswithmirrors.com",
 				"R2_BUCKET_NAME": "sisters-with-mirrors"
 			}
 		}
-	},
-	"d1_databases": [
-		{
-			"binding": "swm_places",
-			"database_name": "swm-places",
-			"database_id": "6febf594-c805-4099-8a42-529eac23e571",
-			"remote": true
-		}
-	]
+	}
 }
