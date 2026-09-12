@@ -19,14 +19,16 @@ test("homepage renders the request-local Moon inside Explore the mirror without 
   assert.match(source, /mirror-tile--cosmic/);
 });
 
-test("Daily Mirror renders the same request-local Moon after its tarot reading", async () => {
+test("Daily Mirror renders the request-local Moon as a compact linked insight", async () => {
   const source = await readSource("../src/pages/daily-mirror/index.astro");
 
-  assert.match(source, /import MoonPhaseCard from "\.\.\/\.\.\/components\/moon\/MoonPhaseCard\.astro"/);
+  assert.match(source, /import MoonPhaseVisual from "\.\.\/\.\.\/components\/moon\/MoonPhaseVisual\.astro"/);
   assert.match(source, /const moon = getMoonPhaseViewModel\(Astro\.request\)/);
   assert.match(source, /Astro\.response\.headers\.set\("Cache-Control", "private, no-store"\)/);
-  assert.match(source, /<article class="mirror-card framed-panel">[\s\S]*<\/article>\s*<MoonPhaseCard moon=\{moon\} variant="daily" \/>/);
-  assert.match(source, /<MoonPhaseCard moon=\{moon\} variant="daily" \/>[\s\S]*<p class="daily-note">/);
+  assert.match(source, /<dt>Today’s Moon<\/dt>[\s\S]*<a[^>]+href="\/moon\/"[\s\S]*<MoonPhaseVisual phase=\{moon\.phase\} label=\{moon\.name\} size="tiny"[\s\S]*<small>\{moon\.name\}<\/small>/);
+  assert.doesNotMatch(source, /<MoonPhaseCard moon=\{moon\}/);
+  assert.match(source, /\.insights \{[^}]*border-top: 1px solid var\(--swm-border-soft\);[^}]*\}/);
+  assert.doesNotMatch(source, /\.insights \{[^}]*border-block:/);
 });
 
 test("dedicated Moon page renders visitor-local phase content without global caching", async () => {

@@ -26,4 +26,6 @@ test("moon phase visual uses the canonical image and accessible alt behavior", a
   assert.match(source, /alt=\{decorative \? "" : `\$\{label\} Moon phase`\}/);
   assert.match(source, /width="240"/);
   assert.match(source, /height="240"/);
+  assert.match(source, /size\?: "tiny" \| "compact" \| "large"/);
+  assert.match(source, /\.moon-visual--tiny \{ width: 2\.25rem; \}/);
 });

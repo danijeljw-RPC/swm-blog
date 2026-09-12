@@ -69,7 +69,7 @@ Astro.response.headers.set("Cache-Control", "private, no-store");
       <div class="mirror-grid">
         <a class="mirror-tile mirror-tile--tarot" href="/daily-mirror/"><span>Tarot</span><span class="mirror-tile__value"><img src={`/images/tarot/${tarotCard.image}`} alt={`${tarotCard.name} tarot card`} width="500" height="850" /><strong>{tarotCard.name}</strong></span><small class="mirror-tile__detail" aria-hidden="true"></small></a>
         <a class="mirror-tile mirror-tile--colour" href="/daily-mirror/"><span>Colour</span><span class="mirror-tile__value"><i class="colour-swatch" style={`--daily-colour: ${colourOfTheDay.hex}`} aria-label={`${colourOfTheDay.name}, ${colourOfTheDay.hex}`} role="img"></i><strong>{colourOfTheDay.name}</strong></span><small class="mirror-tile__detail">{colourOfTheDay.hex}</small></a>
-        <a class="mirror-tile mirror-tile--number" href="/daily-mirror/"><span>Number</span><span class="mirror-tile__value"><strong>{numberOfTheDay}</strong></span><small class="mirror-tile__detail" aria-hidden="true"></small></a>
+        <a class="mirror-tile mirror-tile--number" href={`/numerology/${numberOfTheDay}/`}><span>Number</span><span class="mirror-tile__value"><strong>{numberOfTheDay}</strong></span><small class="mirror-tile__detail" aria-hidden="true"></small></a>
         <a class="mirror-tile mirror-tile--cosmic" href={`/astrology/${zodiacSign.slug}/`}><span>Cosmic</span><span class="mirror-tile__value"><img src={`/images/zodiac/${zodiacSign.slug}.png`} alt="" width="96" height="96" /><strong>{zodiacSign.name}</strong></span><small class="mirror-tile__detail" aria-hidden="true"></small></a>
         <div class="moon-card-slot">
           <MoonPhaseCard moon={moon} variant="home" />

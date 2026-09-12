@@ -1,0 +1,74 @@
+{
+  "new-moon": {
+    "name": "New Moon",
+    "summary": "A quiet beginning, inviting space for intentions before anything needs to take shape.",
+    "meaning": "The New Moon marks the close of one lunar cycle and the beginning of another. It offers a pause in which possibility can exist without pressure for immediate answers.",
+    "energy": "Inward, receptive and restorative.",
+    "focus": ["Clarifying what matters now", "Making room for a new direction"],
+    "reflection": ["What would I like to begin with care?", "What can remain unwritten for a little longer?"],
+    "practices": ["Write one simple intention", "Choose a quiet moment without distraction"]
+  },
+  "waxing-crescent": {
+    "name": "Waxing Crescent",
+    "summary": "The first light returns, encouraging small steps towards what you have chosen.",
+    "meaning": "The Waxing Crescent follows the darkness of the New Moon. It reflects the early stage of an idea, when commitment is built through modest and deliberate action.",
+    "energy": "Hopeful, curious and gently gathering momentum.",
+    "focus": ["Taking the next workable step", "Protecting new ideas while they grow"],
+    "reflection": ["What deserves a little more of my attention?", "Which small action would make my intention real?"],
+    "practices": ["Name one achievable action", "Notice evidence of progress, however small"]
+  },
+  "first-quarter": {
+    "name": "First Quarter",
+    "summary": "Half light and half shadow bring a moment for choice, movement and honest adjustment.",
+    "meaning": "The First Quarter Moon represents a point of tension and decision. Early intentions meet practical reality, revealing where resolve or a change of approach may be needed.",
+    "energy": "Active, decisive and testing.",
+    "focus": ["Meeting useful resistance", "Choosing what to continue or change"],
+    "reflection": ["Where am I being asked to decide?", "Is this obstacle a warning or an invitation to adapt?"],
+    "practices": ["Make one delayed decision", "Break a difficult step into two smaller ones"]
+  },
+  "waxing-gibbous": {
+    "name": "Waxing Gibbous",
+    "summary": "Growing light favours refinement, patience and attention to what is nearly ready.",
+    "meaning": "The Waxing Gibbous Moon is a period of development between action and culmination. It invites thoughtful improvement without mistaking perfection for progress.",
+    "energy": "Focused, discerning and anticipatory.",
+    "focus": ["Refining work already underway", "Listening for useful feedback"],
+    "reflection": ["What is close to completion?", "What adjustment would strengthen it without overworking it?"],
+    "practices": ["Review rather than restart", "Finish one detail that has been lingering"]
+  },
+  "full-moon": {
+    "name": "Full Moon",
+    "summary": "The cycle reaches full illumination, bringing feelings, patterns and results into clearer view.",
+    "meaning": "The Full Moon is traditionally associated with culmination and revelation. What has been developing may become easier to recognise, celebrate or release.",
+    "energy": "Bright, expressive and heightened.",
+    "focus": ["Acknowledging what has come to light", "Celebrating progress without forcing certainty"],
+    "reflection": ["What can I see clearly now?", "What has reached a natural point of completion?"],
+    "practices": ["Record what the cycle has shown you", "Offer gratitude for one completed thing"]
+  },
+  "waning-gibbous": {
+    "name": "Waning Gibbous",
+    "summary": "After the peak, the light begins to soften and experience becomes something to share and understand.",
+    "meaning": "The Waning Gibbous Moon follows culmination with integration. It is a time to gather meaning from what occurred and allow insight to become useful wisdom.",
+    "energy": "Generous, reflective and integrating.",
+    "focus": ["Making sense of recent experience", "Sharing what may help someone else"],
+    "reflection": ["What have I learned that I did not know before?", "What insight is worth carrying forward?"],
+    "practices": ["Write down one lesson", "Share appreciation or useful knowledge"]
+  },
+  "last-quarter": {
+    "name": "Last Quarter",
+    "summary": "Another half-lit threshold asks what can be released, resolved or seen differently.",
+    "meaning": "The Last Quarter Moon invites reassessment as the cycle turns towards completion. It can highlight habits, obligations or stories that no longer need to travel onward.",
+    "energy": "Honest, clearing and reorienting.",
+    "focus": ["Releasing what has served its purpose", "Making peace with necessary change"],
+    "reflection": ["What am I ready to stop carrying?", "What would become possible if I let this go?"],
+    "practices": ["Clear one physical or mental space", "Complete an overdue conversation with care"]
+  },
+  "waning-crescent": {
+    "name": "Waning Crescent",
+    "summary": "The final light of the cycle encourages rest, surrender and trust in the quiet between chapters.",
+    "meaning": "The Waning Crescent Moon is a closing phase. Rather than demanding another push, it offers time to restore energy and let the past cycle settle before renewal.",
+    "energy": "Quiet, intuitive and releasing.",
+    "focus": ["Resting without needing to earn it", "Leaving space for what comes next"],
+    "reflection": ["What needs gentleness rather than another solution?", "Where can I allow an ending to be enough?"],
+    "practices": ["Reduce one unnecessary demand", "Spend a few minutes in deliberate stillness"]
+  }
+}

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import MoonPhaseCard from "../../components/moon/MoonPhaseCard.astro";
+import MoonPhaseVisual from "../../components/moon/MoonPhaseVisual.astro";
 import { site } from "../../config/site";
 import cards from "../../data/tarot/cards.json";
 import { astrologyReferenceHref } from "../../utils/astrology-links";
@@ -23,7 +23,7 @@ Astro.response.headers.set("Cache-Control", "private, no-store");
 ---
 <BaseLayout title="Daily Mirror" description="A daily tarot reflection from Sisters with Mirrors.">
   <section class="daily-mirror site-container" data-daily-mirror>
-    <header class="mirror-header"><div><p class="eyebrow">Daily Mirror · <span data-date>{day}</span></p><h1>Daily Mirror</h1></div><p>One card. One clear reflection for the day ahead.</p></header>
+    <header class="mirror-header"><div><p class="eyebrow">Daily Mirror · <span data-date>{day}</span></p><h1>Daily Mirror</h1></div><p>One clear reflection for the day ahead.</p></header>
     <article class="mirror-card framed-panel">
       <figure class:list={["tarot-art", { "tarot-art--reversed": isReversed }]} data-card-art><img data-card-image src={`/images/tarot/${card.image}`} alt={`${card.name} tarot card, ${orientation.toLowerCase()}`} width="500" height="850" /></figure>
       <div class="mirror-reading">
@@ -32,6 +32,7 @@ Astro.response.headers.set("Cache-Control", "private, no-store");
         <p class="message" data-meaning>{meaning}</p>
         <dl class="insights">
           <div class="insight insight--chakra"><dt>Chakra</dt><dd><a data-chakra-link href={chakraReferenceHref(card.chakra)} aria-label={`Learn about ${card.chakra}`}><img data-chakra-image src={`/images/chakras/${card.chakra_image}`} alt="" width="64" height="64" /><span><span data-chakra>{card.chakra}</span><small data-chakra-place>{card.chakra_place}</small></span></a></dd></div>
+          <div class="insight insight--moon"><dt>Today’s Moon</dt><dd><a href="/moon/" aria-label={`Learn about today’s ${moon.name} Moon phase`}><MoonPhaseVisual phase={moon.phase} label={moon.name} size="tiny" /><small>{moon.name}</small></a></dd></div>
           <div class="insight"><dt>Timing</dt><dd data-timing>{timing || "Beyond season"}</dd></div>
           <div class="insight"><dt>Question outcome</dt><dd class="answer" data-answer>{card.question_answer}</dd></div>
         </dl>
@@ -43,7 +44,6 @@ Astro.response.headers.set("Cache-Control", "private, no-store");
         <blockquote data-affirmation>“{card.affirmation}”</blockquote>
       </div>
     </article>
-    <MoonPhaseCard moon={moon} variant="daily" />
     <p class="daily-note">A reflective tool, not a prediction. Keep what resonates; leave what does not.</p>
   </section>
 </BaseLayout>
@@ -83,10 +83,10 @@ Astro.response.headers.set("Cache-Control", "private, no-store");
   .tarot-art--reversed img { transform: rotate(180deg); }
   .mirror-reading { position: relative; z-index: 1; } .mirror-reading h2 { margin: .15rem 0; font-size: clamp(2.5rem, 5vw, 4.25rem); }
   .card-meta { margin: 0; color: var(--swm-gold-light); font-size: .85rem; } .message { margin-block: var(--space-3); font-size: 1rem; }
-  .insights { display: grid; gap: .9rem; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; padding-block: var(--space-3); border-block: 1px solid var(--swm-border-soft); }
-  .insight { min-width: 0; } dt { color: var(--swm-gold); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; } dd { margin: .2rem 0 0; color: var(--swm-ivory); font-size: .88rem; } .insight--chakra a { display: flex; align-items: center; gap: .5rem; color: inherit; text-decoration: none; } .insight--chakra img { width: 2.5rem; height: 2.5rem; object-fit: contain; } dd small { display: block; color: var(--swm-text-muted); font-size: .72rem; } .answer { color: var(--swm-gold-light); text-transform: capitalize; }
+  .insights { display: grid; gap: .9rem; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; padding-block: var(--space-3); border-top: 1px solid var(--swm-border-soft); }
+  .insight { min-width: 0; } dt { color: var(--swm-gold); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; } dd { margin: .2rem 0 0; color: var(--swm-ivory); font-size: .88rem; } .insight--chakra a { display: flex; align-items: center; gap: .5rem; color: inherit; text-decoration: none; } .insight--chakra img { width: 2.5rem; height: 2.5rem; object-fit: contain; } .insight--moon a { display: grid; justify-items: start; gap: .2rem; width: fit-content; color: var(--swm-ivory); text-decoration: none; } .insight--moon a:hover { color: var(--swm-gold-light); } .insight--moon small { color: inherit; font-size: .82rem; } dd small { display: block; color: var(--swm-text-muted); font-size: .72rem; } .answer { color: var(--swm-gold-light); text-transform: capitalize; }
   .celestial { padding-top: var(--space-3); margin-top: var(--space-3); border-top: 1px solid var(--swm-border-soft); } :global(.celestial-groups) { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-3); } :global(.celestial-group > span) { display: block; margin-bottom: .5rem; color: var(--swm-gold); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; } :global(.celestial-group > div) { display: grid; gap: .65rem; } :global(.celestial-item) { display: grid; justify-items: start; gap: .2rem; width: fit-content; color: var(--swm-ivory); text-decoration: none; } :global(.celestial-item:hover) { color: var(--swm-gold-light); } :global(.celestial-item img) { width: 2.25rem; height: 2.25rem; object-fit: contain; } :global(.celestial-item small) { color: inherit; font-size: .82rem; }
   blockquote { margin: var(--space-3) 0 0; color: var(--swm-ivory); font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.65rem); font-style: italic; line-height: 1.25; }
   .daily-note { margin: var(--space-3) auto 0; color: var(--swm-text-muted); font-size: .75rem; text-align: center; }
-  @media (max-width: 42rem) { .mirror-header { align-items: start; flex-direction: column; gap: .35rem; } .mirror-header > p { text-align: left; } .mirror-card { grid-template-columns: minmax(0, 8.5rem) 1fr; gap: 1rem; padding: 1rem; } .tarot-art { height: min(39vh, 21rem); padding: .25rem; } .mirror-reading h2 { font-size: clamp(2.05rem, 9vw, 3rem); } .message { margin-block: .65rem; font-size: .87rem; line-height: 1.45; } .insights { gap: .55rem; padding-block: .65rem; } dd { font-size: .75rem; line-height: 1.25; } .insight--chakra img { width: 1.9rem; height: 1.9rem; } dd small { font-size: .66rem; } blockquote { margin-top: .75rem; font-size: 1.15rem; } :global(.celestial-groups) { gap: .65rem; } :global(.celestial-group > span) { font-size: .59rem; } :global(.celestial-item img) { width: 1.8rem; height: 1.8rem; } :global(.celestial-item small) { font-size: .72rem; } }
+  @media (max-width: 42rem) { .mirror-header { align-items: start; flex-direction: column; gap: .35rem; } .mirror-header > p { text-align: left; } .mirror-card { grid-template-columns: minmax(0, 8.5rem) 1fr; gap: 1rem; padding: 1rem; } .tarot-art { height: min(39vh, 21rem); padding: .25rem; } .mirror-reading h2 { font-size: clamp(2.05rem, 9vw, 3rem); } .message { margin-block: .65rem; font-size: .87rem; line-height: 1.45; } .insights { gap: .55rem; padding-block: .65rem; } dd { font-size: .75rem; line-height: 1.25; } .insight--chakra img { width: 1.9rem; height: 1.9rem; } .insight--moon :global(.moon-visual--tiny) { width: 1.8rem; } dd small, .insight--moon small { font-size: .66rem; } blockquote { margin-top: .75rem; font-size: 1.15rem; } :global(.celestial-groups) { gap: .65rem; } :global(.celestial-group > span) { font-size: .59rem; } :global(.celestial-item img) { width: 1.8rem; height: 1.8rem; } :global(.celestial-item small) { font-size: .72rem; } }
 </style>
