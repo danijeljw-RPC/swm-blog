@@ -1,0 +1,177 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Birth Chart"
+  description="Generate a natal chart from your date, time and place of birth, calculated in your browser."
+>
+  <section class="chart-intro site-container">
+    <p>Natal chart</p>
+    <h1>Map your sky.</h1>
+    <span aria-hidden="true"></span>
+    <p>
+      Enter your date, time and place of birth.
+    </p>
+  </section>
+
+  <section class="chart-workspace site-container">
+    <form id="birth-chart-form" class="framed-panel chart-form" autocomplete="off">
+      <div class="field">
+        <label for="birth-date">Date of birth</label>
+        <input type="date" id="birth-date" name="date" required />
+      </div>
+
+      <div class="field">
+        <label for="birth-time">Time of birth</label>
+        <input type="time" id="birth-time" name="time" required />
+      </div>
+
+      <div class="field place-field">
+        <label for="birth-place">Place of birth</label>
+        <input
+          type="text"
+          id="birth-place"
+          name="place"
+          placeholder="Start typing a city&hellip;"
+          required
+        />
+        <input type="hidden" id="birth-place-data" name="place-data" />
+        <div id="place-results" class="place-results" role="listbox" hidden></div>
+      </div>
+
+      <p id="chart-status" class="chart-status" role="alert" hidden></p>
+
+      <button type="submit" id="chart-submit" class="button">
+        Generate birth chart
+      </button>
+    </form>
+
+    <div class="chart-output">
+      <div id="chart-art" class="chart-art" hidden></div>
+      <div id="chart-summary" class="chart-summary" hidden></div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { initPlaceAutocomplete } from "../../../components/astrology/PlaceAutocomplete";
+  import { initBirthChartForm } from "../../../components/astrology/NatalChart";
+
+  const form = document.getElementById("birth-chart-form") as HTMLFormElement;
+  const placeInput = document.getElementById("birth-place") as HTMLInputElement;
+  const placeField = document.getElementById("birth-place-data") as HTMLInputElement;
+  const placeResults = document.getElementById("place-results") as HTMLElement;
+  const dateField = document.getElementById("birth-date") as HTMLInputElement;
+  const timeField = document.getElementById("birth-time") as HTMLInputElement;
+  const submitButton = document.getElementById("chart-submit") as HTMLButtonElement;
+  const statusEl = document.getElementById("chart-status") as HTMLElement;
+  const chartArt = document.getElementById("chart-art") as HTMLElement;
+  const chartSummary = document.getElementById("chart-summary") as HTMLElement;
+
+  initPlaceAutocomplete({
+    input: placeInput,
+    resultsContainer: placeResults,
+    hiddenField: placeField
+  });
+
+  initBirthChartForm({
+    form,
+    placeInput,
+    placeField,
+    dateField,
+    timeField,
+    submitButton,
+    statusEl,
+    chartArt,
+    chartSummary
+  });
+</script>
+
+<style>
+  .chart-intro { display: grid; grid-template-columns: minmax(0, 1fr) 4rem minmax(0, 1fr); align-items: end; gap: var(--space-3); padding-block: clamp(2rem, 7vw, 6rem) var(--space-5); }
+  .chart-intro > p:first-child { grid-column: 1 / -1; margin: 0; color: var(--swm-gold); font-size: .75rem; letter-spacing: .13em; text-transform: uppercase; }
+  .chart-intro h1 { margin: 0; font-size: clamp(3.2rem, 8vw, 6.5rem); }
+  .chart-intro > span { height: 9rem; background: linear-gradient(var(--swm-gold), transparent); clip-path: polygon(49% 0, 51% 0, 51% 100%, 49% 100%); }
+  .chart-intro > p:last-child { max-width: 27rem; margin: 0 0 .45rem; color: var(--swm-text-muted); }
+
+  .chart-workspace { display: grid; gap: var(--space-4); padding-block: var(--space-5) var(--space-7); }
+
+  .chart-form { position: relative; display: grid; gap: var(--space-3); padding: var(--space-4); }
+  .field { display: grid; gap: .4rem; }
+  .field label { color: var(--swm-gold-light); font-size: .78rem; letter-spacing: .04em; text-transform: uppercase; }
+  .field input[type="date"],
+  .field input[type="time"],
+  .field input[type="text"] {
+    padding: .7rem .85rem;
+    border: 1px solid var(--swm-border-soft);
+    border-radius: var(--radius-small);
+    color: var(--swm-text);
+    background: var(--swm-panel);
+  }
+  .field input:focus-visible { border-color: var(--swm-gold); }
+
+  .place-field { position: relative; }
+  .place-results {
+    position: absolute;
+    z-index: 10;
+    top: 100%;
+    left: 0;
+    display: grid;
+    overflow: hidden;
+    width: 100%;
+    margin-top: .3rem;
+    border: 1px solid var(--swm-border);
+    border-radius: var(--radius-small);
+    background: var(--swm-panel-raised);
+    box-shadow: 0 1rem 2rem rgb(0 0 0 / 45%);
+  }
+  .place-results :global(.place-option) {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: .6rem .85rem;
+    border: 0;
+    border-bottom: 1px solid var(--swm-border-soft);
+    color: var(--swm-text);
+    font: inherit;
+    text-align: left;
+    background: transparent;
+    cursor: pointer;
+  }
+  .place-results :global(.place-option:last-child) { border-bottom: 0; }
+  .place-results :global(.place-option:hover) { background: rgb(169 136 83 / 12%); }
+  .place-results :global(.place-option-label) { color: var(--swm-ivory); font-size: .92rem; }
+  .place-results :global(.place-option small) { color: var(--swm-text-muted); font-size: .72rem; white-space: nowrap; }
+
+  .chart-status { margin: 0; padding: .65rem .85rem; border: 1px solid var(--swm-danger); border-radius: var(--radius-small); color: var(--swm-danger); font-size: .84rem; background: rgb(214 167 167 / 8%); }
+
+  .chart-output { display: grid; gap: var(--space-3); }
+  .chart-art { display: grid; place-items: center; padding: var(--space-3); border: 1px solid var(--swm-border-soft); background: radial-gradient(circle, rgb(169 136 83 / 10%), transparent 68%); }
+  .chart-art :global(svg) { width: 100%; max-width: 32rem; height: auto; }
+  .chart-art :global(.zodiac-outer) { fill: none; stroke: var(--swm-border); stroke-width: 1; }
+  .chart-art :global(.house-line) { stroke: rgb(215 204 184 / 22%); stroke-width: 1; }
+  .chart-art :global(.aspect) { stroke-width: 1; opacity: .55; }
+  .chart-art :global(.aspect-trine),
+  .chart-art :global(.aspect-sextile) { stroke: var(--swm-gold-light); }
+  .chart-art :global(.aspect-square),
+  .chart-art :global(.aspect-opposition) { stroke: var(--swm-danger); }
+  .chart-art :global(.aspect-conjunction) { stroke: var(--swm-ivory); }
+  .chart-art :global(.planet) { fill: var(--swm-ivory); font-size: 1.6rem; }
+
+  .chart-summary { display: grid; gap: var(--space-3); padding: var(--space-4); border: 1px solid var(--swm-border-soft); background: rgb(13 11 17 / 72%); }
+  .chart-summary :global(.chart-headline) { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+  .chart-summary :global(.chart-headline span) { display: block; color: var(--swm-gold); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+  .chart-summary :global(.chart-headline strong) { color: var(--swm-ivory); font-family: var(--font-display); font-size: 1.6rem; font-weight: 500; }
+  .chart-summary :global(.planet-table) { width: 100%; border-collapse: collapse; font-size: .86rem; }
+  .chart-summary :global(.planet-table th) { padding: .4rem .3rem; color: var(--swm-gold-light); font-size: .7rem; text-align: left; text-transform: uppercase; border-bottom: 1px solid var(--swm-border-soft); }
+  .chart-summary :global(.planet-table td) { padding: .45rem .3rem; color: var(--swm-text); border-bottom: 1px solid var(--swm-border-soft); }
+  .chart-summary :global(.aspect-list) { display: grid; gap: .35rem; margin: 0; padding: 0; list-style: none; }
+  .chart-summary :global(.aspect-list li) { color: var(--swm-text-muted); font-size: .84rem; }
+  .chart-summary :global(.aspect-symbol) { display: inline-block; width: 1.2rem; color: var(--swm-gold); text-align: center; }
+  .chart-summary :global(.aspect-list small) { margin-left: .35rem; color: var(--swm-text-muted); font-size: .72rem; }
+
+  @media (min-width: 64rem) { .chart-workspace { grid-template-columns: minmax(0, 22rem) minmax(0, 1fr); align-items: start; } }
+  @media (max-width: 41.99rem) { .chart-intro { grid-template-columns: 1fr; } .chart-intro > span { display: none; } }
+</style>

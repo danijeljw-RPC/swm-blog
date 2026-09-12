@@ -22,6 +22,8 @@
     "@fontsource/inter": "^5.2.8",
     "@fortawesome/free-brands-svg-icons": "^7.3.1",
     "@fortawesome/free-regular-svg-icons": "^7.3.1",
+    "@js-temporal/polyfill": "^0.5.1",
+    "@swisseph/browser": "^1.3.1",
     "astro": "7.3.2",
     "simple-icons": "^16.30.0"
   },

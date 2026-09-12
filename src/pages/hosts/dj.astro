@@ -1,12 +1,94 @@
 ---
 import hosts from "../../data/hosts.json";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+
 const host = hosts.find(({ id }) => id === "dj")!;
 ---
-<BaseLayout title={host.name} description={`${host.name}, ${host.role} of Sisters with Mirrors.`}>
-  <section class="page-section site-container profile">
+
+<BaseLayout
+  title={host.name}
+  description="Meet DJ, host of Sisters with Mirrors: intuitive question-puller, computer scientist and lifelong explorer of dreams, aliens, energy and consciousness."
+>
+  <section class="page-section site-container profile-hero">
     <div class="monogram" aria-hidden="true">D</div>
-    <div><p class="role">{host.role}</p><h1>{host.name}</h1><p class="fixture-notice">Profile placeholder</p><p>Biography, portrait and profile links have not yet been supplied. This page is ready for those materials without substituting invented details.</p><a href="/hosts/">View both hosts</a></div>
+    <div class="introduction">
+      <p class="role">{host.role} · Sisters with Mirrors</p>
+      <h1>{host.name}</h1>
+      <p class="lede">{host.shortBio}</p>
+      <p class="signature">Stronger than a moving cheeseburger.</p>
+    </div>
   </section>
+
+  <article class="site-container biography">
+    <section aria-labelledby="about-dj">
+      <p class="eyebrow">About the host</p>
+      <h2 id="about-dj">About DJ</h2>
+      <p>DJ is an Adelaide-based computer scientist, night owl, devoted husband and professional clown—professionally. When he is not recording Sisters with Mirrors, he is usually coding, disappearing down a strange YouTube rabbit hole or drinking coffee strong enough to qualify as a personality trait.</p>
+      <p>His spiritual path did not arrive as one dramatic awakening. It has always been there. Growing up, DJ knew he experienced the world differently, through sudden impressions, unexplained moments of hearing and an intuition that would arrive with absolute certainty. His mum told him those abilities ran in the family. As the experiences accumulated, he did not so much discover that side of himself as grow into it.</p>
+    </section>
+
+    <section aria-labelledby="memories-future">
+      <h2 id="memories-future">Memories of the future</h2>
+      <p>DJ describes intuition as borrowing memories from his future self. Sometimes it is wonderfully mundane: an overwhelming urge to take the black pen he never uses, only to be handed a form later that day marked “black biro only”. At other times it is an awareness of where an entire chain of events is heading—not every detail, but the shape of the story before it unfolds.</p>
+      <p>To DJ, it can resemble pattern recognition without any visible point of reference. The knowledge cannot be summoned on demand; it appears when it appears. He can ignore it, of course, but experience has taught him that he will probably regret doing so.</p>
+    </section>
+
+    <section aria-labelledby="dreams-aliens-energy">
+      <h2 id="dreams-aliens-energy">Dreams, aliens and energy</h2>
+      <p>Ancient mysteries, the Higher Self, Source, synchronicity and other dimensions all pull at DJ’s curiosity, but dreams, aliens and energy sit at the centre of it. Start with aliens and he is already on the bus; from there, the conversation can head for the fourth, fifth and sixth dimensions.</p>
+      <p>Dreams carry particular meaning for him. On the night his mum passed away, DJ dreamt that they were together, talking. He woke to learn that she had died only minutes earlier. He cannot remember the conversation, but remembers it as comforting for him and peaceful for her. In DJ’s experience, dreams can be a meeting place, a way to explore the inner self and a doorway into questions about consciousness, the astral plane and what it means to return Home.</p>
+      <p>He is still full of questions. Does consciousness return as the self we know here, or are we fragments of a Higher Self sending the spiritual equivalent of a fax back Home? What do psychics actually experience when they hear, see or feel spiritual energy? And why did Father Christmas fail to deliver the UFO DJ requested when he was eight?</p>
+    </section>
+
+    <section aria-labelledby="on-the-show">
+      <h2 id="on-the-show">On Sisters with Mirrors</h2>
+      <p>DJ brings a blend of spirituality, pattern-seeking, poetic justice and truth, delivered with enough humour to stop the mysteries of existence from becoming too solemn. Warren calls him “the crazy bus driver driving the bus of the happy boys and girls”. DJ does not disagree.</p>
+      <p>He considers himself intuitive above all else, as well as a star seed stepping into the work of a light worker. These are his beliefs and lived experiences, offered openly rather than as instructions for anyone else. DJ wants listeners to take only what resonates: an answer, a new question, a little clarity or simply a laugh. Curiosity matters more than certainty.</p>
+    </section>
+
+    <aside class="quick-facts framed-panel" aria-labelledby="quick-facts">
+      <div>
+        <p class="eyebrow">Behind the mirror</p>
+        <h2 id="quick-facts">A little more DJ</h2>
+        <p>President of the Intergalactic Consortium of Laughing at Oneself.</p>
+      </div>
+      <dl>
+        <div><dt>Star sign</dt><dd>Aries</dd></div>
+        <div><dt>Element</dt><dd>Fire</dd></div>
+        <div><dt>Planet</dt><dd>Mars</dd></div>
+        <div><dt>Tarot or astrology</dt><dd>Tarot</dd></div>
+        <div><dt>Ghosts or aliens</dt><dd>Aliens. Always aliens.</dd></div>
+        <div><dt>Logic or intuition</dt><dd>Intuition</dd></div>
+        <div><dt>Plan or improvise</dt><dd>Wing it</dd></div>
+        <div><dt>Sunrise or midnight</dt><dd>Midnight</dd></div>
+        <div><dt>Coffee or tea</dt><dd>Coffee. Strong.</dd></div>
+        <div><dt>Cats or dogs</dt><dd>Cats—they’re mysterious and bitchy. Just like DJ.</dd></div>
+      </dl>
+    </aside>
+
+    <a class="back-link" href="/hosts/">← Meet both hosts</a>
+  </article>
 </BaseLayout>
-<style>.profile { display: grid; gap: var(--space-5); max-width: 65rem; } .monogram { display: grid; min-height: 22rem; place-items: center; border: 1px solid var(--swm-border); color: var(--swm-gold); font-family: var(--font-display); font-size: 10rem; background: radial-gradient(circle, var(--swm-purple), var(--swm-bg)); } .role { color: var(--swm-gold-light); } @media (min-width: 52rem) { .profile { grid-template-columns: minmax(18rem, .8fr) 1fr; align-items: center; } }</style>
+
+<style>
+  .profile-hero { display: grid; gap: var(--space-5); max-width: 65rem; align-items: center; }
+  .monogram { display: grid; min-height: 22rem; place-items: center; border: 1px solid var(--swm-border); color: var(--swm-gold); font-family: var(--font-display); font-size: 10rem; background: radial-gradient(circle, var(--swm-purple), var(--swm-bg)); }
+  .role, .eyebrow { color: var(--swm-gold-light); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; }
+  .lede { max-width: 38rem; color: var(--swm-ivory); font-size: clamp(1.15rem, 2vw, 1.4rem); }
+  .signature { margin-bottom: 0; color: var(--swm-text-muted); font-style: italic; }
+  .biography { width: min(calc(100% - 2rem), 48rem); padding-bottom: var(--space-7); }
+  .biography > section { padding-block: var(--space-4); border-top: 1px solid var(--swm-border-soft); }
+  .biography h2 { font-size: clamp(2rem, 5vw, 3.25rem); }
+  .quick-facts { display: grid; gap: var(--space-4); margin-block: var(--space-5); padding: var(--space-5); }
+  .quick-facts > * { position: relative; z-index: 1; }
+  .quick-facts dl { display: grid; gap: 0; margin: 0; }
+  .quick-facts dl div { display: grid; grid-template-columns: minmax(8rem, .8fr) 1fr; gap: var(--space-2); padding-block: .7rem; border-top: 1px solid var(--swm-border-soft); }
+  .quick-facts dt { color: var(--swm-text-muted); }
+  .quick-facts dd { margin: 0; color: var(--swm-ivory); }
+  .back-link { display: inline-block; margin-top: var(--space-3); }
+  @media (min-width: 52rem) {
+    .profile-hero { grid-template-columns: minmax(18rem, .8fr) 1fr; }
+    .quick-facts { grid-template-columns: .8fr 1.2fr; }
+  }
+  @media (max-width: 34rem) { .quick-facts dl div { grid-template-columns: 1fr; gap: 0; } }
+</style>
