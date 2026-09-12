@@ -40,3 +40,10 @@ test("birth chart page exposes the result region and PDF control", async () => {
   assert.match(page, /Download your chart guide/);
   assert.match(page, /symbolic and reflective tradition/);
 });
+
+test("birth chart controller prepares and reports PDF downloads", async () => {
+  const controller = await readFile("src/components/astrology/NatalChart.ts", "utf8");
+  assert.match(controller, /downloadBirthChartPdf/);
+  assert.match(controller, /Preparing guide…/);
+  assert.match(controller, /Your chart is still available, but the PDF could not be created/);
+});
