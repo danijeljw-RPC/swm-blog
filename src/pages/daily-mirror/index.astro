@@ -1,11 +1,14 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import MoonPhaseCard from "../../components/moon/MoonPhaseCard.astro";
 import { site } from "../../config/site";
 import cards from "../../data/tarot/cards.json";
 import { astrologyReferenceHref } from "../../utils/astrology-links";
 import { chakraReferenceHref } from "../../utils/astrology-reference";
 import { getDateInTimeZone } from "../../utils/daily-reflections";
+import { getMoonPhaseViewModel } from "../../lib/moon/moon-phase-content";
 
+const moon = getMoonPhaseViewModel(Astro.request);
 const day = getDateInTimeZone(new Date(), site.timezone);
 const hashDay = (value: string) => [...value].reduce((total, character) => ((total * 31) + character.charCodeAt(0)) >>> 0, 7);
 const card = cards[hashDay(day) % cards.length];
@@ -16,6 +19,7 @@ const timing = [card.timing.season, card.timing.zodiac_association].filter(Boole
 const planets = card.planet ?? [];
 const zodiacSigns = card.zodiac_sign ?? [];
 const zodiacElements = card.zodiac_elements ?? [];
+Astro.response.headers.set("Cache-Control", "private, no-store");
 ---
 <BaseLayout title="Daily Mirror" description="A daily tarot reflection from Sisters with Mirrors.">
   <section class="daily-mirror site-container" data-daily-mirror>
@@ -39,6 +43,7 @@ const zodiacElements = card.zodiac_elements ?? [];
         <blockquote data-affirmation>“{card.affirmation}”</blockquote>
       </div>
     </article>
+    <MoonPhaseCard moon={moon} variant="daily" />
     <p class="daily-note">A reflective tool, not a prediction. Keep what resonates; leave what does not.</p>
   </section>
 </BaseLayout>
