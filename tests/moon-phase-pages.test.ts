@@ -26,3 +26,23 @@ test("Daily Mirror renders the same request-local Moon after its tarot reading",
   assert.match(source, /<article class="mirror-card framed-panel">[\s\S]*<\/article>\s*<MoonPhaseCard moon=\{moon\} variant="daily" \/>/);
   assert.match(source, /<MoonPhaseCard moon=\{moon\} variant="daily" \/>[\s\S]*<p class="daily-note">/);
 });
+
+test("dedicated Moon page renders visitor-local phase content without global caching", async () => {
+  const source = await readSource("../src/pages/moon/index.astro");
+
+  assert.match(source, /<BaseLayout\s+title="Today’s Moon Phase"/);
+  assert.match(source, /Discover today’s Moon phase and explore its meaning, energy, focus and reflection through Sisters with Mirrors\./);
+  assert.match(source, /const moon = getMoonPhaseViewModel\(Astro\.request\)/);
+  assert.match(source, /Astro\.response\.headers\.set\("Cache-Control", "private, no-store"\)/);
+  assert.match(source, /<MoonPhaseVisual phase=\{moon\.phase\} label=\{moon\.name\} size="large" \/>/);
+  assert.match(source, /Today’s Moon · \{moon\.date\}/);
+  assert.match(source, /<h1>\{moon\.name\}<\/h1>/);
+  assert.match(source, />Meaning</);
+  assert.match(source, />Energy</);
+  assert.match(source, />What to focus on</);
+  assert.match(source, />Reflection</);
+  assert.match(source, />Practices</);
+  assert.match(source, /moon\.focus\.map/);
+  assert.match(source, /moon\.reflection\.map/);
+  assert.match(source, /moon\.practices\.map/);
+});

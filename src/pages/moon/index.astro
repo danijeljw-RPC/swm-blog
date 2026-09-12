@@ -1,0 +1,84 @@
+---
+import MoonPhaseVisual from "../../components/moon/MoonPhaseVisual.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getMoonPhaseViewModel } from "../../lib/moon/moon-phase-content";
+
+const moon = getMoonPhaseViewModel(Astro.request);
+Astro.response.headers.set("Cache-Control", "private, no-store");
+---
+
+<BaseLayout
+  title="Today’s Moon Phase"
+  description="Discover today’s Moon phase and explore its meaning, energy, focus and reflection through Sisters with Mirrors."
+>
+  <section class="moon-hero site-container">
+    <div class="moon-hero__visual">
+      <MoonPhaseVisual phase={moon.phase} label={moon.name} size="large" />
+    </div>
+    <header class="moon-hero__copy">
+      <p class="eyebrow">Today’s Moon · {moon.date}</p>
+      <h1>{moon.name}</h1>
+      <p class="summary">{moon.summary}</p>
+    </header>
+  </section>
+
+  <article class="moon-reading reading-column">
+    <section>
+      <p class="section-kicker">The phase</p>
+      <h2>Meaning</h2>
+      <p>{moon.meaning}</p>
+    </section>
+    <section>
+      <p class="section-kicker">The atmosphere</p>
+      <h2>Energy</h2>
+      <p>{moon.energy}</p>
+    </section>
+    <section>
+      <p class="section-kicker">For today</p>
+      <h2>What to focus on</h2>
+      <ul>{moon.focus.map((item) => <li>{item}</li>)}</ul>
+    </section>
+    <section>
+      <p class="section-kicker">Look into the mirror</p>
+      <h2>Reflection</h2>
+      <ul>{moon.reflection.map((item) => <li>{item}</li>)}</ul>
+    </section>
+    <section>
+      <p class="section-kicker">Keep it grounded</p>
+      <h2>Practices</h2>
+      <ul>{moon.practices.map((item) => <li>{item}</li>)}</ul>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .moon-hero {
+    display: grid;
+    min-height: min(42rem, calc(100vh - 5rem));
+    align-items: center;
+    gap: clamp(var(--space-4), 7vw, var(--space-7));
+    padding-block: var(--space-6);
+  }
+  .moon-hero__visual { display: grid; place-items: center; }
+  .moon-hero__copy { max-width: 40rem; }
+  .eyebrow, .section-kicker {
+    margin: 0 0 var(--space-2);
+    color: var(--swm-gold);
+    font-size: .72rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+  h1 { margin-bottom: var(--space-3); font-size: clamp(3.5rem, 9vw, 7rem); }
+  .summary { margin: 0; color: var(--swm-text-muted); font-family: var(--font-display); font-size: clamp(1.25rem, 2.5vw, 1.75rem); line-height: 1.45; }
+  .moon-reading { display: grid; gap: 0; padding: 0 1rem var(--space-7); }
+  .moon-reading section { padding-block: var(--space-5); border-top: 1px solid var(--swm-border-soft); }
+  .moon-reading section:last-child { border-bottom: 1px solid var(--swm-border-soft); }
+  .moon-reading h2 { margin-bottom: var(--space-2); font-size: clamp(2rem, 4vw, 3.1rem); }
+  .moon-reading p:not(.section-kicker), .moon-reading ul { color: var(--swm-text-muted); }
+  .moon-reading ul { display: grid; gap: .5rem; padding-left: 1.25rem; margin-bottom: 0; }
+  .moon-reading li::marker { color: var(--swm-gold); }
+  @media (min-width: 48rem) {
+    .moon-hero { grid-template-columns: minmax(18rem, .85fr) minmax(0, 1.15fr); }
+    .moon-reading { padding-inline: 0; }
+  }
+</style>
