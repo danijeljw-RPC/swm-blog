@@ -102,10 +102,10 @@ Test these checked literal pairs one millisecond before and at each boundary:
 
 ```ts
 const boundaries = [
-  ["2000-01-12T07:07:15.538Z", "waxing-crescent", "2000-01-12T07:07:15.539Z", "first-quarter"],
-  ["2000-01-19T16:18:16.257Z", "waxing-gibbous", "2000-01-19T16:18:16.258Z", "full-moon"],
-  ["2000-01-27T01:29:16.976Z", "waning-gibbous", "2000-01-27T01:29:16.977Z", "last-quarter"],
-  ["2000-02-03T10:40:17.696Z", "waning-crescent", "2000-02-03T10:40:17.697Z", "new-moon"],
+  ["2000-01-12T07:07:15.539Z", "waxing-crescent", "2000-01-12T07:07:15.540Z", "first-quarter"],
+  ["2000-01-19T16:18:16.258Z", "waxing-gibbous", "2000-01-19T16:18:16.259Z", "full-moon"],
+  ["2000-01-27T01:29:16.977Z", "waning-gibbous", "2000-01-27T01:29:16.978Z", "last-quarter"],
+  ["2000-02-03T10:40:17.697Z", "waning-crescent", "2000-02-03T10:40:17.698Z", "new-moon"],
 ] as const;
 ```
 
