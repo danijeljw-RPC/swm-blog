@@ -11,6 +11,8 @@ test("homepage renders the request-local Moon inside Explore the mirror without 
   assert.match(source, /const moon = getMoonPhaseViewModel\(Astro\.request\)/);
   assert.match(source, /Astro\.response\.headers\.set\("Cache-Control", "private, no-store"\)/);
   assert.match(source, /<section class="mirror-preview page-section">[\s\S]*<MoonPhaseCard moon=\{moon\} variant="home" \/>[\s\S]*<\/section>/);
+  assert.match(source, /<div class="moon-card-slot">\s*<MoonPhaseCard moon=\{moon\} variant="home" \/>\s*<\/div>/);
+  assert.match(source, /\.moon-card-slot \{ grid-column: 1 \/ -1; \}/);
   assert.match(source, /mirror-tile--tarot/);
   assert.match(source, /mirror-tile--colour/);
   assert.match(source, /mirror-tile--number/);

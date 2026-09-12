@@ -274,7 +274,7 @@ Expected: FAIL because neither page integrates the Moon feature.
 
 - [ ] **Step 3: Integrate the homepage card**
 
-In frontmatter, create `const moon = getMoonPhaseViewModel(Astro.request)` and set the response header. Add `<MoonPhaseCard moon={moon} variant="home" />` inside “Explore the mirror.” Retain all four existing tiles, use two columns for the grid from 42rem, and use five equal columns from 64rem so the desktop row remains balanced without squeezing tablet cards.
+In frontmatter, create `const moon = getMoonPhaseViewModel(Astro.request)` and set the response header. Add `<MoonPhaseCard moon={moon} variant="home" />` inside “Explore the mirror.” Retain the existing four-column tile row at 42rem and place the richer Moon card in a full-width grid row beneath it so its summary stays readable at desktop and tablet sizes.
 
 - [ ] **Step 4: Integrate the Daily Mirror card**
 
