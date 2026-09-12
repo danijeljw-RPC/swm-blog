@@ -1,0 +1,58 @@
+---
+import type { MoonPhaseViewModel } from "../../lib/moon/moon-phase-content";
+import MoonPhaseVisual from "./MoonPhaseVisual.astro";
+
+interface Props {
+  moon: MoonPhaseViewModel;
+  variant?: "home" | "daily";
+}
+
+const { moon, variant = "home" } = Astro.props;
+---
+
+<a class:list={["moon-card", "framed-panel", `moon-card--${variant}`]} href="/moon/">
+  <MoonPhaseVisual phase={moon.phase} label={moon.name} />
+  <span class="moon-card__copy">
+    <span class="moon-card__eyebrow">Today’s Moon</span>
+    <h2>{moon.name}</h2>
+    <span class="moon-card__summary">{moon.summary}</span>
+    <span class="moon-card__cta">Explore the Moon phase <span aria-hidden="true">→</span></span>
+  </span>
+</a>
+
+<style>
+  .moon-card {
+    display: grid;
+    position: relative;
+    overflow: hidden;
+    min-height: 14rem;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    color: var(--swm-text);
+    text-decoration: none;
+    grid-template-columns: auto minmax(0, 1fr);
+    transition: border-color 180ms ease, background 180ms ease;
+  }
+  .moon-card > * { position: relative; z-index: 1; }
+  .moon-card__copy { display: block; }
+  .moon-card__eyebrow {
+    display: block;
+    margin-bottom: .2rem;
+    color: var(--swm-gold);
+    font-size: .68rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+  }
+  h2 { margin: 0 0 .45rem; font-size: clamp(1.85rem, 4vw, 2.65rem); }
+  .moon-card__summary { display: block; color: var(--swm-text-muted); font-size: .86rem; line-height: 1.55; }
+  .moon-card__cta { display: block; margin-top: var(--space-2); color: var(--swm-gold-light); font-size: .76rem; font-weight: 600; }
+  .moon-card:hover { border-color: var(--swm-gold); background: linear-gradient(145deg, rgb(40 20 43 / 90%), rgb(7 7 11 / 94%)); }
+  .moon-card--home { height: 100%; }
+  .moon-card--daily { max-width: 65rem; margin: var(--space-4) auto 0; }
+  @media (max-width: 34rem) {
+    .moon-card { grid-template-columns: 5.5rem minmax(0, 1fr); padding: var(--space-3); }
+    .moon-card__summary { font-size: .78rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { .moon-card { transition: none; } }
+</style>
