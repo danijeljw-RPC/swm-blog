@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import numerology from "../../data/numerology.json";
+
+interface Source { name: string; url: string; }
+interface NumerologyEntry {
+  number: number; digits: number[]; digitSum: number; masterNumber: number | null; reduction: number; title: string;
+  keywords: string[]; numerology: Record<string, string[]>; spiritualMeaning: string; energy: string;
+  strengths: string[]; challenges: string[]; message: string; reflection: string; sources: Source[];
+}
+export function getStaticPaths() {
+  return (numerology as unknown as NumerologyEntry[]).map((entry) => ({ params: { number: String(entry.number) }, props: { entry } }));
+}
+export const prerender = true;
+const numbers = numerology as unknown as NumerologyEntry[];
+const { entry } = Astro.props as { entry: NumerologyEntry };
+const previous = entry.number > 1 ? entry.number - 1 : 100;
+const next = entry.number < 100 ? entry.number + 1 : 1;
+---
+
+<BaseLayout title={`Number ${entry.number}: ${entry.title}`} description={entry.spiritualMeaning}>
+  <article class="number-detail site-container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/numerology/">Numerology</a><span aria-hidden="true">/</span><span>Number {entry.number}</span></nav>
+    <header class="detail-hero">
+      <div class="number-art" aria-hidden="true"><span>{entry.number}</span><i></i><i></i></div>
+      <div class="hero-copy"><p class="eyebrow">Number {entry.number}</p><h1>{entry.title}</h1><p class="lead">{entry.spiritualMeaning}</p><ul class="tag-list">{entry.keywords.map((keyword) => <li>{keyword}</li>)}</ul></div>
+    </header>
+    <div class="detail-body">
+      <section class="reference-section intro-section"><p class="eyebrow">The energy of {entry.number}</p><h2>{entry.energy}</h2><p>Its digits are {entry.digits.join(" · ")}, with a digit sum of {entry.digitSum}, reducing to {entry.reduction}{entry.masterNumber ? ` and carrying master number ${entry.masterNumber}` : ""}.</p></section>
+      <section class="reference-section"><div class="trait-grid"><div class="trait-panel"><h2>Strengths</h2><ul>{entry.strengths.map((item) => <li>{item}</li>)}</ul></div><div class="trait-panel trait-panel--shadow"><h2>Challenges</h2><ul>{entry.challenges.map((item) => <li>{item}</li>)}</ul></div></div></section>
+      <section class="reference-section"><p class="eyebrow">A message for you</p><p class="prompt">{entry.message}</p></section>
+      <section class="reference-section"><p class="eyebrow">A moment to reflect</p><p class="prompt">{entry.reflection}</p></section>
+      <section class="reference-section"><p class="eyebrow">Numerology notes</p><div class="notes-grid">{Object.entries(entry.numerology).map(([key, values]) => <div><h3>{key}</h3><ul class="tag-list">{values.map((value) => <li>{value}</li>)}</ul></div>)}</div></section>
+      <section class="reference-section sources"><p class="eyebrow">Further reading</p><div class="source-list">{entry.sources.map((source) => <a href={source.url} target="_blank" rel="noopener noreferrer">{source.name}<span aria-hidden="true">↗</span></a>)}</div></section>
+      <nav class="number-nav" aria-label="Browse numerology numbers"><a href={`/numerology/${previous}/`}>← Number {previous}</a><a href="/numerology/">All numbers</a><a href={`/numerology/${next}/`}>Number {next} →</a></nav>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .number-detail { padding-block: var(--space-3) var(--space-7); }
+  .breadcrumbs { display: flex; gap: .55rem; padding-block: var(--space-2) var(--space-4); color: var(--swm-text-muted); font-size: .75rem; }
+  .breadcrumbs a { color: inherit; }
+  .detail-hero { display: grid; align-items: center; gap: clamp(2rem, 7vw, 6rem); min-height: 31rem; padding: clamp(1.5rem, 5vw, 4.5rem); border-block: 1px solid var(--swm-border); background: radial-gradient(circle at 18% 50%, rgb(169 136 83 / 10%), transparent 25rem); }
+  .number-art { position: relative; display: grid; min-height: 18rem; place-items: center; }
+  .number-art i { position: absolute; width: min(72vw, 20rem); aspect-ratio: 1; border: 1px solid rgb(169 136 83 / 28%); border-radius: 50%; }
+  .number-art i:last-child { width: min(58vw, 16rem); border-style: dotted; transform: rotate(17deg); }
+  .number-art span { position: relative; z-index: 1; color: var(--swm-gold-light); font-family: var(--font-display); font-size: clamp(8rem, 22vw, 14rem); line-height: .7; text-shadow: 0 1rem 2rem rgb(0 0 0 / 45%); }
+  .eyebrow { margin: 0 0 var(--space-2); color: var(--swm-gold); font-size: .73rem; letter-spacing: .13em; text-transform: uppercase; }
+  h1 { margin-bottom: var(--space-3); font-size: clamp(3rem, 7vw, 6rem); line-height: .9; }
+  .lead { max-width: 38rem; color: var(--swm-ivory); font-family: var(--font-display); font-size: clamp(1.25rem, 2.4vw, 1.7rem); line-height: 1.4; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: .45rem; padding: 0; margin: var(--space-3) 0 0; list-style: none; }
+  .tag-list li { padding: .32rem .7rem; border: 1px solid var(--swm-border-soft); color: var(--swm-text-muted); font-size: .7rem; }
+  .detail-body { width: min(100%, 66rem); margin: var(--space-6) auto 0; }
+  .reference-section { padding-block: var(--space-4); border-bottom: 1px solid var(--swm-border-soft); }
+  .reference-section h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
+  .reference-section > p:not(.eyebrow) { max-width: 48rem; color: var(--swm-text-muted); }
+  .intro-section h2 { max-width: 48rem; margin-bottom: var(--space-2); }
+  .trait-grid, .notes-grid { display: grid; gap: var(--space-3); }
+  .trait-panel { padding: var(--space-4); border-left: 1px solid var(--swm-gold); background: rgb(169 136 83 / 5%); }
+  .trait-panel--shadow { border-color: var(--swm-purple); background: rgb(40 20 43 / 28%); }
+  .trait-panel h2 { margin: 0 0 var(--space-2); font-size: 2.2rem; }
+  .trait-panel ul { display: grid; gap: .65rem; padding-left: 1.1rem; color: var(--swm-text-muted); }
+  .prompt { max-width: 43rem; margin: 0 0 var(--space-3); color: var(--swm-ivory) !important; font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.15rem); line-height: 1.35; }
+  .notes-grid > div { padding: var(--space-3); border: 1px solid var(--swm-border-soft); }
+  .notes-grid h3 { margin: 0; color: var(--swm-gold-light); font-family: var(--font-display); font-size: 2rem; }
+  .source-list { display: grid; gap: .7rem; max-width: 32rem; }
+  .source-list a { display: flex; justify-content: space-between; padding-block: .65rem; border-bottom: 1px solid var(--swm-border-soft); text-decoration: none; }
+  .source-list span { color: var(--swm-gold); }
+  .number-nav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-top: var(--space-4); font-size: .78rem; }
+  @media (min-width: 48rem) { .detail-hero { grid-template-columns: minmax(17rem, .8fr) 1.2fr; } .trait-grid, .notes-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>

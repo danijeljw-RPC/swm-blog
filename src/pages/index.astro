@@ -5,17 +5,20 @@ import SectionHeading from "../components/common/SectionHeading.astro";
 import EpisodeCard from "../components/episodes/EpisodeCard.astro";
 import EpisodeHero from "../components/episodes/EpisodeHero.astro";
 import HostCard from "../components/hosts/HostCard.astro";
+import MoonPhaseCard from "../components/moon/MoonPhaseCard.astro";
 import { site } from "../config/site";
 import { getCurrentZodiacSign } from "../config/zodiac";
 import hosts from "../data/hosts.json";
 import cards from "../data/tarot/cards.json";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getMoonPhaseViewModel } from "../lib/moon/moon-phase-content";
 import { getColourOfTheDay, getDateInTimeZone, getNumberOfTheDay } from "../utils/daily-reflections";
 import { getPublishedEpisodes } from "../utils/episodes";
 
 const episodes = getPublishedEpisodes(await getCollection("episodes"));
 const latestEpisode = episodes[0];
 const recentEpisodes = episodes.slice(1, 4);
+const moon = getMoonPhaseViewModel(Astro.request);
 const date = getDateInTimeZone(new Date(), site.timezone);
 const hashDay = (value: string) => [...value].reduce((total, character) => ((total * 31) + character.charCodeAt(0)) >>> 0, 7);
 const tarotCard = cards[hashDay(date) % cards.length];
@@ -24,6 +27,7 @@ const [colourOfTheDay, numberOfTheDay] = await Promise.all([
   getColourOfTheDay(new Date(), site.timezone),
   getNumberOfTheDay(new Date(), site.timezone),
 ]);
+Astro.response.headers.set("Cache-Control", "private, no-store");
 ---
 
 <BaseLayout>
@@ -63,16 +67,19 @@ const [colourOfTheDay, numberOfTheDay] = await Promise.all([
     <div class="site-container">
       <SectionHeading title="Explore the mirror" introduction="Small daily reflections, refreshed for the Sisters with Mirrors calendar day." align="center" />
       <div class="mirror-grid">
-        <a class="mirror-tile mirror-tile--tarot" href="/daily-mirror/"><span>Tarot</span><span class="mirror-tile__value"><strong>{tarotCard.name}</strong></span><small class="mirror-tile__detail" aria-hidden="true"></small></a>
+        <a class="mirror-tile mirror-tile--tarot" href="/daily-mirror/"><span>Tarot</span><span class="mirror-tile__value"><img src={`/images/tarot/${tarotCard.image}`} alt={`${tarotCard.name} tarot card`} width="500" height="850" /><strong>{tarotCard.name}</strong></span><small class="mirror-tile__detail" aria-hidden="true"></small></a>
         <a class="mirror-tile mirror-tile--colour" href="/daily-mirror/"><span>Colour</span><span class="mirror-tile__value"><i class="colour-swatch" style={`--daily-colour: ${colourOfTheDay.hex}`} aria-label={`${colourOfTheDay.name}, ${colourOfTheDay.hex}`} role="img"></i><strong>{colourOfTheDay.name}</strong></span><small class="mirror-tile__detail">{colourOfTheDay.hex}</small></a>
-        <a class="mirror-tile mirror-tile--number" href="/daily-mirror/"><span>Number</span><span class="mirror-tile__value"><strong>{numberOfTheDay}</strong></span><small class="mirror-tile__detail" aria-hidden="true"></small></a>
+        <a class="mirror-tile mirror-tile--number" href={`/numerology/${numberOfTheDay}/`}><span>Number</span><span class="mirror-tile__value"><strong>{numberOfTheDay}</strong></span><small class="mirror-tile__detail" aria-hidden="true"></small></a>
         <a class="mirror-tile mirror-tile--cosmic" href={`/astrology/${zodiacSign.slug}/`}><span>Cosmic</span><span class="mirror-tile__value"><img src={`/images/zodiac/${zodiacSign.slug}.png`} alt="" width="96" height="96" /><strong>{zodiacSign.name}</strong></span><small class="mirror-tile__detail" aria-hidden="true"></small></a>
+        <div class="moon-card-slot">
+          <MoonPhaseCard moon={moon} variant="home" />
+        </div>
       </div>
     </div>
   </section>
 
   <section class="page-section site-container">
-    <SectionHeading title="Meet the hosts" introduction="Host profiles are prepared for the biographies and portraits supplied by the Sisters with Mirrors team." />
+    <SectionHeading title="Meet the hosts" introduction="Meet DJ and Warren, the curious minds and distinctive voices behind Sisters with Mirrors." />
     <div class="host-grid">{hosts.map((host) => <HostCard host={host} />)}</div>
   </section>
 </BaseLayout>
@@ -98,9 +105,11 @@ const [colourOfTheDay, numberOfTheDay] = await Promise.all([
   .mirror-grid strong { color: var(--swm-gold-light); font-family: var(--font-display); font-size: clamp(1.35rem, 2.5vw, 2rem); font-weight: 600; line-height: 1; }
   .mirror-grid .mirror-tile__detail { min-height: 1rem; color: var(--swm-gold); font-size: .72rem; }
   .mirror-tile--tarot strong { color: var(--swm-gold); }
+  .mirror-tile--tarot img { width: auto; height: 5.5rem; object-fit: contain; }
   .mirror-tile--number strong { color: var(--swm-gold); font-size: clamp(3.75rem, 7vw, 5.5rem); line-height: .82; }
   .colour-swatch { display: block; width: 3.8rem; height: 3.8rem; border: 1px solid var(--swm-gold-light); box-shadow: 0 0 0 .28rem rgb(169 136 83 / 14%); background: var(--daily-colour); }
   .mirror-tile--cosmic img { width: 3.9rem; height: 3.9rem; object-fit: contain; }
-  @media (min-width: 42rem) { .episode-grid { grid-template-columns: repeat(2, 1fr); } .host-grid { grid-template-columns: repeat(2, 1fr); } .mirror-grid { grid-template-columns: repeat(4, 1fr); } .mirror-grid a { border-right: 1px solid var(--swm-border-soft); border-bottom: 0; } .mirror-grid a:last-child { border-right: 0; } }
+  .moon-card-slot { grid-column: 1 / -1; }
+  @media (min-width: 42rem) { .episode-grid { grid-template-columns: repeat(2, 1fr); } .host-grid { grid-template-columns: repeat(2, 1fr); } .mirror-grid { grid-template-columns: repeat(4, 1fr); } .mirror-grid a { border-right: 1px solid var(--swm-border-soft); border-bottom: 0; } .mirror-grid a:nth-child(4) { border-right: 0; } }
   @media (min-width: 64rem) { .hero { grid-template-columns: minmax(0, 1.25fr) 8rem minmax(17rem, 0.75fr); } .celestial-axis { display: flex; } .episode-grid { grid-template-columns: repeat(3, 1fr); } }
 </style>

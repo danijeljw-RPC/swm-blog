@@ -1,0 +1,36 @@
+---
+import { MOON_PHASE_IMAGES, type MoonPhase } from "../../lib/moon/moon-phase";
+
+interface Props {
+  phase: MoonPhase;
+  label: string;
+  decorative?: boolean;
+  size?: "tiny" | "compact" | "large";
+}
+
+const { phase, label, decorative = false, size = "compact" } = Astro.props;
+---
+
+<span class:list={["moon-visual", `moon-visual--${size}`]}>
+  <img
+    src={MOON_PHASE_IMAGES[phase]}
+    alt={decorative ? "" : `${label} Moon phase`}
+    width="240"
+    height="240"
+    loading={size === "large" ? "eager" : "lazy"}
+  />
+</span>
+
+<style>
+  .moon-visual {
+    display: grid;
+    flex: none;
+    place-items: center;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgb(169 136 83 / 13%), transparent 68%);
+  }
+  .moon-visual--tiny { width: 2.25rem; }
+  .moon-visual--compact { width: clamp(6.5rem, 18vw, 9rem); }
+  .moon-visual--large { width: min(100%, 25rem); }
+  img { width: 100%; height: auto; }
+</style>

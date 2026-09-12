@@ -2,7 +2,13 @@ node_modules/
 dist/
 .astro/
 coverage/
+.wrangler/
 .env
 .env.*
 !.env.example
 .DS_Store
+about-sisters-with-mirrors-long.md
+about-sisters-with-mirrors.md
+sisters-with-mirrors-astro-cloudflare-build-spec.md
+swm-birth-chart-implementation-guide.md
+swm-moon-phase-feature.md

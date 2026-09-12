@@ -1,36 +1,40 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "sisters-with-mirrors-prod-tba",
-  "main": "@astrojs/cloudflare/entrypoints/server",
-  "compatibility_date": "2026-09-10",
-  "compatibility_flags": ["nodejs_compat"],
-  "assets": {
-    "binding": "ASSETS",
-    "directory": "./dist",
-    "not_found_handling": "404-page"
-  },
-  "observability": { "enabled": true },
-  "vars": {
-    "PUBLIC_SITE_URL": "http://localhost:4321",
-    "PUBLIC_MEDIA_URL": "https://media.sisterswithmirrors.com",
-    "R2_BUCKET_NAME": "sisters-with-mirrors"
-  },
-  "env": {
-    "development": {
-      "name": "sisters-with-mirrors-dev-tba",
-      "vars": {
-        "PUBLIC_SITE_URL": "https://dev.sisterswithmirrors.com",
-        "PUBLIC_MEDIA_URL": "https://media.sisterswithmirrors.com",
-        "R2_BUCKET_NAME": "sisters-with-mirrors"
-      }
-    },
-    "production": {
-      "name": "sisters-with-mirrors-prod-tba",
-      "vars": {
-        "PUBLIC_SITE_URL": "https://sisterswithmirrors.com",
-        "PUBLIC_MEDIA_URL": "https://media.sisterswithmirrors.com",
-        "R2_BUCKET_NAME": "sisters-with-mirrors"
-      }
-    }
-  }
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "sisters-with-mirrors-prod-tba",
+	"main": "@astrojs/cloudflare/entrypoints/server",
+	"compatibility_date": "2026-09-10",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"assets": {
+		"binding": "ASSETS",
+		"directory": "./dist",
+		"not_found_handling": "404-page"
+	},
+	"observability": {
+		"enabled": true
+	},
+	"vars": {
+		"PUBLIC_SITE_URL": "http://localhost:4321",
+		"PUBLIC_MEDIA_URL": "https://media.sisterswithmirrors.com",
+		"R2_BUCKET_NAME": "sisters-with-mirrors"
+	},
+	"env": {
+		"development": {
+			"name": "sisters-with-mirrors-dev-tba",
+			"vars": {
+				"PUBLIC_SITE_URL": "https://dev.sisterswithmirrors.com",
+				"PUBLIC_MEDIA_URL": "https://media.sisterswithmirrors.com",
+				"R2_BUCKET_NAME": "sisters-with-mirrors"
+			}
+		},
+		"production": {
+			"name": "sisters-with-mirrors-prod-tba",
+			"vars": {
+				"PUBLIC_SITE_URL": "https://sisterswithmirrors.com",
+				"PUBLIC_MEDIA_URL": "https://media.sisterswithmirrors.com",
+				"R2_BUCKET_NAME": "sisters-with-mirrors"
+			}
+		}
+	}
 }

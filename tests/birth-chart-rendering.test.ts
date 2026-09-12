@@ -1,0 +1,62 @@
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import test from "node:test";
+import { renderChartReading } from "../src/components/astrology/render-chart-reading.ts";
+import type { BirthChartReading } from "../src/lib/astrology/chart/interpretation.ts";
+import { renderBirthChartSvg } from "../src/lib/astrology/chart/render/render-svg.ts";
+import type { BirthChart } from "../src/lib/astrology/chart/types.ts";
+
+const chart = {
+  planets: [{ name: "Sun", sign: "Aries", degree: 10, minute: 5, second: 0, longitude: 10, latitude: 0, distance: 1, house: 1 }],
+  houses: Array.from({ length: 12 }, (_, index) => ({ house: index + 1, longitude: index * 30, sign: "Aries", degree: 0, minute: 0, second: 0 })),
+  ascendant: { longitude: 4, sign: "Aries", degree: 4, minute: 0, second: 0 },
+  midheaven: { longitude: 274, sign: "Capricorn", degree: 4, minute: 0, second: 0 },
+  aspects: [],
+  birthplace: { name: "<script>alert(1)</script>", region: null, country: "Australia" },
+  birthTimeUtc: "1990-01-01T01:00:00.000Z"
+} as unknown as BirthChart;
+
+const reading: BirthChartReading = {
+  headlines: [{ label: "Sun", position: "10°05' Aries", meaning: "Core identity." }],
+  placements: [{ name: "Sun", symbol: "☉", position: "10°05' Aries", houseLabel: "House 1", role: "Identity", interpretation: "A reflective reading." }],
+  aspects: [],
+  legend: [{ term: "Planet", meaning: "What is expressed." }]
+};
+
+test("chart wheel includes visible structure and labelled house markers", () => {
+  const svg = renderBirthChartSvg(chart);
+  assert.match(svg, /class="aspect-inner"/);
+  assert.match(svg, /class="planet-marker"/);
+  assert.match(svg, /class="house-number"/);
+  assert.match(svg, />1<\/text>/);
+});
+
+test("renders an approachable, semantic, escaped chart reading", () => {
+  const html = renderChartReading(reading, chart, { localDate: "1990-01-01", localTime: "11:30" });
+  assert.match(html, /Your chart at a glance/);
+  assert.match(html, /Chart legend/);
+  assert.match(html, /Planet placements/);
+  assert.match(html, /Major aspects/);
+  assert.match(html, /No major aspects were found/);
+  assert.match(html, /<details class="technical-details">/);
+  assert.match(html, /Placidus houses/);
+  assert.match(html, /&lt;script&gt;alert\(1\)&lt;\/script&gt;/);
+  assert.doesNotMatch(html, /<script>alert/);
+  assert.doesNotMatch(html, /symbolic and reflective/i);
+});
+
+test("birth chart page exposes the result region and PDF control", async () => {
+  const page = await readFile("src/pages/astrology/birth-chart/index.astro", "utf8");
+  assert.match(page, /id="chart-result"/);
+  assert.match(page, /id="chart-download"/);
+  assert.match(page, /Download your chart guide/);
+  assert.doesNotMatch(page, /symbolic and reflective tradition/);
+  assert.match(page, /\.chart-download\[hidden\]\s*\{\s*display:\s*none\s*!important/);
+});
+
+test("birth chart controller prepares and reports PDF downloads", async () => {
+  const controller = await readFile("src/components/astrology/NatalChart.ts", "utf8");
+  assert.match(controller, /downloadBirthChartPdf/);
+  assert.match(controller, /Preparing guide…/);
+  assert.match(controller, /Your chart is still available, but the PDF could not be created/);
+});

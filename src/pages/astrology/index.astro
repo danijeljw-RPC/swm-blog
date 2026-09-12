@@ -19,6 +19,7 @@ import { ELEMENTS, PLANETS, ZODIAC_REFERENCES, referenceImagePath } from "../../
       <a href="/astrology/zodiac/" class="library-card"><div class="art-stack">{ZODIAC_REFERENCES.slice(0, 3).map(({ slug }) => <img src={referenceImagePath("zodiac", slug)} alt="" />)}</div><span>12 signs</span><h3>Zodiac</h3><p>Archetypes, strengths, shadows, relationships and spiritual lessons.</p></a>
       <a href="/astrology/planets/" class="library-card"><div class="art-stack">{PLANETS.slice(0, 3).map(({ slug }) => <img src={referenceImagePath("planets", slug)} alt="" />)}</div><span>11 celestial influences</span><h3>Planets</h3><p>Purpose, expression, chart themes and the signs each body rules.</p></a>
       <a href="/astrology/elements/" class="library-card"><div class="art-stack">{ELEMENTS.slice(0, 3).map(({ slug }) => <img src={referenceImagePath("elements", slug)} alt="" />)}</div><span>4 foundations</span><h3>Elements</h3><p>Fire, Earth, Air and Water as temperaments, needs and ways of moving.</p></a>
+      <a href="/astrology/birth-chart/" class="library-card"><div class="art-stack art-stack--single"><img src="/images/birth-chart.png" alt="" /></div><span>Calculated live</span><h3>Birth Chart</h3><p>Enter your date, time and place of birth to generate your natal chart in your browser.</p></a>
     </div>
     <p class="tradition-note">This library presents astrology as a symbolic and reflective tradition, not a scientific claim or fixed account of personality.</p>
   </section>
@@ -37,6 +38,7 @@ import { ELEMENTS, PLANETS, ZODIAC_REFERENCES, referenceImagePath } from "../../
   .zodiac-sign small { color: var(--swm-text-muted); font-size: .68rem; }
   .library { padding-block: var(--space-7); } .library header { max-width: 48rem; margin-bottom: var(--space-5); } .library-grid { display: grid; gap: var(--space-3); } .library-card { min-height: 27rem; padding: var(--space-4); border: 1px solid var(--swm-border-soft); text-decoration: none; background: linear-gradient(150deg, rgb(23 19 28 / 62%), rgb(7 7 11 / 84%)); }
   .art-stack { position: relative; height: 12rem; margin-bottom: var(--space-3); } .art-stack img { position: absolute; top: 0; left: 50%; width: 9rem; height: 10rem; object-fit: contain; transform: translateX(-50%); filter: drop-shadow(0 .8rem 1rem rgb(0 0 0 / 45%)); } .art-stack img:first-child { left: 30%; transform: translateX(-50%) rotate(-9deg); } .art-stack img:last-child { left: 70%; transform: translateX(-50%) rotate(9deg); }
+  .art-stack--single img:first-child:last-child { left: 50%; transform: translateX(-50%); }
   .library-card > span { color: var(--swm-gold); font-size: .72rem; } .library-card h3 { margin: .15rem 0 .6rem; font-size: 2.7rem; } .library-card p { color: var(--swm-text-muted); font-size: .87rem; } .tradition-note { max-width: 46rem; padding-top: var(--space-4); color: var(--swm-text-muted); font-size: .72rem; }
   @media (min-width: 42rem) { .zodiac-selector { grid-template-columns: repeat(3, 1fr); } }
   @media (min-width: 64rem) { .zodiac-selector { grid-template-columns: repeat(6, 1fr); } .zodiac-sign { min-height: 13rem; } .library-grid { grid-template-columns: repeat(3, 1fr); } }

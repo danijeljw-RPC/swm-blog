@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title">
+  <title>First Quarter Moon placeholder artwork</title>
+  <defs><radialGradient id="lit"><stop stop-color="#eee9df"/><stop offset="1" stop-color="#c7aa78"/><clipPath id="half"><rect x="120" y="34" width="86" height="172"/></clipPath></defs>
+  <circle cx="120" cy="120" r="116" fill="#0d0b11"/><circle cx="120" cy="120" r="86" fill="#17131c" stroke="#a98853" stroke-width="2"/>
+  <circle cx="120" cy="120" r="86" fill="url(#lit)" clip-path="url(#half)"/><circle cx="120" cy="120" r="99" fill="none" stroke="#d7ccb8" stroke-opacity=".18"/>
+</svg>
