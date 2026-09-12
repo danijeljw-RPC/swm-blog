@@ -127,7 +127,7 @@ export function createBirthChartPdf(input: BirthChartPdfInput): Uint8Array {
     doc.text("SISTERS WITH MIRRORS", margin, y);
     y += 12;
     heading("Birth Chart Guide", 1);
-    paragraph(`${input.localDate} at ${input.localTime} · ${place}`, { bold: true });
+    paragraph(`${input.localDate} at ${input.localTime} - ${place}`, { bold: true });
     paragraph("A personal map for symbolic reflection", { muted: true });
     drawChart(doc, chart, width / 2, 143, 56);
     y = 210;
@@ -140,7 +140,7 @@ export function createBirthChartPdf(input: BirthChartPdfInput): Uint8Array {
     paragraph("Begin with these four placements before moving into the finer detail.", { muted: true, gap: 7 });
     for (const item of reading.headlines) {
         ensure(24);
-        paragraph(`${item.label} · ${item.position}`, { bold: true, gap: 2 });
+        paragraph(`${item.label} - ${item.position}`, { bold: true, gap: 2 });
         paragraph(item.meaning, { muted: true, gap: 7 });
     }
     heading("Chart legend");
@@ -153,7 +153,7 @@ export function createBirthChartPdf(input: BirthChartPdfInput): Uint8Array {
     paragraph("Read each placement as what, how, and where - an invitation to reflection rather than a fixed verdict.", { muted: true, gap: 7 });
     for (const item of reading.placements) {
         ensure(48);
-        paragraph(`${item.name} · ${item.position} · ${item.houseLabel}`, { bold: true, gap: 2 });
+        paragraph(`${item.name} - ${item.position} - ${item.houseLabel}`, { bold: true, gap: 2 });
         paragraph(item.role, { muted: true, gap: 2 });
         paragraph(item.interpretation, { gap: 7 });
     }
@@ -165,7 +165,7 @@ export function createBirthChartPdf(input: BirthChartPdfInput): Uint8Array {
     } else {
         for (const item of reading.aspects) {
             ensure(23);
-            paragraph(`${item.label} · ${item.orb.toFixed(1)} degree orb`, { bold: true, gap: 2 });
+            paragraph(`${item.label} - ${item.orb.toFixed(1)} degree orb`, { bold: true, gap: 2 });
             paragraph(item.interpretation, { muted: true, gap: 6 });
         }
     }
@@ -188,7 +188,7 @@ export function createBirthChartPdf(input: BirthChartPdfInput): Uint8Array {
         doc.setFont("helvetica", "normal");
         doc.setFontSize(7);
         doc.setTextColor(...palette.muted);
-        doc.text("Sisters with Mirrors · Birth Chart Guide", margin, height - 9);
+        doc.text("Sisters with Mirrors - Birth Chart Guide", margin, height - 9);
         doc.text(`Page ${page}`, width - margin, height - 9, { align: "right" });
     }
 
