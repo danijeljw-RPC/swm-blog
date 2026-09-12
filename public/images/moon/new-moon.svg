@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title">
+  <title>New Moon placeholder artwork</title>
+  <defs><radialGradient id="sky"><stop stop-color="#28142b"/><stop offset="1" stop-color="#07070b"/></radialGradient></defs>
+  <circle cx="120" cy="120" r="116" fill="url(#sky)"/>
+  <circle cx="120" cy="120" r="86" fill="#0d0b11" stroke="#a98853" stroke-width="2"/>
+  <circle cx="91" cy="91" r="10" fill="#17131c"/><circle cx="148" cy="78" r="7" fill="#17131c"/><circle cx="151" cy="143" r="13" fill="#17131c"/>
+  <circle cx="120" cy="120" r="99" fill="none" stroke="#d7ccb8" stroke-opacity=".18"/>
+</svg>
