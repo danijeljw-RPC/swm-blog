@@ -70,7 +70,7 @@ Astro.response.headers.set("Cache-Control", "private, no-store");
     <div class="site-container">
       <SectionHeading title="Explore the mirror" introduction="Small daily reflections, refreshed for the Sisters with Mirrors calendar day." align="center" />
       <div class="mirror-grid">
-        <a class="mirror-tile mirror-tile--tarot" href="/daily-mirror/"><span>Tarot</span><span class="mirror-tile__value"><img src={`/images/tarot/${tarotCard.image}`} alt={`${tarotCard.name} tarot card`} width="500" height="850" /><strong>{tarotCard.name}</strong></span><small class="mirror-tile__detail" aria-hidden="true"></small></a>
+        <a class="mirror-tile mirror-tile--tarot" href="/daily-mirror/"><span>Tarot</span><span class="mirror-tile__value"><img class:list={["mirror-tile__image", { "mirror-tile__image--reversed": tarotDraw.orientation === "reversed" }]} src={`/images/tarot/${tarotCard.image}`} alt={`${tarotCard.name} tarot card`} width="500" height="850" /><strong>{tarotCard.name}</strong></span><small class="mirror-tile__detail" aria-hidden="true"></small></a>
         <a class="mirror-tile mirror-tile--colour" href="/daily-mirror/"><span>Colour</span><span class="mirror-tile__value"><i class="colour-swatch" style={`--daily-colour: ${colourOfTheDay.hex}`} aria-label={`${colourOfTheDay.name}, ${colourOfTheDay.hex}`} role="img"></i><strong>{colourOfTheDay.name}</strong></span><small class="mirror-tile__detail">{colourOfTheDay.hex}</small></a>
         <a class="mirror-tile mirror-tile--number" href={`/numerology/${numberOfTheDay}/`}><span>Number</span><span class="mirror-tile__value"><strong>{numberOfTheDay}</strong></span><small class="mirror-tile__detail" aria-hidden="true"></small></a>
         <a class="mirror-tile mirror-tile--cosmic" href={`/astrology/${zodiacSign.slug}/`}><span>Cosmic</span><span class="mirror-tile__value"><img src={`/images/zodiac/${zodiacSign.slug}.png`} alt="" width="96" height="96" /><strong>{zodiacSign.name}</strong></span><small class="mirror-tile__detail" aria-hidden="true"></small></a>
@@ -109,6 +109,7 @@ Astro.response.headers.set("Cache-Control", "private, no-store");
   .mirror-grid .mirror-tile__detail { min-height: 1rem; color: var(--swm-gold); font-size: .72rem; }
   .mirror-tile--tarot strong { color: var(--swm-gold); }
   .mirror-tile--tarot img { width: auto; height: 5.5rem; object-fit: contain; }
+  .mirror-tile__image--reversed { transform: rotate(180deg); }
   .mirror-tile--number strong { color: var(--swm-gold); font-size: clamp(3.75rem, 7vw, 5.5rem); line-height: .82; }
   .colour-swatch { display: block; width: 3.8rem; height: 3.8rem; border: 1px solid var(--swm-gold-light); box-shadow: 0 0 0 .28rem rgb(169 136 83 / 14%); background: var(--daily-colour); }
   .mirror-tile--cosmic img { width: 3.9rem; height: 3.9rem; object-fit: contain; }
