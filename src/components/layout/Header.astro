@@ -1,5 +1,4 @@
 ---
-import CelestialMark from "../common/CelestialMark.astro";
 import { site } from "../../config/site";
 
 const currentPath = Astro.url.pathname;
@@ -15,7 +14,7 @@ const links = [
 <header class="site-header">
   <div class="site-container header-inner">
     <a class="brand" href="/" aria-label={`${site.name} home`}>
-      <CelestialMark variant="moon" />
+      <img class="brand-logo" src="/favicon.svg" width="40" height="40" alt="" />
       <span>{site.name}</span>
     </a>
     <details class="nav-disclosure" open>
@@ -42,7 +41,7 @@ const links = [
   .site-header { position: relative; z-index: 20; border-bottom: 1px solid var(--swm-border-soft); background: rgb(7 7 11 / 86%); backdrop-filter: blur(12px); }
   .header-inner { display: flex; min-height: 5rem; align-items: center; justify-content: space-between; gap: var(--space-3); }
   .brand { display: inline-flex; align-items: center; gap: 0.65rem; font-family: var(--font-display); font-size: clamp(1.15rem, 3vw, 1.65rem); letter-spacing: 0.06em; text-decoration: none; }
-  .brand :global(svg) { width: 1.8rem; }
+  .brand-logo { width: 2.5rem; height: 2.5rem; flex: 0 0 auto; }
   summary { padding: 0.45rem 0; color: var(--swm-ivory); cursor: pointer; font-size: 0.85rem; }
   nav { position: absolute; top: 100%; right: 1rem; left: 1rem; border: 1px solid var(--swm-border); background: var(--swm-bg-soft); }
   ul { display: grid; margin: 0; padding: 0.75rem; list-style: none; }

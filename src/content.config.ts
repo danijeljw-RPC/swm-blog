@@ -8,7 +8,10 @@ const optionalUrl = z.url().nullable().optional();
 const categoryValues = CATEGORY_KEYS as [string, ...string[]];
 
 const episodes = defineCollection({
-  loader: glob({ base: "./src/content/episodes", pattern: "**/*.{md,mdx}" }),
+  loader: glob({
+    base: "./src/content/episodes",
+    pattern: ["**/*.{md,mdx}", "!**/*-source-data.{md,mdx}"],
+  }),
   schema: z
     .object({
       title: z.string().min(1),

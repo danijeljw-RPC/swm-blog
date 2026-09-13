@@ -130,3 +130,12 @@ test("the repository includes at least one valid episode fixture", async () => {
   assert.deepEqual(result.errors, []);
   assert.ok(result.filesChecked >= 3, "expected category, host, and episode files");
 });
+
+test("source-data notes beside episodes are not treated as publishable content", async () => {
+  const root = await makeRoot();
+  await writeFile(path.join(root, "src/content/episodes/episode-source-data.md"), "raw editorial notes");
+  await writeFile(path.join(root, "src/content/episodes/fixture.md"), validFrontmatter());
+
+  const result = await validateContent(root);
+  assert.deepEqual(result.errors, []);
+});

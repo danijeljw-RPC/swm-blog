@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title">
   <title>Waxing Gibbous Moon placeholder artwork</title>
-  <defs><radialGradient id="lit"><stop stop-color="#eee9df"/><stop offset="1" stop-color="#c7aa78"/><mask id="phase"><circle cx="120" cy="120" r="86" fill="white"/><ellipse cx="73" cy="120" rx="34" ry="86" fill="black"/></mask></defs>
+  <defs><radialGradient id="lit"><stop stop-color="#eee9df"/><stop offset="1" stop-color="#c7aa78"/></radialGradient><mask id="phase"><circle cx="120" cy="120" r="86" fill="white"/><ellipse cx="73" cy="120" rx="34" ry="86" fill="black"/></mask></defs>
   <circle cx="120" cy="120" r="116" fill="#0d0b11"/><circle cx="120" cy="120" r="86" fill="#17131c" stroke="#a98853" stroke-width="2"/>
   <circle cx="120" cy="120" r="86" fill="url(#lit)" mask="url(#phase)"/><circle cx="120" cy="120" r="99" fill="none" stroke="#d7ccb8" stroke-opacity=".18"/>
 </svg>

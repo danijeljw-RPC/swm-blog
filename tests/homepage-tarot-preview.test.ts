@@ -14,3 +14,13 @@ test("homepage daily tarot tile shows the selected card image and links to its f
   );
   assert.match(homepage, /\.mirror-tile--tarot img \{[^}]*height: 5\.5rem;/s);
 });
+
+test("homepage daily tarot tile displays the selected card orientation", async () => {
+  const homepage = await readFile(
+    new URL("../src/pages/index.astro", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(homepage, /class:list=\{\["mirror-tile__image", \{ "mirror-tile__image--reversed": tarotDraw\.orientation === "reversed" \}\]\}/);
+  assert.match(homepage, /\.mirror-tile__image--reversed \{ transform: rotate\(180deg\); \}/);
+});

@@ -12,7 +12,6 @@ export function getStaticPaths() {
   return (numerology as unknown as NumerologyEntry[]).map((entry) => ({ params: { number: String(entry.number) }, props: { entry } }));
 }
 export const prerender = true;
-const numbers = numerology as unknown as NumerologyEntry[];
 const { entry } = Astro.props as { entry: NumerologyEntry };
 const previous = entry.number > 1 ? entry.number - 1 : 100;
 const next = entry.number < 100 ? entry.number + 1 : 1;

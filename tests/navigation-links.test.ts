@@ -34,3 +34,12 @@ test("primary navigation keeps Chakras in the footer", async () => {
 
   assert.doesNotMatch(header, /\["Chakras", "\/chakras\/"\]/);
 });
+
+test("site header displays the site logo beside the brand name", async () => {
+  const header = await readSource("src/components/layout/Header.astro");
+
+  assert.match(
+    header,
+    /<img class="brand-logo" src="\/favicon\.svg" width="40" height="40" alt="" \/>/,
+  );
+});
