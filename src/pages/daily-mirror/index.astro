@@ -1,18 +1,19 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import MoonPhaseVisual from "../../components/moon/MoonPhaseVisual.astro";
-import { site } from "../../config/site";
 import cards from "../../data/tarot/cards.json";
 import { astrologyReferenceHref } from "../../utils/astrology-links";
 import { chakraReferenceHref } from "../../utils/astrology-reference";
-import { getDateInTimeZone } from "../../utils/daily-reflections";
+import { getRequestTimeZone, getVisitorLocalDate } from "../../lib/moon/moon-date";
 import { getMoonPhaseViewModel } from "../../lib/moon/moon-phase-content";
+import { getDailyTarotDraw } from "../../lib/tarot/daily-tarot";
 
 const moon = getMoonPhaseViewModel(Astro.request);
-const day = getDateInTimeZone(new Date(), site.timezone);
-const hashDay = (value: string) => [...value].reduce((total, character) => ((total * 31) + character.charCodeAt(0)) >>> 0, 7);
-const card = cards[hashDay(day) % cards.length];
-const isReversed = hashDay(`${day}:orientation`) % 2 === 1;
+const timeZone = getRequestTimeZone(Astro.request);
+const day = getVisitorLocalDate(new Date(), timeZone);
+const draw = await getDailyTarotDraw(day, timeZone, cards.length);
+const card = cards[draw.cardIndex];
+const isReversed = draw.orientation === "reversed";
 const orientation = isReversed ? "Reversed" : "Upright";
 const meaning = isReversed ? card.meaning_reversed : card.meaning_upright;
 const timing = [card.timing.season, card.timing.zodiac_association].filter(Boolean).join(" · ");
@@ -50,18 +51,17 @@ Astro.response.headers.set("Cache-Control", "private, no-store");
 <script>
   import { astrologyReferenceHref } from "../../utils/astrology-links";
   import { chakraReferenceHref } from "../../utils/astrology-reference";
-  import { site } from "../../config/site";
+  import { getVisitorLocalDate } from "../../lib/moon/moon-date";
+  import { getDailyTarotDraw } from "../../lib/tarot/daily-tarot";
   type DailyCard = { name: string; arcana: string; element: string; image: string; meaning_upright: string; meaning_reversed: string; chakra: string; chakra_place: string; chakra_image: string; question_answer: string; timing: { season: string | null; zodiac_association: string | null }; planet: string[] | null; zodiac_sign: string[] | null; zodiac_elements: string[] | null; affirmation: string };
   const root = document.querySelector<HTMLElement>("[data-daily-mirror]");
   const setText = (selector: string, value: string) => { const element = root?.querySelector(selector); if (element) element.textContent = value; };
-  const hashDay = (value: string) => [...value].reduce((total, character) => ((total * 31) + character.charCodeAt(0)) >>> 0, 7);
-  const localDay = () => { const parts = new Intl.DateTimeFormat("en-CA", { timeZone: site.timezone, year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(new Date()); const valueFor = (type: Intl.DateTimeFormatPartTypes) => parts.find((part) => part.type === type)?.value; return `${valueFor("year")}-${valueFor("month")}-${valueFor("day")}`; };
   const celestialGroup = (label: string, values: string[], folder: "planets" | "zodiac") => `<div class="celestial-group"><span>${label}</span><div>${values.map((value) => `<a class="celestial-item" href="${astrologyReferenceHref(folder === "planets" ? "planet" : "zodiac", value)}" aria-label="Learn about ${value}"><img src="/images/${folder}/${value.toLowerCase()}.png" alt="" width="40" height="40"><small>${value}</small></a>`).join("")}</div></div>`;
   const elementGroup = (values: string[]) => `<div class="celestial-group celestial-group--elements"><span>Element${values.length > 1 ? "s" : ""}</span><div>${values.map((value) => `<a class="celestial-item" href="${astrologyReferenceHref("element", value)}" aria-label="Learn about ${value}"><img src="/images/elements/${value === "Air" ? "wind" : value.toLowerCase()}.png" alt="" width="40" height="40"><small>${value}</small></a>`).join("")}</div></div>`;
 
   if (root) {
-    fetch("/api/daily-mirror-cards.json").then((response) => response.ok ? response.json() as Promise<DailyCard[]> : Promise.reject()).then((cards) => {
-      const day = localDay(); const card = cards[hashDay(day) % cards.length]; const reversed = hashDay(`${day}:orientation`) % 2 === 1; const orientation = reversed ? "Reversed" : "Upright";
+    fetch("/api/daily-mirror-cards.json").then((response) => response.ok ? response.json() as Promise<DailyCard[]> : Promise.reject()).then(async (cards) => {
+      const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC"; const day = getVisitorLocalDate(new Date(), timeZone); const draw = await getDailyTarotDraw(day, timeZone, cards.length); const card = cards[draw.cardIndex]; const reversed = draw.orientation === "reversed"; const orientation = reversed ? "Reversed" : "Upright";
       setText("[data-date]", day); setText("[data-kicker]", `Today’s card · ${orientation}`); setText("[data-name]", card.name); setText("[data-meta]", `${card.arcana} arcana · ${card.element}`); setText("[data-meaning]", reversed ? card.meaning_reversed : card.meaning_upright); setText("[data-chakra]", card.chakra); setText("[data-chakra-place]", card.chakra_place); setText("[data-timing]", [card.timing.season, card.timing.zodiac_association].filter(Boolean).join(" · ") || "Beyond season"); setText("[data-answer]", card.question_answer); setText("[data-affirmation]", `“${card.affirmation}”`);
       const image = root.querySelector<HTMLImageElement>("[data-card-image]"); if (image) { image.src = `/images/tarot/${card.image}`; image.alt = `${card.name} tarot card, ${orientation.toLowerCase()}`; }
       const chakraImage = root.querySelector<HTMLImageElement>("[data-chakra-image]"); if (chakraImage) chakraImage.src = `/images/chakras/${card.chakra_image}`;

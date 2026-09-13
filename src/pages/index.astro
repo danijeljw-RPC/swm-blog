@@ -12,16 +12,19 @@ import hosts from "../data/hosts.json";
 import cards from "../data/tarot/cards.json";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getMoonPhaseViewModel } from "../lib/moon/moon-phase-content";
-import { getColourOfTheDay, getDateInTimeZone, getNumberOfTheDay } from "../utils/daily-reflections";
+import { getRequestTimeZone, getVisitorLocalDate } from "../lib/moon/moon-date";
+import { getDailyTarotDraw } from "../lib/tarot/daily-tarot";
+import { getColourOfTheDay, getNumberOfTheDay } from "../utils/daily-reflections";
 import { getPublishedEpisodes } from "../utils/episodes";
 
 const episodes = getPublishedEpisodes(await getCollection("episodes"));
 const latestEpisode = episodes[0];
 const recentEpisodes = episodes.slice(1, 4);
 const moon = getMoonPhaseViewModel(Astro.request);
-const date = getDateInTimeZone(new Date(), site.timezone);
-const hashDay = (value: string) => [...value].reduce((total, character) => ((total * 31) + character.charCodeAt(0)) >>> 0, 7);
-const tarotCard = cards[hashDay(date) % cards.length];
+const timeZone = getRequestTimeZone(Astro.request);
+const date = getVisitorLocalDate(new Date(), timeZone);
+const tarotDraw = await getDailyTarotDraw(date, timeZone, cards.length);
+const tarotCard = cards[tarotDraw.cardIndex];
 const zodiacSign = getCurrentZodiacSign(date)!;
 const [colourOfTheDay, numberOfTheDay] = await Promise.all([
   getColourOfTheDay(new Date(), site.timezone),
