@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { access } from "node:fs/promises";
 import test from "node:test";
+import { fileURLToPath } from "node:url";
+import sharp from "sharp";
 
 import moonPhases from "../src/data/moon-phases.json" with { type: "json" };
 import { getMoonPhaseContent, getMoonPhaseViewModel } from "../src/lib/moon/moon-phase-content.ts";
@@ -26,6 +28,17 @@ test("every canonical phase has complete typed content and an image mapping", as
     assert.ok(content.practices.length > 0, `${phase} practices`);
     assert.equal(MOON_PHASE_IMAGES[phase], `/images/moon/${phase}.svg`);
     await access(new URL(`../public${MOON_PHASE_IMAGES[phase]}`, import.meta.url));
+  }
+});
+
+test("every canonical Moon image is valid renderable SVG artwork", async () => {
+  for (const phase of MOON_PHASES) {
+    const imagePath = fileURLToPath(new URL(`../public${MOON_PHASE_IMAGES[phase]}`, import.meta.url));
+    const metadata = await sharp(imagePath).metadata();
+
+    assert.equal(metadata.format, "svg", `${phase} image format`);
+    assert.equal(metadata.width, 240, `${phase} image width`);
+    assert.equal(metadata.height, 240, `${phase} image height`);
   }
 });
 

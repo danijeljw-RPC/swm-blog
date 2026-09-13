@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title description" data-variant="2" data-seed="1">
+  <title id="title">Introduction to Sisters with Mirrors</title>
+  <desc id="description">Metaphysical episode artwork for Introduction to Sisters with Mirrors.</desc>
+  <defs>
+    <radialGradient id="plum" cx="50%" cy="38%" r="74%"><stop offset="0" stop-color="#2b142d"/><stop offset="0.55" stop-color="#100b15"/><stop offset="1" stop-color="#07070b"/></radialGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="28"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#plum)"/>
+  <g fill="#593057" opacity=".2" filter="url(#soft)"><ellipse cx="160" cy="480" rx="230" ry="410"/><ellipse cx="1440" cy="450" rx="220" ry="390"/></g>
+  <g fill="none" stroke="#A98853"><rect x="48" y="48" width="1504" height="804" stroke-width="2" opacity=".7"/><rect x="66" y="66" width="1468" height="768" stroke-width="1" opacity=".35"/></g>
+  <g fill="#D7CCB8" aria-hidden="true">
+    <circle cx="624" cy="247" r="2" opacity=".41"/>
+    <circle cx="429" cy="442" r="2" opacity=".58"/>
+    <circle cx="1256" cy="509" r="3" opacity=".88"/>
+    <circle cx="1061" cy="194" r="3" opacity=".50"/>
+    <circle cx="498" cy="261" r="1" opacity=".67"/>
+    <circle cx="303" cy="456" r="1" opacity=".42"/>
+    <circle cx="1130" cy="523" r="2" opacity=".59"/>
+    <circle cx="935" cy="208" r="2" opacity=".89"/>
+    <circle cx="372" cy="275" r="3" opacity=".51"/>
+    <circle cx="1199" cy="470" r="3" opacity=".81"/>
+    <circle cx="1004" cy="537" r="1" opacity=".43"/>
+    <circle cx="441" cy="222" r="1" opacity=".73"/>
+    <circle cx="246" cy="289" r="2" opacity=".35"/>
+    <circle cx="1073" cy="484" r="2" opacity=".65"/>
+    <circle cx="878" cy="551" r="3" opacity=".82"/>
+    <circle cx="315" cy="236" r="3" opacity=".57"/>
+    <circle cx="120" cy="303" r="1" opacity=".74"/>
+    <circle cx="947" cy="498" r="1" opacity=".49"/>
+    <circle cx="752" cy="565" r="2" opacity=".66"/>
+    <circle cx="189" cy="122" r="2" opacity=".41"/>
+    <circle cx="1384" cy="317" r="3" opacity=".58"/>
+    <circle cx="821" cy="384" r="3" opacity=".88"/>
+    <circle cx="626" cy="579" r="1" opacity=".50"/>
+    <circle cx="1453" cy="136" r="1" opacity=".80"/>
+    <circle cx="1258" cy="331" r="2" opacity=".42"/>
+    <circle cx="695" cy="398" r="2" opacity=".72"/>
+    <circle cx="500" cy="593" r="3" opacity=".89"/>
+    <circle cx="1327" cy="150" r="3" opacity=".64"/>
+  </g>
+  <g data-ornament="1" fill="none" stroke="#A98853" aria-hidden="true">
+    <ellipse cx="800" cy="370" rx="360" ry="245" stroke-dasharray="3 13" opacity=".48"/><circle cx="448" cy="336" r="13" fill="#A98853" fill-opacity=".22"/><circle cx="1142" cy="432" r="20"/><path d="M1122 426q20-26 40 0"/><circle cx="550" cy="544" r="7" fill="#A98853"/>
+  </g>
+  <g data-motif="0" fill="none" stroke="#A98853" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <ellipse cx="800" cy="370" rx="154" ry="218" stroke-width="4"/><ellipse cx="800" cy="370" rx="132" ry="195" opacity=".45"/><path d="M830 237a138 138 0 1 0 0 266a109 109 0 1 1 0-266Z" fill="#A98853" fill-opacity=".13"/><path d="M800 142v-34m-22 20 22-20 22 20M800 598v34m-22-20 22 20 22-20"/>
+  </g>
+  <text data-role="heading" x="800" y="744" fill="#D7CCB8" font-family="Georgia,serif" font-size="56" letter-spacing="6" text-anchor="middle">Introduction to Sisters with Mirrors</text>
+  <text data-role="subheading" x="800" y="800" fill="#A98853" font-family="Arial,sans-serif" font-size="24" letter-spacing="8" text-anchor="middle">Mirrors, Water &amp; the Art of Letting Go</text>
+</svg>

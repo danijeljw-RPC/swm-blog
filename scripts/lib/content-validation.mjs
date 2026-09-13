@@ -137,7 +137,9 @@ export async function validateContent(rootDirectory) {
 
   const seenSlugs = new Map();
   const seenEpisodes = new Map();
-  const episodeFiles = await listFiles(path.join(root, "src/content/episodes"), /\.mdx?$/);
+  const episodeFiles = (await listFiles(path.join(root, "src/content/episodes"), /\.mdx?$/)).filter(
+    (file) => !/-source-data\.mdx?$/.test(path.basename(file)),
+  );
   for (const absoluteFile of episodeFiles) {
     const file = relative(root, absoluteFile);
     filesChecked += 1;
