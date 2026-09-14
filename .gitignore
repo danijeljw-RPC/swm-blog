@@ -3,6 +3,7 @@ dist/
 .astro/
 coverage/
 .wrangler/
+.worktrees/
 .env
 .env.*
 .dev.vars
