@@ -1,0 +1,38 @@
+---
+import { env } from "cloudflare:workers";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FormField from "../../components/get-involved/FormField.astro";
+import SubmissionFormShell from "../../components/get-involved/SubmissionFormShell.astro";
+import Turnstile from "../../components/get-involved/Turnstile.astro";
+import "../../styles/get-involved.css";
+---
+<BaseLayout title="Share Your Story" description="Share a story, question or topic with DJ and Warren.">
+  <header class="site-container involved-hero"><p class="eyebrow">Get involved · Share your story</p><h1>Tell us what happened.</h1><p class="lede">A strange experience, a question you can’t shake, or a subject you want brought into the light—we’re listening.</p></header>
+  <div class="site-container form-layout"><main class="form-intro">
+    <SubmissionFormShell action="/api/submissions/story/" kind="story"><div class="submission-form">
+      <fieldset class="form-section"><legend>What are you sharing?</legend><div class="choice-list">
+        <label><input type="radio" name="submissionType" value="story" checked /> My Story</label><label><input type="radio" name="submissionType" value="question" /> Ask DJ &amp; Warren</label><label><input type="radio" name="submissionType" value="topic" /> Suggest a Topic</label><label><input type="radio" name="submissionType" value="other" /> Something Else</label>
+      </div><p class="field-error" data-error-for="submissionType"></p></fieldset>
+      <fieldset class="form-section"><legend>How should we identify you?</legend><div class="choice-list">
+        <label><input type="radio" name="identityPreference" value="name" /> Use my name</label><label><input type="radio" name="identityPreference" value="pseudonym" /> Use a pseudonym</label><label><input type="radio" name="identityPreference" value="anonymous" checked /> Keep me anonymous</label>
+      </div><p class="field-error" data-error-for="identityPreference"></p>
+        <FormField id="story-name" label="Name" hint="Only needed if you chose ‘Use my name’."><input id="story-name" name="name" maxlength="120" autocomplete="name" /></FormField>
+        <FormField id="story-pseudonym" label="Pseudonym" hint="Only needed if you chose ‘Use a pseudonym’."><input id="story-pseudonym" name="pseudonym" maxlength="120" /></FormField>
+        <FormField id="story-email" label="Email" hint="Optional. Without it, we won’t be able to respond personally."><input id="story-email" name="email" type="email" maxlength="254" autocomplete="email" /></FormField>
+      </fieldset>
+      <fieldset class="form-section"><legend>Your submission</legend><FormField id="story-content" label="Tell us what happened" hint="Take the space you need—up to 20,000 characters." required><textarea id="story-content" name="content" maxlength="20000" required></textarea></FormField></fieldset>
+      <fieldset class="form-section"><legend>Permission</legend><p class="choice-label">May DJ and Warren discuss this submission on Sisters with Mirrors?</p><div class="choice-list">
+        <label><input type="radio" name="publicationPermission" value="read" /> Yes — you may discuss or read it on the show</label><label><input type="radio" name="publicationPermission" value="paraphrase" /> Yes — but please paraphrase it</label><label><input type="radio" name="publicationPermission" value="private" /> No — this is for DJ and Warren only</label>
+      </div><p class="field-error" data-error-for="publicationPermission"></p><p class="field-hint">If you stay anonymous, your identity won’t be presented as part of the submission.</p><label class="choice-label"><input type="checkbox" name="contactPermission" /> DJ and Warren may contact me about this submission.</label><p class="field-error" data-error-for="contactPermission"></p></fieldset>
+      <div class="form-section"><p class="privacy-note">Your information goes to Sisters with Mirrors to review this submission. Contact details are used only for relevant correspondence. Your story will only be discussed according to the permission you select.</p><Turnstile siteKey={env.TURNSTILE_SITE_KEY} action="share-story" /></div>
+    </div></SubmissionFormShell>
+  </main><aside class="cross-link"><p class="eyebrow">Have more to say?</p><h2>If you’d rather join the conversation</h2><p>You can put your hand up to talk with DJ and Warren on a recorded episode.</p><a href="/get-involved/be-a-guest/">Apply to be a guest</a></aside></div>
+</BaseLayout>
+<script>
+  const labels: Record<string,string> = { story:"Tell us what happened", question:"What would you like to ask DJ & Warren?", topic:"What should we talk about?", other:"Tell us what’s on your mind" };
+  const contentLabel = document.querySelector<HTMLLabelElement>('label[for="story-content"]');
+  document.querySelectorAll<HTMLInputElement>('input[name="submissionType"]').forEach((radio) => radio.addEventListener("change", () => { if (radio.checked && contentLabel) contentLabel.firstChild!.textContent = labels[radio.value]; }));
+  const nameField = document.querySelector<HTMLElement>('[data-field-id="story-name"]'); const pseudonymField = document.querySelector<HTMLElement>('[data-field-id="story-pseudonym"]');
+  const updateIdentity = () => { const selected = document.querySelector<HTMLInputElement>('input[name="identityPreference"]:checked')?.value; if (nameField) nameField.hidden = selected !== "name"; if (pseudonymField) pseudonymField.hidden = selected !== "pseudonym"; };
+  document.querySelectorAll<HTMLInputElement>('input[name="identityPreference"]').forEach((radio) => radio.addEventListener("change", updateIdentity)); updateIdentity();
+</script>

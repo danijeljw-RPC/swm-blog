@@ -5,7 +5,9 @@ coverage/
 .wrangler/
 .env
 .env.*
+.dev.vars
 !.env.example
+!.dev.vars.example
 .DS_Store
 about-sisters-with-mirrors-long.md
 about-sisters-with-mirrors.md

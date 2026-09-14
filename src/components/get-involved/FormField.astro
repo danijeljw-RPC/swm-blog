@@ -1,0 +1,17 @@
+---
+interface Props { id: string; label: string; hint?: string; required?: boolean; }
+const { id, label, hint, required = false } = Astro.props;
+---
+<div class="form-field" data-field-id={id} data-has-hint={hint ? "true" : "false"}>
+  <label for={id}>{label}{required && <span aria-hidden="true"> *</span>}</label>
+  {hint && <p id={`${id}-hint`} class="field-hint">{hint}</p>}
+  <slot />
+  <p id={`${id}-error`} class="field-error" data-error-for={id}></p>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>("[data-field-id]").forEach((field) => {
+    const control = field.querySelector<HTMLElement>("input, textarea, select");
+    const id = field.dataset.fieldId;
+    if (control && id) control.setAttribute("aria-describedby", `${field.dataset.hasHint === "true" ? `${id}-hint ` : ""}${id}-error`);
+  });
+</script>

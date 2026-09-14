@@ -12,28 +12,47 @@
 		"not_found_handling": "404-page"
 	},
 	"observability": {
-		"enabled": true
+		"enabled": true,
+		"traces": { "enabled": true }
 	},
+	"d1_databases": [{ "binding": "SUBMISSIONS_DB", "database_name": "sisters-with-mirrors-submissions-local", "database_id": "00000000-0000-0000-0000-000000000000", "migrations_dir": "migrations" }],
+	"send_email": [{ "name": "SUBMISSIONS_EMAIL", "allowed_sender_addresses": ["hello@sisterswithmirrors.com"] }],
 	"vars": {
 		"PUBLIC_SITE_URL": "http://localhost:4321",
 		"PUBLIC_MEDIA_URL": "https://media.sisterswithmirrors.com",
-		"R2_BUCKET_NAME": "sisters-with-mirrors"
+		"R2_BUCKET_NAME": "sisters-with-mirrors",
+		"TURNSTILE_SITE_KEY": "1x00000000000000000000AA",
+		"SUBMISSIONS_NOTIFICATION_EMAIL": "hello@sisterswithmirrors.com",
+		"SUBMISSIONS_FROM_EMAIL": "hello@sisterswithmirrors.com",
+		"SUBMISSIONS_ALLOWED_HOSTNAMES": "localhost,127.0.0.1"
 	},
 	"env": {
 		"development": {
 			"name": "sisters-with-mirrors-dev-tba",
+			"d1_databases": [{ "binding": "SUBMISSIONS_DB", "database_name": "sisters-with-mirrors-submissions-dev", "database_id": "00000000-0000-0000-0000-000000000001", "migrations_dir": "migrations" }],
+			"send_email": [{ "name": "SUBMISSIONS_EMAIL", "allowed_sender_addresses": ["hello@sisterswithmirrors.com"] }],
 			"vars": {
 				"PUBLIC_SITE_URL": "https://dev.sisterswithmirrors.com",
 				"PUBLIC_MEDIA_URL": "https://media.sisterswithmirrors.com",
-				"R2_BUCKET_NAME": "sisters-with-mirrors"
+				"R2_BUCKET_NAME": "sisters-with-mirrors",
+				"TURNSTILE_SITE_KEY": "REPLACE_WITH_DEVELOPMENT_TURNSTILE_SITE_KEY",
+				"SUBMISSIONS_NOTIFICATION_EMAIL": "hello@sisterswithmirrors.com",
+				"SUBMISSIONS_FROM_EMAIL": "hello@sisterswithmirrors.com",
+				"SUBMISSIONS_ALLOWED_HOSTNAMES": "dev.sisterswithmirrors.com,localhost,127.0.0.1"
 			}
 		},
 		"production": {
 			"name": "sisters-with-mirrors-prod-tba",
+			"d1_databases": [{ "binding": "SUBMISSIONS_DB", "database_name": "sisters-with-mirrors-submissions-prod", "database_id": "00000000-0000-0000-0000-000000000002", "migrations_dir": "migrations" }],
+			"send_email": [{ "name": "SUBMISSIONS_EMAIL", "allowed_sender_addresses": ["hello@sisterswithmirrors.com"] }],
 			"vars": {
 				"PUBLIC_SITE_URL": "https://sisterswithmirrors.com",
 				"PUBLIC_MEDIA_URL": "https://media.sisterswithmirrors.com",
-				"R2_BUCKET_NAME": "sisters-with-mirrors"
+				"R2_BUCKET_NAME": "sisters-with-mirrors",
+				"TURNSTILE_SITE_KEY": "REPLACE_WITH_PRODUCTION_TURNSTILE_SITE_KEY",
+				"SUBMISSIONS_NOTIFICATION_EMAIL": "hello@sisterswithmirrors.com",
+				"SUBMISSIONS_FROM_EMAIL": "hello@sisterswithmirrors.com",
+				"SUBMISSIONS_ALLOWED_HOSTNAMES": "sisterswithmirrors.com"
 			}
 		}
 	}

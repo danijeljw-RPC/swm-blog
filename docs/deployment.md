@@ -50,3 +50,27 @@ npx wrangler dev
 - [ ] Add the production and development Worker routes.
 - [ ] Add the two GitHub secrets.
 - [ ] Push to `dev`, inspect it, then open the `dev` → `main` pull request.
+
+## Get Involved submissions
+
+Create separate D1 databases for development and production, replace the placeholder IDs in `wrangler.jsonc`, and apply the checked-in migration:
+
+```bash
+npx wrangler d1 create sisters-with-mirrors-submissions-dev
+npx wrangler d1 create sisters-with-mirrors-submissions-prod
+npx wrangler d1 migrations apply sisters-with-mirrors-submissions-dev --remote
+npx wrangler d1 migrations apply sisters-with-mirrors-submissions-prod --remote
+```
+
+Create a managed Turnstile widget for `sisterswithmirrors.com` and `dev.sisterswithmirrors.com`. Replace the production site-key placeholder, then store `TURNSTILE_SECRET_KEY` and a different long random `SUBMISSION_RATE_LIMIT_SECRET` in each deployed Worker environment. Never use the documented test keys outside local development.
+
+Enable Cloudflare Email Service/Email Routing for `sisterswithmirrors.com`, onboard `hello@sisterswithmirrors.com` as an allowed sender, and verify the team destination. Change the three non-secret email settings together if another sender or team address is used. The binding intentionally has no recipient allowlist because acknowledgements go to validated submitter addresses; the API cannot be used as an open relay because recipients, subjects, and bodies are created only after validation, Turnstile, rate limiting, and persistence.
+
+For local development, copy `.dev.vars.example` to `.dev.vars`, keep that file untracked, initialise local D1, and run Wrangler. `TURNSTILE_TEST_MODE=true` accepts Cloudflare's test response action only after Siteverify succeeds; never configure it on a deployed Worker.
+
+```bash
+cp .dev.vars.example .dev.vars
+npx wrangler d1 migrations apply sisters-with-mirrors-submissions-local --local
+npm run build:dev
+npx wrangler dev
+```
