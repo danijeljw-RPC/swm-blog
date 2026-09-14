@@ -1,0 +1,39 @@
+---
+import type { SubmissionListItem } from "../../lib/admin/submissions";
+import StatusBadge from "./StatusBadge.astro";
+
+interface Props {
+  items: SubmissionListItem[];
+}
+
+const { items } = Astro.props;
+
+function categoryLabel(item: SubmissionListItem): string {
+  if (item.kind === "guest") return "Guest request";
+  switch (item.submissionType) {
+    case "question":
+      return "Question";
+    case "topic":
+      return "Topic suggestion";
+    case "other":
+      return "Something else";
+    default:
+      return "Story";
+  }
+}
+---
+
+<div class="admin-list">
+  {items.map((item) => (
+    <a class="admin-list__row" href={`/admin/submissions/${item.publicReference}/`}>
+      <span>{item.publicReference}</span>
+      <span>{categoryLabel(item)}</span>
+      <span>
+        <strong>{item.displayIdentity}</strong>
+        <span class="admin-list__excerpt">{item.excerpt}</span>
+      </span>
+      <time datetime={item.createdAt}>{new Date(item.createdAt).toLocaleDateString()}</time>
+      <StatusBadge status={item.status} />
+    </a>
+  ))}
+</div>

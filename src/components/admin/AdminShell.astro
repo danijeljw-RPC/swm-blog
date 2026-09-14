@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/admin.css";
+
+interface Props {
+  title: string;
+  administratorEmail: string;
+}
+
+const { title, administratorEmail } = Astro.props;
+---
+
+<BaseLayout title={title} noindex={true}>
+  <div class="admin-shell">
+    <header class="admin-shell__header">
+      <h1 class="admin-shell__title">{title}</h1>
+      <p class="admin-shell__identity">Signed in as {administratorEmail}</p>
+    </header>
+    <slot />
+  </div>
+</BaseLayout>
