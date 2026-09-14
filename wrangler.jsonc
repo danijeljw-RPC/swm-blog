@@ -20,8 +20,8 @@
 	"d1_databases": [
 		{
 			"binding": "SUBMISSIONS_DB",
-			"database_name": "sisters-with-mirrors-submissions-local",
-			"database_id": "00000000-0000-0000-0000-000000000000",
+			"database_name": "sisters-with-mirrors-submissions-dev",
+			"database_id": "f73f4f7b-6b95-4ed3-8f2b-bfd990abf8f1",
 			"migrations_dir": "migrations"
 		}
 	],
