@@ -40,7 +40,9 @@
 		"TURNSTILE_SITE_KEY": "1x00000000000000000000AA",
 		"SUBMISSIONS_NOTIFICATION_EMAIL": "hello@sisterswithmirrors.com",
 		"SUBMISSIONS_FROM_EMAIL": "hello@sisterswithmirrors.com",
-		"SUBMISSIONS_ALLOWED_HOSTNAMES": "localhost,127.0.0.1"
+		"SUBMISSIONS_ALLOWED_HOSTNAMES": "localhost,127.0.0.1",
+		"CLOUDFLARE_ACCESS_TEAM_DOMAIN": "https://REPLACE_WITH_TEAM_NAME.cloudflareaccess.com",
+		"CLOUDFLARE_ACCESS_AUD": "REPLACE_WITH_LOCAL_ACCESS_AUDIENCE_TAG"
 	},
 	"env": {
 		"development": {
@@ -68,7 +70,9 @@
 				"TURNSTILE_SITE_KEY": "REPLACE_WITH_DEVELOPMENT_TURNSTILE_SITE_KEY",
 				"SUBMISSIONS_NOTIFICATION_EMAIL": "hello@sisterswithmirrors.com",
 				"SUBMISSIONS_FROM_EMAIL": "hello@sisterswithmirrors.com",
-				"SUBMISSIONS_ALLOWED_HOSTNAMES": "dev.sisterswithmirrors.com,localhost,127.0.0.1"
+				"SUBMISSIONS_ALLOWED_HOSTNAMES": "dev.sisterswithmirrors.com,localhost,127.0.0.1",
+				"CLOUDFLARE_ACCESS_TEAM_DOMAIN": "https://REPLACE_WITH_TEAM_NAME.cloudflareaccess.com",
+				"CLOUDFLARE_ACCESS_AUD": "REPLACE_WITH_DEVELOPMENT_ACCESS_AUDIENCE_TAG"
 			}
 		},
 		"production": {
@@ -96,7 +100,9 @@
 				"TURNSTILE_SITE_KEY": "REPLACE_WITH_PRODUCTION_TURNSTILE_SITE_KEY",
 				"SUBMISSIONS_NOTIFICATION_EMAIL": "hello@sisterswithmirrors.com",
 				"SUBMISSIONS_FROM_EMAIL": "hello@sisterswithmirrors.com",
-				"SUBMISSIONS_ALLOWED_HOSTNAMES": "sisterswithmirrors.com"
+				"SUBMISSIONS_ALLOWED_HOSTNAMES": "sisterswithmirrors.com",
+				"CLOUDFLARE_ACCESS_TEAM_DOMAIN": "https://REPLACE_WITH_TEAM_NAME.cloudflareaccess.com",
+				"CLOUDFLARE_ACCESS_AUD": "REPLACE_WITH_PRODUCTION_ACCESS_AUDIENCE_TAG"
 			}
 		}
 	}
