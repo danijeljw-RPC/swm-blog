@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import GetInvolvedCard from "../../components/get-involved/GetInvolvedCard.astro";
+import "../../styles/get-involved.css";
+---
+<BaseLayout title="Get Involved" description="Share your story with DJ and Warren, or join Sisters with Mirrors as a guest.">
+  <section class="site-container involved-hero"><p class="eyebrow">Get involved</p><h1>What’s on the other side of your mirror?</h1><p class="lede">Send DJ and Warren a story, question or idea—or put your hand up to join the conversation.</p></section>
+  <section class="site-container involved-grid" aria-label="Ways to get involved">
+    <GetInvolvedCard title="Share Your Story" href="/get-involved/share-your-story/" cta="Share Your Story" mark="S">
+      <p>Something happen that you can’t quite explain? Have a question that keeps circling back, or something you’d love to hear DJ and Warren discuss?</p><p>Tell us about it. Use your name, a pseudonym, or stay anonymous. Sharing here doesn’t mean you’re asking to appear on the show.</p>
+    </GetInvolvedCard>
+    <GetInvolvedCard title="Be a Guest" href="/get-involved/be-a-guest/" cta="Be a Guest" mark="G">
+      <p>Have a story, experience, perspective or area of knowledge you’d love to explore with DJ and Warren?</p><p>You don’t need formal qualifications or a polished pitch. Interesting people, honest curiosity and good conversation are the point.</p>
+    </GetInvolvedCard>
+  </section>
+</BaseLayout>

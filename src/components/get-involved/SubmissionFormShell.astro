@@ -1,0 +1,42 @@
+---
+import SubmissionSuccess from "./SubmissionSuccess.astro";
+interface Props { action: string; kind: "story" | "guest"; }
+const { action, kind } = Astro.props;
+---
+<div class="submission-shell" data-submission-shell data-kind={kind}>
+  <div class="form-summary" data-form-summary tabindex="-1" role="alert" hidden></div>
+  <form action={action} method="post" data-submission-form novalidate>
+    <div class="honeypot" aria-hidden="true"><label for={`${kind}-company`}>Leave this field empty</label><input id={`${kind}-company`} name="websiteCompany" type="text" tabindex="-1" autocomplete="off" /></div>
+    <slot />
+    <button class="button submit-button" type="submit"><span data-submit-label>{kind === "story" ? "Send your story" : "Send guest submission"}</span></button>
+  </form>
+  <SubmissionSuccess />
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-submission-shell]").forEach((shell) => {
+    const form = shell.querySelector<HTMLFormElement>("[data-submission-form]"); if (!form) return;
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!; const label = button.querySelector<HTMLElement>("[data-submit-label]")!;
+    const summary = shell.querySelector<HTMLElement>("[data-form-summary]")!; const success = shell.querySelector<HTMLElement>("[data-submission-success]")!;
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault(); button.disabled = true; label.textContent = "Submitting…"; summary.hidden = true;
+      shell.querySelectorAll<HTMLElement>("[data-error-for]").forEach((item) => item.textContent = ""); form.querySelectorAll("[aria-invalid]").forEach((item) => item.removeAttribute("aria-invalid"));
+      const values = new FormData(form); const payload: Record<string, unknown> = Object.fromEntries(values.entries());
+      payload.contactPermission = values.has("contactPermission"); payload.recordingAcknowledged = values.has("recordingAcknowledged"); payload.topics = values.getAll("topics"); payload.turnstileToken = values.get("cf-turnstile-response") ?? "";
+      try {
+        const response = await fetch(form.action, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+        const result = await response.json() as { success?: boolean; reference?: string; message?: string; errors?: Record<string, string> };
+        if (!response.ok || !result.success) {
+          for (const [field, message] of Object.entries(result.errors ?? {})) { const control = form.querySelector<HTMLElement>(`[name="${CSS.escape(field)}"]`); const target = shell.querySelector<HTMLElement>(`[data-error-for="${CSS.escape(field)}"]`) ?? control?.closest(".form-field")?.querySelector<HTMLElement>("[data-error-for]"); if (target) target.textContent = message; control?.setAttribute("aria-invalid", "true"); }
+          summary.textContent = result.message ?? "We couldn't send this submission. Please check the form and try again."; summary.hidden = false; summary.focus();
+          window.turnstile?.reset(); return;
+        }
+        const story = shell.dataset.kind === "story"; shell.querySelector<HTMLElement>("[data-success-eyebrow]")!.textContent = story ? "Your story has crossed the mirror" : "Step through the mirror";
+        shell.querySelector<HTMLElement>("[data-success-title]")!.textContent = story ? "Thanks for sharing it with us." : "We've received your guest submission.";
+        shell.querySelector<HTMLElement>("[data-success-message]")!.textContent = story ? "DJ and Warren have received your submission." : "Thanks for putting your hand up to join us.";
+        shell.querySelector<HTMLElement>("[data-success-reference]")!.textContent = result.reference ?? ""; form.hidden = true; success.hidden = false; success.focus();
+      } catch { summary.textContent = "We couldn't connect just now. Your form is still here—please try again."; summary.hidden = false; summary.focus(); window.turnstile?.reset(); }
+      finally { button.disabled = false; label.textContent = shell.dataset.kind === "story" ? "Send your story" : "Send guest submission"; }
+    });
+  });
+</script>

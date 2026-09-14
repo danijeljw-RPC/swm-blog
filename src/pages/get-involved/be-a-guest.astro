@@ -1,0 +1,33 @@
+---
+import { env } from "cloudflare:workers";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FormField from "../../components/get-involved/FormField.astro";
+import SubmissionFormShell from "../../components/get-involved/SubmissionFormShell.astro";
+import Turnstile from "../../components/get-involved/Turnstile.astro";
+import "../../styles/get-involved.css";
+const topics = [["consciousness","Consciousness"],["spirituality","Spirituality"],["psychic-experiences","Psychic experiences"],["mediumship","Mediumship"],["energy","Energy"],["astrology","Astrology"],["tarot","Tarot"],["reincarnation","Reincarnation"],["afterlife","Afterlife"],["ufo-uap","UFO / UAP"],["extraterrestrial-life","Extraterrestrial life"],["higher-dimensional-experiences","Higher-dimensional experiences"],["synchronicity","Synchronicity"],["personal-transformation","Personal transformation"],["other","Something else"]];
+---
+<BaseLayout title="Be a Guest" description="Put your hand up to join DJ and Warren for a Sisters with Mirrors conversation.">
+  <header class="site-container involved-hero"><p class="eyebrow">Get involved · Be a guest</p><h1>Step through the mirror.</h1><p class="lede">If you have an experience, perspective or subject you’d love to explore, tell DJ and Warren what you’d bring to the conversation.</p></header>
+  <div class="site-container form-layout"><main class="form-intro"><SubmissionFormShell action="/api/submissions/guest/" kind="guest"><div class="submission-form">
+    <fieldset class="form-section"><legend>About you</legend>
+      <FormField id="guest-name" label="Name" required><input id="guest-name" name="name" required maxlength="120" autocomplete="name" /></FormField>
+      <FormField id="preferred-name" label="Preferred name" hint="Optional, if it’s different."><input id="preferred-name" name="preferredName" maxlength="120" /></FormField>
+      <FormField id="guest-email" label="Email" required><input id="guest-email" name="email" type="email" required maxlength="254" autocomplete="email" /></FormField>
+      <FormField id="guest-timezone" label="Location / timezone" hint="This helps us work out recording times."><input id="guest-timezone" name="timezone" maxlength="160" autocomplete="country-name" /></FormField>
+    </fieldset>
+    <fieldset class="form-section"><legend>The conversation</legend>
+      <FormField id="guest-about" label="Tell us about yourself" required><textarea id="guest-about" name="about" required maxlength="10000"></textarea></FormField>
+      <FormField id="guest-talk" label="What would you like to talk about?" required><textarea id="guest-talk" name="talkAbout" required maxlength="10000"></textarea></FormField>
+      <FormField id="guest-why" label="Why Sisters with Mirrors?" required><textarea id="guest-why" name="whySwm" required maxlength="5000"></textarea></FormField>
+      <p class="choice-label">Broad areas that connect with your idea <span class="field-hint">(optional—not a checklist you need to pass)</span></p><div class="choice-list">{topics.map(([value,label]) => <label><input type="checkbox" name="topics" value={value} /> {label}</label>)}</div><p class="field-error" data-error-for="topics"></p>
+    </fieldset>
+    <fieldset class="form-section"><legend>Links and anything else</legend>
+      <FormField id="guest-website" label="Website" hint="Optional. Include https://"><input id="guest-website" name="website" type="url" maxlength="2048" /></FormField>
+      <FormField id="guest-social" label="Social links" hint="Optional. One complete URL per line, up to 10."><textarea id="guest-social" name="socialLinks" maxlength="10000"></textarea></FormField>
+      <FormField id="guest-appearances" label="Previous podcast/media appearances" hint="Optional. No previous appearances are expected."><textarea id="guest-appearances" name="previousAppearances" maxlength="5000"></textarea></FormField>
+      <FormField id="guest-extra" label="Anything else we should know?" hint="Optional."><textarea id="guest-extra" name="anythingElse" maxlength="5000"></textarea></FormField>
+    </fieldset>
+    <fieldset class="form-section"><legend>Before you send it</legend><label class="choice-label"><input type="checkbox" name="recordingAcknowledged" required /> I understand that if I’m invited onto Sisters with Mirrors, the conversation will be recorded and may be published as part of the podcast/video show.</label><p class="field-hint">This confirms you understand the nature of the show. It isn’t the final recording or release agreement.</p><p class="field-error" data-error-for="recordingAcknowledged"></p><p class="privacy-note">Your information goes to Sisters with Mirrors to review your guest request. Contact details will be used only for correspondence about it.</p><Turnstile siteKey={env.TURNSTILE_SITE_KEY} action="be-a-guest" /></fieldset>
+  </div></SubmissionFormShell></main><aside class="cross-link"><p class="eyebrow">Not looking to appear?</p><h2>You can still send something in</h2><p>Share a story, question or topic with DJ and Warren without joining the show.</p><a href="/get-involved/share-your-story/">Share your story</a></aside></div>
+</BaseLayout>
