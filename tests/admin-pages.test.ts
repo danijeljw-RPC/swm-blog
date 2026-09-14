@@ -82,3 +82,13 @@ test("story detail renders identity, permissions, content, and status controls",
   assert.match(source, /<select[^>]*name="status"/);
   assert.doesNotMatch(source, /set:html/);
 });
+
+test("the status mutation route lives under /admin/* and exports only POST", async () => {
+  const source = await readFile(new URL("../src/pages/admin/submissions/[reference]/status.ts", import.meta.url), "utf8");
+
+  assert.match(source, /export\s+(const|async function)\s+POST\b/);
+  assert.doesNotMatch(source, /export\s+(const|async function)\s+GET/);
+  assert.match(source, /prerender\s*=\s*false/);
+  assert.match(source, /handleStatusUpdate/);
+  assert.match(source, /locals\.adminIdentity/);
+});
