@@ -1,4 +1,5 @@
 export type SubmissionKind = "story" | "guest";
+export type SubmissionLifecycleStatus = "new" | "reviewing" | "contacted" | "shortlisted" | "scheduled" | "declined" | "used" | "archived";
 export type StorySubmissionType = "story" | "question" | "topic" | "other";
 export type IdentityPreference = "name" | "pseudonym" | "anonymous";
 export type PublicationPermission = "read" | "paraphrase" | "private";
@@ -18,7 +19,7 @@ export type FieldErrors = Record<string, string>;
 export type ValidationResult<T> = { success: true; data: T } | { success: false; errors: FieldErrors };
 
 export interface StoredSubmission {
-  id: string; publicReference: string; kind: SubmissionKind; createdAt: string; status: "new";
+  id: string; publicReference: string; kind: SubmissionKind; createdAt: string; status: SubmissionLifecycleStatus;
   metadata?: { hostname: string; userAgent: string | null };
   story?: StorySubmissionInput; guest?: GuestSubmissionInput;
 }
