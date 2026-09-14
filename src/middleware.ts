@@ -1,5 +1,4 @@
 import { defineMiddleware } from "astro:middleware";
-import { env } from "cloudflare:workers";
 import { AccessDeniedError, verifyAccessRequest } from "./lib/admin/access";
 
 export const onRequest = defineMiddleware(async (context, next) => {
@@ -9,6 +8,8 @@ export const onRequest = defineMiddleware(async (context, next) => {
   if (!isAdminRoute) {
     return next();
   }
+
+  const { env } = await import("cloudflare:workers");
 
   try {
     const identity = await verifyAccessRequest(context.request, {
