@@ -3,3 +3,9 @@ TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
 TURNSTILE_SITE_KEY=1x00000000000000000000AA
 SUBMISSION_RATE_LIMIT_SECRET=replace-with-a-long-random-local-value
 TURNSTILE_TEST_MODE=true
+
+# Cloudflare Access application settings for the /admin submissions workspace.
+# These are application configuration values, not administrator identities.
+# Administrator membership is maintained only in Cloudflare Zero Trust Access policies.
+CLOUDFLARE_ACCESS_TEAM_DOMAIN=https://replace-with-your-team-name.cloudflareaccess.com
+CLOUDFLARE_ACCESS_AUD=replace-with-the-access-application-audience-tag
