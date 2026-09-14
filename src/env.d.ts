@@ -15,5 +15,7 @@ declare namespace Cloudflare {
     TURNSTILE_SECRET_KEY: string;
     SUBMISSION_RATE_LIMIT_SECRET: string;
     TURNSTILE_TEST_MODE?: string;
+    CLOUDFLARE_ACCESS_TEAM_DOMAIN?: string;
+    CLOUDFLARE_ACCESS_AUD?: string;
   }
 }

@@ -1,6 +1,6 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "sisters-with-mirrors-prod-tba",
+	"name": "swm-blog-local",
 	"main": "@astrojs/cloudflare/entrypoints/server",
 	"compatibility_date": "2026-09-10",
 	"compatibility_flags": [
@@ -25,6 +25,12 @@
 			"migrations_dir": "migrations"
 		}
 	],
+	"kv_namespaces": [
+		{
+			"binding": "SESSION",
+			"id": "f4302848b90b4fdf8d6ba56853dfc59e"
+		}
+	],
 	"send_email": [
 		{
 			"name": "SUBMISSIONS_EMAIL",
@@ -40,19 +46,29 @@
 		"TURNSTILE_SITE_KEY": "1x00000000000000000000AA",
 		"SUBMISSIONS_NOTIFICATION_EMAIL": "hello@sisterswithmirrors.com",
 		"SUBMISSIONS_FROM_EMAIL": "hello@sisterswithmirrors.com",
-		"SUBMISSIONS_ALLOWED_HOSTNAMES": "localhost,127.0.0.1",
-		"CLOUDFLARE_ACCESS_TEAM_DOMAIN": "https://REPLACE_WITH_TEAM_NAME.cloudflareaccess.com",
-		"CLOUDFLARE_ACCESS_AUD": "REPLACE_WITH_LOCAL_ACCESS_AUDIENCE_TAG"
+		"SUBMISSIONS_ALLOWED_HOSTNAMES": "localhost,127.0.0.1"
 	},
 	"env": {
-		"development": {
-			"name": "sisters-with-mirrors-dev-tba",
+		"dev": {
+			"name": "swm-blog-dev",
+			"routes": [
+				{
+					"pattern": "dev.sisterswithmirrors.com",
+					"custom_domain": true
+				}
+			],
 			"d1_databases": [
 				{
 					"binding": "SUBMISSIONS_DB",
 					"database_name": "sisters-with-mirrors-submissions-dev",
 					"database_id": "f73f4f7b-6b95-4ed3-8f2b-bfd990abf8f1",
 					"migrations_dir": "migrations"
+				}
+			],
+			"kv_namespaces": [
+				{
+					"binding": "SESSION",
+					"id": "f4302848b90b4fdf8d6ba56853dfc59e"
 				}
 			],
 			"send_email": [
@@ -67,22 +83,32 @@
 				"PUBLIC_SITE_URL": "https://dev.sisterswithmirrors.com",
 				"PUBLIC_MEDIA_URL": "https://media.sisterswithmirrors.com",
 				"R2_BUCKET_NAME": "sisters-with-mirrors",
-				"TURNSTILE_SITE_KEY": "REPLACE_WITH_DEVELOPMENT_TURNSTILE_SITE_KEY",
+				"TURNSTILE_SITE_KEY": "0x4AAAAAAEzsAus__nqEoK4h",
 				"SUBMISSIONS_NOTIFICATION_EMAIL": "hello@sisterswithmirrors.com",
 				"SUBMISSIONS_FROM_EMAIL": "hello@sisterswithmirrors.com",
-				"SUBMISSIONS_ALLOWED_HOSTNAMES": "dev.sisterswithmirrors.com,localhost,127.0.0.1",
-				"CLOUDFLARE_ACCESS_TEAM_DOMAIN": "https://REPLACE_WITH_TEAM_NAME.cloudflareaccess.com",
-				"CLOUDFLARE_ACCESS_AUD": "REPLACE_WITH_DEVELOPMENT_ACCESS_AUDIENCE_TAG"
+				"SUBMISSIONS_ALLOWED_HOSTNAMES": "dev.sisterswithmirrors.com"
 			}
 		},
-		"production": {
-			"name": "sisters-with-mirrors-prod-tba",
+		"prod": {
+			"name": "swm-blog-prod",
+			"routes": [
+				{
+					"pattern": "sisterswithmirrors.com",
+					"custom_domain": true
+				}
+			],
 			"d1_databases": [
 				{
 					"binding": "SUBMISSIONS_DB",
 					"database_name": "sisters-with-mirrors-submissions-prod",
 					"database_id": "47fdbd25-5492-4159-ac6b-983fbdc9f2ac",
 					"migrations_dir": "migrations"
+				}
+			],
+			"kv_namespaces": [
+				{
+					"binding": "SESSION",
+					"id": "cb5f9a0f24c04863a87ca076854aa2c5"
 				}
 			],
 			"send_email": [
@@ -97,12 +123,10 @@
 				"PUBLIC_SITE_URL": "https://sisterswithmirrors.com",
 				"PUBLIC_MEDIA_URL": "https://media.sisterswithmirrors.com",
 				"R2_BUCKET_NAME": "sisters-with-mirrors",
-				"TURNSTILE_SITE_KEY": "REPLACE_WITH_PRODUCTION_TURNSTILE_SITE_KEY",
+				"TURNSTILE_SITE_KEY": "0x4AAAAAAEzsA-MFyyc6XMYq",
 				"SUBMISSIONS_NOTIFICATION_EMAIL": "hello@sisterswithmirrors.com",
 				"SUBMISSIONS_FROM_EMAIL": "hello@sisterswithmirrors.com",
-				"SUBMISSIONS_ALLOWED_HOSTNAMES": "sisterswithmirrors.com",
-				"CLOUDFLARE_ACCESS_TEAM_DOMAIN": "https://REPLACE_WITH_TEAM_NAME.cloudflareaccess.com",
-				"CLOUDFLARE_ACCESS_AUD": "REPLACE_WITH_PRODUCTION_ACCESS_AUDIENCE_TAG"
+				"SUBMISSIONS_ALLOWED_HOSTNAMES": "sisterswithmirrors.com"
 			}
 		}
 	}
