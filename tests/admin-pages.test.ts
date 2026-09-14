@@ -35,3 +35,50 @@ test("admin submissions index paginates with bounded previous/next links and a u
   assert.match(source, /page\s*<\s*.*totalPages/);
   assert.match(source, /No submissions/i);
 });
+
+test("submission detail route normalizes the reference and 404s on missing records", async () => {
+  const source = await readFile(new URL("../src/pages/admin/submissions/[reference]/index.astro", import.meta.url), "utf8");
+
+  assert.match(source, /normalizePublicReference/);
+  assert.match(source, /findByReference/);
+  assert.match(source, /Astro\.response\.status\s*=\s*404/);
+  assert.match(source, /prerender\s*=\s*false/);
+});
+
+test("story detail renders identity, permissions, content, and status controls", async () => {
+  const source = await readFile(new URL("../src/components/admin/SubmissionDetail.astro", import.meta.url), "utf8");
+
+  for (const field of [
+    "identityPreference",
+    "publicationPermission",
+    "contactPermission",
+    "submissionType",
+    "content",
+  ]) {
+    assert.ok(source.includes(field), `expected story field ${field}`);
+  }
+
+  for (const field of [
+    "preferredName",
+    "timezone",
+    "about",
+    "talkAbout",
+    "whySwm",
+    "website",
+    "socialLinks",
+    "previousAppearances",
+    "topics",
+    "anythingElse",
+    "recordingAcknowledged",
+  ]) {
+    assert.ok(source.includes(field), `expected guest field ${field}`);
+  }
+
+  assert.match(source, /delivery/);
+  assert.match(source, /createdAt/);
+  assert.match(source, /updatedAt/);
+  assert.match(source, /back|Back/);
+  assert.match(source, /status/);
+  assert.match(source, /<select[^>]*name="status"/);
+  assert.doesNotMatch(source, /set:html/);
+});
