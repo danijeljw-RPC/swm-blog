@@ -26,3 +26,24 @@ test("navigation and sitemap discover all Get Involved routes", async () => {
   assert.match(header, /\["Get Involved", "\/get-involved\/"\]/); assert.match(footer, /Share Your Story/); assert.match(footer, /Be a Guest/);
   assert.match(sitemap, /\/get-involved\/share-your-story\//); assert.match(sitemap, /\/get-involved\/be-a-guest\//);
 });
+
+test("Get Involved pages use the established left-aligned reference hero", async () => {
+  const pages = await Promise.all([
+    "src/pages/get-involved/index.astro",
+    "src/pages/get-involved/share-your-story.astro",
+    "src/pages/get-involved/be-a-guest.astro",
+  ].map(read));
+
+  for (const page of pages) assert.match(page, /<ReferencePageHero /);
+  assert.match(pages[0], /eyebrow="Get involved"/);
+  assert.match(pages[1], /eyebrow="Share your story"/);
+  assert.match(pages[2], /eyebrow="Be a guest"/);
+  for (const page of pages) assert.doesNotMatch(page, /Get involved ·/);
+});
+
+test("cross-link headings and submit buttons have restrained spacing", async () => {
+  const styles = await read("src/styles/get-involved.css");
+
+  assert.match(styles, /\.cross-link h2\s*\{[^}]*font-size:/);
+  assert.match(styles, /\.submit-button\s*\{[^}]*margin-top:/);
+});

@@ -29,6 +29,13 @@ test("numerology is data-driven and the daily number links to its detail page", 
   assert.match(detail, /entry\.challenges\.map/);
 });
 
+test("numerology uses the established reference-page hero", async () => {
+  const page = await readSource("src/pages/numerology/index.astro");
+
+  assert.match(page, /<ReferencePageHero /);
+  assert.match(page, /eyebrow="Numerology reference"/);
+});
+
 test("primary navigation keeps Chakras in the footer", async () => {
   const header = await readSource("src/components/layout/Header.astro");
 

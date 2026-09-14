@@ -1,13 +1,14 @@
 ---
 import { env } from "cloudflare:workers";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReferencePageHero from "../../components/layout/ReferencePageHero.astro";
 import FormField from "../../components/get-involved/FormField.astro";
 import SubmissionFormShell from "../../components/get-involved/SubmissionFormShell.astro";
 import Turnstile from "../../components/get-involved/Turnstile.astro";
 import "../../styles/get-involved.css";
 ---
 <BaseLayout title="Share Your Story" description="Share a story, question or topic with DJ and Warren.">
-  <header class="site-container involved-hero"><p class="eyebrow">Get involved · Share your story</p><h1>Tell us what happened.</h1><p class="lede">A strange experience, a question you can’t shake, or a subject you want brought into the light—we’re listening.</p></header>
+  <ReferencePageHero eyebrow="Share your story" title="Tell us what happened." description="A strange experience, a question you can’t shake, or a subject you want brought into the light—we’re listening." />
   <div class="site-container form-layout"><main class="form-intro">
     <SubmissionFormShell action="/api/submissions/story/" kind="story"><div class="submission-form">
       <fieldset class="form-section"><legend>What are you sharing?</legend><div class="choice-list">

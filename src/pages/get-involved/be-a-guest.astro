@@ -1,6 +1,7 @@
 ---
 import { env } from "cloudflare:workers";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReferencePageHero from "../../components/layout/ReferencePageHero.astro";
 import FormField from "../../components/get-involved/FormField.astro";
 import SubmissionFormShell from "../../components/get-involved/SubmissionFormShell.astro";
 import Turnstile from "../../components/get-involved/Turnstile.astro";
@@ -8,7 +9,7 @@ import "../../styles/get-involved.css";
 const topics = [["consciousness","Consciousness"],["spirituality","Spirituality"],["psychic-experiences","Psychic experiences"],["mediumship","Mediumship"],["energy","Energy"],["astrology","Astrology"],["tarot","Tarot"],["reincarnation","Reincarnation"],["afterlife","Afterlife"],["ufo-uap","UFO / UAP"],["extraterrestrial-life","Extraterrestrial life"],["higher-dimensional-experiences","Higher-dimensional experiences"],["synchronicity","Synchronicity"],["personal-transformation","Personal transformation"],["other","Something else"]];
 ---
 <BaseLayout title="Be a Guest" description="Put your hand up to join DJ and Warren for a Sisters with Mirrors conversation.">
-  <header class="site-container involved-hero"><p class="eyebrow">Get involved · Be a guest</p><h1>Step through the mirror.</h1><p class="lede">If you have an experience, perspective or subject you’d love to explore, tell DJ and Warren what you’d bring to the conversation.</p></header>
+  <ReferencePageHero eyebrow="Be a guest" title="Step through the mirror." description="If you have an experience, perspective or subject you’d love to explore, tell DJ and Warren what you’d bring to the conversation." />
   <div class="site-container form-layout"><main class="form-intro"><SubmissionFormShell action="/api/submissions/guest/" kind="guest"><div class="submission-form">
     <fieldset class="form-section"><legend>About you</legend>
       <FormField id="guest-name" label="Name" required><input id="guest-name" name="name" required maxlength="120" autocomplete="name" /></FormField>
