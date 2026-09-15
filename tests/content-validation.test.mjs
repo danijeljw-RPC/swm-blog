@@ -125,6 +125,24 @@ test("incomplete audio enclosure metadata is reported", async () => {
   assert.match(result.errors.join("\n"), /audio\.bytes must be a positive integer/);
 });
 
+test("root-relative first-party media paths are valid", async () => {
+  const root = await makeRoot();
+  const content = validFrontmatter()
+    .replace(
+      "audio: null",
+      'audio: { url: "/podcasts/episode.mp3", mimeType: "audio/mpeg", bytes: 123 }',
+    )
+    .replace(
+      "video: { hosted: null, youtube: null, spotify: null }",
+      'video: { hosted: "/podcasts/episode.mp4", youtube: null, spotify: null }',
+    )
+    .replace("transcript: null", 'transcript: "/podcasts/episode.vtt"');
+  await writeFile(path.join(root, "src/content/episodes/media.md"), content);
+
+  const result = await validateContent(root);
+  assert.deepEqual(result.errors, []);
+});
+
 test("the repository includes at least one valid episode fixture", async () => {
   const result = await validateContent(process.cwd());
   assert.deepEqual(result.errors, []);

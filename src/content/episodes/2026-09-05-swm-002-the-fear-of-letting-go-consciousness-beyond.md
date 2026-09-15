@@ -37,7 +37,7 @@ podcast:
   season: 1
   episodeType: full
   explicit: null
-transcript: "/podcasts/season-01/episode-001/sisters-with-mirrors-s01e002.vtt"
+transcript: "/podcasts/season-01/episode-002/sisters-with-mirrors-s01e002.vtt"
 hosts:
   - dj
   - warren
