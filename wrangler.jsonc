@@ -1,6 +1,6 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "sisters-with-mirrors-prod-tba",
+	"name": "swm-blog-local",
 	"main": "@astrojs/cloudflare/entrypoints/server",
 	"compatibility_date": "2026-09-10",
 	"compatibility_flags": [
@@ -12,28 +12,125 @@
 		"not_found_handling": "404-page"
 	},
 	"observability": {
-		"enabled": true
+		"enabled": true,
+		"traces": {
+			"enabled": true
+		}
 	},
+	"d1_databases": [
+		{
+			"binding": "SUBMISSIONS_DB",
+			"database_name": "sisters-with-mirrors-submissions-dev",
+			"database_id": "f73f4f7b-6b95-4ed3-8f2b-bfd990abf8f1",
+			"migrations_dir": "migrations"
+		}
+	],
+	"kv_namespaces": [
+		{
+			"binding": "SESSION",
+			"id": "f4302848b90b4fdf8d6ba56853dfc59e"
+		}
+	],
+	"send_email": [
+		{
+			"name": "SUBMISSIONS_EMAIL",
+			"allowed_sender_addresses": [
+				"hello@sisterswithmirrors.com"
+			]
+		}
+	],
 	"vars": {
 		"PUBLIC_SITE_URL": "http://localhost:4321",
 		"PUBLIC_MEDIA_URL": "https://media.sisterswithmirrors.com",
-		"R2_BUCKET_NAME": "sisters-with-mirrors"
+		"R2_BUCKET_NAME": "sisters-with-mirrors",
+		"TURNSTILE_SITE_KEY": "1x00000000000000000000AA",
+		"SUBMISSIONS_NOTIFICATION_EMAIL": "hello@sisterswithmirrors.com",
+		"SUBMISSIONS_FROM_EMAIL": "hello@sisterswithmirrors.com",
+		"SUBMISSIONS_ALLOWED_HOSTNAMES": "localhost,127.0.0.1"
 	},
 	"env": {
-		"development": {
-			"name": "sisters-with-mirrors-dev-tba",
+		"dev": {
+			"name": "swm-blog-dev",
+			"routes": [
+				{
+					"pattern": "dev.sisterswithmirrors.com",
+					"custom_domain": true
+				}
+			],
+			"d1_databases": [
+				{
+					"binding": "SUBMISSIONS_DB",
+					"database_name": "sisters-with-mirrors-submissions-dev",
+					"database_id": "f73f4f7b-6b95-4ed3-8f2b-bfd990abf8f1",
+					"migrations_dir": "migrations"
+				}
+			],
+			"kv_namespaces": [
+				{
+					"binding": "SESSION",
+					"id": "f4302848b90b4fdf8d6ba56853dfc59e"
+				}
+			],
+			"send_email": [
+				{
+					"name": "SUBMISSIONS_EMAIL",
+					"allowed_sender_addresses": [
+						"hello@sisterswithmirrors.com"
+					]
+				}
+			],
 			"vars": {
 				"PUBLIC_SITE_URL": "https://dev.sisterswithmirrors.com",
 				"PUBLIC_MEDIA_URL": "https://media.sisterswithmirrors.com",
-				"R2_BUCKET_NAME": "sisters-with-mirrors"
+				"R2_BUCKET_NAME": "sisters-with-mirrors",
+				"TURNSTILE_SITE_KEY": "0x4AAAAAAEzsAus__nqEoK4h",
+				"CLOUDFLARE_ACCESS_TEAM_DOMAIN": "https://sisters-with-mirrors.cloudflareaccess.com",
+				"CLOUDFLARE_ACCESS_AUD": "a0a181ed69b0f026bf99b79e78e0b5556403fd0690bac503110eb8377992849a",
+				"SUBMISSIONS_NOTIFICATION_EMAIL": "hello@sisterswithmirrors.com",
+				"SUBMISSIONS_FROM_EMAIL": "hello@sisterswithmirrors.com",
+				"SUBMISSIONS_ALLOWED_HOSTNAMES": "dev.sisterswithmirrors.com"
 			}
 		},
-		"production": {
-			"name": "sisters-with-mirrors-prod-tba",
+		"prod": {
+			"name": "swm-blog-prod",
+			"routes": [
+				{
+					"pattern": "sisterswithmirrors.com",
+					"custom_domain": true
+				}
+			],
+			"d1_databases": [
+				{
+					"binding": "SUBMISSIONS_DB",
+					"database_name": "sisters-with-mirrors-submissions-prod",
+					"database_id": "47fdbd25-5492-4159-ac6b-983fbdc9f2ac",
+					"migrations_dir": "migrations"
+				}
+			],
+			"kv_namespaces": [
+				{
+					"binding": "SESSION",
+					"id": "cb5f9a0f24c04863a87ca076854aa2c5"
+				}
+			],
+			"send_email": [
+				{
+					"name": "SUBMISSIONS_EMAIL",
+					"allowed_sender_addresses": [
+						"hello@sisterswithmirrors.com"
+					]
+				}
+			],
 			"vars": {
 				"PUBLIC_SITE_URL": "https://sisterswithmirrors.com",
 				"PUBLIC_MEDIA_URL": "https://media.sisterswithmirrors.com",
-				"R2_BUCKET_NAME": "sisters-with-mirrors"
+				"R2_BUCKET_NAME": "sisters-with-mirrors",
+				"TURNSTILE_SITE_KEY": "0x4AAAAAAEzsA-MFyyc6XMYq",
+				"CLOUDFLARE_ACCESS_TEAM_DOMAIN": "https://sisters-with-mirrors.cloudflareaccess.com",
+				"CLOUDFLARE_ACCESS_AUD": "fab06831eee36162929666eb64d320c0526ce98190f9f490f5e2d4a1bcd9c4cc",
+				"SUBMISSIONS_NOTIFICATION_EMAIL": "hello@sisterswithmirrors.com",
+				"SUBMISSIONS_FROM_EMAIL": "hello@sisterswithmirrors.com",
+				"SUBMISSIONS_ALLOWED_HOSTNAMES": "sisterswithmirrors.com"
 			}
 		}
 	}

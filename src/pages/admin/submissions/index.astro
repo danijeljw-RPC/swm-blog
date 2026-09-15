@@ -1,0 +1,71 @@
+---
+export const prerender = false;
+
+import { env } from "cloudflare:workers";
+import AdminShell from "../../../components/admin/AdminShell.astro";
+import SubmissionList from "../../../components/admin/SubmissionList.astro";
+import { D1AdminSubmissionRepository } from "../../../lib/admin/repository";
+import { parsePage, parseSubmissionFilter, type AdminSubmissionFilter } from "../../../lib/admin/submissions";
+
+if (!Astro.locals.adminIdentity) {
+  return new Response("Forbidden", { status: 403 });
+}
+
+const PAGE_SIZE = 25;
+
+const FILTERS: { value: AdminSubmissionFilter; label: string }[] = [
+  { value: "all", label: "All" },
+  { value: "new", label: "New" },
+  { value: "stories", label: "Stories" },
+  { value: "questions", label: "Questions" },
+  { value: "topics", label: "Topic Suggestions" },
+  { value: "guests", label: "Guest Requests" },
+  { value: "contacted", label: "Contacted" },
+  { value: "scheduled", label: "Scheduled" },
+  { value: "used", label: "Used" },
+  { value: "archived", label: "Archived" },
+];
+
+const filter = parseSubmissionFilter(Astro.url.searchParams.get("filter"));
+const page = parsePage(Astro.url.searchParams.get("page"));
+
+let submissionPage;
+try {
+  const repository = new D1AdminSubmissionRepository(env.SUBMISSIONS_DB);
+  submissionPage = await repository.list({ filter, page, pageSize: PAGE_SIZE });
+} catch (error) {
+  console.error(JSON.stringify({ event: "admin_submissions_index_failed", errorClass: error instanceof Error ? error.name : "UnknownError" }));
+  return new Response("Internal Server Error", { status: 500 });
+}
+
+const { items, totalPages } = submissionPage;
+const emptyStateMessage = "No submissions match this filter yet.";
+---
+
+<AdminShell title="Submissions" administratorEmail={Astro.locals.adminIdentity.email}>
+  <ul class="admin-filters">
+    {FILTERS.map((entry) => (
+      <li>
+        <a href={`/admin/submissions/?filter=${entry.value}`} aria-current={filter === entry.value ? "true" : "false"}>
+          {entry.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  {items.length === 0 ? <p class="admin-list__empty">{emptyStateMessage}</p> : <SubmissionList items={items} />}
+
+  <nav class="admin-pagination" aria-label="Submissions pagination">
+    {page > 1 ? (
+      <a href={`/admin/submissions/?filter=${filter}&page=${page - 1}`}>Previous</a>
+    ) : (
+      <span></span>
+    )}
+    <span>Page {page} of {totalPages}</span>
+    {page < totalPages ? (
+      <a href={`/admin/submissions/?filter=${filter}&page=${page + 1}`}>Next</a>
+    ) : (
+      <span></span>
+    )}
+  </nav>
+</AdminShell>

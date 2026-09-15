@@ -3,7 +3,7 @@ title: "The Fear of Letting Go & Consciousness Beyond"
 slug: "the-fear-of-letting-go-consciousness-beyond"
 episode: 2
 publishedAt: 2026-09-05
-updatedAt: 2026-09-11
+updatedAt: 2026-09-15
 draft: false
 fixture: false
 excerpt: "A conversation about letting go, the ego, higher consciousness, alien life and the Source connecting all living things."
@@ -25,11 +25,11 @@ heroImage: "/images/episodes/the-fear-of-letting-go-consciousness-beyond-letting
 heroImageAlt: "Abstract celestial title card for The Fear of Letting Go & Consciousness Beyond"
 duration: "56:41"
 audio:
-  url: "https://pub-4a633a78f24048028aad05d8e8a5a1b6.r2.dev/podcasts/season-01/episode-002/sisters-with-mirrors-s01e002.mp3"
+  url: "/podcasts/season-01/episode-002/sisters-with-mirrors-s01e002.mp3"
   mimeType: "audio/mpeg"
   bytes: 54402989
 video:
-  hosted: "https://pub-4a633a78f24048028aad05d8e8a5a1b6.r2.dev/podcasts/season-01/episode-002/sisters-with-mirrors-s01e002.mp4"
+  hosted: "/podcasts/season-01/episode-002/sisters-with-mirrors-s01e002.mp4"
   youtube: "https://youtu.be/jF7ZY6hqtP0"
   spotify: null
 podcast:
@@ -37,7 +37,7 @@ podcast:
   season: 1
   episodeType: full
   explicit: null
-transcript: null
+transcript: "/podcasts/season-01/episode-002/sisters-with-mirrors-s01e002.vtt"
 hosts:
   - dj
   - warren

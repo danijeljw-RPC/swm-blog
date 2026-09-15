@@ -3,6 +3,7 @@ import path from "node:path";
 import { parse } from "yaml";
 
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const mediaUrlPattern = /^(?:https:\/\/|\/(?!\/))/;
 
 async function listFiles(directory, extensionPattern) {
   try {
@@ -91,10 +92,18 @@ function validateEpisodeShape(file, data, categories, hostIds, errors) {
     if (typeof data.audio !== "object") {
       errors.push(`${file}: audio must be null or an enclosure object`);
     } else {
-      if (!/^https?:\/\//.test(data.audio.url ?? "")) errors.push(`${file}: audio.url must be an absolute URL`);
+      if (!mediaUrlPattern.test(data.audio.url ?? "")) {
+        errors.push(`${file}: audio.url must be a root-relative path or an HTTPS URL`);
+      }
       if (!/^audio\//.test(data.audio.mimeType ?? "")) errors.push(`${file}: audio.mimeType must be an audio MIME type`);
       if (!Number.isInteger(data.audio.bytes) || data.audio.bytes < 1) errors.push(`${file}: audio.bytes must be a positive integer`);
     }
+  }
+  if (data.video?.hosted != null && !mediaUrlPattern.test(data.video.hosted)) {
+    errors.push(`${file}: video.hosted must be a root-relative path or an HTTPS URL`);
+  }
+  if (data.transcript != null && !mediaUrlPattern.test(data.transcript)) {
+    errors.push(`${file}: transcript must be a root-relative path or an HTTPS URL`);
   }
 }
 

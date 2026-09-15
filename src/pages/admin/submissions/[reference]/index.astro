@@ -1,0 +1,42 @@
+---
+export const prerender = false;
+
+import { env } from "cloudflare:workers";
+import AdminShell from "../../../../components/admin/AdminShell.astro";
+import SubmissionDetail from "../../../../components/admin/SubmissionDetail.astro";
+import { D1AdminSubmissionRepository } from "../../../../lib/admin/repository";
+import { normalizePublicReference } from "../../../../lib/admin/submissions";
+
+if (!Astro.locals.adminIdentity) {
+  return new Response("Forbidden", { status: 403 });
+}
+
+const normalizedReference = normalizePublicReference(Astro.params.reference);
+
+if (!normalizedReference) {
+  Astro.response.status = 404;
+}
+
+let detail = null;
+if (normalizedReference) {
+  try {
+    const repository = new D1AdminSubmissionRepository(env.SUBMISSIONS_DB);
+    detail = await repository.findByReference(normalizedReference);
+  } catch (error) {
+    console.error(JSON.stringify({ event: "admin_submission_detail_failed", errorClass: error instanceof Error ? error.name : "UnknownError" }));
+    return new Response("Internal Server Error", { status: 500 });
+  }
+}
+
+if (!detail) {
+  Astro.response.status = 404;
+}
+---
+
+<AdminShell title={detail ? detail.publicReference : "Submission not found"} administratorEmail={Astro.locals.adminIdentity.email}>
+  {detail ? (
+    <SubmissionDetail detail={detail} />
+  ) : (
+    <p>We couldn't find that submission.</p>
+  )}
+</AdminShell>

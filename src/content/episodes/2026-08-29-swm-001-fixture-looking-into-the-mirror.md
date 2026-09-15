@@ -3,7 +3,7 @@ title: "Introduction to Sisters with Mirrors"
 slug: "introduction-to-sisters-with-mirrors"
 episode: 1
 publishedAt: 2026-08-29
-updatedAt: 2026-09-14
+updatedAt: 2026-09-15
 draft: false
 fixture: false
 excerpt: "A reflection on self-acceptance, emotional release, and the symbolic power of mirrors, water and crystals."
@@ -26,11 +26,11 @@ heroImage: "/images/episodes/introduction-to-sisters-with-mirrors-mirrors-water-
 heroImageAlt: "Mystical title card for Introduction to Sisters with Mirrors, featuring an abstract mirrored motif"
 duration: "50:49"
 audio:
-  url: "https://pub-4a633a78f24048028aad05d8e8a5a1b6.r2.dev/podcasts/season-01/episode-001/sisters-with-mirrors-s01e001.mp3"
+  url: "/podcasts/season-01/episode-001/sisters-with-mirrors-s01e001.mp3"
   mimeType: "audio/mpeg"
   bytes: 54402989
 video:
-  hosted: "https://pub-4a633a78f24048028aad05d8e8a5a1b6.r2.dev/podcasts/season-01/episode-001/sisters-with-mirrors-s01e001.mp4"
+  hosted: "/podcasts/season-01/episode-001/sisters-with-mirrors-s01e001.mp4"
   youtube: "https://youtu.be/jF7ZY6hqtP0"
   spotify: null
 podcast:
@@ -38,7 +38,7 @@ podcast:
   season: 1
   episodeType: full
   explicit: null
-transcript: "https://pub-4a633a78f24048028aad05d8e8a5a1b6.r2.dev/podcasts/season-01/episode-001/sisters-with-mirrors-s01e001.vtt"
+transcript: "/podcasts/season-01/episode-001/sisters-with-mirrors-s01e001.vtt"
 hosts:
   - dj
   - warren

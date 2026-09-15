@@ -116,10 +116,17 @@ An episode enters the public podcast feed at `/rss.xml` only when all three audi
 
 ```yaml
 audio:
-  url: "https://media.sisterswithmirrors.com/audio/YYYY/MM/file.mp3"
+  url: "/podcasts/season-01/episode-001/episode.mp3"
   mimeType: "audio/mpeg"
   bytes: 12345678
+video:
+  hosted: "/podcasts/season-01/episode-001/episode.mp4"
+transcript: "/podcasts/season-01/episode-001/episode.vtt"
 ```
+
+Root-relative audio, hosted-video, and transcript paths are resolved against
+`PUBLIC_MEDIA_URL`. Use a complete `https://` URL instead when media is hosted
+elsewhere; complete HTTPS URLs are preserved unchanged.
 
 `bytes` is the exact positive file size, not zero or an estimate. Episodes without a complete enclosure can still publish as articles but are deliberately excluded from the podcast feed. The blog feed is `/blog.xml`; it publishes articles without an audio enclosure.
 

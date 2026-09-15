@@ -1,52 +1,112 @@
 # Cloudflare deployment
 
-The intended flow is:
+Sisters with Mirrors uses two independent Workers Builds projects:
 
 ```text
-dev  -> development Worker -> https://dev.sisterswithmirrors.com
-main -> production Worker  -> https://sisterswithmirrors.com
+dev  -> scripts/ci-build-dev.sh  -> scripts/ci-deploy-dev.sh  -> swm-blog-dev
+main -> scripts/ci-build-prod.sh -> scripts/ci-deploy-prod.sh -> swm-blog-prod
 ```
 
-`.github/workflows/deploy.yml` tests, validates, builds the selected environment, and deploys it with Wrangler. A pull request from `dev` to `main` is the normal production release path.
+GitHub Actions validates code only. Cloudflare Workers Builds performs deployment. The build selects `CLOUDFLARE_ENV`; Astro writes a flattened configuration to `dist/server/wrangler.json`. The deploy script validates that generated Worker name, D1 ID, and SESSION KV ID before running Wrangler against that file. It never adds a second `--env` selector.
 
-## Current placeholders
+Workers Builds installs dependencies before invoking the configured build command and exposes `WORKERS_CI=1`. The environment build scripts rely on that platform install when this flag is present, while retaining `npm ci` for local or manual execution.
 
-| Value | Configuration |
-|---|---|
-| Production domain | `sisterswithmirrors.com` (route not yet configured) |
-| Development domain | `dev.sisterswithmirrors.com` (route not yet configured) |
-| R2 bucket | `sisters-with-mirrors` (binding intentionally not attached yet) |
-| Media hostname | `media.sisterswithmirrors.com` (DNS/custom domain not yet configured) |
-| Production Worker | `sisters-with-mirrors-prod-tba` |
-| Development Worker | `sisters-with-mirrors-dev-tba` |
+## Environment resources
 
-Replace the two `*-tba` names before the first deploy. Routes are absent until Worker names and Cloudflare zone routing are confirmed. The bucket name is recorded, but no R2 binding is declared while the bucket and public custom domain are still being created.
+| Resource | DEV | PROD |
+|---|---|---|
+| Worker | `swm-blog-dev` | `swm-blog-prod` |
+| Host | `dev.sisterswithmirrors.com` | `sisterswithmirrors.com` |
+| D1 | `sisters-with-mirrors-submissions-dev` | `sisters-with-mirrors-submissions-prod` |
+| Session KV | `sisters-with-mirrors-session-dev` | `sisters-with-mirrors-session-prod` |
+| Turnstile widget | `Sisters with Mirrors DEV` | `Sisters with Mirrors PROD` |
+| Allowed submission hostname | `dev.sisterswithmirrors.com` | `sisterswithmirrors.com` |
 
-## GitHub secrets
+Each Worker has its own `TURNSTILE_SECRET_KEY` and `SUBMISSION_RATE_LIMIT_SECRET`. Secret values are held only by Cloudflare. `TURNSTILE_TEST_MODE` is never declared in either deployed environment.
 
-The workflow references these names only:
+The public media URL is intentionally shared: it points to published public episode media and is not a Worker state binding. The Send Email service capability is also shared, while each Worker keeps explicit sender and notification configuration. The application constructs recipients and messages only after input validation, Turnstile verification, rate limiting, and persistence, so it is not a general relay.
 
-- `CLOUDFLARE_API_TOKEN`
-- `CLOUDFLARE_ACCOUNT_ID`
+## Cloudflare Workers Builds settings
 
-Do not put their values in `.dev.vars.example`, `wrangler.jsonc`, or source files.
+Configure these fields after connecting the repository to each Worker.
 
-## Local Worker checks
+### `swm-blog-dev`
+
+- Production branch: `dev`
+- Build command: `scripts/ci-build-dev.sh`
+- Deploy command: `scripts/ci-deploy-dev.sh`
+- Root directory: `/`
+
+### `swm-blog-prod`
+
+- Production branch: `main`
+- Build command: `scripts/ci-build-prod.sh`
+- Deploy command: `scripts/ci-deploy-prod.sh`
+- Root directory: `/`
+
+The authenticated Wrangler OAuth token does not have Workers Builds API permission, so these repository-connection fields must be entered in the dashboard. The scripts still fail closed if a dashboard branch is misconfigured.
+
+## Canonical D1 migration history
+
+Keep one checked-in `migrations/` directory and apply it independently:
 
 ```bash
-npm ci
-npm run dev
-npm run build:dev
-npx wrangler dev
+npx wrangler d1 migrations apply sisters-with-mirrors-submissions-dev --remote --env dev
+npx wrangler d1 migrations apply sisters-with-mirrors-submissions-prod --remote --env prod
 ```
 
-`npm run preview` also exercises the adapter's local Worker-compatible preview after a build. The environment is selected during the build (`CLOUDFLARE_ENV`); Wrangler then deploys the generated environment configuration without a second `--env` override. These commands do not contact Cloudflare or write to R2.
+Never create environment-specific copies of the SQL files.
+Migration `0002_add_submission_admin_fields.sql` adds the admin audit columns and indexes without replacing the shared migration history.
 
-## Before first deployment
+## Cloudflare Access for submissions admin
 
-- [ ] Replace both `*-tba` Worker names.
-- [ ] Create or confirm the `sisters-with-mirrors` R2 bucket.
-- [ ] Create the `media.sisterswithmirrors.com` R2 custom domain.
-- [ ] Add the production and development Worker routes.
-- [ ] Add the two GitHub secrets.
-- [ ] Push to `dev`, inspect it, then open the `dev` → `main` pull request.
+Astro middleware protects `/admin`, `/admin/*`, and therefore every admin page and status-mutation endpoint. It verifies the Cloudflare Access JWT signature, issuer, audience, expiry/not-before claims, subject, and email. Missing configuration or identity returns 403. Admin responses are private, non-cacheable, and excluded from indexing.
+
+Cloudflare's API currently reports that Access is not enabled for this account. Complete this one-time dashboard operation before attaching the public hostnames:
+
+1. Open Cloudflare Zero Trust and click **Enable Access**. Choose the account team name; this creates the `https://<team-name>.cloudflareaccess.com` team domain.
+2. Enable **One-Time PIN** as an identity provider.
+3. Create a DEV self-hosted application covering `dev.sisterswithmirrors.com/admin*` so it matches both `/admin` and descendants.
+4. Create a PROD self-hosted application covering `sisterswithmirrors.com/admin*`.
+5. For each application, add an **Allow** policy using exact email rules for:
+   - `danijel@repasscloud.com`
+   - `warren.lio@avanoa.co`
+6. Require login method **One-Time PIN**. Do not use `Everyone` or an unrestricted OTP include rule.
+7. Add each real audience tag to its matching `env.dev.vars.CLOUDFLARE_ACCESS_AUD` or `env.prod.vars.CLOUDFLARE_ACCESS_AUD` in `wrangler.jsonc`.
+8. Add the real team domain to both environments as `CLOUDFLARE_ACCESS_TEAM_DOMAIN`, rebuild, and deploy DEV before PROD.
+
+Until those real values are configured, deployed Access variables are deliberately absent and middleware denies all admin requests. There is no local or deployed authentication bypass.
+
+## Custom-domain cutover
+
+The zone `sisterswithmirrors.com` is active. The apex currently points to the legacy `swm-blog` Worker; `dev.sisterswithmirrors.com` is not attached. After Access is enabled and both audience tags are committed:
+
+1. Deploy DEV. Wrangler attaches `dev.sisterswithmirrors.com` to `swm-blog-dev`.
+2. Verify public pages, anonymous admin denial, approved OTP login, DEV submission creation, and a DEV admin status update.
+3. Deploy PROD. Wrangler moves `sisterswithmirrors.com` from legacy `swm-blog` to `swm-blog-prod`.
+4. Repeat the public, Access, submission, and admin checks against PROD.
+
+Do not CNAME either hostname to a `workers.dev` preview URL.
+
+## Local development
+
+Local development uses `.dev.vars`, local D1/Miniflare state, localhost, and Cloudflare's documented test Turnstile credentials. Wrangler does not contact remote D1 unless `--remote` is explicitly supplied.
+
+```bash
+cp .dev.vars.example .dev.vars
+npx wrangler d1 migrations apply SUBMISSIONS_DB --local
+npm run dev
+```
+
+Local admin routes fail closed because they have no real Access assertion. This is deliberate.
+
+## Post-deployment checks
+
+- Signed-out and unapproved users cannot access `/admin/submissions/` or nested routes.
+- A protected nested detail route such as `/admin/submissions/SWM-S-234567/` is denied anonymously.
+- Both approved addresses can complete OTP login.
+- DEV admin reads and changes DEV D1 only.
+- PROD admin reads and changes PROD D1 only.
+- A DEV session is absent from PROD and vice versa.
+- Story and guest forms accept fresh Turnstile tokens and reject replayed tokens.
+- A production deployment contains no DEV D1 or KV identifier, and a DEV deployment contains no PROD identifier.

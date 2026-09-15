@@ -1,0 +1,36 @@
+---
+import type { AdminSubmissionStatus } from "../../lib/admin/submissions";
+
+interface Props {
+  status: AdminSubmissionStatus;
+}
+
+const { status } = Astro.props;
+
+const LABELS: Record<AdminSubmissionStatus, string> = {
+  new: "New",
+  reviewing: "Reviewing",
+  contacted: "Contacted",
+  shortlisted: "Shortlisted",
+  scheduled: "Scheduled",
+  declined: "Declined",
+  used: "Used",
+  archived: "Archived",
+};
+
+const COLORS: Record<AdminSubmissionStatus, string> = {
+  new: "var(--swm-gold-light)",
+  reviewing: "var(--swm-gold-light)",
+  contacted: "var(--swm-ivory)",
+  shortlisted: "var(--swm-ivory)",
+  scheduled: "var(--swm-gold)",
+  declined: "var(--swm-danger)",
+  used: "var(--swm-text-muted)",
+  archived: "var(--swm-text-muted)",
+};
+
+const label = LABELS[status];
+const color = COLORS[status];
+---
+
+<span class="admin-status-badge" style={`color: ${color}; border-color: ${color};`}>{label}</span>

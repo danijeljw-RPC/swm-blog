@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReferencePageHero from "../../components/layout/ReferencePageHero.astro";
 import numerology from "../../data/numerology.json";
 
 const numbers = numerology as NumerologyEntry[];
@@ -7,12 +8,8 @@ interface NumerologyEntry { number: number; title: string; energy: string; }
 ---
 
 <BaseLayout title="Numerology" description="A reflective guide to the symbolic meaning, energy, strengths and challenges of numbers one to one hundred.">
+  <ReferencePageHero eyebrow="Numerology reference" title="Numbers in the mirror." description="Every number carries a different rhythm. Choose a number to explore its symbolism, energy, gifts, growing edges and invitation for reflection." />
   <main class="numerology-page site-container">
-    <header class="intro">
-      <p class="eyebrow">Numerology reference</p>
-      <h1>Numbers in the mirror.</h1>
-      <p>Every number carries a different rhythm. Choose a number to explore its symbolism, energy, gifts, growing edges and invitation for reflection.</p>
-    </header>
     <section class="number-grid" aria-label="Choose a number">
       {numbers.map((entry) => (
         <a href={`/numerology/${entry.number}/`} class="number-card">
@@ -26,11 +23,7 @@ interface NumerologyEntry { number: number; title: string; energy: string; }
 </BaseLayout>
 
 <style>
-  .numerology-page { padding-block: var(--space-5) var(--space-7); }
-  .intro { max-width: 48rem; padding-block: var(--space-4) var(--space-6); }
-  .eyebrow { margin: 0 0 var(--space-2); color: var(--swm-gold); font-size: .75rem; letter-spacing: .13em; text-transform: uppercase; }
-  h1 { margin: 0 0 var(--space-3); font-size: clamp(3.4rem, 8vw, 6.5rem); line-height: .9; }
-  .intro > p:last-child { max-width: 36rem; color: var(--swm-text-muted); font-size: 1rem; }
+  .numerology-page { padding-bottom: var(--space-7); }
   .number-grid { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--swm-border); border-left: 1px solid var(--swm-border); }
   .number-card { display: grid; min-height: 12rem; align-content: end; gap: .35rem; padding: var(--space-3); border-right: 1px solid var(--swm-border); border-bottom: 1px solid var(--swm-border); text-decoration: none; background: linear-gradient(145deg, rgb(23 19 28 / 58%), rgb(7 7 11 / 84%)); transition: background .2s ease, transform .2s ease; }
   .number-card:hover { background: rgb(169 136 83 / 10%); transform: translateY(-2px); }

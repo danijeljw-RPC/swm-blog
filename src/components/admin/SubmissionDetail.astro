@@ -1,0 +1,186 @@
+---
+import type { AdminSubmissionDetail } from "../../lib/admin/submissions";
+import { SUBMISSION_STATUSES } from "../../lib/admin/submissions";
+import StatusBadge from "./StatusBadge.astro";
+
+interface Props {
+  detail: AdminSubmissionDetail;
+}
+
+const { detail } = Astro.props;
+
+const IDENTITY_LABELS: Record<string, string> = {
+  name: "Real name",
+  pseudonym: "Pseudonym",
+  anonymous: "Anonymous",
+};
+
+const PERMISSION_LABELS: Record<string, string> = {
+  read: "May read on the show",
+  paraphrase: "May paraphrase",
+  private: "Private — do not use",
+};
+
+const SUBMISSION_TYPE_LABELS: Record<string, string> = {
+  story: "Story",
+  question: "Question",
+  topic: "Topic suggestion",
+  other: "Something else",
+};
+
+const STATUS_LABELS: Record<string, string> = {
+  new: "New",
+  reviewing: "Reviewing",
+  contacted: "Contacted",
+  shortlisted: "Shortlisted",
+  scheduled: "Scheduled",
+  declined: "Declined",
+  used: "Used",
+  archived: "Archived",
+};
+
+function deliveryLabel(state: string | null): string {
+  if (!state) return "Not tracked";
+  if (state === "sent") return "Sent";
+  if (state === "failed") return "Failed";
+  return "Pending";
+}
+
+function isHttpUrl(value: string | null): boolean {
+  if (!value) return false;
+  try {
+    const parsed = new URL(value);
+    return parsed.protocol === "http:" || parsed.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+---
+
+<article class="admin-detail">
+  <p><a href="/admin/submissions/">&larr; Back to submissions</a></p>
+
+  <dl>
+    <dt>Reference</dt>
+    <dd>{detail.publicReference}</dd>
+
+    <dt>Status</dt>
+    <dd><StatusBadge status={detail.status} /></dd>
+
+    <dt>Received</dt>
+    <dd><time datetime={detail.createdAt}>{new Date(detail.createdAt).toLocaleString()}</time></dd>
+
+    <dt>Last updated</dt>
+    <dd>
+      {detail.updatedAt ? <time datetime={detail.updatedAt}>{new Date(detail.updatedAt).toLocaleString()}</time> : "Never"}
+      {detail.statusUpdatedBy ? ` by ${detail.statusUpdatedBy}` : ""}
+    </dd>
+
+    {detail.kind === "story" ? (
+      <>
+        <dt>Submission type</dt>
+        <dd>{SUBMISSION_TYPE_LABELS[detail.submissionType] ?? detail.submissionType}</dd>
+
+        <dt>Identity preference</dt>
+        <dd>{IDENTITY_LABELS[detail.identityPreference] ?? detail.identityPreference}</dd>
+
+        <dt>Name / pseudonym</dt>
+        <dd>{detail.identityPreference === "name" ? detail.name : detail.identityPreference === "pseudonym" ? detail.pseudonym : "Anonymous"}</dd>
+
+        <dt>Email</dt>
+        <dd>{detail.email ?? "Not provided"}</dd>
+
+        <dt>Contact permission</dt>
+        <dd>{detail.contactPermission ? "May contact" : "Do not contact"}</dd>
+
+        <dt>Publication permission</dt>
+        <dd>{PERMISSION_LABELS[detail.publicationPermission] ?? detail.publicationPermission}</dd>
+
+        <dt>Content</dt>
+        <dd>{detail.content}</dd>
+
+        <dt>Notification delivery</dt>
+        <dd>{deliveryLabel(detail.delivery.internal)}</dd>
+
+        <dt>Acknowledgement delivery</dt>
+        <dd>{deliveryLabel(detail.delivery.acknowledgement)}</dd>
+      </>
+    ) : (
+      <>
+        <dt>Name</dt>
+        <dd>{detail.name}</dd>
+
+        <dt>Preferred name</dt>
+        <dd>{detail.preferredName ?? "Not provided"}</dd>
+
+        <dt>Email</dt>
+        <dd>{detail.email}</dd>
+
+        <dt>Timezone</dt>
+        <dd>{detail.timezone ?? "Not provided"}</dd>
+
+        <dt>About</dt>
+        <dd>{detail.about}</dd>
+
+        <dt>What they'd talk about</dt>
+        <dd>{detail.talkAbout}</dd>
+
+        <dt>Why Sisters with Mirrors</dt>
+        <dd>{detail.whySwm}</dd>
+
+        <dt>Website</dt>
+        <dd>
+          {detail.website ? (
+            isHttpUrl(detail.website) ? (
+              <a href={detail.website} target="_blank" rel="noopener noreferrer nofollow">{detail.website}</a>
+            ) : (
+              detail.website
+            )
+          ) : (
+            "Not provided"
+          )}
+        </dd>
+
+        <dt>Social links</dt>
+        <dd>
+          {detail.socialLinks.length === 0 ? "Not provided" : detail.socialLinks.map((link) => (
+            isHttpUrl(link) ? (
+              <><a href={link} target="_blank" rel="noopener noreferrer nofollow">{link}</a><br /></>
+            ) : (
+              <>{link}<br /></>
+            )
+          ))}
+        </dd>
+
+        <dt>Previous appearances</dt>
+        <dd>{detail.previousAppearances ?? "Not provided"}</dd>
+
+        <dt>Topics</dt>
+        <dd>{detail.topics.length === 0 ? "Not provided" : detail.topics.join(", ")}</dd>
+
+        <dt>Anything else</dt>
+        <dd>{detail.anythingElse ?? "Not provided"}</dd>
+
+        <dt>Recording acknowledgement</dt>
+        <dd>{detail.recordingAcknowledged ? "Acknowledged" : "Not acknowledged"}</dd>
+
+        <dt>Notification delivery</dt>
+        <dd>{deliveryLabel(detail.delivery.internal)}</dd>
+
+        <dt>Acknowledgement delivery</dt>
+        <dd>{deliveryLabel(detail.delivery.acknowledgement)}</dd>
+      </>
+    )}
+  </dl>
+
+  <form class="admin-status-form" method="post" action={`/admin/submissions/${detail.publicReference}/status/`}>
+    <label for="status">Status</label>
+    <select id="status" name="status">
+      {SUBMISSION_STATUSES.map((status) => (
+        <option value={status} selected={status === detail.status}>{STATUS_LABELS[status] ?? status}</option>
+      ))}
+    </select>
+    <button type="submit">Update status</button>
+    <p><small>Status is internal and is never shown publicly.</small></p>
+  </form>
+</article>
