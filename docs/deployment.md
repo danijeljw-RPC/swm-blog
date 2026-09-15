@@ -9,6 +9,8 @@ main -> scripts/ci-build-prod.sh -> scripts/ci-deploy-prod.sh -> swm-blog-prod
 
 GitHub Actions validates code only. Cloudflare Workers Builds performs deployment. The build selects `CLOUDFLARE_ENV`; Astro writes a flattened configuration to `dist/server/wrangler.json`. The deploy script validates that generated Worker name, D1 ID, and SESSION KV ID before running Wrangler against that file. It never adds a second `--env` selector.
 
+Workers Builds installs dependencies before invoking the configured build command and exposes `WORKERS_CI=1`. The environment build scripts rely on that platform install when this flag is present, while retaining `npm ci` for local or manual execution.
+
 ## Environment resources
 
 | Resource | DEV | PROD |
