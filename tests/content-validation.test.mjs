@@ -33,9 +33,28 @@ ${overrides}---
 Fixture copy.
 `;
 
+const validArticle = (overrides = "") => `---
+title: "Fixture article"
+slug: "fixture-article"
+publishedAt: 2026-09-15
+draft: false
+excerpt: "Fixture excerpt."
+description: "Fixture description."
+categories: [spirituality]
+tags: []
+authors: [dj, warren]
+heroImage: null
+heroImageAlt: ""
+seo: { canonical: null, noindex: false }
+${overrides}---
+
+Fixture article copy.
+`;
+
 async function makeRoot() {
   const root = await mkdtemp(path.join(os.tmpdir(), "swm-content-"));
   await mkdir(path.join(root, "src/content/episodes"), { recursive: true });
+  await mkdir(path.join(root, "src/content/articles"), { recursive: true });
   await mkdir(path.join(root, "src/data"), { recursive: true });
   await mkdir(path.join(root, "src/config"), { recursive: true });
   await mkdir(path.join(root, "public/images/episodes"), { recursive: true });
@@ -156,4 +175,23 @@ test("source-data notes beside episodes are not treated as publishable content",
 
   const result = await validateContent(root);
   assert.deepEqual(result.errors, []);
+});
+
+test("standalone articles require valid authors and share category validation", async () => {
+  const root = await makeRoot();
+  await writeFile(path.join(root, "src/content/articles/valid.md"), validArticle());
+  await writeFile(path.join(root, "src/content/articles/invalid.md"), validArticle()
+    .replace("authors: [dj, warren]", "authors: [stranger]")
+    .replace("categories: [spirituality]", "categories: [unknown]"));
+  const result = await validateContent(root);
+  assert.match(result.errors.join("\n"), /unknown author "stranger"/);
+  assert.match(result.errors.join("\n"), /unknown category "unknown"/);
+});
+
+test("episode and standalone article slugs must be unique across collections", async () => {
+  const root = await makeRoot();
+  await writeFile(path.join(root, "src/content/episodes/fixture.md"), validFrontmatter());
+  await writeFile(path.join(root, "src/content/articles/duplicate.md"), validArticle().replace("fixture-article", "fixture-episode"));
+  const result = await validateContent(root);
+  assert.match(result.errors.join("\n"), /duplicate slug "fixture-episode"/);
 });

@@ -1,0 +1,33 @@
+---
+import type { ArticleEntry } from "../types/article";
+import hosts from "../data/hosts.json";
+import BaseLayout from "./BaseLayout.astro";
+import CategoryBadge from "../components/episodes/CategoryBadge.astro";
+import type { CategoryKey } from "../config/categories";
+interface Props { entry: ArticleEntry }
+const { entry: { data } } = Astro.props;
+const authorNames = data.authors.map((id) => hosts.find((host) => host.id === id)?.name ?? id);
+---
+<BaseLayout title={data.title} description={data.description} image={data.heroImage} canonical={data.seo.canonical} noindex={data.seo.noindex}>
+  <article class="article-page">
+    <header class:list={["site-container", "article-header", data.heroImage && "with-image"]}>
+      <div><p>Article</p><h1>{data.title}</h1><p class="byline">By {authorNames.join(" and ")}</p><time datetime={data.publishedAt.toISOString()}>{data.publishedAt.toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" })}</time><div class="categories">{data.categories.map((category) => <CategoryBadge category={category as CategoryKey} />)}</div></div>
+      {data.heroImage && <img src={data.heroImage} alt={data.heroImageAlt} />}
+    </header>
+    <div class="article-body"><slot /></div>
+  </article>
+</BaseLayout>
+<style>
+  .article-page { padding-block: var(--space-5) var(--space-6); }
+  .article-header { max-width: 64rem; }
+  .with-image { display: grid; gap: var(--space-4); }
+  .article-header > div { align-self: center; }
+  .article-header > div > p:first-child, time, .byline { color: var(--swm-gold-light); font-size: .78rem; }
+  h1 { max-width: 18ch; font-size: clamp(2.5rem, 7vw, 4.5rem); }
+  .categories { display: flex; flex-wrap: wrap; gap: var(--space-1); margin-top: var(--space-3); }
+  .article-header img { width: 100%; max-height: 22rem; border: 1px solid var(--swm-border); object-fit: cover; }
+  .article-body { width: min(calc(100% - 2rem), 64rem); margin: var(--space-5) auto 0; padding-inline: 1rem; font-size: 1.05rem; }
+  .article-body :global(h2) { margin-top: 2em; font-size: 2.2rem; }
+  .article-body :global(blockquote) { margin: var(--space-4) 0; padding: var(--space-3); border-left: 2px solid var(--swm-gold); color: var(--swm-ivory); background: rgb(169 136 83 / 8%); }
+  @media (min-width: 48rem) { .with-image { grid-template-columns: minmax(0, 1.15fr) minmax(18rem, .85fr); align-items: center; } .article-header img { aspect-ratio: 16 / 10; } .article-body { width: min(calc(100% - 4rem), 64rem); } }
+</style>

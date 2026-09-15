@@ -135,3 +135,16 @@ elsewhere; complete HTTPS URLs are preserved unchanged.
 Before submitting the podcast feed to Apple, iHeartRadio, or another directory, fill in the global show metadata in `src/config/podcast.ts`: show artwork URL, owner name, public contact email, explicit-content setting, and each directory's show URL after approval. Do not add those show URLs to individual episodes.
 
 The crawler-facing sitemap index is `/sitemap-index.xml`. `robots.txt` points search engines to it automatically.
+# Standalone articles
+
+Standalone written articles live in `src/content/articles/` and publish at `/articles/<slug>/`. Start from `_article-template.md`, rename it, replace its content, and set `draft: false` when it is ready.
+
+The `authors` field is required and accepts `dj`, `warren`, or both:
+
+```yaml
+authors:
+  - dj
+  - warren
+```
+
+Articles use the same category keys as episodes. Published articles and episode articles are combined chronologically in `/blog.xml`; `/rss.xml` remains exclusively for podcast episodes and never includes standalone articles.
