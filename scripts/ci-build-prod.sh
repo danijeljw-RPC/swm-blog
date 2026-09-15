@@ -10,5 +10,7 @@ fi
 
 export CLOUDFLARE_ENV="prod"
 echo "Building Sisters with Mirrors PROD"
-npm ci
+if [ "${WORKERS_CI:-}" != "1" ]; then
+  npm ci
+fi
 npm run build:prod
