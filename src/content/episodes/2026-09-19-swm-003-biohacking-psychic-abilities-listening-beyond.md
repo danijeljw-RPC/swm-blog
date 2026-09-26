@@ -4,8 +4,8 @@ slug: "biohacking-psychic-abilities-listening-beyond"
 episode: 3
 publishedAt: 2026-09-19
 updatedAt: 2026-09-26
-draft: true
-fixture: false
+draft: false
+fixture: true
 excerpt: "What sleep, breathwork, intuition, grief and the reversed Ace of Cups can teach us about paying closer attention to ourselves."
 description: "DJ and Warren explore biohacking, sleep, breathwork, intuition, dreams, mediumship, spiritual boundaries and the reversed Ace of Cups."
 categories:
@@ -29,18 +29,21 @@ tags:
   - ace-of-cups
 heroImage: "/images/episodes/biohacking-psychic-abilities-listening-beyond-sleep-intuition-the-art-of-paying-attention.svg"
 heroImageAlt: "Mystical title card for Biohacking, Psychic Abilities & Listening Beyond"
-duration: null
-audio: null
+duration: "01:26:25"
+audio:
+  url: "/podcasts/season-01/episode-003/sisters-with-mirrors-s01e003.mp3"
+  mimeType: "audio/mpeg"
+  bytes: 125099600
 video:
-  hosted: null
-  youtube: null
+  hosted: "/podcasts/season-01/episode-003/sisters-with-mirrors-s01e003.mp4"
+  youtube: "https://youtu.be/Cl2CSA9ehOo"
   spotify: null
 podcast:
   guid: null
   season: 1
   episodeType: full
   explicit: null
-transcript: null
+transcript: "/podcasts/season-01/episode-003/sisters-with-mirrors-s01e003.vtt"
 hosts:
   - dj
   - warren
