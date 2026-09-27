@@ -112,6 +112,7 @@ There is no hack clever enough to make sleep permanently optional.
 
 Sometimes the optimisation is going to bed.
 
+<!-- markdownlint-disable-next-line MD026 -->
 ## Creatine is interesting. It is not magic.
 
 Creatine came up repeatedly during Warren's trip because it sits at an interesting boundary between established use and developing research.
