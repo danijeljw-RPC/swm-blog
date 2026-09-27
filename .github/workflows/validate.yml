@@ -1,0 +1,85 @@
+name: Validate
+
+# All work happens on dev (or branches off dev). A push to dev is validated,
+# then promoted to main through a merged PR. Cloudflare Workers Builds deploys
+# main, so nothing runs here for main itself.
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [dev]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  # Superseded PR runs can be cancelled; a promotion that is mid-merge must not be.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check Astro
+        run: npm run check
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Run output tests
+        run: npm test
+
+  promote:
+    name: Promote dev to main
+    needs: validate
+    if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Open or reuse the dev → main pull request
+        id: pr
+        run: |
+          ahead=$(gh api "repos/$GH_REPO/compare/main...$GITHUB_SHA" --jq .ahead_by)
+          if [ "$ahead" = "0" ]; then
+            echo "main already contains $GITHUB_SHA; nothing to promote."
+            exit 0
+          fi
+
+          number=$(gh pr list --base main --head dev --state open --json number --jq '.[0].number // empty')
+          if [ -z "$number" ]; then
+            subject=$(gh api "repos/$GH_REPO/commits/$GITHUB_SHA" --jq '.commit.message | split("\n")[0]')
+            gh pr create --base main --head dev \
+              --title "Promote dev: $subject" \
+              --body "Automated promotion of \`dev\` at $GITHUB_SHA after validation passed. Cloudflare Workers Builds deploys \`main\` once merged."
+            number=$(gh pr list --base main --head dev --state open --json number --jq '.[0].number')
+          fi
+          echo "number=$number" >> "$GITHUB_OUTPUT"
+
+      - name: Merge the pull request
+        if: steps.pr.outputs.number != ''
+        run: |
+          head=$(gh pr view "${{ steps.pr.outputs.number }}" --json headRefOid --jq .headRefOid)
+          if [ "$head" != "$GITHUB_SHA" ]; then
+            echo "dev has moved on to $head; the run for that push will promote it."
+            exit 0
+          fi
+          # --match-head-commit guarantees only the commit validated above is merged.
+          gh pr merge "${{ steps.pr.outputs.number }}" --merge --match-head-commit "$GITHUB_SHA"
