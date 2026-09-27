@@ -1,0 +1,14 @@
+---
+import { getCollection } from "astro:content";
+import ArticleCard from "../../components/articles/ArticleCard.astro";
+import SectionHeading from "../../components/common/SectionHeading.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getPublishedArticles } from "../../utils/articles";
+const articles = getPublishedArticles(await getCollection("articles"));
+---
+<BaseLayout title="Articles" description="Standalone articles from Sisters with Mirrors.">
+  <section class="page-section site-container"><SectionHeading title="Articles" introduction="Written explorations, guides and deeper dives from Sisters with Mirrors." />
+    {articles.length ? <div class="grid">{articles.map((entry) => <ArticleCard entry={entry} />)}</div> : <p>No articles have been published yet.</p>}
+  </section>
+</BaseLayout>
+<style>.grid { display:grid; gap:var(--space-4); } @media (min-width:42rem){.grid{grid-template-columns:repeat(2,1fr)}} @media (min-width:68rem){.grid{grid-template-columns:repeat(3,1fr)}}</style>

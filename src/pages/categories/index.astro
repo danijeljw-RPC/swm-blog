@@ -4,14 +4,16 @@ import SectionHeading from "../../components/common/SectionHeading.astro";
 import { CATEGORY_KEYS, getCategoryLabel } from "../../config/categories";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getPublishedEpisodes } from "../../utils/episodes";
+import { getPublishedArticles } from "../../utils/articles";
 const episodes = getPublishedEpisodes(await getCollection("episodes"));
+const articles = getPublishedArticles(await getCollection("articles"));
 ---
-<BaseLayout title="Categories" description="Browse Sisters with Mirrors episodes by category.">
+<BaseLayout title="Categories" description="Browse Sisters with Mirrors episodes and articles by category.">
   <section class="page-section site-container">
-    <SectionHeading title="Categories" introduction="A controlled index keeps weekly episode themes consistent and easy to browse." />
+    <SectionHeading title="Categories" introduction="A shared index keeps episode and article themes consistent and easy to browse." />
     <div class="category-list">{CATEGORY_KEYS.map((category) => {
-      const count = episodes.filter((entry) => entry.data.categories.includes(category)).length;
-      return <a class="framed-panel" href={`/categories/${category}/`}><span>{getCategoryLabel(category)}</span><small>{count} {count === 1 ? "episode" : "episodes"}</small></a>;
+      const count = [...episodes, ...articles].filter((entry) => entry.data.categories.includes(category)).length;
+      return <a class="framed-panel" href={`/categories/${category}/`}><span>{getCategoryLabel(category)}</span><small>{count} {count === 1 ? "entry" : "entries"}</small></a>;
     })}</div>
   </section>
 </BaseLayout>

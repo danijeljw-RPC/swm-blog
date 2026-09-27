@@ -8,7 +8,7 @@ interface BlogChannel {
 
 interface BlogArticle {
   title: string;
-  slug: string;
+  path: string;
   description: string;
   publishedAt: Date;
 }
@@ -24,7 +24,7 @@ function escapeXml(value: string): string {
 
 export function serializeBlogRss(channel: BlogChannel, articles: readonly BlogArticle[]): string {
   const items = articles.map((article) => {
-    const url = new URL(`/episodes/${article.slug}/`, channel.link).toString();
+    const url = new URL(article.path, channel.link).toString();
     return `
     <item>
       <title>${escapeXml(article.title)}</title>

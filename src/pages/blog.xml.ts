@@ -1,7 +1,7 @@
 import { getCollection } from "astro:content";
 
 import { site } from "../config/site";
-import { getPublishedEpisodes } from "../utils/episodes";
+import { getPublishedBlogEntries } from "../utils/blog-entries";
 import { serializeBlogRss } from "../utils/blog-rss";
 
 export async function GET() {
@@ -13,12 +13,7 @@ export async function GET() {
       description: site.description,
       language: site.language,
     },
-    getPublishedEpisodes(await getCollection("episodes")).slice(0, 100).map(({ data }) => ({
-      title: data.title,
-      slug: data.slug,
-      description: data.description,
-      publishedAt: data.publishedAt,
-    })),
+    getPublishedBlogEntries(await getCollection("episodes"), await getCollection("articles")),
   );
 
   return new Response(xml, { headers: { "Content-Type": "application/rss+xml; charset=utf-8" } });

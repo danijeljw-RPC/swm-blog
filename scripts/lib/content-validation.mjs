@@ -107,6 +107,20 @@ function validateEpisodeShape(file, data, categories, hostIds, errors) {
   }
 }
 
+function validateArticleShape(file, data, categories, errors) {
+  for (const field of ["title", "slug", "excerpt", "description"]) {
+    if (typeof data[field] !== "string" || data[field].trim() === "") errors.push(`${file}: missing required metadata "${field}"`);
+  }
+  if (typeof data.slug === "string" && !slugPattern.test(data.slug)) errors.push(`${file}: slug must contain lowercase letters, numbers, and hyphens only`);
+  if (!(typeof data.publishedAt === "string" || data.publishedAt instanceof Date)) errors.push(`${file}: publishedAt is required`);
+  if (typeof data.draft !== "boolean") errors.push(`${file}: draft must be boolean`);
+  if (!Array.isArray(data.categories) || data.categories.length === 0) errors.push(`${file}: at least one category is required`);
+  else for (const category of data.categories) if (!categories.has(category)) errors.push(`${file}: unknown category "${category}"`);
+  if (!Array.isArray(data.authors) || data.authors.length === 0) errors.push(`${file}: at least one author is required`);
+  else for (const author of data.authors) if (author !== "dj" && author !== "warren") errors.push(`${file}: unknown author "${author}"`);
+  if (data.heroImage && !String(data.heroImageAlt ?? "").trim()) errors.push(`${file}: heroImageAlt is required when heroImage is set`);
+}
+
 export async function validateContent(rootDirectory) {
   const root = path.resolve(rootDirectory);
   const errors = [];
@@ -172,6 +186,27 @@ export async function validateContent(rootDirectory) {
     if (data.heroImage && !(await assetExists(root, data.heroImage))) {
       errors.push(`${file}: missing local asset "${data.heroImage}"`);
     }
+  }
+
+  const articleFiles = (await listFiles(path.join(root, "src/content/articles"), /\.mdx?$/)).filter(
+    (file) => !/-source-data\.mdx?$/.test(path.basename(file)),
+  );
+  for (const absoluteFile of articleFiles) {
+    const file = relative(root, absoluteFile);
+    filesChecked += 1;
+    let data;
+    try {
+      data = parseFrontmatter(await readFile(absoluteFile, "utf8"));
+    } catch (error) {
+      errors.push(`${file}: invalid frontmatter (${error.message})`);
+      continue;
+    }
+    validateArticleShape(file, data, categories, errors);
+    if (typeof data.slug === "string") {
+      if (seenSlugs.has(data.slug)) errors.push(`${file}: duplicate slug "${data.slug}" (also in ${seenSlugs.get(data.slug)})`);
+      else seenSlugs.set(data.slug, file);
+    }
+    if (data.heroImage && !(await assetExists(root, data.heroImage))) errors.push(`${file}: missing local asset "${data.heroImage}"`);
   }
 
   return { errors, filesChecked };

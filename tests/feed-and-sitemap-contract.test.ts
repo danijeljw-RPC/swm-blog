@@ -16,7 +16,7 @@ test("blog RSS emits article links without podcast enclosures", () => {
     },
     [{
       title: "Episode & one",
-      slug: "episode-one",
+      path: "/episodes/episode-one/",
       description: "A < reflection",
       publishedAt: new Date("2026-09-05T00:00:00Z"),
     }],
@@ -26,6 +26,15 @@ test("blog RSS emits article links without podcast enclosures", () => {
   assert.match(xml, /<link>https:\/\/sisterswithmirrors\.com\/episodes\/episode-one\/<\/link>/);
   assert.match(xml, /<title>Episode &amp; one<\/title>/);
   assert.doesNotMatch(xml, /<enclosure /);
+});
+
+test("blog RSS preserves explicit article routes", () => {
+  const xml = serializeBlogRss(
+    { title: "Sisters with Mirrors", link: "https://sisterswithmirrors.com", selfUrl: "https://sisterswithmirrors.com/blog.xml", description: "Articles", language: "en-AU" },
+    [{ title: "Written", path: "/articles/written/", description: "Article", publishedAt: new Date("2026-09-15T00:00:00Z") }],
+  );
+  assert.match(xml, /https:\/\/sisterswithmirrors\.com\/articles\/written\//);
+  assert.doesNotMatch(xml, /\/episodes\/written\//);
 });
 
 test("sitemap index and URL set escape values and preserve last modification dates", () => {

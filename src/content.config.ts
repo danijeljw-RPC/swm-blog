@@ -73,4 +73,31 @@ const episodes = defineCollection({
     }),
 });
 
-export const collections = { episodes };
+const articles = defineCollection({
+  loader: glob({
+    base: "./src/content/articles",
+    pattern: ["**/*.{md,mdx}", "!**/*-source-data.{md,mdx}"],
+  }),
+  schema: z
+    .object({
+      title: z.string().min(1),
+      slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+      publishedAt: z.coerce.date(),
+      updatedAt: z.coerce.date().optional(),
+      draft: z.boolean().default(false),
+      excerpt: z.string().min(1),
+      description: z.string().min(1),
+      categories: z.array(z.enum(categoryValues)).min(1),
+      tags: z.array(z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)).default([]),
+      authors: z.array(z.enum(["dj", "warren"])).min(1),
+      heroImage: z.string().startsWith("/").nullable().optional(),
+      heroImageAlt: z.string().default(""),
+      seo: z.object({ canonical: optionalUrl, noindex: z.boolean().default(false) }).default({ noindex: false }),
+    })
+    .refine((data) => !data.heroImage || data.heroImageAlt.trim().length > 0, {
+      message: "heroImageAlt is required when heroImage is set",
+      path: ["heroImageAlt"],
+    }),
+});
+
+export const collections = { articles, episodes };

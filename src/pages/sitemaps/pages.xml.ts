@@ -1,7 +1,7 @@
 import { site } from "../../config/site";
 import { serializeUrlSet } from "../../utils/sitemap";
 
-const paths = ["/", "/about/", "/astrology/", "/categories/", "/chakras/", "/daily-mirror/", "/episodes/", "/get-involved/", "/get-involved/share-your-story/", "/get-involved/be-a-guest/", "/hosts/", "/listen/"];
+const paths = ["/", "/about/", "/articles/", "/astrology/", "/categories/", "/chakras/", "/daily-mirror/", "/episodes/", "/get-involved/", "/get-involved/share-your-story/", "/get-involved/be-a-guest/", "/hosts/", "/listen/"];
 
 export function GET() {
   return new Response(

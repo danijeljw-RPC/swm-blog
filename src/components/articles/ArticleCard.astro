@@ -1,0 +1,24 @@
+---
+import type { ArticleEntry } from "../../types/article";
+import CategoryBadge from "../episodes/CategoryBadge.astro";
+import type { CategoryKey } from "../../config/categories";
+interface Props { entry: ArticleEntry }
+const { entry: { data } } = Astro.props;
+---
+<article class="article-card framed-panel">
+  {data.heroImage && <img src={data.heroImage} alt={data.heroImageAlt} loading="lazy" />}
+  <div class="content">
+    <p class="meta">Article · <time datetime={data.publishedAt.toISOString()}>{data.publishedAt.toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" })}</time></p>
+    <h3><a href={`/articles/${data.slug}/`}>{data.title}</a></h3>
+    <p>{data.excerpt}</p>
+    <div class="categories">{data.categories.map((category) => <CategoryBadge category={category as CategoryKey} />)}</div>
+  </div>
+</article>
+<style>
+  .article-card { display: flex; min-height: 100%; flex-direction: column; }
+  img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-bottom: 1px solid var(--swm-border); }
+  .content { position: relative; z-index: 1; padding: var(--space-4); }
+  .meta { color: var(--swm-gold-light); font-size: .73rem; }
+  h3 a { text-decoration: none; }
+  .categories { display: flex; flex-wrap: wrap; gap: var(--space-1); margin-top: var(--space-3); }
+</style>

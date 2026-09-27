@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title description" data-variant="4" data-seed="203">
+  <title id="title">Biohacking, Psychic Abilities &amp; Listening Beyond</title>
+  <desc id="description">Metaphysical episode artwork for Biohacking, Psychic Abilities &amp; Listening Beyond.</desc>
+  <defs>
+    <radialGradient id="plum" cx="50%" cy="38%" r="74%"><stop offset="0" stop-color="#2b142d"/><stop offset="0.55" stop-color="#100b15"/><stop offset="1" stop-color="#07070b"/></radialGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="28"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#plum)"/>
+  <g fill="#593057" opacity=".2" filter="url(#soft)"><ellipse cx="160" cy="480" rx="230" ry="410"/><ellipse cx="1440" cy="450" rx="220" ry="390"/></g>
+  <g fill="none" stroke="#A98853"><rect x="48" y="48" width="1504" height="804" stroke-width="2" opacity=".7"/><rect x="66" y="66" width="1468" height="768" stroke-width="1" opacity=".35"/></g>
+  <g fill="#D7CCB8" aria-hidden="true">
+    <circle cx="826" cy="449" r="3" opacity=".78"/>
+    <circle cx="631" cy="134" r="3" opacity=".40"/>
+    <circle cx="1458" cy="201" r="1" opacity=".70"/>
+    <circle cx="1263" cy="396" r="1" opacity=".87"/>
+    <circle cx="700" cy="463" r="2" opacity=".49"/>
+    <circle cx="505" cy="148" r="2" opacity=".79"/>
+    <circle cx="1332" cy="215" r="3" opacity=".41"/>
+    <circle cx="1137" cy="410" r="3" opacity=".71"/>
+    <circle cx="574" cy="477" r="1" opacity=".88"/>
+    <circle cx="1401" cy="162" r="1" opacity=".63"/>
+    <circle cx="1206" cy="229" r="2" opacity=".80"/>
+    <circle cx="643" cy="424" r="2" opacity=".55"/>
+    <circle cx="448" cy="491" r="3" opacity=".72"/>
+    <circle cx="1275" cy="176" r="3" opacity=".47"/>
+    <circle cx="1080" cy="243" r="1" opacity=".64"/>
+    <circle cx="517" cy="438" r="1" opacity=".39"/>
+    <circle cx="322" cy="505" r="2" opacity=".56"/>
+    <circle cx="1149" cy="190" r="2" opacity=".86"/>
+    <circle cx="954" cy="257" r="3" opacity=".48"/>
+    <circle cx="391" cy="324" r="3" opacity=".78"/>
+    <circle cx="196" cy="519" r="1" opacity=".40"/>
+    <circle cx="1023" cy="586" r="1" opacity=".70"/>
+    <circle cx="828" cy="271" r="2" opacity=".87"/>
+    <circle cx="265" cy="338" r="2" opacity=".62"/>
+    <circle cx="1460" cy="533" r="3" opacity=".79"/>
+    <circle cx="897" cy="600" r="3" opacity=".54"/>
+    <circle cx="702" cy="285" r="1" opacity=".71"/>
+    <circle cx="139" cy="352" r="1" opacity=".46"/>
+  </g>
+  <g data-ornament="3" fill="none" stroke="#A98853" aria-hidden="true">
+    <path d="M800 86v70M686 100l34 66M914 100l-34 66M580 142l68 54M1020 142l-68 54M800 584v70M686 640l34-66M914 640l-34-66M580 598l68-54M1020 598l-68-54" opacity=".65"/><path d="m800 74 6 14 14 6-14 6-6 14-6-14-14-6 14-6Z" fill="#A98853"/>
+  </g>
+  <g data-motif="0" fill="none" stroke="#A98853" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <ellipse cx="800" cy="370" rx="154" ry="218" stroke-width="4"/><ellipse cx="800" cy="370" rx="132" ry="195" opacity=".45"/><path d="M830 237a138 138 0 1 0 0 266a109 109 0 1 1 0-266Z" fill="#A98853" fill-opacity=".13"/><path d="M800 142v-34m-22 20 22-20 22 20M800 598v34m-22-20 22 20 22-20"/>
+  </g>
+  <text data-role="heading" x="800" y="744" fill="#D7CCB8" font-family="Georgia,serif" font-size="38" letter-spacing="6" text-anchor="middle">Biohacking, Psychic Abilities &amp; Listening Beyond</text>
+  <text data-role="subheading" x="800" y="800" fill="#A98853" font-family="Arial,sans-serif" font-size="24" letter-spacing="8" text-anchor="middle">Sleep, Intuition &amp; the Art of Paying Attention</text>
+</svg>
