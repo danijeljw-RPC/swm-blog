@@ -5,7 +5,7 @@ episode: 3
 publishedAt: 2026-09-19
 updatedAt: 2026-09-26
 draft: false
-fixture: true
+fixture: false
 excerpt: "What sleep, breathwork, intuition, grief and the reversed Ace of Cups can teach us about paying closer attention to ourselves."
 description: "DJ and Warren explore biohacking, sleep, breathwork, intuition, dreams, mediumship, spiritual boundaries and the reversed Ace of Cups."
 categories:
