@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="1152" viewBox="0 0 2048 1152" role="img" aria-labelledby="title description">
+  <title id="title">Sisters with Mirrors YouTube channel banner</title>
+  <desc id="description">A dark celestial banner with mirrored gold arcs, stars, the Sisters with Mirrors crescent mark, and the channel name centred for visibility on every device.</desc>
+
+  <defs>
+    <radialGradient id="background-glow" cx="50%" cy="49%" r="72%">
+      <stop offset="0" stop-color="#211A2A"/>
+      <stop offset="0.48" stop-color="#100D16"/>
+      <stop offset="1" stop-color="#07070B"/>
+    </radialGradient>
+    <linearGradient id="gold-line" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6F5735"/>
+      <stop offset="0.5" stop-color="#C5A66F"/>
+      <stop offset="1" stop-color="#6F5735"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#A98853" stop-opacity="0.17"/>
+      <stop offset="1" stop-color="#A98853" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="stars" width="164" height="136" patternUnits="userSpaceOnUse">
+      <circle cx="17" cy="22" r="1.2" fill="#D7CCB8" opacity="0.42"/>
+      <circle cx="122" cy="47" r="0.9" fill="#A98853" opacity="0.52"/>
+      <circle cx="71" cy="108" r="0.75" fill="#D7CCB8" opacity="0.3"/>
+      <circle cx="151" cy="126" r="0.65" fill="#A98853" opacity="0.28"/>
+    </pattern>
+    <filter id="soft-glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="2048" height="1152" fill="url(#background-glow)"/>
+  <rect width="2048" height="1152" fill="url(#stars)" opacity="0.75"/>
+  <ellipse cx="1024" cy="576" rx="700" ry="375" fill="url(#halo)"/>
+
+  <!-- Mirrored celestial framework: atmospheric on large displays, safely expendable on narrow screens. -->
+  <g fill="none" stroke="url(#gold-line)">
+    <circle cx="-42" cy="576" r="388" stroke-width="2" opacity="0.46"/>
+    <circle cx="-42" cy="576" r="500" stroke-width="1" opacity="0.24"/>
+    <circle cx="2090" cy="576" r="388" stroke-width="2" opacity="0.46"/>
+    <circle cx="2090" cy="576" r="500" stroke-width="1" opacity="0.24"/>
+    <path d="M0 188C360 248 415 430 455 576C415 722 360 904 0 964" stroke-width="2" opacity="0.34"/>
+    <path d="M2048 188C1688 248 1633 430 1593 576C1633 722 1688 904 2048 964" stroke-width="2" opacity="0.34"/>
+    <ellipse cx="1024" cy="576" rx="868" ry="477" stroke-width="1" opacity="0.13"/>
+  </g>
+
+  <g fill="#A98853">
+    <path d="m244 298 5 13 13 5-13 5-5 13-5-13-13-5 13-5Z" opacity="0.85"/>
+    <path d="m1804 298 5 13 13 5-13 5-5 13-5-13-13-5 13-5Z" opacity="0.85"/>
+    <path d="m315 808 3 8 8 3-8 3-3 8-3-8-8-3 8-3Z" opacity="0.52"/>
+    <path d="m1733 808 3 8 8 3-8 3-3 8-3-8-8-3 8-3Z" opacity="0.52"/>
+  </g>
+
+  <!-- The complete identity lockup stays inside YouTube's centred 1235 × 338 cross-device safe area. -->
+  <g aria-label="Sisters with Mirrors channel identity">
+    <circle cx="1024" cy="500" r="68" fill="#07070B" fill-opacity="0.7" stroke="#A98853" stroke-width="2"/>
+    <g transform="translate(980 456) scale(1.375)" filter="url(#soft-glow)">
+      <circle cx="32" cy="32" r="22" fill="none" stroke="#A98853" stroke-width="2"/>
+      <path d="M36 13a20 20 0 1 0 0 38a16 16 0 1 1 0-38Z" fill="#D7CCB8"/>
+      <path d="m47 13 2 5 5 2-5 2-2 5-2-5-5-2 5-2Z" fill="#A98853"/>
+    </g>
+
+    <line x1="778" y1="598" x2="1270" y2="598" stroke="#A98853" stroke-width="1" opacity="0.5"/>
+    <circle cx="762" cy="598" r="3" fill="#A98853"/>
+    <circle cx="1286" cy="598" r="3" fill="#A98853"/>
+    <text x="1024" y="681" fill="#D7CCB8" font-family="Cormorant Garamond, Georgia, serif" font-size="94" font-weight="600" letter-spacing="4" text-anchor="middle">Sisters with Mirrors</text>
+  </g>
+
+  <g fill="#A98853" opacity="0.34">
+    <circle cx="1024" cy="183" r="2"/>
+    <circle cx="1024" cy="969" r="2"/>
+    <path d="M1024 206v52M998 232h52" stroke="#A98853" stroke-width="1"/>
+    <path d="M1024 894v52M998 920h52" stroke="#A98853" stroke-width="1"/>
+  </g>
+</svg>

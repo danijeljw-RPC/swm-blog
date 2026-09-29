@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="300" viewBox="0 0 1400 300" role="img" aria-labelledby="title description">
+  <title id="title">Sisters with Mirrors video watermark</title>
+  <desc id="description">The Sisters with Mirrors crescent moon and star mark beside the name in gold, on a softly rounded dark panel.</desc>
+
+  <rect x="20" y="20" width="1360" height="260" rx="52" fill="#07070B" fill-opacity="0.88" stroke="#A98853" stroke-width="3"/>
+
+  <g transform="translate(54 46) scale(3.25)">
+    <circle cx="32" cy="32" r="22" fill="none" stroke="#A98853" stroke-width="2"/>
+    <path d="M36 13a20 20 0 1 0 0 38a16 16 0 1 1 0-38Z" fill="#D7CCB8"/>
+    <path d="m47 13 2 5 5 2-5 2-2 5-2-5-5-2 5-2Z" fill="#A98853"/>
+  </g>
+
+  <line x1="298" y1="76" x2="298" y2="224" stroke="#A98853" stroke-width="2" opacity="0.58"/>
+  <text x="354" y="177" fill="#A98853" font-family="Cormorant Garamond, Georgia, serif" font-size="82" font-weight="600" letter-spacing="3">Sisters with Mirrors</text>
+</svg>
