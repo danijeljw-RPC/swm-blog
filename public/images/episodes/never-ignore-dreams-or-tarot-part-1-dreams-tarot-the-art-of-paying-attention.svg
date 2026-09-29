@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title description" data-variant="24" data-seed="2150884473">
+  <title id="title">Never Ignore Dreams or Tarot Part 1</title>
+  <desc id="description">Metaphysical episode artwork for Never Ignore Dreams or Tarot Part 1.</desc>
+  <defs>
+    <radialGradient id="plum" cx="50%" cy="38%" r="74%"><stop offset="0" stop-color="#2b142d"/><stop offset="0.55" stop-color="#100b15"/><stop offset="1" stop-color="#07070b"/></radialGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="28"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#plum)"/>
+  <g fill="#593057" opacity=".2" filter="url(#soft)"><ellipse cx="160" cy="480" rx="230" ry="410"/><ellipse cx="1440" cy="450" rx="220" ry="390"/></g>
+  <g fill="none" stroke="#A98853"><rect x="48" y="48" width="1504" height="804" stroke-width="2" opacity=".7"/><rect x="66" y="66" width="1468" height="768" stroke-width="1" opacity=".35"/></g>
+  <g fill="#D7CCB8" aria-hidden="true">
+    <circle cx="118" cy="391" r="2" opacity=".50"/>
+    <circle cx="1313" cy="586" r="2" opacity=".67"/>
+    <circle cx="750" cy="143" r="3" opacity=".84"/>
+    <circle cx="555" cy="338" r="3" opacity=".59"/>
+    <circle cx="1382" cy="405" r="1" opacity=".76"/>
+    <circle cx="1187" cy="600" r="1" opacity=".51"/>
+    <circle cx="624" cy="157" r="2" opacity=".68"/>
+    <circle cx="429" cy="352" r="2" opacity=".43"/>
+    <circle cx="1256" cy="419" r="3" opacity=".60"/>
+    <circle cx="693" cy="104" r="3" opacity=".35"/>
+    <circle cx="498" cy="171" r="1" opacity=".52"/>
+    <circle cx="1325" cy="366" r="1" opacity=".82"/>
+    <circle cx="1130" cy="433" r="2" opacity=".44"/>
+    <circle cx="567" cy="118" r="2" opacity=".74"/>
+    <circle cx="372" cy="185" r="3" opacity=".36"/>
+    <circle cx="1199" cy="380" r="3" opacity=".66"/>
+    <circle cx="1004" cy="447" r="1" opacity=".83"/>
+    <circle cx="441" cy="132" r="1" opacity=".58"/>
+    <circle cx="246" cy="199" r="2" opacity=".75"/>
+    <circle cx="1073" cy="266" r="2" opacity=".50"/>
+    <circle cx="878" cy="461" r="3" opacity=".67"/>
+    <circle cx="315" cy="528" r="3" opacity=".42"/>
+    <circle cx="120" cy="213" r="1" opacity=".59"/>
+    <circle cx="947" cy="280" r="1" opacity=".89"/>
+    <circle cx="752" cy="475" r="2" opacity=".51"/>
+    <circle cx="189" cy="542" r="2" opacity=".81"/>
+    <circle cx="1384" cy="227" r="3" opacity=".43"/>
+    <circle cx="821" cy="294" r="3" opacity=".73"/>
+  </g>
+  <g data-ornament="3" fill="none" stroke="#A98853" aria-hidden="true">
+    <path d="M800 86v70M686 100l34 66M914 100l-34 66M580 142l68 54M1020 142l-68 54M800 584v70M686 640l34-66M914 640l-34-66M580 598l68-54M1020 598l-68-54" opacity=".65"/><path d="m800 74 6 14 14 6-14 6-6 14-6-14-14-6 14-6Z" fill="#A98853"/>
+  </g>
+  <g data-motif="4" fill="none" stroke="#A98853" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M800 145 1040 555H560Z" stroke-width="4"/><path d="M800 205 970 495H630Z" opacity=".6"/><path d="m800 555-170-290h340Z" opacity=".55"/><circle cx="800" cy="370" r="92"/><circle cx="800" cy="370" r="16" fill="#A98853" fill-opacity=".3"/>
+  </g>
+  <text data-role="heading" x="800" y="744" fill="#D7CCB8" font-family="Georgia,serif" font-size="58" letter-spacing="6" text-anchor="middle">Never Ignore Dreams or Tarot Part 1</text>
+  <text data-role="subheading" x="800" y="800" fill="#A98853" font-family="Arial,sans-serif" font-size="24" letter-spacing="8" text-anchor="middle">Dreams, Tarot &amp; the Art of Paying Attention</text>
+</svg>
