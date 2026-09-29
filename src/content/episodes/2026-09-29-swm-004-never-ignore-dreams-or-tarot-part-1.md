@@ -28,10 +28,13 @@ tags:
   - numerology
 heroImage: "/images/episodes/never-ignore-dreams-or-tarot-part-1-dreams-tarot-the-art-of-paying-attention.svg"
 heroImageAlt: "Dark plum Sisters with Mirrors title card with layered gold triangles, circles and stars"
-duration: null
-audio: null
+duration: "01:03:44"
+audio:
+  url: "/podcasts/season-01/episode-004/sisters-with-mirrors-s01e004.mp3"
+  mimeType: "audio/mpeg"
+  bytes: 91796115
 video:
-  hosted: null
+  hosted: "/podcasts/season-01/episode-004/sisters-with-mirrors-s01e004.mp4"
   youtube: "https://youtu.be/qJKoj9Z4apk"
   spotify: null
 podcast:
@@ -39,7 +42,7 @@ podcast:
   season: 1
   episodeType: full
   explicit: null
-transcript: null
+transcript: "/podcasts/season-01/episode-004/sisters-with-mirrors-s01e004.vtt"
 hosts:
   - dj
   - warren
